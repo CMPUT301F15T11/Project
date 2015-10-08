@@ -1,0 +1,100 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="timerandbuzzer.cs.ualberta.ca.project1.EditOrAddNew">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText2"
+        android:text="Name: Introduction to Computing Science"
+        android:layout_above="@+id/multiAutoCompleteTextView"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/button12" />
+
+    <MultiAutoCompleteTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Category: SCIENCE"
+        android:id="@+id/multiAutoCompleteTextView"
+        android:layout_above="@+id/editText3"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="138dp"
+        android:layout_alignEnd="@+id/button12" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/editText3"
+        android:text="Details: This DVD is your first step to a computing scientist. The video in DVD will show you how to write a nice android app and even let you write your own ones."
+        android:layout_above="@+id/button12"
+        android:layout_alignEnd="@+id/button12"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BACK"
+        android:id="@+id/button12"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:id="@+id/button13"
+        android:background="@drawable/button_shape_gradient"
+        android:layout_alignBottom="@+id/button12"
+        android:layout_toStartOf="@+id/button12" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:text="Quantity: 1"
+        android:layout_above="@+id/editText4"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/button12"
+        android:textSize="20dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText4"
+        android:text="Quality: Good"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/button12"
+        android:textSize="20dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upload a Photo"
+        android:id="@+id/button3"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+
+        android:background="@drawable/button_shape_gradient"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText5"
+        android:layout_above="@+id/editText3"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/editText4"
+        android:text="Sharable: Yes"
+        android:textSize="20dp" />
+
+
+
+</RelativeLayout>
