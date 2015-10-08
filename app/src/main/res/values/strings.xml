@@ -15,4 +15,5 @@
     <string name="title_activity_trade_detail">TradeDetailActivity</string>
     <string name="title_activity_income_trade">IncomeTradeActivity</string>
     <string name="title_activity_income_trade_detail">IncomeTradeDetailActivity</string>
+    <string name="title_activity_dvdadd">DVDAddActivity</string>
 </resources>

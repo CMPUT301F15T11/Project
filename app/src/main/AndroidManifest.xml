@@ -64,6 +64,10 @@
             android:name=".IncomeTradeDetailActivity"
             android:label="@string/title_activity_income_trade_detail" >
         </activity>
+        <activity
+            android:name=".DVDAddActivity"
+            android:label="@string/title_activity_dvdadd" >
+        </activity>
     </application>
 
 </manifest>
