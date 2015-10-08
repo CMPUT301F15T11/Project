@@ -8,7 +8,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <include layout="@layout/title_my_inventory"/>
+        <include layout="@layout/title_friend_profile"/>
     </LinearLayout>
 
     <LinearLayout
