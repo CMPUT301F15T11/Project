@@ -68,6 +68,14 @@
             android:name=".DVDAddActivity"
             android:label="@string/title_activity_dvdadd" >
         </activity>
+        <activity
+            android:name=".BrowseInventActivity"
+            android:label="@string/title_activity_browse_invent" >
+        </activity>
+        <activity
+            android:name=".AllTradesActivity"
+            android:label="@string/title_activity_all_trades" >
+        </activity>
     </application>
 
 </manifest>
