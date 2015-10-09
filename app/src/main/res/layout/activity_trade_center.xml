@@ -1,0 +1,96 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include layout="@layout/tittle_trade_center"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="456dp"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1.50"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.33"
+            android:weightSum="1"
+            >
+
+            <Button
+                android:layout_width="248dp"
+                android:layout_height="wrap_content"
+                android:text="start new trade"
+                android:textSize="20dp"
+                android:textColor="#000000"
+                android:fontFamily="monospace"
+                android:id="@+id/send_trade"
+                android:background="@drawable/button_shape_nograd"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
+                android:onClick="startNewTrade" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.36"
+            android:weightSum="1">
+
+            <Button
+                android:layout_width="248dp"
+                android:layout_height="wrap_content"
+                android:text="incoming trades"
+                android:textSize="20dp"
+                android:textColor="#000000"
+                android:fontFamily="monospace"
+                android:id="@+id/incoming_trade"
+                android:background="@drawable/button_shape_nograd"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
+                android:onClick="startIncomingTrade" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.30"
+            android:weightSum="1">
+
+            <Button
+                android:layout_width="248dp"
+                android:layout_height="wrap_content"
+                android:text="all trades"
+                android:textSize="20dp"
+                android:textColor="#000000"
+                android:fontFamily="monospace"
+                android:id="@+id/all_trades"
+                android:background="@drawable/button_shape_nograd"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
+                android:onClick="startAllTrade" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include layout="@layout/bottom"/>
+    </LinearLayout>
+
+</LinearLayout>
