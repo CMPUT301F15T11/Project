@@ -19,4 +19,6 @@
     <string name="title_activity_romantic_dvd">RomanticDVDActivity</string>
     <string name="title_activity_browse_invent">BrowseInventActivity</string>
     <string name="title_activity_all_trades">AllTradesActivity</string>
+    <string name="title_activity_config">ConfigActivity</string>
+    <string name="title_activity_my_profile">MyProfileActivity</string>
 </resources>
