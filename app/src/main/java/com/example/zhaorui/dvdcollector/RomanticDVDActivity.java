@@ -1,39 +1,29 @@
 package com.example.zhaorui.dvdcollector;
 
-import android.content.Intent;
+import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-public class MainActivity extends BaseActivity {
-    Button btnInvent;
-    Button btnTrade;
+public class RomanticDVDActivity extends BaseActivity {
+    private String[] data = { "Titanic", "Love Actually"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        btnInvent = (Button)findViewById(R.id.btnInventMain);
-        btnTrade = (Button)findViewById(R.id.btnTradeMain);
+        setContentView(R.layout.activity_romantic_dvd);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(RomanticDVDActivity.this, android.R.layout.simple_list_item_1, data);
+        ListView listView = (ListView) findViewById(R.id.listViewRomanticDVD);
+        listView.setAdapter(adapter);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_romantic_dvd, menu);
         return true;
-    }
-
-    public void startMyInvent(View view){
-        Intent i = new Intent(MainActivity.this, MyInventActivity.class);
-        startActivity(i);
-    }
-
-    public void startTradeCenter(View view){
-        Intent i = new Intent(MainActivity.this, TradeCenterActivity.class);
-        startActivity(i);
     }
 
     @Override

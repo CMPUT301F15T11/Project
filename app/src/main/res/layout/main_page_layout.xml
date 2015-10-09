@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:text="Inventory"
+            android:textSize="20dp"
+            android:fontFamily="monospace"
+            android:textColor="#000"
+            android:id="@+id/btnInventMain"
+            android:layout_weight="1"
+            android:background="@drawable/button_shape_nograd"
+            android:onClick="startMyInvent" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:text="Friends"
+            android:textSize="20dp"
+            android:fontFamily="monospace"
+            android:textColor="#000"
+            android:id="@+id/button15"
+            android:layout_weight="1"
+            android:background="@drawable/button_shape_nograd"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:text="Trade"
+            android:textSize="20dp"
+            android:fontFamily="monospace"
+            android:textColor="#000"
+            android:id="@+id/btnTradeMain"
+            android:layout_weight="1"
+            android:background="@drawable/button_shape_nograd"
+            android:onClick="startTradeCenter" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:text="Config"
+            android:textSize="20dp"
+            android:fontFamily="monospace"
+            android:textColor="#000"
+            android:id="@+id/button17"
+            android:layout_weight="1"
+            android:background="@drawable/button_shape_nograd"/>
+    </LinearLayout>
+
+</LinearLayout>

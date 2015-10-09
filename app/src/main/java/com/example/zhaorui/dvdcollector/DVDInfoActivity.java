@@ -1,39 +1,24 @@
 package com.example.zhaorui.dvdcollector;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
-public class MainActivity extends BaseActivity {
-    Button btnInvent;
-    Button btnTrade;
+public class DVDInfoActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        btnInvent = (Button)findViewById(R.id.btnInventMain);
-        btnTrade = (Button)findViewById(R.id.btnTradeMain);
+        setContentView(R.layout.activity_dvdinfo);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_dvdinfo, menu);
         return true;
-    }
-
-    public void startMyInvent(View view){
-        Intent i = new Intent(MainActivity.this, MyInventActivity.class);
-        startActivity(i);
-    }
-
-    public void startTradeCenter(View view){
-        Intent i = new Intent(MainActivity.this, TradeCenterActivity.class);
-        startActivity(i);
     }
 
     @Override
@@ -44,8 +29,13 @@ public class MainActivity extends BaseActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.dvd_info_edit) {
+            Intent i = new Intent(DVDInfoActivity.this, DVDInfoEditActivity.class);
+            startActivity(i);
+        }
+
+        if (id == R.id.dvd_info_remove) {
+            /////////////////////////////////////
         }
 
         return super.onOptionsItemSelected(item);

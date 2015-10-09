@@ -1,39 +1,32 @@
 package com.example.zhaorui.dvdcollector;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-public class MainActivity extends BaseActivity {
-    Button btnInvent;
-    Button btnTrade;
+public class AllTradesActivity extends BaseActivity {
+
+    private String[] data = { "[Current] From Jack","[Current] From Lucy","[Current] From Jack","[Declined] From Lucy",
+            "[Accepted] From Lucy","[Declined] From Lucy","[Accepted] From Jack","[Accepted] From Jack","[Declined] From Jack",
+            "[Declined] From Jack","[Accepted] From Jack","[Declined] From Jack","[Declined] From Lucy",};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        btnInvent = (Button)findViewById(R.id.btnInventMain);
-        btnTrade = (Button)findViewById(R.id.btnTradeMain);
+        setContentView(R.layout.activity_all_trades);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(AllTradesActivity.this, android.R.layout.simple_list_item_1, data);
+        ListView listView = (ListView) findViewById(R.id.listViewAllTrades);
+        listView.setAdapter(adapter);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_all_trades, menu);
         return true;
-    }
-
-    public void startMyInvent(View view){
-        Intent i = new Intent(MainActivity.this, MyInventActivity.class);
-        startActivity(i);
-    }
-
-    public void startTradeCenter(View view){
-        Intent i = new Intent(MainActivity.this, TradeCenterActivity.class);
-        startActivity(i);
     }
 
     @Override

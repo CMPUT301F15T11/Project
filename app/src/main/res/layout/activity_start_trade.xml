@@ -2,14 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    android:weightSum="1">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <include layout="@layout/title_main"/>
+        <include layout="@layout/title_trade_details"/>
     </LinearLayout>
 
     <LinearLayout
@@ -19,16 +19,18 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp">
-            <include layout="@layout/main_page_layout"/>
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp">
+            <include layout="@layout/start_page_layout"/>
         </LinearLayout>
     </LinearLayout>
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <include layout="@layout/bottom"/>
     </LinearLayout>
+
 
 </LinearLayout>
