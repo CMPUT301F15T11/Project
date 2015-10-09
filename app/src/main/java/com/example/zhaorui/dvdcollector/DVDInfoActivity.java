@@ -1,5 +1,6 @@
 package com.example.zhaorui.dvdcollector;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -28,8 +29,13 @@ public class DVDInfoActivity extends BaseActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.dvd_info_edit) {
+            Intent i = new Intent(DVDInfoActivity.this, DVDInfoEditActivity.class);
+            startActivity(i);
+        }
+
+        if (id == R.id.dvd_info_remove) {
+            /////////////////////////////////////
         }
 
         return super.onOptionsItemSelected(item);

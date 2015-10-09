@@ -8,17 +8,17 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <include layout="@layout/title_friends_invent"/>
+        <include layout="@layout/title_rom"/>
     </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="462dp">
+        android:layout_height="463dp">
         <ListView
             android:layout_width="wrap_content"
-            android:layout_height="470dp"
-            android:id="@+id/listViewFriendInventory"/>
+            android:layout_height="428dp"
+            android:id="@+id/listViewRomanticDVD" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"

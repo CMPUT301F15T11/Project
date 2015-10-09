@@ -14,8 +14,9 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:layout_gravity="center_vertical">
+        android:layout_height="467dp"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="30dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,8 +53,6 @@
             android:id="@+id/button4"
             android:textSize="30dp"
             android:background="@drawable/button_shape_gradient"
-            android:layout_marginLeft="30dp"
             android:layout_marginBottom="30dp"/>
     </LinearLayout>
-
 </LinearLayout>
