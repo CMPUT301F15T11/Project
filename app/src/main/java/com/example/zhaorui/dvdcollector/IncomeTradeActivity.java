@@ -4,13 +4,19 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 public class IncomeTradeActivity extends BaseActivity {
+    private String[] data = { "Trade Request From Jack","Trade Request From Lucy"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_income_trade);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(IncomeTradeActivity.this, android.R.layout.simple_list_item_1, data);
+        ListView listView = (ListView) findViewById(R.id.listViewIncomeTrades);
+        listView.setAdapter(adapter);
     }
 
     @Override

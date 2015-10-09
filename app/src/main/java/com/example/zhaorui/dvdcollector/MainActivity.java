@@ -1,6 +1,7 @@
 package com.example.zhaorui.dvdcollector;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -29,6 +30,16 @@ public class MainActivity extends BaseActivity {
 
     public void startMyInvent(View view){
         Intent i = new Intent(MainActivity.this, MyInventActivity.class);
+        startActivity(i);
+    }
+
+    public void startFriendList(View view){
+        Intent i = new Intent(MainActivity.this, FriendListActivity.class);
+        startActivity(i);
+    }
+
+    public void startConfig(View view){
+        Intent i = new Intent(MainActivity.this, ConfigActivity.class);
         startActivity(i);
     }
 

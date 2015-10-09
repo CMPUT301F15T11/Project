@@ -4,13 +4,19 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 public class FriendListActivity extends BaseActivity {
+    private String[] data = { "Jack", "Lucy", "Calvin", "Frank", "Mike"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend_list);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(FriendListActivity.this, android.R.layout.simple_list_item_1, data);
+        ListView listView = (ListView) findViewById(R.id.listViewFriendList);
+        listView.setAdapter(adapter);
     }
 
     @Override

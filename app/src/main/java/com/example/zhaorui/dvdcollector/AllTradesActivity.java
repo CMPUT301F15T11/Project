@@ -13,7 +13,7 @@ public class AllTradesActivity extends ActionBarActivity {
 
     private String[] data = { "[Current] From Jack","[Current] From Lucy","[Current] From Jack","[Declined] From Lucy",
             "[Accepted] From Lucy","[Declined] From Lucy","[Accepted] From Jack","[Accepted] From Jack","[Declined] From Jack",
-            "[Declined] From Jack","[Accepted] From Jack","[Declined] From Jack","[Declined] From Lucy",};
+            "[Declined] From Jack","[Accepted] From Jack","[Declined] From Jack","[Declined] From Lucy"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
