@@ -1,53 +1,40 @@
 package com.example.zhaorui.dvdcollector;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
-public class MainActivity extends BaseActivity {
-    Button btnInvent;
-    Button btnTrade;
-    Button btnFriends;
-    Button btnConfig;
-
+public class TradeCenterActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        btnInvent = (Button)findViewById(R.id.btnInventMain);
-        btnTrade = (Button)findViewById(R.id.btnTradeMain);
-        btnFriends = (Button)findViewById(R.id.btnFriendsMain);
-        btnConfig = (Button)findViewById(R.id.btnConfigMain);
+        setContentView(R.layout.activity_trade_center);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_trade_center, menu);
         return true;
     }
 
-    public void startMyInvent(View view){
-        Intent i = new Intent(MainActivity.this, MyInventActivity.class);
+
+    public void startNewTrade(View view){
+        Intent i = new Intent(TradeCenterActivity.this, StartTradeActivity.class);
         startActivity(i);
     }
 
-    public void startFriendList(View view){
-        Intent i = new Intent(MainActivity.this, FriendListActivity.class);
+    public void startIncomingTrade(View view){
+        Intent i = new Intent(TradeCenterActivity.this, IncomeTradeActivity.class);
         startActivity(i);
     }
 
-    public void startConfig(View view){
-        Intent i = new Intent(MainActivity.this, ConfigActivity.class);
-        startActivity(i);
-    }
-
-    public void startTradeCenter(View view){
-        Intent i = new Intent(MainActivity.this, TradeCenterActivity.class);
+    public void startAllTrade(View view){
+        Intent i = new Intent(TradeCenterActivity.this, AllTradesActivity.class);
         startActivity(i);
     }
 
