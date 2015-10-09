@@ -7,34 +7,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-public class TradeCenterActivity extends BaseActivity {
+public class ConfigActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trade_center);
+        setContentView(R.layout.activity_config);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_trade_center, menu);
+        getMenuInflater().inflate(R.menu.menu_config, menu);
         return true;
     }
 
 
-    public void startNewTrade(View view){
-        Intent i = new Intent(TradeCenterActivity.this, StartTradeActivity.class);
-        startActivity(i);
-    }
-
-    public void startIncomingTrade(View view){
-        Intent i = new Intent(TradeCenterActivity.this, IncomeTradeActivity.class);
-        startActivity(i);
-    }
-
-    public void startAllTrade(View view){
-        Intent i = new Intent(TradeCenterActivity.this, AllTradesActivity.class);
+    public void startMyProfile(View view){
+        Intent i = new Intent(ConfigActivity.this, MyProfileActivity.class);
         startActivity(i);
     }
 

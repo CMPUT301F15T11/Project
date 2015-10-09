@@ -10,6 +10,9 @@ import android.widget.Button;
 public class MainActivity extends BaseActivity {
     Button btnInvent;
     Button btnTrade;
+    Button btnFriends;
+    Button btnConfig;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +20,8 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         btnInvent = (Button)findViewById(R.id.btnInventMain);
         btnTrade = (Button)findViewById(R.id.btnTradeMain);
+        btnFriends = (Button)findViewById(R.id.btnFriendsMain);
+        btnConfig = (Button)findViewById(R.id.btnConfigMain);
     }
 
     @Override
@@ -28,6 +33,16 @@ public class MainActivity extends BaseActivity {
 
     public void startMyInvent(View view){
         Intent i = new Intent(MainActivity.this, MyInventActivity.class);
+        startActivity(i);
+    }
+
+    public void startFriendList(View view){
+        Intent i = new Intent(MainActivity.this, FriendListActivity.class);
+        startActivity(i);
+    }
+
+    public void startConfig(View view){
+        Intent i = new Intent(MainActivity.this, ConfigActivity.class);
         startActivity(i);
     }
 

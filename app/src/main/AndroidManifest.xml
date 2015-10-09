@@ -80,7 +80,14 @@
             android:name=".AllTradesActivity"
             android:label="@string/title_activity_all_trades" >
         </activity>
-
+        <activity
+            android:name=".ConfigActivity"
+            android:label="@string/title_activity_config" >
+        </activity>
+        <activity
+            android:name=".MyProfileActivity"
+            android:label="@string/title_activity_my_profile" >
+        </activity>
     </application>
 
 </manifest>

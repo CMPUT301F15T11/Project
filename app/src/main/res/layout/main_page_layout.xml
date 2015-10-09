@@ -31,9 +31,10 @@
             android:textSize="20dp"
             android:fontFamily="monospace"
             android:textColor="#000"
-            android:id="@+id/button15"
+            android:id="@+id/btnFriendsMain"
             android:layout_weight="1"
-            android:background="@drawable/button_shape_nograd"/>
+            android:background="@drawable/button_shape_nograd"
+            android:onClick="startFriendList" />
     </LinearLayout>
 
     <LinearLayout
@@ -52,7 +53,8 @@
             android:id="@+id/btnTradeMain"
             android:layout_weight="1"
             android:background="@drawable/button_shape_nograd"
-            android:onClick="startTradeCenter" />
+            android:onClick="startTradeCenter"
+            android:nestedScrollingEnabled="false" />
 
         <Button
             android:layout_width="match_parent"
@@ -62,9 +64,10 @@
             android:textSize="20dp"
             android:fontFamily="monospace"
             android:textColor="#000"
-            android:id="@+id/button17"
+            android:id="@+id/btnConfigMain"
             android:layout_weight="1"
-            android:background="@drawable/button_shape_nograd"/>
+            android:background="@drawable/button_shape_nograd"
+            android:onClick="startConfig" />
     </LinearLayout>
 
 </LinearLayout>
