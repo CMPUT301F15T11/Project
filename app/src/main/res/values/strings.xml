@@ -3,4 +3,22 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_base">BaseActivity</string>
+    <string name="title_activity_my_invent">MyInventActivity</string>
+    <string name="title_activity_dvdinfo">DVDInfoActivity</string>
+    <string name="title_activity_dvdinfo_edit">DVDInfoEditActivity</string>
+    <string name="title_activity_friend_list">FriendListActivity</string>
+    <string name="title_activity_friend_profile">FriendProfileActivity</string>
+    <string name="title_activity_friend_invent">FriendInventActivity</string>
+    <string name="title_activity_trade_center">TradeCenterActivity</string>
+    <string name="title_activity_start_trade">StartTradeActivity</string>
+    <string name="title_activity_trade_detail">TradeDetailActivity</string>
+    <string name="title_activity_income_trade">IncomeTradeActivity</string>
+    <string name="title_activity_income_trade_detail">IncomeTradeDetailActivity</string>
+    <string name="title_activity_dvdadd">DVDAddActivity</string>
+    <string name="title_activity_romantic_dvd">RomanticDVDActivity</string>
+    <string name="title_activity_browse_invent">BrowseInventActivity</string>
+    <string name="title_activity_all_trades">AllTradesActivity</string>
+    <string name="title_activity_config">ConfigActivity</string>
+    <string name="title_activity_my_profile">MyProfileActivity</string>
 </resources>

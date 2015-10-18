@@ -1,0 +1,106 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.zhaorui.dvdcollector.BrowseInventActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include layout="@layout/title_my_invent"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Action"
+        android:textSize="20dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/button_shape_gradient"
+        android:id="@+id/button109" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Adventure"
+        android:textSize="20dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/button_shape_gradient"
+        android:id="@+id/button108" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Animation"
+        android:textSize="20dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/button_shape_gradient"
+        android:id="@+id/button107" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Fantasy"
+        android:textSize="20dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/button_shape_gradient"
+        android:id="@+id/button106" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Documentary"
+        android:textSize="20dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/button_shape_gradient"
+        android:id="@+id/button105" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Sci-Fi"
+        android:textSize="20dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/button_shape_gradient"
+        android:id="@+id/button104" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Family"
+        android:textSize="20dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/button_shape_gradient"
+        android:id="@+id/button103" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Music"
+        android:textSize="20dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/button_shape_gradient"
+        android:id="@+id/button102" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Horror"
+        android:textSize="20dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/button_shape_gradient"
+        android:id="@+id/button101" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Romantic"
+        android:textSize="20dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/button_shape_gradient"
+        android:id="@+id/button100" />
+
+    </LinearLayout>
+
+</LinearLayout>
