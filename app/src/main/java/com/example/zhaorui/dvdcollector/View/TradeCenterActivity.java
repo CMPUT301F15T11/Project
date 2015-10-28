@@ -1,23 +1,42 @@
-package com.example.zhaorui.dvdcollector;
+package com.example.zhaorui.dvdcollector.View;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-public class FriendProfileActivity extends BaseActivity {
+import com.example.zhaorui.dvdcollector.R;
+
+public class TradeCenterActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_friend_profile);
+        setContentView(R.layout.activity_trade_center);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_friend_profile, menu);
+        getMenuInflater().inflate(R.menu.menu_trade_center, menu);
         return true;
+    }
+
+
+    public void startNewTrade(View view){
+        Intent i = new Intent(TradeCenterActivity.this, StartTradeActivity.class);
+        startActivity(i);
+    }
+
+    public void startIncomingTrade(View view){
+        Intent i = new Intent(TradeCenterActivity.this, IncomeTradeActivity.class);
+        startActivity(i);
+    }
+
+    public void startAllTrade(View view){
+        Intent i = new Intent(TradeCenterActivity.this, AllTradesActivity.class);
+        startActivity(i);
     }
 
     @Override

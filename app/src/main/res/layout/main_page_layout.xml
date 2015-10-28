@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
-
+    style="@style/bkg_white">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -15,12 +14,11 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:text="Inventory"
-            android:textSize="20dp"
+            style="@style/font_white"
             android:fontFamily="monospace"
-            android:textColor="#000"
             android:id="@+id/btnInventMain"
             android:layout_weight="1"
-            android:background="@drawable/button_shape_nograd"
+            android:background="@drawable/button_shape_indigo"
             android:onClick="startMyInvent" />
 
         <Button
@@ -28,12 +26,11 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:text="Friends"
-            android:textSize="20dp"
+            style="@style/font_white"
             android:fontFamily="monospace"
-            android:textColor="#000"
             android:id="@+id/btnFriendsMain"
             android:layout_weight="1"
-            android:background="@drawable/button_shape_nograd"
+            android:background="@drawable/button_shape_indigo"
             android:onClick="startFriendList" />
     </LinearLayout>
 
@@ -47,12 +44,10 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:text="Trade"
-            android:textSize="20dp"
-            android:fontFamily="monospace"
-            android:textColor="#000"
+            style="@style/font_white"
             android:id="@+id/btnTradeMain"
             android:layout_weight="1"
-            android:background="@drawable/button_shape_nograd"
+            android:background="@drawable/button_shape_indigo"
             android:onClick="startTradeCenter"
             android:nestedScrollingEnabled="false" />
 
@@ -61,12 +56,10 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:text="Config"
-            android:textSize="20dp"
-            android:fontFamily="monospace"
-            android:textColor="#000"
+            style="@style/font_white"
             android:id="@+id/btnConfigMain"
             android:layout_weight="1"
-            android:background="@drawable/button_shape_nograd"
+            android:background="@drawable/button_shape_indigo"
             android:onClick="startConfig" />
     </LinearLayout>
 

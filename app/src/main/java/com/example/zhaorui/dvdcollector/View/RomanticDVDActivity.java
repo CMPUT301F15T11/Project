@@ -1,22 +1,29 @@
-package com.example.zhaorui.dvdcollector;
+package com.example.zhaorui.dvdcollector.View;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-public class MyProfileActivity extends ActionBarActivity {
+import com.example.zhaorui.dvdcollector.R;
+
+public class RomanticDVDActivity extends BaseActivity {
+    private String[] data = { "Titanic", "Love Actually"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_profile);
+        setContentView(R.layout.activity_romantic_dvd);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(RomanticDVDActivity.this, android.R.layout.simple_list_item_1, data);
+        ListView listView = (ListView) findViewById(R.id.listViewRomanticDVD);
+        listView.setAdapter(adapter);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_my_profile, menu);
+        getMenuInflater().inflate(R.menu.menu_romantic_dvd, menu);
         return true;
     }
 

@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    style="@style/bkg_white">
 
     <LinearLayout
         android:orientation="vertical"
@@ -11,20 +12,29 @@
         <include layout="@layout/title_my_invent"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="vertical"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="463dp">
-        <ListView
-            android:layout_width="wrap_content"
-            android:layout_height="428dp"
-            android:id="@+id/listViewMyInventory" />
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/title_bg"></LinearLayout>
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottom_tile"
+            android:layout_margin="5dp">
+            <ListView
+                android:layout_width="wrap_content"
+                android:layout_height="428dp"
+                android:id="@+id/listViewMyInventory" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/bottom_tile">
+            <include layout="@layout/bottom"/>
+        </LinearLayout>
+    </RelativeLayout>
+
 </LinearLayout>
 

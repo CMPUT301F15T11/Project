@@ -1,8 +1,7 @@
-package com.example.zhaorui.dvdcollector;
+package com.example.zhaorui.dvdcollector.View;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+
+import com.example.zhaorui.dvdcollector.R;
 
 public class FriendListActivity extends BaseActivity {
     private String[] data = { "Jack", "Lucy", "Calvin", "Frank", "Mike"};

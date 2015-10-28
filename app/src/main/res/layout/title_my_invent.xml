@@ -18,8 +18,8 @@
         android:layout_gravity="center"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="My Inventory"
-        android:textColor="#fff"
+        android:text="Inventory"
+        style="@style/font_black"
         android:textSize="24dp" />
 
     <Button

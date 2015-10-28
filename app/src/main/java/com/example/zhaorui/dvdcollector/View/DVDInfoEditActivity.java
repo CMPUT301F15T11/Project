@@ -1,22 +1,23 @@
-package com.example.zhaorui.dvdcollector;
+package com.example.zhaorui.dvdcollector.View;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class FriendInventActivity extends BaseActivity {
+import com.example.zhaorui.dvdcollector.R;
+
+public class DVDInfoEditActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_friend_invent);
+        setContentView(R.layout.activity_dvdinfo_edit);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_friend_invent, menu);
+        getMenuInflater().inflate(R.menu.menu_dvdinfo_edit, menu);
         return true;
     }
 
@@ -35,3 +36,4 @@ public class FriendInventActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+

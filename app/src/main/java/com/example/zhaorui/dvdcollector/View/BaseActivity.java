@@ -1,4 +1,4 @@
-package com.example.zhaorui.dvdcollector;
+package com.example.zhaorui.dvdcollector.View;
 
 import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;

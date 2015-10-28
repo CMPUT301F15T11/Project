@@ -1,28 +1,35 @@
-package com.example.zhaorui.dvdcollector;
+package com.example.zhaorui.dvdcollector.View;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.view.View;
+import android.widget.Button;
 
-public class IncomeTradeActivity extends BaseActivity {
-    private String[] data = { "Trade Request From Jack","Trade Request From Lucy"};
+import com.example.zhaorui.dvdcollector.R;
+
+public class BrowseInventActivity extends BaseActivity {
+    private Button btnRom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_income_trade);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(IncomeTradeActivity.this, android.R.layout.simple_list_item_1, data);
-        ListView listView = (ListView) findViewById(R.id.listViewIncomeTrades);
-        listView.setAdapter(adapter);
+        setContentView(R.layout.activity_browse_invent);
+        btnRom = (Button)findViewById(R.id.button100);
+        btnRom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(BrowseInventActivity.this, RomanticDVDActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_income_trade, menu);
+        getMenuInflater().inflate(R.menu.menu_browse_invent, menu);
         return true;
     }
 

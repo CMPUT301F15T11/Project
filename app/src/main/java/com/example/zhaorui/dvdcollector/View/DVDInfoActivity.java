@@ -1,10 +1,11 @@
-package com.example.zhaorui.dvdcollector;
+package com.example.zhaorui.dvdcollector.View;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.example.zhaorui.dvdcollector.R;
 
 public class DVDInfoActivity extends BaseActivity {
 
