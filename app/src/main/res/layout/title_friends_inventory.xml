@@ -3,8 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/title_bg" >
+
+
     <TextView
-        android:id="@+id/title_home_rom"
+        android:id="@+id/title_home_inventory"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_gravity="center"
@@ -12,18 +14,18 @@
         android:background="@drawable/ic_album_black_48dp"
         android:textColor="#fff" />
     <TextView
-        android:id="@+id/title_text_rom"
+        android:id="@+id/title_text_inventory"
         android:layout_width="0dip"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="Romantic"
-        android:textColor="#fff"
+        android:text="Friend's Inventory"
+        style="@style/font_white"
         android:textSize="24dp" />
 
     <Button
-        android:id="@+id/btn_title_my_rom"
+        android:id="@+id/btn_title_friend_inventory"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_gravity="center"
@@ -31,5 +33,4 @@
         android:background="@drawable/ic_menu_black_48dp"
         android:text=""
         android:textColor="#fff" />
-
 </LinearLayout>

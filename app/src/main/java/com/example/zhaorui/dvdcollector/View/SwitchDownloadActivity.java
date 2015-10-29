@@ -1,25 +1,28 @@
 package com.example.zhaorui.dvdcollector.View;
 
+import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.zhaorui.dvdcollector.R;
 
-public class FriendInventActivity extends BaseActivity {
+public class SwitchDownloadActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_friend_invent);
+        setContentView(R.layout.activity_switch_download);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_friend_invent, menu);
+        getMenuInflater().inflate(R.menu.menu_switch_download, menu);
         return true;
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

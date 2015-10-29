@@ -13,6 +13,10 @@ public class DVDInfoActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dvdinfo);
+
+        //sample for retrieving dvd information
+        Intent intent = getIntent();
+        String dvdDetail = intent.getStringExtra("dvdInfo");
     }
 
     @Override

@@ -29,6 +29,11 @@ public class ConfigActivity extends BaseActivity {
         startActivity(i);
     }
 
+    public void startSwitchDownload(View view){
+        Intent i = new Intent(ConfigActivity.this, SwitchDownloadActivity.class);
+        startActivity(i);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

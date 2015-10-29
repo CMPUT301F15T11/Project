@@ -21,7 +21,7 @@
             android:label="@string/title_activity_base" >
         </activity>
         <activity
-            android:name=".View.MyInventActivity"
+            android:name=".View.MyInventoryActivity"
             android:label="@string/title_activity_my_invent" >
         </activity>
         <activity
@@ -41,7 +41,7 @@
             android:label="@string/title_activity_friend_profile" >
         </activity>
         <activity
-            android:name=".View.FriendInventActivity"
+            android:name=".View.FriendInventoryActivity"
             android:label="@string/title_activity_friend_invent" >
         </activity>
         <activity
@@ -69,7 +69,7 @@
             android:label="@string/title_activity_dvdadd" >
         </activity>
         <activity
-            android:name=".View.RomanticDVDActivity"
+            android:name=".View.CategoryActivity"
             android:label="@string/title_activity_romantic_dvd" >
         </activity>
         <activity
@@ -87,6 +87,10 @@
         <activity
             android:name=".View.MyProfileActivity"
             android:label="@string/title_activity_my_profile" >
+        </activity>
+        <activity
+            android:name=".View.SwitchDownloadActivity"
+            android:label="@string/title_activity_switch_download" >
         </activity>
     </application>
 

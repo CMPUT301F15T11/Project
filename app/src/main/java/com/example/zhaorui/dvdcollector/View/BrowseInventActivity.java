@@ -10,17 +10,18 @@ import android.widget.Button;
 import com.example.zhaorui.dvdcollector.R;
 
 public class BrowseInventActivity extends BaseActivity {
-    private Button btnRom;
+    private Button btnCategory1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse_invent);
-        btnRom = (Button)findViewById(R.id.button100);
-        btnRom.setOnClickListener(new View.OnClickListener() {
+        // get into one of the categories. See CategoryActivity.java for details
+        btnCategory1 = (Button)findViewById(R.id.btn_games);
+        btnCategory1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(BrowseInventActivity.this, RomanticDVDActivity.class);
+                Intent i = new Intent(BrowseInventActivity.this, CategoryActivity.class);
                 startActivity(i);
             }
         });

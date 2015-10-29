@@ -1,6 +1,7 @@
 package com.example.zhaorui.dvdcollector.View;
 
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,23 +11,32 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.zhaorui.dvdcollector.Model.DVD;
 import com.example.zhaorui.dvdcollector.R;
 
-public class FriendListActivity extends BaseActivity {
-    private String[] data = { "Jack", "Lucy", "Calvin", "Frank", "Mike"};
-    Button btnMenuMyInvent;
+public class FriendInventoryActivity extends BaseActivity {
+    // sample data
+    // TODO: 27/10/15 Delete these testing sample data
+    private String[] data = { "Titanic", "Star war", "The Shawshank Redemption", "The God father",
+            "The Dark Knight", "12 Angry Man", "Schindler's List", "Pulp Fiction", "The Lord of Rings", "Forrest Gump",
+            "Inception", "The matrix"};
+
+    //http://stackoverflow.com/questions/18913635/how-to-trigger-a-menu-button-click-event-through-code-in-android
+    Button btnMenuFriendInvent;
+    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_friend_list);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(FriendListActivity.this, android.R.layout.simple_list_item_1, data);
-        ListView listView = (ListView) findViewById(R.id.listViewFriendList);
+        setContentView(R.layout.activity_friend_inventory);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(FriendInventoryActivity.this, android.R.layout.simple_list_item_1, data);
+        listView = (ListView) findViewById(R.id.listViewFriendInventory);
         listView.setAdapter(adapter);
 
         // open the menu
-        btnMenuMyInvent = (Button)findViewById(R.id.btn_title_my_friends);
-        btnMenuMyInvent.setOnClickListener(new View.OnClickListener() {
+        btnMenuFriendInvent = (Button)findViewById(R.id.btn_title_friend_inventory);
+        btnMenuFriendInvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openOptionsMenu();
@@ -39,9 +49,11 @@ public class FriendListActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
                 // todo: retrieve the item which has been clicked
+                //sample
+                DVD dvd = new DVD("Team 11");
 
                 // open up a dialog (should with a parameter )
-                showDialog();
+                showDialog(dvd);
 
                 //now check user choose which action
                 //see MyInventoryDialog.java for implementation
@@ -49,25 +61,26 @@ public class FriendListActivity extends BaseActivity {
         });
     }
 
-    //http://stackoverflow.com/questions/17287054/dialogfragment-without-fragmentactivity
-    //// TODO: 27/10/15 should take parameter of type DVD
-    public void showDialog() {
-        FragmentManager fm = getFragmentManager();
-        FriendListDialog newDialog = (FriendListDialog) new FriendListDialog();
-        newDialog.show(fm, "abc");
-    }
-
-    public void showSearchDialog() {
-        FragmentManager fm = getFragmentManager();
-        SearchDialog newDialog = (SearchDialog) new SearchDialog();
-        newDialog.show(fm, "abc");
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_friend_list, menu);
+        getMenuInflater().inflate(R.menu.menu_friend_inventory, menu);
         return true;
+    }
+
+    //http://stackoverflow.com/questions/17287054/dialogfragment-without-fragmentactivity
+    //// TODO: 27/10/15 should take parameter of type DVD
+    private void showDialog(DVD dvd) {
+        FragmentManager fm = getFragmentManager();
+        FriendInventoryDialog newDialog = new FriendInventoryDialog();
+        newDialog.setDvd(dvd);//sample
+        newDialog.show(fm, "abc");
+    }
+
+    private void showSearchDialog() {
+        FragmentManager fm = getFragmentManager();
+        SearchDialog newDialog = (SearchDialog) new SearchDialog();
+        newDialog.show(fm, "abc");
     }
 
     @Override
@@ -77,12 +90,15 @@ public class FriendListActivity extends BaseActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.friendlist_add){
+        if (id == R.id.browse_friend_inventory) {
+            Intent i = new Intent(FriendInventoryActivity.this, BrowseInventActivity.class);
+            startActivity(i);
+        }
+
+        if (id == R.id.search_friend_inventory){
             showSearchDialog();
         }
 
         return super.onOptionsItemSelected(item);
     }
 }
-

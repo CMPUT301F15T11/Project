@@ -3,14 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="1"
-    android:onClick="startMyProfile">
+    style="@style/bkg_white">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <include layout="@layout/title_config"/>
+        <include layout="@layout/title_friends_inventory"/>
     </LinearLayout>
 
     <RelativeLayout
@@ -21,31 +20,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/bottom_tile"
-            android:layout_margin="50dp">
-
-            <Button
+            android:layout_margin="5dp">
+            <ListView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="my profile"
-                style="@style/font_white"
-                android:id="@+id/btn_to_my_profile"
-                android:background="@drawable/button_shape_nograd"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="40dp"
-                android:onClick="startMyProfile" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="download images"
-                style="@style/font_white"
-                android:id="@+id/btn_download_switch"
-                android:background="@drawable/button_shape_nograd"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="100dp"
-                android:onClick="startSwitchDownload"
-                />
-
+                android:layout_height="match_parent"
+                android:id="@+id/listViewFriendInventory" />
         </LinearLayout>
         <LinearLayout
             android:orientation="vertical"
@@ -56,4 +35,5 @@
             <include layout="@layout/bottom"/>
         </LinearLayout>
     </RelativeLayout>
+
 </LinearLayout>

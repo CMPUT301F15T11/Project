@@ -9,7 +9,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <include layout="@layout/title_my_invent"/>
+        <include layout="@layout/title_my_inventory"/>
     </LinearLayout>
 
     <RelativeLayout
@@ -22,8 +22,8 @@
             android:layout_above="@+id/bottom_tile"
             android:layout_margin="5dp">
             <ListView
-                android:layout_width="wrap_content"
-                android:layout_height="428dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:id="@+id/listViewMyInventory" />
         </LinearLayout>
         <LinearLayout

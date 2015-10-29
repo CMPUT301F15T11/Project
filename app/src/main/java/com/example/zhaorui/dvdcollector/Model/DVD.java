@@ -18,7 +18,9 @@ public class DVD {
         return shareable;
     }
 
-    public DVD() {detail = "default information(for testing)";}
+    public DVD(String detail) {
+        this.detail = detail;
+    }
 
     public String getDetail(){return detail;}
 

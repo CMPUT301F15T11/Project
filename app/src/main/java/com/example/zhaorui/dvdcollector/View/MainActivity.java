@@ -34,7 +34,7 @@ public class MainActivity extends BaseActivity {
     }
 
     public void startMyInvent(View view){
-        Intent i = new Intent(MainActivity.this, MyInventActivity.class);
+        Intent i = new Intent(MainActivity.this, MyInventoryActivity.class);
         startActivity(i);
     }
 

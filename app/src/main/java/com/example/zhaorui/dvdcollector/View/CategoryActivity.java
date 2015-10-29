@@ -7,31 +7,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.zhaorui.dvdcollector.Model.DVD;
 import com.example.zhaorui.dvdcollector.R;
 
-public class FriendListActivity extends BaseActivity {
-    private String[] data = { "Jack", "Lucy", "Calvin", "Frank", "Mike"};
-    Button btnMenuMyInvent;
+public class CategoryActivity extends BaseActivity {
+    private String[] data = { "Titanic", "Love Actually"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_friend_list);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(FriendListActivity.this, android.R.layout.simple_list_item_1, data);
-        ListView listView = (ListView) findViewById(R.id.listViewFriendList);
+        setContentView(R.layout.activity_category);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(CategoryActivity.this, android.R.layout.simple_list_item_1, data);
+        ListView listView = (ListView) findViewById(R.id.listViewCategory);
         listView.setAdapter(adapter);
-
-        // open the menu
-        btnMenuMyInvent = (Button)findViewById(R.id.btn_title_my_friends);
-        btnMenuMyInvent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openOptionsMenu();
-            }
-        });
 
         // click on a item from the listView
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -39,9 +29,11 @@ public class FriendListActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
                 // todo: retrieve the item which has been clicked
+                //sample
+                DVD dvd = new DVD("Team 11");
 
                 // open up a dialog (should with a parameter )
-                showDialog();
+                showDialog(dvd);
 
                 //now check user choose which action
                 //see MyInventoryDialog.java for implementation
@@ -49,24 +41,20 @@ public class FriendListActivity extends BaseActivity {
         });
     }
 
+
     //http://stackoverflow.com/questions/17287054/dialogfragment-without-fragmentactivity
     //// TODO: 27/10/15 should take parameter of type DVD
-    public void showDialog() {
+    public void showDialog(DVD dvd) {
         FragmentManager fm = getFragmentManager();
-        FriendListDialog newDialog = (FriendListDialog) new FriendListDialog();
-        newDialog.show(fm, "abc");
-    }
-
-    public void showSearchDialog() {
-        FragmentManager fm = getFragmentManager();
-        SearchDialog newDialog = (SearchDialog) new SearchDialog();
+        MyInventoryDialog newDialog = (MyInventoryDialog) new MyInventoryDialog();
+        newDialog.setDvd(dvd);//sample
         newDialog.show(fm, "abc");
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_friend_list, menu);
+        getMenuInflater().inflate(R.menu.menu_romantic_dvd, menu);
         return true;
     }
 
@@ -78,11 +66,10 @@ public class FriendListActivity extends BaseActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.friendlist_add){
-            showSearchDialog();
+        if (id == R.id.action_settings) {
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 }
-
