@@ -30,10 +30,9 @@ public class CategoryActivity extends BaseActivity {
                                     long id) {
                 // todo: retrieve the item which has been clicked
                 //sample
-                DVD dvd = new DVD("Team 11");
 
                 // open up a dialog (should with a parameter )
-                showDialog(dvd);
+                showDialog();
 
                 //now check user choose which action
                 //see MyInventoryDialog.java for implementation
@@ -44,10 +43,9 @@ public class CategoryActivity extends BaseActivity {
 
     //http://stackoverflow.com/questions/17287054/dialogfragment-without-fragmentactivity
     //// TODO: 27/10/15 should take parameter of type DVD
-    public void showDialog(DVD dvd) {
+    public void showDialog() {
         FragmentManager fm = getFragmentManager();
         MyInventoryDialog newDialog = (MyInventoryDialog) new MyInventoryDialog();
-        newDialog.setDvd(dvd);//sample
         newDialog.show(fm, "abc");
     }
 

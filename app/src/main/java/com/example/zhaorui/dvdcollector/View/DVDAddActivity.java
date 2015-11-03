@@ -1,18 +1,62 @@
 package com.example.zhaorui.dvdcollector.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 
+import com.example.zhaorui.dvdcollector.Controller.DVDController;
+import com.example.zhaorui.dvdcollector.Controller.InventoryController;
+import com.example.zhaorui.dvdcollector.Model.DVD;
+import com.example.zhaorui.dvdcollector.Model.Inventory;
 import com.example.zhaorui.dvdcollector.R;
 
-public class DVDAddActivity extends BaseActivity {
+import java.util.ArrayList;
 
+public class DVDAddActivity extends BaseActivity {
+    private DVDController dc = new DVDController();
+    private InventoryController ic = new InventoryController();
+    private Spinner spinner;
+    private int position;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dvdadd);
-    }
+
+        Intent intent = getIntent();
+        position = intent.getIntExtra("position",-1);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, dc.categories());
+        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        spinner = (Spinner)findViewById(R.id.spinner);
+        spinner.setAdapter(adapter);
+
+        if (position != -1){
+            ArrayList<String> info = dc.read(ic.get(position));
+            EditText text;
+            spinner.setSelection(dc.categories().indexOf(info.get(0)));
+            text = (EditText) findViewById(R.id.ed_add_name);
+            text.setText(info.get(1));
+            text = (EditText) findViewById(R.id.et_add_quantity);
+            text.setText(info.get(2));
+            text = (EditText) findViewById(R.id.et_add_quality);
+            text.setText(info.get(3));
+            text = (EditText) findViewById(R.id.et_add_share);
+            text.setText(info.get(4));
+            text = (EditText) findViewById(R.id.ed_add_comment);
+            text.setText(info.get(5));
+            if (position == -1) {
+                ic.add(dc.create(info, true));
+            } else {
+                ic.set(position, dc.create(info, true));
+            }
+        }
+   }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -34,5 +78,25 @@ public class DVDAddActivity extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onAddSave(View view){
+        EditText text;
+        ArrayList<String> info = new ArrayList<String>();
+        info.add(spinner.getSelectedItem().toString());
+        text = (EditText) findViewById(R.id.ed_add_name);
+        info.add(text.getText().toString());
+        text = (EditText) findViewById(R.id.et_add_quantity);
+        info.add(text.getText().toString());
+        text = (EditText) findViewById(R.id.et_add_quality);
+        info.add(text.getText().toString());
+        text = (EditText) findViewById(R.id.ed_add_comment);
+        info.add(text.getText().toString());
+        if (position == -1) {
+            ic.add(dc.create(info, true));
+        } else {
+            ic.set(position, dc.create(info, true));
+        }
+        this.finish();
     }
 }

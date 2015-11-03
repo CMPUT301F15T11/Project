@@ -42,7 +42,6 @@ public class FriendInventoryDialog extends DialogFragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DVDInfoActivity.class);
-                intent.putExtra("dvdInfo",dvd.getDetail());
                 startActivity(intent);
                 dialog.cancel();
             }
