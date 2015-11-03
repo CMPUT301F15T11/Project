@@ -37,7 +37,7 @@ public class FriendInventoryDialog extends DialogFragment {
 
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
-        check = (Button)customView.findViewById(R.id.dialog_function_6);
+        check = (Button)customView.findViewById(R.id.btn_dialog_check_dvd);
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,7 +47,7 @@ public class FriendInventoryDialog extends DialogFragment {
             }
         });
 
-        remove = (Button)customView.findViewById(R.id.dialog_dismiss);
+        remove = (Button)customView.findViewById(R.id.btn_dialog_dismiss);
         remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

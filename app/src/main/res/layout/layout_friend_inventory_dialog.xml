@@ -24,7 +24,7 @@
         android:layout_margin="20dp">
 
         <Button
-        android:id="@+id/dialog_function_6"
+        android:id="@+id/btn_dialog_check_dvd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -37,7 +37,7 @@
         style="@style/bkg_white"
         />
         <Button
-            android:id="@+id/dialog_dismiss"
+            android:id="@+id/btn_dialog_dismiss"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

@@ -7,7 +7,7 @@ import android.view.MenuItem;
 
 import com.example.zhaorui.dvdcollector.R;
 
-public class MyProfileActivity extends ActionBarActivity {
+public class MyProfileActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
