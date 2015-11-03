@@ -71,8 +71,6 @@ public class CategoryActivity extends BaseActivity implements Observer{
     }
 
     public void update(Observable ob, Object o){
-        DVD dvd = (DVD) o;
-        ic.remove(ic.indexOf(dvd));
         adapter.notifyDataSetChanged();
     }
 }

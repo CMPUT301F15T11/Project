@@ -66,7 +66,7 @@ public class MyInventoryDialog extends DialogFragment {
             @Override
             public void onClick(View v) {
                 InventoryController ic = new InventoryController();
-                ic.remove(position);
+                ic.remove(ic.get(position));
                 dialog.cancel();
             }
         });

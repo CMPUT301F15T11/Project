@@ -92,7 +92,7 @@ public class DVDAddActivity extends BaseActivity {
         if (position == -1) {
             ic.add(dc.create(info, sharable.isChecked()));
         } else {
-            ic.set(position, dc.create(info, sharable.isChecked()));
+            ic.set(ic.get(position), dc.create(info, sharable.isChecked()));
         }
         this.finish();
     }

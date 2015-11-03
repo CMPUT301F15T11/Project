@@ -19,42 +19,43 @@ public class InventoryController {
 
     public Inventory getInventory(){return inventory;}
 
-    public Inventory getInventory(String category){
-        Inventory categoryInventory = new Inventory();
-        for (DVD dvd : inventory){
-            if (dvd.getCategory().toLowerCase().equals(category.toLowerCase())){
-                categoryInventory.add(dvd);
-            }
-        }
-        inventory = categoryInventory;
-        return inventory;
+    public ArrayList<DVD> getInventory(String category){
+        return inventory.getCategoryInventories().get(category);
     }
 
     public void add(DVD dvd){
-        inventory.add(dvd);
-        notifyObservers(0);
+        inventory.append(dvd);
     }
 
-    public void set(int index, DVD dvd){
-        inventory.set(index, dvd);
-        notifyObservers(0);
+    public void set(DVD dvd, DVD dvd2){
+        inventory.edit(dvd, dvd2);
     }
 
-    public void remove(int index){
-        DVD dvd = inventory.get(index);
-        inventory.remove(index);
-        inventory.notifyObservers(dvd);
+    public void remove(DVD dvd){
+        inventory.delete(dvd);
     }
 
     public DVD get(int index){ return inventory.get(index);}
 
-    public int indexOf(DVD dvd) {return inventory.indexOf(dvd);}
+    public int indexOf(DVD dvd){return inventory.indexOf(dvd);}
 
-    public void notifyObservers(Object data){
-        inventory.notifyObservers(data);
+    public int indexOf(String name){
+        for (DVD dvd : inventory){
+            if (dvd.getName().equals(name)) {
+                return inventory.indexOf(dvd);
+            }
+        }
+        return -1;
     }
 
     public void addObserver(Observer o){
         inventory.getObs().addObserver(o);
+    }
+
+    public boolean find(String name){
+        for (DVD dvd : inventory){
+            if (dvd.getName().equals(name)) return true;
+        }
+        return false;
     }
 }
