@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -46,15 +47,10 @@ public class DVDAddActivity extends BaseActivity {
             text.setText(info.get(2));
             text = (EditText) findViewById(R.id.et_add_quality);
             text.setText(info.get(3));
-            text = (EditText) findViewById(R.id.et_add_share);
-            text.setText(info.get(4));
+            CheckBox sharable = (CheckBox) findViewById(R.id.checkBox_sharable);
+            sharable.setChecked(info.get(4) == "Yes");
             text = (EditText) findViewById(R.id.ed_add_comment);
             text.setText(info.get(5));
-            if (position == -1) {
-                ic.add(dc.create(info, true));
-            } else {
-                ic.set(position, dc.create(info, true));
-            }
         }
    }
 
@@ -92,10 +88,11 @@ public class DVDAddActivity extends BaseActivity {
         info.add(text.getText().toString());
         text = (EditText) findViewById(R.id.ed_add_comment);
         info.add(text.getText().toString());
+        CheckBox sharable = (CheckBox) findViewById(R.id.checkBox_sharable);
         if (position == -1) {
-            ic.add(dc.create(info, true));
+            ic.add(dc.create(info, sharable.isChecked()));
         } else {
-            ic.set(position, dc.create(info, true));
+            ic.set(position, dc.create(info, sharable.isChecked()));
         }
         this.finish();
     }

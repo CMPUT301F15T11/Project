@@ -1,6 +1,7 @@
 package com.example.zhaorui.dvdcollector.View;
 
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,17 +10,24 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.zhaorui.dvdcollector.Controller.InventoryController;
 import com.example.zhaorui.dvdcollector.Model.DVD;
+import com.example.zhaorui.dvdcollector.Model.Inventory;
 import com.example.zhaorui.dvdcollector.R;
 
 public class CategoryActivity extends BaseActivity {
-    private String[] data = { "Titanic", "Love Actually"};
+    private InventoryController ic = new InventoryController();
+    private ArrayAdapter<?> adapter;
+    private Inventory categoryInventory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(CategoryActivity.this, android.R.layout.simple_list_item_1, data);
+        Intent intent = getIntent();
+        categoryInventory = ic.getInventory(intent.getStringExtra("category"));
+        adapter = new ArrayAdapter<DVD>(this, android.R.layout.simple_list_item_1,
+                categoryInventory);
         ListView listView = (ListView) findViewById(R.id.listViewCategory);
         listView.setAdapter(adapter);
 
@@ -28,26 +36,15 @@ public class CategoryActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
-                // todo: retrieve the item which has been clicked
-                //sample
-
-                // open up a dialog (should with a parameter )
-                showDialog();
-
-                //now check user choose which action
-                //see MyInventoryDialog.java for implementation
+                FragmentManager fm = getFragmentManager();
+                MyInventoryDialog newDialog = new MyInventoryDialog();
+                newDialog.setPosition(ic.indexOf(categoryInventory.get(position)));
+                newDialog.setAdapter(adapter);
+                newDialog.show(fm, "abc");
             }
         });
     }
 
-
-    //http://stackoverflow.com/questions/17287054/dialogfragment-without-fragmentactivity
-    //// TODO: 27/10/15 should take parameter of type DVD
-    public void showDialog() {
-        FragmentManager fm = getFragmentManager();
-        MyInventoryDialog newDialog = (MyInventoryDialog) new MyInventoryDialog();
-        newDialog.show(fm, "abc");
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
