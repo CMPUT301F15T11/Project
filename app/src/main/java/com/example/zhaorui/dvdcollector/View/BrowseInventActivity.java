@@ -48,4 +48,11 @@ public class BrowseInventActivity extends BaseActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void stratCategory(View v){
+        Button categoryButton = (Button) v;
+        Intent i = new Intent(BrowseInventActivity.this, CategoryActivity.class);
+        i.putExtra("category",categoryButton.getText());
+        startActivity(i);
+    }
 }

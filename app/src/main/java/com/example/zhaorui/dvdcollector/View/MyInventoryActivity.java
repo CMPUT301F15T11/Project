@@ -45,14 +45,12 @@ public class MyInventoryActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
-                // open up a dialog (should with a parameter )
+                // open up a dialog
                 FragmentManager fm = getFragmentManager();
                 MyInventoryDialog newDialog = new MyInventoryDialog();
                 newDialog.setPosition(position);
                 newDialog.setAdapter(adapter);
                 newDialog.show(fm, "abc");
-                //now check user choose which action
-                //see MyInventoryDialog.java for implementation
             }
         });
     }
@@ -66,7 +64,7 @@ public class MyInventoryActivity extends BaseActivity {
 
     private void showSearchDialog() {
         FragmentManager fm = getFragmentManager();
-        SearchDialog newDialog = (SearchDialog) new SearchDialog();
+        SearchDialog newDialog = new SearchDialog();
         newDialog.show(fm, "abc");
     }
 
