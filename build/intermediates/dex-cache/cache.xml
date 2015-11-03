@@ -2,11 +2,32 @@
 <items version="2" >
 
     <item
-        jar="/Users/dingkai/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.4/695b63d702f505b9b916e02272e3b6381bade7f/gson-2.4.jar"
+        jar="/home/teppie/C301/temp/Project/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="0695b63d702f505b9b916e02272e3b6381bade7f">
-        <dex dex="/Users/dingkai/Documents/Project/app/build/intermediates/pre-dexed/debug/gson-2.4-1bc6cdb64f5922ddff3ce27d9788bb1979883fdd.jar" />
+        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
+        <dex dex="/home/teppie/C301/temp/Project/app/build/intermediates/pre-dexed/debug/classes-0941d628e496abd476bcb9c7a623e46f86e76d2d.jar" />
+    </item>
+    <item
+        jar="/home/teppie/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
+        <dex dex="/home/teppie/C301/temp/Project/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.1-2dfbc133b121d1f9815a1ccb969a7edd58a12203.jar" />
+    </item>
+    <item
+        jar="/home/teppie/C301/temp/Project/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f8efd0096475e0daf054267b61544e10dc776503">
+        <dex dex="/home/teppie/C301/temp/Project/app/build/intermediates/pre-dexed/debug/classes-171fefe8a850377c3ea7a98a3a57ae0988b298af.jar" />
+    </item>
+    <item
+        jar="/home/teppie/C301/temp/Project/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
+        <dex dex="/home/teppie/C301/temp/Project/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.1-fad78337b396e173be79ce7e7623e1c16beaf236.jar" />
     </item>
 
 </items>

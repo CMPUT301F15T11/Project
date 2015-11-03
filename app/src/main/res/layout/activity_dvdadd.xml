@@ -35,7 +35,7 @@
                 android:background="@drawable/button_shape_nograd"/>
 
             <LinearLayout
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp">
@@ -50,7 +50,7 @@
                     android:layout_gravity="center_vertical" />
 
                 <Spinner
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/spinner"
                     android:layout_weight="1" />
@@ -73,13 +73,12 @@
             android:layout_margin="10dp"
             android:layout_gravity="bottom">
 
-
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
-                android:layout_marginTop="20dp">
+                android:layout_weight="1">
                 <TextView
                     android:layout_width="wrap_content"
                     android:textColor="#fafafa"
@@ -88,24 +87,25 @@
                     android:textSize="20dp"
                     android:id="@+id/tv_add_name"
                     android:layout_gravity="center_vertical" />
-
                 <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:id="@+id/ed_add_name"
                     android:textColor="#fafafa"
-                    android:layout_gravity="center_vertical"
+                    android:singleLine="true"
+                    android:ems="12"
+                    style="@style/font_white"
                     android:layout_weight="1" />
 
             </LinearLayout>
-
 
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_margin="5dp">
+                android:layout_margin="5dp"
+                android:layout_weight="1">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -120,6 +120,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/et_add_quantity"
                     android:textColor="#fafafa"
+                    android:singleLine="true"
+                    android:ems="12"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1" />
             </LinearLayout>
@@ -129,9 +131,10 @@
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_margin="5dp">
+                android:layout_margin="5dp"
+                android:layout_weight="1">
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#fafafa"
                     android:textSize="20dp"
@@ -140,37 +143,34 @@
                     android:layout_gravity="center_vertical" />
 
                 <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:ems="12"
                     android:id="@+id/et_add_quality"
                     android:textColor="#fafafa"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1" />
             </LinearLayout>
 
-
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_margin="5dp"
+                android:layout_weight="1"
                 android:layout_height="match_parent">
-                <TextView
+
+
+                <CheckBox
                     android:layout_width="wrap_content"
-                    android:textColor="#fafafa"
+                    android:layout_height="wrap_content"
+                    android:text="Sharable"
+                    android:checked="true"
                     android:textSize="20dp"
-                    android:layout_height="wrap_content"
-                    android:text="Sharable "
-                    android:id="@+id/tv_add_sharable"
-                    android:layout_gravity="center_vertical" />
-
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/et_add_share"
                     android:textColor="#fafafa"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1" />
+                    android:id="@+id/checkBox_sharable"
+                    android:layout_gravity="center_horizontal" />
+
 
             </LinearLayout>
 
@@ -179,7 +179,8 @@
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_margin="5dp">
+                android:layout_margin="5dp"
+                android:layout_weight="1">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -207,6 +208,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_weight="2"
             android:layout_gravity="bottom"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp">
@@ -214,26 +216,14 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:layout_weight="1"
                 android:textColor="#3b8887"
                 android:text="Save"
                 android:id="@+id/btn_add_dvd_save"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/button_shape_white"
-                android:onClick="onAddSave"/>
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:text="Cancel"
-                android:textColor="#3b8887"
-                android:id="@+id/btn_add_dvd_cancel"
-                android:layout_gravity="bottom"
-                android:background="@drawable/button_shape_white"
-                android:onClick="onAddCancel"/>
+                android:background="@drawable/button_shape_white"/>
 
         </LinearLayout>
 

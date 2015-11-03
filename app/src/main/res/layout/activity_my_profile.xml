@@ -12,10 +12,14 @@
         <include layout="@layout/title_my_profile"/>
     </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="391dp"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_tile"
         android:layout_gravity="center_vertical"
         android:layout_margin="30dp"
         android:background="@drawable/button_shape_indigo"
@@ -103,9 +107,12 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/bottom_tile"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/title_bg"></LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>
 
