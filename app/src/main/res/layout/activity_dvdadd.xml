@@ -2,13 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    style="@style/bkg_white">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp">
+        android:layout_margin="30dp">
 
         <ImageView
             android:layout_width="128dp"
@@ -28,12 +29,13 @@
                 android:text="Upload new Photo"
                 android:id="@+id/btn_add_dvd_upload"
                 android:layout_gravity="left"
+                android:textColor="#fafafa"
                 android:layout_marginLeft="20dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/button_shape_nograd"/>
 
             <LinearLayout
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp">
@@ -43,12 +45,12 @@
                     android:layout_height="wrap_content"
                     android:text="Category: "
                     android:textSize="20dp"
-                    android:textColor="#000000"
+                    android:textColor="#0a0a0a"
                     android:id="@+id/tv_add_category"
                     android:layout_gravity="center_vertical" />
 
                 <Spinner
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/spinner"
                     android:layout_weight="1" />
@@ -61,52 +63,55 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp">
+        android:layout_margin="20dp"
+        android:background="@drawable/button_shape_indigo">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"
+            android:layout_margin="10dp"
             android:layout_gravity="bottom">
-
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_margin="5dp">
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1">
                 <TextView
                     android:layout_width="wrap_content"
-                    android:textColor="#000000"
+                    android:textColor="#fafafa"
                     android:layout_height="wrap_content"
-                    android:text="Name: "
+                    android:text="Name "
                     android:textSize="20dp"
                     android:id="@+id/tv_add_name"
                     android:layout_gravity="center_vertical" />
-
                 <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:id="@+id/ed_add_name"
-                    android:layout_gravity="center_vertical"
+                    android:textColor="#fafafa"
+                    android:singleLine="true"
+                    android:ems="12"
+                    style="@style/font_white"
                     android:layout_weight="1" />
 
             </LinearLayout>
-
 
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_margin="5dp">
+                android:layout_margin="5dp"
+                android:layout_weight="1">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000000"
+                    android:textColor="#fafafa"
                     android:textSize="20dp"
-                    android:text="Quantity"
+                    android:text="Quantity "
                     android:id="@+id/tv_add_quantity"
                     android:layout_gravity="center_vertical" />
 
@@ -114,6 +119,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/et_add_quantity"
+                    android:textColor="#fafafa"
+                    android:singleLine="true"
+                    android:ems="12"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1" />
             </LinearLayout>
@@ -123,46 +131,46 @@
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_margin="5dp">
+                android:layout_margin="5dp"
+                android:layout_weight="1">
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#000000"
+                    android:textColor="#fafafa"
                     android:textSize="20dp"
-                    android:text="Quality"
+                    android:text="Quality "
                     android:id="@+id/tv_add_quality"
                     android:layout_gravity="center_vertical" />
 
                 <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:ems="12"
                     android:id="@+id/et_add_quality"
+                    android:textColor="#fafafa"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1" />
             </LinearLayout>
-
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_margin="5dp"
+                android:layout_weight="1"
                 android:layout_height="match_parent">
-                <TextView
+
+
+                <CheckBox
                     android:layout_width="wrap_content"
-                    android:textColor="#000000"
-                    android:textSize="20dp"
                     android:layout_height="wrap_content"
                     android:text="Sharable"
-                    android:id="@+id/tv_add_sharable"
-                    android:layout_gravity="center_vertical" />
+                    android:checked="true"
+                    android:textSize="20dp"
+                    android:textColor="#fafafa"
+                    android:id="@+id/checkBox_sharable"
+                    android:layout_gravity="center_horizontal" />
 
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/et_add_share"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1" />
 
             </LinearLayout>
 
@@ -171,20 +179,22 @@
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_margin="5dp">
+                android:layout_margin="5dp"
+                android:layout_weight="1">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Comments:"
+                    android:text="Comments "
                     android:textSize="20dp"
-                    android:textColor="#000000"
+                    android:textColor="#fafafa"
                     android:id="@+id/tv_add_comment"
                     android:layout_gravity="center_vertical" />
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textMultiLine"
+                    android:singleLine="true"
                     android:ems="10"
+                    android:textColor="#fafafa"
                     android:id="@+id/ed_add_comment"
                     android:layout_gravity="center_horizontal" />
             </LinearLayout>
@@ -198,28 +208,22 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_weight="2"
             android:layout_gravity="bottom"
-            android:layout_marginTop="40dp">
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp">
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:layout_weight="1"
+                android:textColor="#3b8887"
                 android:text="Save"
                 android:id="@+id/btn_add_dvd_save"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/button_shape_gradient"/>
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:text="Cancel"
-                android:id="@+id/btn_add_dvd_cancel"
-                android:layout_gravity="bottom"
-                android:background="@drawable/button_shape_gradient"/>
+                android:background="@drawable/button_shape_white"/>
 
         </LinearLayout>
 

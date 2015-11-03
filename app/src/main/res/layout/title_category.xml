@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/title_bg" >
+    <TextView
+        android:id="@+id/title_home_rom"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:layout_margin="5dip"
+        android:background="@drawable/ic_album_black_48dp"
+        android:textColor="#fff" />
+    <TextView
+        android:id="@+id/title_text_rom"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Category"
+        android:textColor="#fff"
+        android:textSize="24dp" />
+
+    <Button
+        android:id="@+id/btn_title_my_rom"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:layout_margin="5dip"
+        android:background="@drawable/ic_menu_black_48dp"
+        android:text=""
+        android:textColor="#fff" />
+
+</LinearLayout>

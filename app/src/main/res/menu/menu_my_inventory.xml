@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.zhaorui.dvdcollector.View.MyInventoryActivity">
+
+    <item android:id="@+id/add_to_my_inventory" android:title="Add new!"
+        android:orderInCategory="100" app:showAsAction="never" />
+
+    <item android:id="@+id/search_my_inventory" android:title="Search"
+        android:orderInCategory="100" app:showAsAction="never" />
+
+    <item android:id="@+id/browse_my_inventory" android:title="Browse"
+        android:orderInCategory="100" app:showAsAction="never" />
+</menu>

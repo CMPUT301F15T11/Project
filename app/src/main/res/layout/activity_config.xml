@@ -10,66 +10,50 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <include layout="@layout/tittle_config"/>
+        <include layout="@layout/title_config"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="vertical"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="456dp"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="1.50"
-        android:weightSum="1">
-
+        android:layout_height="match_parent">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.46"
-            android:weightSum="1"
-            >
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottom_tile"
+            android:layout_margin="50dp">
 
             <Button
-                android:layout_width="248dp"
-                android:layout_height="wrap_content"
-                android:text="download images"
-                android:textSize="20dp"
-                android:textColor="#000000"
-                android:fontFamily="monospace"
-                android:id="@+id/send_trade"
-                android:background="@drawable/button_shape_nograd"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="100dp"
-                />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.64"
-            android:weightSum="1">
-
-            <Button
-                android:layout_width="248dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="my profile"
-                android:textSize="20dp"
-                android:textColor="#000000"
-                android:fontFamily="monospace"
-                android:id="@+id/incoming_trade"
+                style="@style/font_white"
+                android:id="@+id/btn_to_my_profile"
                 android:background="@drawable/button_shape_nograd"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="40dp"
                 android:onClick="startMyProfile" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="download images"
+                style="@style/font_white"
+                android:id="@+id/btn_download_switch"
+                android:background="@drawable/button_shape_nograd"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="100dp"
+                android:onClick="startSwitchDownload"
+                />
+
         </LinearLayout>
-
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <include layout="@layout/bottom"/>
-    </LinearLayout>
-
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/bottom_tile">
+            <include layout="@layout/bottom"/>
+        </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

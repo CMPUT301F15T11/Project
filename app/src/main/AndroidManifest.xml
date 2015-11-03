@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name=".View.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,76 +17,80 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".BaseActivity"
+            android:name=".View.BaseActivity"
             android:label="@string/title_activity_base" >
         </activity>
         <activity
-            android:name=".MyInventActivity"
+            android:name=".View.MyInventoryActivity"
             android:label="@string/title_activity_my_invent" >
         </activity>
         <activity
-            android:name=".DVDInfoActivity"
+            android:name=".View.DVDInfoActivity"
             android:label="@string/title_activity_dvdinfo" >
         </activity>
         <activity
-            android:name=".DVDInfoEditActivity"
+            android:name=".View.DVDInfoEditActivity"
             android:label="@string/title_activity_dvdinfo_edit" >
         </activity>
         <activity
-            android:name=".FriendListActivity"
+            android:name=".View.FriendListActivity"
             android:label="@string/title_activity_friend_list" >
         </activity>
         <activity
-            android:name=".FriendProfileActivity"
+            android:name=".View.FriendProfileActivity"
             android:label="@string/title_activity_friend_profile" >
         </activity>
         <activity
-            android:name=".FriendInventActivity"
+            android:name=".View.FriendInventoryActivity"
             android:label="@string/title_activity_friend_invent" >
         </activity>
         <activity
-            android:name=".TradeCenterActivity"
+            android:name=".View.TradeCenterActivity"
             android:label="@string/title_activity_trade_center" >
         </activity>
         <activity
-            android:name=".StartTradeActivity"
+            android:name=".View.StartTradeActivity"
             android:label="@string/title_activity_start_trade" >
         </activity>
         <activity
-            android:name=".TradeDetailActivity"
+            android:name=".View.TradeDetailActivity"
             android:label="@string/title_activity_trade_detail" >
         </activity>
         <activity
-            android:name=".IncomeTradeActivity"
+            android:name=".View.IncomeTradeActivity"
             android:label="@string/title_activity_income_trade" >
         </activity>
         <activity
-            android:name=".IncomeTradeDetailActivity"
+            android:name=".View.IncomeTradeDetailActivity"
             android:label="@string/title_activity_income_trade_detail" >
         </activity>
         <activity
-            android:name=".DVDAddActivity"
+            android:name=".View.DVDAddActivity"
             android:label="@string/title_activity_dvdadd" >
         </activity>
         <activity
-            android:name=".RomanticDVDActivity"
+            android:name=".View.CategoryActivity"
             android:label="@string/title_activity_romantic_dvd" >
         </activity>
         <activity
-            android:name=".BrowseInventActivity"
+            android:name=".View.BrowseInventActivity"
             android:label="@string/title_activity_browse_invent" >
         </activity>
         <activity
-            android:name=".AllTradesActivity"
+            android:name=".View.AllTradesActivity"
             android:label="@string/title_activity_all_trades" >
         </activity>
         <activity
-            android:name=".ConfigActivity"
+            android:name=".View.ConfigActivity"
             android:label="@string/title_activity_config" >
         </activity>
         <activity
-            android:name=".MyProfileActivity"
+            android:name=".View.MyProfileActivity"
             android:label="@string/title_activity_my_profile" >
+        </activity>
+        <activity
+            android:name=".View.SwitchDownloadActivity"
+            android:label="@string/title_activity_switch_download" >
         </activity>
     </application>
 
