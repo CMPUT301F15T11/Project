@@ -31,7 +31,7 @@
             android:textColor="#fafafa"/>
 
         <Button
-            android:id="@+id/btn_ok"
+            android:id="@+id/btn_ok_name_dialog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

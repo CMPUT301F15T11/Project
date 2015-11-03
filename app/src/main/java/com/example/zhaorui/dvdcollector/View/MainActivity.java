@@ -1,7 +1,10 @@
 package com.example.zhaorui.dvdcollector.View;
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +27,8 @@ public class MainActivity extends BaseActivity {
         btnTrade = (Button)findViewById(R.id.btnTradeMain);
         btnFriends = (Button)findViewById(R.id.btnFriendsMain);
         btnConfig = (Button)findViewById(R.id.btnConfigMain);
+
+        showNameInputDialog();
     }
 
     @Override
@@ -67,4 +72,13 @@ public class MainActivity extends BaseActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    private void showNameInputDialog() {
+        FragmentManager fm = getFragmentManager();
+        NameInputDialog newDialog = new NameInputDialog();
+        newDialog.setCancelable(false);
+        newDialog.show(fm, "abc");
+    }
+
+
 }

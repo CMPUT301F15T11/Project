@@ -27,7 +27,7 @@ public class InputInvalidDialog extends DialogFragment {
         dialog.setContentView(customView);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
-        ok = (Button)customView.findViewById(R.id.btn_ok);
+        ok = (Button)customView.findViewById(R.id.btn_ok_invalid_dialog);
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
