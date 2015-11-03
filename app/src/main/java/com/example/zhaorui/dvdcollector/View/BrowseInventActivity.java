@@ -16,15 +16,6 @@ public class BrowseInventActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse_invent);
-        // get into one of the categories. See CategoryActivity.java for details
-        btnCategory1 = (Button)findViewById(R.id.btn_games);
-        btnCategory1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(BrowseInventActivity.this, CategoryActivity.class);
-                startActivity(i);
-            }
-        });
     }
 
     @Override
@@ -49,7 +40,7 @@ public class BrowseInventActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void stratCategory(View v){
+    public void startCategory(View v){
         Button categoryButton = (Button) v;
         Intent i = new Intent(BrowseInventActivity.this, CategoryActivity.class);
         i.putExtra("category",categoryButton.getText());

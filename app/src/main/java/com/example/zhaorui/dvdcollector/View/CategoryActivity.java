@@ -15,19 +15,23 @@ import com.example.zhaorui.dvdcollector.Model.DVD;
 import com.example.zhaorui.dvdcollector.Model.Inventory;
 import com.example.zhaorui.dvdcollector.R;
 
-public class CategoryActivity extends BaseActivity {
+import java.util.Observable;
+import java.util.Observer;
+
+public class CategoryActivity extends BaseActivity implements Observer{
     private InventoryController ic = new InventoryController();
     private ArrayAdapter<?> adapter;
-    private Inventory categoryInventory;
+    private String category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
+        ic.addObserver(this);
         Intent intent = getIntent();
-        categoryInventory = ic.getInventory(intent.getStringExtra("category"));
+        category = intent.getStringExtra("category");
         adapter = new ArrayAdapter<DVD>(this, android.R.layout.simple_list_item_1,
-                categoryInventory);
+                ic.getInventory(category));
         ListView listView = (ListView) findViewById(R.id.listViewCategory);
         listView.setAdapter(adapter);
 
@@ -38,13 +42,11 @@ public class CategoryActivity extends BaseActivity {
                                     long id) {
                 FragmentManager fm = getFragmentManager();
                 MyInventoryDialog newDialog = new MyInventoryDialog();
-                newDialog.setPosition(ic.indexOf(categoryInventory.get(position)));
-                newDialog.setAdapter(adapter);
+                newDialog.setPosition(ic.indexOf(ic.get(position)));
                 newDialog.show(fm, "abc");
             }
         });
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -66,5 +68,11 @@ public class CategoryActivity extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void update(Observable ob, Object o){
+        DVD dvd = (DVD) o;
+        ic.remove(ic.indexOf(dvd));
+        adapter.notifyDataSetChanged();
     }
 }

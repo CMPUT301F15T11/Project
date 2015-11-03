@@ -23,13 +23,10 @@ public class MyInventoryDialog extends DialogFragment {
     private Button remove;
     private Context context;
     private int position;
-    private ArrayAdapter<?> adapter;
 
     public void setPosition(int position) {
         this.position = position;
     }
-
-    public void setAdapter(ArrayAdapter<?> adapter) {this.adapter = adapter;}
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -70,7 +67,6 @@ public class MyInventoryDialog extends DialogFragment {
             public void onClick(View v) {
                 InventoryController ic = new InventoryController();
                 ic.remove(position);
-                adapter.notifyDataSetChanged();
                 dialog.cancel();
             }
         });

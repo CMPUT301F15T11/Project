@@ -16,7 +16,10 @@ import com.example.zhaorui.dvdcollector.Controller.InventoryController;
 import com.example.zhaorui.dvdcollector.Model.Inventory;
 import com.example.zhaorui.dvdcollector.R;
 
-public class MyInventoryActivity extends BaseActivity {
+import java.util.Observable;
+import java.util.Observer;
+
+public class MyInventoryActivity extends BaseActivity implements Observer {
     private InventoryController controller;
     ArrayAdapter<DVD> adapter;
 
@@ -30,6 +33,7 @@ public class MyInventoryActivity extends BaseActivity {
         setContentView(R.layout.activity_my_inventory);
         listView = (ListView) findViewById(R.id.listViewMyInventory);
         controller = new InventoryController();
+        controller.addObserver(this);
 
         // open the menu
         btnMenuMyInvent = (Button)findViewById(R.id.btn_title_my_inventory);
@@ -49,7 +53,6 @@ public class MyInventoryActivity extends BaseActivity {
                 FragmentManager fm = getFragmentManager();
                 MyInventoryDialog newDialog = new MyInventoryDialog();
                 newDialog.setPosition(position);
-                newDialog.setAdapter(adapter);
                 newDialog.show(fm, "abc");
             }
         });
@@ -99,6 +102,10 @@ public class MyInventoryActivity extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void update(Observable ob,Object o){
+        adapter.notifyDataSetChanged();
     }
 }
 

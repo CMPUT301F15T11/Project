@@ -14,7 +14,7 @@ public class DVDController {
         dvd.setCategory(info.get(0));
         dvd.setName(info.get(1));
         dvd.setQuantity(info.get(2));
-        dvd .setQuantity(info.get(3));
+        dvd .setQuality(info.get(3));
         dvd.setComments(info.get(4));
         dvd.setSharable(sharable);
         return dvd;
