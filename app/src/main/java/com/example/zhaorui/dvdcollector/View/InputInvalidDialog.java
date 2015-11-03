@@ -3,19 +3,16 @@ package com.example.zhaorui.dvdcollector.View;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import com.example.zhaorui.dvdcollector.R;
 
 /**
  * Created by teppie on 27/10/15.
  */
-public class SearchNotFoundDialog extends DialogFragment {
+public class InputInvalidDialog extends DialogFragment {
     private View customView;
     private Button ok;
     private Context context;

@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:gravity="center"
-        android:text="Input the name"
+        android:text="What's your name?"
         android:textSize="30dp"
         android:textColor="#fafafa"/>
 
@@ -26,12 +26,12 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/editText_name_input_dialog"
             android:layout_marginTop="30dp"
-            android:id="@+id/editText_search_dialog"
             android:textColor="#fafafa"/>
 
         <Button
-            android:id="@+id/btn_search"
+            android:id="@+id/btn_ok"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -41,7 +41,7 @@
             android:textColor="#3B8887"
             style="@style/bkg_white"
             android:background="@drawable/button_shape_white"
-            android:text="Search!"
+            android:text="OK"
             />
     </LinearLayout>
 

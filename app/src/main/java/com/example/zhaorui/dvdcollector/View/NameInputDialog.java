@@ -8,22 +8,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.example.zhaorui.dvdcollector.R;
 
 /**
  * Created by teppie on 27/10/15.
  */
-public class SearchNotFoundDialog extends DialogFragment {
+public class NameInputDialog extends DialogFragment {
     private View customView;
     private Button ok;
+    private EditText editText;
     private Context context;
 
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        customView = getActivity().getLayoutInflater().inflate(R.layout.layout_search_not_found_dialog, null);
+        customView = getActivity().getLayoutInflater().inflate(R.layout.layout_search_dialog, null);
         context = getActivity();
         final Dialog dialog = new Dialog(getActivity());
         dialog.requestWindowFeature(android.view.Window.FEATURE_NO_TITLE);
@@ -34,13 +34,11 @@ public class SearchNotFoundDialog extends DialogFragment {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // cathch exception if no dvd if found
                 dialog.cancel();
             }
         });
 
-        //new dialog
-
         return dialog;
     }
+
 }

@@ -223,6 +223,7 @@
                 android:text="Save"
                 android:id="@+id/btn_add_dvd_save"
                 android:layout_gravity="center_vertical"
+                android:onClick="onAddSave"
                 android:background="@drawable/button_shape_white"/>
 
         </LinearLayout>
