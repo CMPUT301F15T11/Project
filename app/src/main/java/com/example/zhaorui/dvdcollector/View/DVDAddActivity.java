@@ -1,5 +1,6 @@
 package com.example.zhaorui.dvdcollector.View;
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -100,23 +101,34 @@ public class DVDAddActivity extends BaseActivity {
 
     public void onAddSave(View view){
         EditText text;
-        ArrayList<String> info = new ArrayList<String>();
-        info.add(spinner.getSelectedItem().toString());
         text = (EditText) findViewById(R.id.ed_add_name);
-        info.add(text.getText().toString());
-        text = (EditText) findViewById(R.id.et_add_quantity);
-        info.add(text.getText().toString());
-        text = (EditText) findViewById(R.id.et_add_quality);
-        info.add(text.getText().toString());
-        text = (EditText) findViewById(R.id.ed_add_comment);
-        info.add(text.getText().toString());
-        CheckBox sharable = (CheckBox) findViewById(R.id.checkBox_sharable);
-        if (position == -1) {
-            ic.add(dc.create(info, sharable.isChecked()));
+        String name = text.getText().toString();
+        if (name.isEmpty() | (ic.find(name)&ic.indexOf(name)!=position)){
+            FragmentManager fm = getFragmentManager();
+            InputInvalidDialog newDialog = new InputInvalidDialog();
+            if (name.isEmpty()) newDialog.setText("DVD must has a name!");
+            else {
+                newDialog.setText("Same name DVD existed!");
+            }
+            newDialog.show(fm, "abc");
         } else {
-            ic.set(ic.get(position), dc.create(info, sharable.isChecked()));
+            ArrayList<String> info = new ArrayList<String>();
+            info.add(spinner.getSelectedItem().toString());
+            info.add(name);
+            text = (EditText) findViewById(R.id.et_add_quantity);
+            info.add(text.getText().toString());
+            text = (EditText) findViewById(R.id.et_add_quality);
+            info.add(text.getText().toString());
+            text = (EditText) findViewById(R.id.ed_add_comment);
+            info.add(text.getText().toString());
+            CheckBox sharable = (CheckBox) findViewById(R.id.checkBox_sharable);
+            if (position == -1) {
+                ic.add(dc.create(info, sharable.isChecked()));
+            } else {
+                ic.set(ic.get(position), dc.create(info, sharable.isChecked()));
+            }
+            this.finish();
         }
-        this.finish();
     }
 
     public void addPhoto(MenuItem m) {

@@ -22,6 +22,8 @@ public class UserProfile extends Observable{
 
     public void setContact(String contact) {
         this.contact = contact;
+        super.setChanged();
+        super.notifyObservers();
     }
 
     public String getCity() {
@@ -30,5 +32,7 @@ public class UserProfile extends Observable{
 
     public void setCity(String city) {
         this.city = city;
+        super.setChanged();
+        super.notifyObservers();
     }
 }

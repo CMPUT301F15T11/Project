@@ -47,7 +47,8 @@ public class SearchDialog extends DialogFragment {
                     startActivity(intent);
                 } else {
                     FragmentManager fm = getFragmentManager();
-                    SearchNotFoundDialog newDialog = new SearchNotFoundDialog();
+                    InputInvalidDialog newDialog = new InputInvalidDialog();
+                    newDialog.setText("No result found!");
                     newDialog.show(fm, "abc");
                 }
                 dialog.cancel();

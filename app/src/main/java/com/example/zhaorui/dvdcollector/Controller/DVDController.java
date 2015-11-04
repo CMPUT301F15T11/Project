@@ -9,7 +9,6 @@ import java.util.ArrayList;
  */
 public class DVDController {
     public DVD create(ArrayList<String> info,boolean sharable){
-        assert(info.size() == 5);
         DVD dvd = new DVD();
         dvd.setCategory(info.get(0));
         dvd.setName(info.get(1));
