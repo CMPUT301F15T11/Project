@@ -60,7 +60,9 @@ public class DataManager implements Observer{
     }
 
     private void observing(){
+        User.instance().getProfile().deleteObservers();
         User.instance().getProfile().addObserver(this);
+        User.instance().getInventory().getObs().deleteObservers();
         User.instance().getInventory().getObs().addObserver(this);
     }
 
