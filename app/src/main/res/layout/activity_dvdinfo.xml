@@ -15,7 +15,7 @@
             android:layout_width="128dp"
             android:layout_height="128dp"
             android:background="@drawable/dvd"
-            android:id="@+id/imgv_add_dvd" />
+            android:id="@+id/imgv_info_dvd" />
 
         <LinearLayout
             android:orientation="vertical"
