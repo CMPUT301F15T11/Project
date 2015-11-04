@@ -1,7 +1,10 @@
 package com.example.zhaorui.dvdcollector.View;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,14 +12,20 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.zhaorui.dvdcollector.Controller.DVDController;
 import com.example.zhaorui.dvdcollector.Controller.InventoryController;
+import com.example.zhaorui.dvdcollector.Controller.PhotoController;
 import com.example.zhaorui.dvdcollector.Model.DVD;
 import com.example.zhaorui.dvdcollector.Model.Inventory;
+import com.example.zhaorui.dvdcollector.Model.Photo;
+import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class DVDAddActivity extends BaseActivity {
@@ -24,10 +33,18 @@ public class DVDAddActivity extends BaseActivity {
     private InventoryController ic = new InventoryController();
     private Spinner spinner;
     private int position;
+
+    private static final int ADD_PHOTO_RQ = 22;
+    private Uri imageFileUri;
+    private PhotoController pc=null;
+    private Photo photo = null;
+    private ImageView imageView = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dvdadd);
+
 
         Intent intent = getIntent();
         position = intent.getIntExtra("position",-1);
@@ -36,6 +53,11 @@ public class DVDAddActivity extends BaseActivity {
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinner = (Spinner)findViewById(R.id.spinner);
         spinner.setAdapter(adapter);
+
+        //photo = User.getInstance().getCurrentItem().getRecipt();
+        photo =
+        pc = new PhotoController(photo);
+        imageView = (ImageView)findViewById(R.id.imgv_add_dvd);
 
         if (position != -1){
             ArrayList<String> info = dc.read(ic.get(position));
@@ -96,4 +118,22 @@ public class DVDAddActivity extends BaseActivity {
         }
         this.finish();
     }
+
+    public void addPhoto(MenuItem m) {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+            String folder = Environment.getExternalStorageDirectory().getAbsolutePath() + "/tmp";
+            File folderF = new File(folder);
+            if (!folderF.exists()) {
+                folderF.mkdir();
+            }
+
+            String imageFilePath = folder + "/" + String.valueOf(System.currentTimeMillis()) + ".jpeg";
+            File imageFile = new File(imageFilePath);
+            imageFileUri = Uri.fromFile(imageFile);
+
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, imageFileUri);
+            startActivityForResult(intent,ADD_PHOTO_RQ);
+    }
+
 }
