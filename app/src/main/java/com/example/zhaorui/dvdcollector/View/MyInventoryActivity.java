@@ -13,7 +13,6 @@ import android.widget.ListView;
 
 import com.example.zhaorui.dvdcollector.Model.DVD;
 import com.example.zhaorui.dvdcollector.Controller.InventoryController;
-import com.example.zhaorui.dvdcollector.Model.Inventory;
 import com.example.zhaorui.dvdcollector.R;
 
 import java.util.Observable;

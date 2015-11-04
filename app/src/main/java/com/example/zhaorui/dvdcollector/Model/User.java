@@ -17,15 +17,19 @@ import java.util.Observer;
  */
 public class User{
     static private User instance;
-    static private Trades trades;
-    static private Friends friends;
-    static private Inventory inventory;
-    static private UserProfile profile;
+    private Trades trades;
+    private Friends friends;
+    private Inventory inventory;
+    private UserProfile profile;
     private User() {
         trades = new Trades();
         friends = new Friends();
         inventory = new Inventory();
         profile = new UserProfile();
+    }
+
+    public static void setInstance(User instance) {
+        User.instance = instance;
     }
 
     public static User instance(){
@@ -35,19 +39,19 @@ public class User{
         return instance;
     }
 
-    public static Trades getTrades() {
+    public Trades getTrades() {
         return trades;
     }
 
-    public static Friends getFriends() {
+    public Friends getFriends() {
         return friends;
     }
 
-    public static Inventory getInventory() {
+    public Inventory getInventory() {
         return inventory;
     }
 
-    public static UserProfile getProfile() {
+    public UserProfile getProfile() {
         return profile;
     }
 }
