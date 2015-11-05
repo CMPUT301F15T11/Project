@@ -19,9 +19,13 @@ package com.example.zhaorui.dvdcollector.Model;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
-
 /**
- * Created by dingkai on 15/11/4.
+ * <p>
+ * The <code>Cache</code> is a local database to store friend information.
+ * <p>
+ *
+ * @author  Dingkai Liang
+ * @version 09/10/15
  */
 public class SimulatedDatabase{
     private static HashMap<String,String> database;

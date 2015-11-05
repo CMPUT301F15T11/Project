@@ -20,7 +20,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Created by dingkai on 15/11/4.
+ * <p>
+ * The <code>Cache</code> is a temperate storage that allowed other functions to use without read and load to local file.
+ * <p>
+ *
+ * @author  Dingkai Liang
+ * @version 09/10/15
  */
 public class Cache extends HashMap<String,Friend> {
     private static Cache instance;
