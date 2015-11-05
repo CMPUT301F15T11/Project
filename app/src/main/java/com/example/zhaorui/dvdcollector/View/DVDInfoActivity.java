@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.zhaorui.dvdcollector.Controller.DVDController;
+import com.example.zhaorui.dvdcollector.Controller.FriendsController;
 import com.example.zhaorui.dvdcollector.Controller.InventoryController;
 import com.example.zhaorui.dvdcollector.Model.DVD;
 import com.example.zhaorui.dvdcollector.Model.Inventory;
@@ -20,16 +21,23 @@ import java.util.ArrayList;
 
 public class DVDInfoActivity extends BaseActivity {
     private int position;
-    private InventoryController ic = new InventoryController();
-    private DVDController dc = new DVDController();
+    private InventoryController ic;
+    private DVDController dc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dvdinfo);
 
+        dc = new DVDController();
+        ic = new InventoryController();
         Intent intent = getIntent();
         position = intent.getIntExtra("position",-1);
+        int friendPosition = intent.getIntExtra("friendPosition",-1);
+        if (friendPosition != -1){
+            FriendsController fc = new FriendsController();
+            ic.setInventory(fc.get(friendPosition).getInventory());
+        }
         ArrayList<String> info = dc.read(ic.get(position));
         TextView text;
         text = (TextView) findViewById(R.id.tv_category_dvdinfo);

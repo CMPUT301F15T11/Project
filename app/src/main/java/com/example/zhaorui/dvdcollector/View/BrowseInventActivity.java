@@ -44,6 +44,7 @@ public class BrowseInventActivity extends BaseActivity {
         Button categoryButton = (Button) v;
         Intent i = new Intent(BrowseInventActivity.this, CategoryActivity.class);
         i.putExtra("category",categoryButton.getText());
+        i.putExtra("friendPosition",getIntent().getIntExtra("friendPosition",-1));
         startActivity(i);
     }
 }

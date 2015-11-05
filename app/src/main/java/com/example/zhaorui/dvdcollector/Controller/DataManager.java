@@ -3,7 +3,10 @@ package com.example.zhaorui.dvdcollector.Controller;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.util.Log;
+
 import com.example.zhaorui.dvdcollector.Model.ContextUtil;
+import com.example.zhaorui.dvdcollector.Model.SimulatedDatabase;
 import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.View.NameInputDialog;
 import com.google.gson.Gson;
@@ -30,6 +33,7 @@ public class DataManager implements Observer{
     public static DataManager instance(){
         if (instance == null){
             instance = new DataManager();
+            SimulatedDatabase.init();
         }
         return instance;
     }
@@ -64,6 +68,8 @@ public class DataManager implements Observer{
         User.instance().getProfile().addObserver(this);
         User.instance().getInventory().getObs().deleteObservers();
         User.instance().getInventory().getObs().addObserver(this);
+        User.instance().getFriends().getObs().deleteObservers();
+        User.instance().getFriends().getObs().addObserver(this);
     }
 
     private void saveLocal(){
@@ -82,6 +88,7 @@ public class DataManager implements Observer{
     }
 
     public void update(Observable ob, Object o){
+        System.out.println("111");
         saveLocal();
     }
 }

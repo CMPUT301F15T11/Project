@@ -58,4 +58,8 @@ public class InventoryController {
         }
         return false;
     }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
 }

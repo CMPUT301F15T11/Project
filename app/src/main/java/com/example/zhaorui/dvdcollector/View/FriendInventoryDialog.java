@@ -17,13 +17,17 @@ import com.example.zhaorui.dvdcollector.R;
 public class FriendInventoryDialog extends DialogFragment {
     private View customView;
     private Button check;
-    private Button edit;
-    private Button remove;
+    private Button close;
     private Context context;
+    private int friendPosition;
+    private int position;
 
-    private DVD dvd; //sample
-    public void setDvd(DVD dvd) {
-        this.dvd = dvd;
+    public void setFriendPosition(int friendPosition) {
+        this.friendPosition = friendPosition;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 
     @Override
@@ -42,13 +46,15 @@ public class FriendInventoryDialog extends DialogFragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DVDInfoActivity.class);
+                intent.putExtra("position", position);
+                intent.putExtra("friendPosition",friendPosition);
                 startActivity(intent);
                 dialog.cancel();
             }
         });
 
-        remove = (Button)customView.findViewById(R.id.btn_dialog_dismiss);
-        remove.setOnClickListener(new View.OnClickListener() {
+        close = (Button)customView.findViewById(R.id.btn_dialog_dismiss);
+        close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.cancel();

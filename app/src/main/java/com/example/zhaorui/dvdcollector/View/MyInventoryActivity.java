@@ -67,6 +67,7 @@ public class MyInventoryActivity extends BaseActivity implements Observer {
     private void showSearchDialog() {
         FragmentManager fm = getFragmentManager();
         SearchDialog newDialog = new SearchDialog();
+        newDialog.setMode("inventory");
         newDialog.show(fm, "abc");
     }
 

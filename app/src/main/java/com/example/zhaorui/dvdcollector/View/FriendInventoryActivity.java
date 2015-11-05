@@ -1,8 +1,10 @@
 package com.example.zhaorui.dvdcollector.View;
 
 import android.app.FragmentManager;
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.internal.view.menu.MenuView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,26 +13,33 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.zhaorui.dvdcollector.Controller.FriendsController;
+import com.example.zhaorui.dvdcollector.Controller.InventoryController;
 import com.example.zhaorui.dvdcollector.Model.DVD;
 import com.example.zhaorui.dvdcollector.R;
 
 public class FriendInventoryActivity extends BaseActivity {
     // sample data
-    // TODO: 27/10/15 Delete these testing sample data
-    private String[] data = { "Titanic", "Star war", "The Shawshank Redemption", "The God father",
-            "The Dark Knight", "12 Angry Man", "Schindler's List", "Pulp Fiction", "The Lord of Rings", "Forrest Gump",
-            "Inception", "The matrix"};
 
     //http://stackoverflow.com/questions/18913635/how-to-trigger-a-menu-button-click-event-through-code-in-android
-    Button btnMenuFriendInvent;
-    ListView listView;
+    private Button btnMenuFriendInvent;
+    private ListView listView;
+    private FriendsController fc;
+    private InventoryController ic;
+    private ArrayAdapter<?> adapter;
+    private int friendPostion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend_inventory);
+        fc = new FriendsController();
+        ic = new InventoryController();
+        friendPostion = getIntent().getIntExtra("position", -1);
+        ic.setInventory(fc.get(friendPostion).getInventory());
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(FriendInventoryActivity.this, android.R.layout.simple_list_item_1, data);
+        adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1, ic.getInventory());
         listView = (ListView) findViewById(R.id.listViewFriendInventory);
         listView.setAdapter(adapter);
 
@@ -48,14 +57,11 @@ public class FriendInventoryActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
-                // todo: retrieve the item which has been clicked
-                //sample
-
-                // open up a dialog (should with a parameter )
-                showDialog();
-
-                //now check user choose which action
-                //see MyInventoryDialog.java for implementation
+                FragmentManager fm = getFragmentManager();
+                FriendInventoryDialog newDialog = new FriendInventoryDialog();
+                newDialog.setPosition(position);
+                newDialog.setFriendPosition(friendPostion);
+                newDialog.show(fm, "abc");
             }
         });
     }
@@ -67,17 +73,11 @@ public class FriendInventoryActivity extends BaseActivity {
         return true;
     }
 
-    //http://stackoverflow.com/questions/17287054/dialogfragment-without-fragmentactivity
-    //// TODO: 27/10/15 should take parameter of type DVD
-    private void showDialog() {
-        FragmentManager fm = getFragmentManager();
-        FriendInventoryDialog newDialog = new FriendInventoryDialog();
-        newDialog.show(fm, "abc");
-    }
-
     private void showSearchDialog() {
         FragmentManager fm = getFragmentManager();
-        SearchDialog newDialog = (SearchDialog) new SearchDialog();
+        SearchDialog newDialog = new SearchDialog();
+        newDialog.setMode("inventory");
+        newDialog.setIc(ic);
         newDialog.show(fm, "abc");
     }
 
@@ -90,6 +90,7 @@ public class FriendInventoryActivity extends BaseActivity {
 
         if (id == R.id.browse_friend_inventory) {
             Intent i = new Intent(FriendInventoryActivity.this, BrowseInventActivity.class);
+            i.putExtra("friendPosition",friendPostion);
             startActivity(i);
         }
 

@@ -12,8 +12,11 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.zhaorui.dvdcollector.Controller.DataManager;
+import com.example.zhaorui.dvdcollector.Controller.FriendsController;
+import com.example.zhaorui.dvdcollector.Model.ContextUtil;
 import com.example.zhaorui.dvdcollector.Model.Inventory;
 import com.example.zhaorui.dvdcollector.R;
 
@@ -37,8 +40,16 @@ public class NameInputDialog extends DialogFragment {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DataManager.instance().initFile(editText.getText().toString());
-                dialog.cancel();
+                String name = editText.getText().toString();
+                FriendsController fc = new FriendsController();
+                if (name.isEmpty()){
+                    Toast.makeText(ContextUtil.getInstance(), "Name can not be empty!", Toast.LENGTH_LONG).show();
+                } else if (fc.nameExist(name)) {
+                    Toast.makeText(ContextUtil.getInstance(), "Same name user existed!", Toast.LENGTH_LONG).show();
+                } else {
+                    DataManager.instance().initFile(name);
+                    dialog.cancel();
+                }
             }
         });
 
