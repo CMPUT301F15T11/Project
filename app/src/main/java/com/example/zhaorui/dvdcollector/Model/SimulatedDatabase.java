@@ -49,6 +49,7 @@ public class SimulatedDatabase{
             sampleDVD.setSharable(true);
             sampleDVD.setCategory("Action");
             sampleDVD.setComments("Great movie!");
+            sampleDVD.setHasPhoto(false);
             sampleInventory.add(sampleDVD);
         }
         UserProfile sampleProfile = new UserProfile();

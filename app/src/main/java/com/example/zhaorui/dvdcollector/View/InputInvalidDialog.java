@@ -25,7 +25,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.zhaorui.dvdcollector.R;
-
 /**
  * <p>
  * The <code>InputInvalidDialog</code> class controls the dialog of invalid input.

@@ -34,9 +34,7 @@ import com.example.zhaorui.dvdcollector.R;
  * @author  Zhaorui Chen
  * @version 11/10/15
  */
-
 public class BrowseInventActivity extends BaseActivity {
-    private Button btnCategory1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

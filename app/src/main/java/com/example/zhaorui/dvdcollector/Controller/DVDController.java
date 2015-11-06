@@ -20,6 +20,7 @@ import android.graphics.Bitmap;
 import android.util.Base64;
 
 import com.example.zhaorui.dvdcollector.Model.DVD;
+import com.example.zhaorui.dvdcollector.Model.Gallery;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -40,15 +41,16 @@ public class DVDController {
      * which contains all information about the DVD
      * @return DVD with all informations.
      */
-    public DVD create(ArrayList<String> info,boolean sharable){
+    public DVD create(ArrayList<String> info,boolean sharable, Gallery gallery){
         DVD dvd = new DVD();
         dvd.setCategory(info.get(0));
         dvd.setName(info.get(1));
         dvd.setQuantity(info.get(2));
         dvd.setQuality(info.get(3));
-        dvd.setPhotoStr(info.get(4));
+        dvd.setHasPhoto(info.get(4)=="Yes");
         dvd.setComments(info.get(5));
         dvd.setSharable(sharable);
+        dvd.setGallery(gallery);
         return dvd;
     }
     /**
@@ -62,7 +64,11 @@ public class DVDController {
         info.add(dvd.getName());
         info.add(dvd.getQuantity());
         info.add(dvd.getQuality());
-        info.add(dvd.getPhotoStr());//add encoded photo string to info
+        if (dvd.isHasPhoto()){
+            info.add("Yes");
+        }else{
+            info.add("No");
+        }
         if (dvd.isSharable()){
             info.add("Yes");
         } else{
@@ -75,6 +81,17 @@ public class DVDController {
      * This function records categories from DVD and store to an array list.
      * @return array list of different categories.
      */
+    public Gallery readPhoto(DVD dvd){
+        return dvd.getGallery();
+    }
+
+    public void changeGallery(DVD dvd, Gallery gallery){
+        dvd.setGallery(gallery);
+        if (gallery.getSize()!=0){
+            dvd.setHasPhoto(true);
+        }
+    }
+
     public ArrayList<String> categories(){
         ArrayList<String> categories = new ArrayList<String>();
         for (String category : DVD.getCategories()){
@@ -82,6 +99,5 @@ public class DVDController {
         }
         return categories;
     }
-
 
 }

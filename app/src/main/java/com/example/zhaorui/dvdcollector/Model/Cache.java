@@ -18,7 +18,6 @@ package com.example.zhaorui.dvdcollector.Model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 /**
  * <p>
  * The <code>Cache</code> is a temperate storage that allowed other functions to use without read and load to local file.

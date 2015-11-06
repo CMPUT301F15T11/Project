@@ -20,6 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
         <activity
             android:name=".View.BaseActivity"
             android:label="@string/title_activity_base" >
@@ -31,10 +33,6 @@
         <activity
             android:name=".View.DVDInfoActivity"
             android:label="@string/title_activity_dvdinfo" >
-        </activity>
-        <activity
-            android:name=".View.DVDInfoEditActivity"
-            android:label="@string/title_activity_dvdinfo_edit" >
         </activity>
         <activity
             android:name=".View.FriendListActivity"
@@ -96,6 +94,15 @@
             android:name=".View.SwitchDownloadActivity"
             android:label="@string/title_activity_switch_download" >
         </activity>
+        <activity
+            android:name=".View.PhotoActivity"
+            android:label="@string/title_activity_photo" >
+        </activity>
+        <activity
+            android:name=".View.DisplayPhotoActivity"
+            android:label="@string/title_activity_photo_display" >
+        </activity>
+
     </application>
 
 </manifest>

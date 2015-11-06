@@ -1,4 +1,5 @@
 /*
+
  *
  *University of Alberta CMPUT 301 Group: CMPUT301F15T11
  *Copyright {2015} {Dingkai Liang, Zhaorui Chen, Jiaxuan Yue, Xi Zhang, Qingdai Du, Wei Song}
@@ -13,8 +14,7 @@
  * either express or implied.
  * See the License for the specific language governing permissions
  * and limitations under the License.
-*/
-package com.example.zhaorui.dvdcollector.View;
+*/package com.example.zhaorui.dvdcollector.View;
 
 import android.os.Bundle;
 import android.view.Menu;

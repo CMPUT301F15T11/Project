@@ -29,6 +29,7 @@ import android.widget.ListView;
 
 import com.example.zhaorui.dvdcollector.Model.DVD;
 import com.example.zhaorui.dvdcollector.Controller.InventoryController;
+import com.example.zhaorui.dvdcollector.Model.MyObserver;
 import com.example.zhaorui.dvdcollector.R;
 
 import java.util.Observable;
@@ -42,7 +43,7 @@ import java.util.Observer;
  * @author  Zhaorui Chen
  * @version 11/10/15
  */
-public class MyInventoryActivity extends BaseActivity implements Observer {
+public class MyInventoryActivity extends BaseActivity implements MyObserver {
     private InventoryController controller;
     ArrayAdapter<DVD> adapter;
 

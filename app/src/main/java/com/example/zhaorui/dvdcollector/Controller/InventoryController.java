@@ -1,3 +1,4 @@
+
 /*
  *
  *University of Alberta CMPUT 301 Group: CMPUT301F15T11
@@ -22,7 +23,6 @@ import com.example.zhaorui.dvdcollector.Model.User;
 
 import java.util.ArrayList;
 import java.util.Observer;
-
 /**
  * <p>
  * The <code>InventoryController</code> is a controller of <code>Inventory</code>, which controls inventory information.
@@ -37,7 +37,6 @@ public class InventoryController {
      * Initialize a Inventory to store the inventory information.
      */
     private Inventory inventory;
-
     /**
      * Get the user's inventories and restore them.
      */
@@ -104,7 +103,6 @@ public class InventoryController {
         }
         return -1;
     }
-
     /**
      * Add observer to make sure the inventory update on time.
      * @param o , an observer

@@ -14,7 +14,8 @@
  * either express or implied.
  * See the License for the specific language governing permissions
  * and limitations under the License.
-*/package com.example.zhaorui.dvdcollector.Model;
+*/
+package com.example.zhaorui.dvdcollector.Model;
 
 import com.example.zhaorui.dvdcollector.View.BaseActivity;
 import com.google.gson.Gson;
@@ -27,7 +28,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Observable;
 import java.util.Observer;
-
 /**
  * <p>
  * The <code>User</code> class manages the current user's information about his trades,friends,inventory and profile.

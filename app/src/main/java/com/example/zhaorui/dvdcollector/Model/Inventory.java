@@ -62,15 +62,11 @@ public class Inventory extends ArrayList<DVD>{
      */
     public Inventory(){
         obs = new Obs();
-
         categoryInventories = new HashMap<>();
-
         String[] categories = DVD.getCategories();
-
         for( String category : categories){
             categoryInventories.put(category,new ArrayList<DVD>());
         }
-
     }
     /**
      * Append a new DVD to the hash map

@@ -38,12 +38,13 @@ import org.w3c.dom.Text;
  * @version 11/10/15
  */
 public class FriendProfileActivity extends BaseActivity {
+    FriendsController fc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend_profile);
-        FriendsController fc = new FriendsController();
+        fc = new FriendsController();
         int position = getIntent().getIntExtra("position",-1);
         UserProfile profile = fc.get(position).getProfile();
         TextView text;

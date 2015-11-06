@@ -21,8 +21,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -71,19 +74,19 @@ public class DVDInfoActivity extends BaseActivity {
         text.setText(info.get(2));
         text = (TextView) findViewById(R.id.tv_quality_dvdinfo);
         text.setText(info.get(3));
-        String photoStr = info.get(4);
-
-        if(photoStr!=null) {
-            byte[] byteArray = Base64.decode(photoStr, Base64.DEFAULT);
-            Bitmap bm = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-            ImageView imageView = (ImageView) findViewById(R.id.imgv_info_dvd);
-            imageView.setImageBitmap(bm);
-        }
 
         text = (TextView) findViewById(R.id.tv_sharable_dvdinfo);
         text.setText(info.get(5));
         text = (TextView) findViewById(R.id.tv_comment_view_dvdinfo);
         text.setText(info.get(6));
+
+    }
+
+    public void startGallery(View view){
+        // open the activity to show the list of photos attached to this dvd
+        Intent intent = new Intent(DVDInfoActivity.this, PhotoActivity.class);
+        intent.putExtra("position",position);
+        startActivity(intent);
     }
 
 }

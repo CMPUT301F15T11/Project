@@ -39,6 +39,7 @@ public class Friend {
      * To get the selected friend's information.
      * @param user ,the selected friend.
      */
+
     public Friend(User user){
         inventory = user.getInventory();
         inventory.getObs().deleteObservers();
@@ -48,6 +49,7 @@ public class Friend {
     /**
      * To store the select friend's information.
      */
+
     public Friend(Inventory inventory, UserProfile profile) {
         this.inventory = inventory;
         this.profile = profile;

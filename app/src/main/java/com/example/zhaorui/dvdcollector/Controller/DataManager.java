@@ -22,6 +22,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.zhaorui.dvdcollector.Model.ContextUtil;
+import com.example.zhaorui.dvdcollector.Model.MyObserver;
 import com.example.zhaorui.dvdcollector.Model.SimulatedDatabase;
 import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.View.NameInputDialog;
@@ -50,7 +51,7 @@ import java.util.Observer;
  * @version 03/11/15
  * @see com.google.gson.Gson
  */
-public class DataManager implements Observer{
+public class DataManager implements MyObserver{
     private static final String FILENAME = "DVDCollector.Local";
     private static DataManager instance;
 
@@ -61,7 +62,6 @@ public class DataManager implements Observer{
         }
         return instance;
     }
-
     /**
      * General constructor
      */
@@ -104,7 +104,6 @@ public class DataManager implements Observer{
         User.instance().getFriends().getObs().deleteObservers();
         User.instance().getFriends().getObs().addObserver(this);
     }
-
     /**
      * This function adds observers to user's profile and user's inventory.
      * @see java.util.Observer;

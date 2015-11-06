@@ -15,6 +15,7 @@
  * and limitations under the License.
 */
 package com.example.zhaorui.dvdcollector.Model;
+
 /**
  * <p>
  * The <code>Internet</code> class manages the internet connection of the app.

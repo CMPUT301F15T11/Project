@@ -13,7 +13,8 @@
  * either express or implied.
  * See the License for the specific language governing permissions
  * and limitations under the License.
-*/package com.example.zhaorui.dvdcollector.Model;
+*/
+package com.example.zhaorui.dvdcollector.Model;
 
 import android.net.Uri;
 import java.util.ArrayList;
@@ -52,13 +53,14 @@ public class DVD {
     /**
      * Initialize a string to store photo of the dvd.
      */
-    private String photoStr = null;
+
+    private boolean hasPhoto;
+    private Gallery gallery;
 
     /**
      * Initialize a boolean to store sharable of the dvd.
      */
     private boolean sharable;
-
     private final static String[] categories = {"Games","Romance","Documentary","Sci-Fi","Horror",
             "Action","Comedy","Edu","Story","Fantasy"};
     /**
@@ -87,8 +89,8 @@ public class DVD {
         return name;
     }
     /**
-     * This function is called when other function need to set the current dvd's name.
-     * @param name , a string variable.
+     * This function is called when other function need to know the current dvd's quantity.
+     * @return a string variable quantity.
      */
     public void setName(String name) {
         this.name = name;
@@ -160,17 +162,21 @@ public class DVD {
      * This function is called when other function need to display the photo of dvd.
      * @return a string photoStr.
      */
-    public String getPhotoStr() {
-        return photoStr;
-    }
-    /**
-     * This function is called when other function need to set the photo of dvd.
-     * @param photoStr, a string variable.
-     */
-    public void setPhotoStr(String photoStr) {
-        this.photoStr = photoStr;
+    public Gallery getGallery() {
+        return gallery;
     }
 
+    public void setGallery(Gallery gallery) {
+        this.gallery = gallery;
+    }
+
+    public boolean isHasPhoto() {
+        return hasPhoto;
+    }
+
+    public void setHasPhoto(boolean hasPhoto) {
+        this.hasPhoto = hasPhoto;
+    }
 
     @Override
     public String toString(){ return name;}

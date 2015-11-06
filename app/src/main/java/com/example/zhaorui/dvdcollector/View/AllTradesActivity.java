@@ -33,7 +33,6 @@ import com.example.zhaorui.dvdcollector.R;
  * @author  Zhaorui Chen
  * @version 11/10/15
  */
-
 public class AllTradesActivity extends BaseActivity {
 
     private String[] data = { "[Current] From Jack","[Current] From Lucy","[Current] From Jack","[Declined] From Lucy",

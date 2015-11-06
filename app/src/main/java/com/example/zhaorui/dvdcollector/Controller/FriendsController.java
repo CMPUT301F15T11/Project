@@ -1,3 +1,4 @@
+
 /*
  *
  *University of Alberta CMPUT 301 Group: CMPUT301F15T11
@@ -59,7 +60,6 @@ public class FriendsController {
         friends.add(name);
         friends.notifying();
     }
-
     /**
      * To get a friend from the friends list by index
      * @param index , an int variable.
@@ -89,7 +89,6 @@ public class FriendsController {
         }
         friends.notifying();
     }
-
     /**
      * get all friends
      * @return a Friends variable

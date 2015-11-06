@@ -1,0 +1,74 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    style="@style/bkg_white"
+    tools:context="com.example.zhaorui.dvdcollector.View.PhotoActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <include layout="@layout/title_photos"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="@style/bkg_indigo">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/bottom_tile"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+
+                    <ListView
+                        android:layout_margin="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/listView_photos"
+                        android:background="@drawable/button_shape_white"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_weight="4"
+                    android:layout_height="match_parent">
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Upload new"
+                        android:layout_margin="20dp"
+                        android:id="@+id/button_upload_photo"
+                        android:layout_gravity="bottom"
+                        android:onClick="addPhoto"
+                        style="@style/font_indigo"
+                        android:background="@drawable/button_shape_white"
+                        android:layout_weight="1" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:id="@+id/bottom_tile">
+                <include layout="@layout/bottom"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

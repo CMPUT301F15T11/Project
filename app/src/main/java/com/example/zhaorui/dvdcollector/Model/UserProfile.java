@@ -45,27 +45,29 @@ public class UserProfile extends Observable{
      * This function is called when other function need to know the user name for the user profile.
      * @return a string variable name.
      */
+
     public String getName() {
         return name;
     }
-
     /**
      * This function is called when other function need to set the user name for the user profile.
      * @param  name, a string variable.
      */
+
     public void setName(String name) {this.name = name;}
     /**
      * This function is called when other function need to know the user's contact information for the user profile.
      * @return a string variable contains contact information.
      */
+
     public String getContact() {
         return contact;
     }
-
     /**
      * This function is called when other function need to set the user's contact information for the user profile.
      * @param  contact, a string variable.
      */
+
     public void setContact(String contact) {
         this.contact = contact;
         super.setChanged();
@@ -75,6 +77,7 @@ public class UserProfile extends Observable{
      * This function is called when other function need to know the user's city for the user profile.
      * @return a string variable contains the user's city.
      */
+
     public String getCity() {
         return city;
     }
