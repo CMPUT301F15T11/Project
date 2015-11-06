@@ -55,10 +55,9 @@ public class CategoryActivity extends BaseActivity implements MyObserver{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
-
+        ic = new InventoryController();
         final int friendPosition = getIntent().getIntExtra("friendPosition",-1);
         if (friendPosition == -1) {
-            ic = new InventoryController();
             ic.addObserver(this);
         } else {
             FriendsController fc = new FriendsController();
@@ -79,12 +78,12 @@ public class CategoryActivity extends BaseActivity implements MyObserver{
                 FragmentManager fm = getFragmentManager();
                 if (friendPosition == -1) {
                     MyInventoryDialog newDialog = new MyInventoryDialog();
-                    newDialog.setPosition(ic.indexOf(ic.get(position)));
+                    newDialog.setPosition(ic.indexOf(ic.getInventory(category).get(position)));
                     newDialog.show(fm, "abc");
                 } else {
                     FriendInventoryDialog newDialog = new FriendInventoryDialog();
                     newDialog.setFriendPosition(friendPosition);
-                    newDialog.setPosition(ic.indexOf(ic.get(position)));
+                    newDialog.setPosition(ic.indexOf(ic.getInventory(category).get(position)));
                     newDialog.show(fm, "abc");
                 }
             }

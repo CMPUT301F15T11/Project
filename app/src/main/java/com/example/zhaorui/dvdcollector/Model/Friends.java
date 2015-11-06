@@ -18,6 +18,8 @@ package com.example.zhaorui.dvdcollector.Model;
 
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -45,4 +47,5 @@ public class Friends extends ArrayList<String>{
     public Observable getObs() {
         return obs;
     }
+
 }

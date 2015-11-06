@@ -74,8 +74,8 @@ public class DataManager implements MyObserver{
             FileInputStream in = context.openFileInput(FILENAME);
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));
             Gson gson = new Gson();
-            Type userType = new TypeToken<User>(){}.getType();
-            User.setInstance((User) gson.fromJson(reader, userType));
+            User.setInstance(gson.fromJson(reader, User.class));
+            User.instance().getInventory().fresh();
             observing();
         } catch (FileNotFoundException e) {
             Activity activity = (Activity) context;
@@ -124,7 +124,6 @@ public class DataManager implements MyObserver{
     }
 
     public void update(Observable ob, Object o){
-        System.out.println("111");
         saveLocal();
     }
 }

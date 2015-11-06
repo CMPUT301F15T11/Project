@@ -48,9 +48,14 @@ public class SearchDialog extends DialogFragment {
     private InventoryController ic;
     private FriendsController fc;
     private String mode;
+    private int friendPosition = -1;
 
     public void setMode(String mode) {
         this.mode = mode;
+    }
+
+    public void setFriendPosition(int friendPosition) {
+        this.friendPosition = friendPosition;
     }
 
     public void setIc(InventoryController ic) {
@@ -66,7 +71,7 @@ public class SearchDialog extends DialogFragment {
         dialog.setContentView(customView);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         fc = new FriendsController();
-        if (ic == null){ic = new InventoryController();}
+        if (ic == null) {ic = new InventoryController();}
         editText = (EditText) customView.findViewById(R.id.editText_search_dialog);
 
         search = (Button)customView.findViewById(R.id.btn_search);
@@ -76,10 +81,11 @@ public class SearchDialog extends DialogFragment {
                 String name = editText.getText().toString();
                 if (name.isEmpty()){
                     Toast.makeText(ContextUtil.getInstance(), "Empty Input!", Toast.LENGTH_LONG).show();
-                } else if (mode == "inventory") {
+                } else if (mode.equals("inventory")) {
                     if (ic.find(name)) {
                         Intent intent = new Intent(context, DVDInfoActivity.class);
-                        intent.putExtra("position", ic.indexOf(name));
+                        intent.putExtra("position",ic.indexOf(name));
+                        intent.putExtra("friendPosition", friendPosition);
                         startActivity(intent);
                     } else {
                         FragmentManager fm = getFragmentManager();

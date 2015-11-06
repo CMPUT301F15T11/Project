@@ -23,6 +23,7 @@ import com.example.zhaorui.dvdcollector.Model.Friends;
 import com.example.zhaorui.dvdcollector.Model.SimulatedDatabase;
 import com.example.zhaorui.dvdcollector.Model.User;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -69,10 +70,10 @@ public class FriendsController {
         String name = friends.get(index);
         if (!cache.containsKey(name)) {
             Gson gson = new Gson();
-            Type friendType = new TypeToken<Friend>(){}.getType();
             Friend friend;
             String jsonValue = SimulatedDatabase.get(name);
-            friend = gson.fromJson(jsonValue,friendType);
+            friend = gson.fromJson(jsonValue, Friend.class);
+            friend.getInventory().fresh();
             cache.put(name, friend);
         }
             return cache.get(name);

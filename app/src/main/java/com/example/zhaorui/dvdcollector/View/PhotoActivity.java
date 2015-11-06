@@ -25,6 +25,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.zhaorui.dvdcollector.Controller.DVDController;
+import com.example.zhaorui.dvdcollector.Controller.FriendsController;
 import com.example.zhaorui.dvdcollector.Controller.GalleryController;
 import com.example.zhaorui.dvdcollector.Controller.InventoryController;
 import com.example.zhaorui.dvdcollector.Model.DVD;
@@ -42,6 +43,7 @@ public class PhotoActivity extends BaseActivity{
     private int position;
     private InventoryController ic = new InventoryController();
     private DVDController dc = new DVDController();
+    private FriendsController fc = new FriendsController();
     private Gallery gallery;
     private GalleryController gc;
     private DVD dvd;
@@ -63,6 +65,12 @@ public class PhotoActivity extends BaseActivity{
 
         Intent intent = getIntent();
         position = intent.getIntExtra("position", -1);
+        int friendPosition = intent.getIntExtra("friendPosition",-1);
+        if (friendPosition != -1){
+            ic.setInventory(fc.get(friendPosition).getInventory());
+            Button upload = (Button) findViewById(R.id.button_upload_photo);
+            upload.setVisibility(View.INVISIBLE);
+        }
         ArrayList<String> info = dc.read(ic.get(position));//get the current dvd
         dvd = ic.get(position);
 

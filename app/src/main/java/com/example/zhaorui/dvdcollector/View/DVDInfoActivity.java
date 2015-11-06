@@ -47,6 +47,7 @@ import java.util.ArrayList;
  */
 public class DVDInfoActivity extends BaseActivity {
     private int position;
+    private int friendPosition;
     private InventoryController ic;
     private DVDController dc;
 
@@ -59,7 +60,7 @@ public class DVDInfoActivity extends BaseActivity {
         ic = new InventoryController();
         Intent intent = getIntent();
         position = intent.getIntExtra("position",-1);
-        int friendPosition = intent.getIntExtra("friendPosition",-1);
+        friendPosition = intent.getIntExtra("friendPosition",-1);
         if (friendPosition != -1){
             FriendsController fc = new FriendsController();
             ic.setInventory(fc.get(friendPosition).getInventory());
@@ -86,6 +87,7 @@ public class DVDInfoActivity extends BaseActivity {
         // open the activity to show the list of photos attached to this dvd
         Intent intent = new Intent(DVDInfoActivity.this, PhotoActivity.class);
         intent.putExtra("position",position);
+        intent.putExtra("friendPosition",friendPosition);
         startActivity(intent);
     }
 

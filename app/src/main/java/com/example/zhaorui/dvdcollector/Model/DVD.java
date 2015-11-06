@@ -18,6 +18,7 @@ package com.example.zhaorui.dvdcollector.Model;
 
 import android.net.Uri;
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * <p>

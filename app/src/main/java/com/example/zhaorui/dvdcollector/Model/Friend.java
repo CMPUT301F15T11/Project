@@ -16,6 +16,11 @@
 */
 package com.example.zhaorui.dvdcollector.Model;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.ArrayList;
+
 /**
  * <p>
  * The <code>Friend</code> manage the selected friend's information of the current user.
@@ -68,4 +73,6 @@ public class Friend {
     public UserProfile getProfile() {
         return profile;
     }
+
+
 }

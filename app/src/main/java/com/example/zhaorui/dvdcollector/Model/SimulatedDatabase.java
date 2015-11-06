@@ -17,6 +17,7 @@
 package com.example.zhaorui.dvdcollector.Model;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.HashMap;
 /**
@@ -50,7 +51,8 @@ public class SimulatedDatabase{
             sampleDVD.setCategory("Action");
             sampleDVD.setComments("Great movie!");
             sampleDVD.setHasPhoto(false);
-            sampleInventory.add(sampleDVD);
+            sampleDVD.setGallery(new Gallery());
+            sampleInventory.append(sampleDVD);
         }
         UserProfile sampleProfile = new UserProfile();
         sampleProfile.setCity("Edmonton");

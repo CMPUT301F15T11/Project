@@ -101,6 +101,7 @@ public class FriendInventoryActivity extends BaseActivity {
         FragmentManager fm = getFragmentManager();
         SearchDialog newDialog = new SearchDialog();
         newDialog.setMode("inventory");
+        newDialog.setFriendPosition(friendPostion);
         newDialog.setIc(ic);
         newDialog.show(fm, "abc");
     }

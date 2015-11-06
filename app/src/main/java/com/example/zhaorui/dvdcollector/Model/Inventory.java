@@ -65,7 +65,7 @@ public class Inventory extends ArrayList<DVD>{
         categoryInventories = new HashMap<>();
         String[] categories = DVD.getCategories();
         for( String category : categories){
-            categoryInventories.put(category,new ArrayList<DVD>());
+            categoryInventories.put(category, new ArrayList<DVD>());
         }
     }
     /**
@@ -112,5 +112,11 @@ public class Inventory extends ArrayList<DVD>{
      */
     public Observable getObs() {
         return obs;
+    }
+
+    public void fresh(){
+        for (DVD dvd : this){
+            edit(dvd,dvd);
+        }
     }
 }
