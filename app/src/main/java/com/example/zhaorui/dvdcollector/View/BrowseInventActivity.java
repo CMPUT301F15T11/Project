@@ -10,7 +10,6 @@ import android.widget.Button;
 import com.example.zhaorui.dvdcollector.R;
 
 public class BrowseInventActivity extends BaseActivity {
-    private Button btnCategory1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

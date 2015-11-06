@@ -60,6 +60,7 @@ public class DVDInfoActivity extends BaseActivity {
     }
 
     public void startGallery(View view){
+        // open the activity to show the list of photos attached to this dvd
         Intent intent = new Intent(DVDInfoActivity.this, PhotoActivity.class);
         intent.putExtra("position",position);
         startActivity(intent);

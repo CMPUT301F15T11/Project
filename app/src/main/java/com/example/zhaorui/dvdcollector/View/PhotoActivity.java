@@ -8,26 +8,20 @@ package com.example.zhaorui.dvdcollector.View;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.zhaorui.dvdcollector.Controller.DVDController;
 import com.example.zhaorui.dvdcollector.Controller.GalleryController;
 import com.example.zhaorui.dvdcollector.Controller.InventoryController;
-import com.example.zhaorui.dvdcollector.Model.DVD;
 import com.example.zhaorui.dvdcollector.Model.Gallery;
 import com.example.zhaorui.dvdcollector.R;
 
@@ -35,8 +29,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 
 public class PhotoActivity extends BaseActivity{
     private int position;
@@ -53,7 +45,6 @@ public class PhotoActivity extends BaseActivity{
 
     private static final int TAKE_PHOTO = 22;
     private Uri imageUri;
-    private DVD dvd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,11 +56,9 @@ public class PhotoActivity extends BaseActivity{
         position = intent.getIntExtra("position", -1);
         ArrayList<String> info = dc.read(ic.get(position));//get the current dvd
 
-        dvd = ic.get(position);
-
         // check if there is photos for this dvd
         if (info.get(4)=="Yes") {
-            this.gallery = dc.readPhoto(dvd);//get its gallery
+            this.gallery = dc.readPhoto(ic.get(position));//get its gallery
             this.gc = new GalleryController(gallery);
         }else{
             this.gallery = new Gallery();
@@ -94,14 +83,6 @@ public class PhotoActivity extends BaseActivity{
                 startActivity(i);
             }
         });
-    }
-
-    @Override
-    protected void onStart(){
-        super.onStart();
-        adapter = new ArrayAdapter<Integer>(PhotoActivity.this, android.R.layout.simple_list_item_1, indexes);
-        listView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
 
         // remove the photo
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -109,9 +90,9 @@ public class PhotoActivity extends BaseActivity{
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 int index = indexes.get(position);
                 gc.removeFromGallery(gallery.getPhotoStrs().get(position)); // remove the image from the gallery
-                dc.changeGallery(dvd, gallery);// change the dvd with the new gallery
+                dc.changeGallery(ic.get(position), gallery);// change the dvd with the new gallery
 
-                Log.e("DVD",String.valueOf(position));
+                Log.e("DVD", String.valueOf(position));
                 Log.e("DVDPhoto", String.valueOf(index));
                 // update the listview
                 indexes.remove(position);
@@ -120,6 +101,14 @@ public class PhotoActivity extends BaseActivity{
                 return true;
             }
         });
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        adapter = new ArrayAdapter<Integer>(PhotoActivity.this, android.R.layout.simple_list_item_1, indexes);
+        listView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
     //https://github.com/CMPUT301W15T06/Project/blob/master/App/src/ca/ualberta/CMPUT301W15T06/ClaimantReceiptActivity.java
@@ -157,7 +146,7 @@ public class PhotoActivity extends BaseActivity{
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
                         String photo = gc.encodeFromBitmap(bitmap); // encode image to string
                         gc.addToGallery(photo); // add the photo to the gallery
-                        dc.changeGallery(dvd, gallery);// change the dvd with the new gallery
+                        dc.changeGallery(ic.get(position), gallery);// change the dvd with the new gallery
 
                         // update the listview
                         numPhotos = gallery.getSize();

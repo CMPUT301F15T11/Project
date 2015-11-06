@@ -6,6 +6,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.zhaorui.dvdcollector.Model.ContextUtil;
+import com.example.zhaorui.dvdcollector.Model.MyObserver;
 import com.example.zhaorui.dvdcollector.Model.SimulatedDatabase;
 import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.View.NameInputDialog;
@@ -26,7 +27,7 @@ import java.util.Observer;
 /**
  * Created by dingkai on 15/11/3.
  */
-public class DataManager implements Observer{
+public class DataManager implements MyObserver{
     private static final String FILENAME = "DVDCollector.Local";
     private static DataManager instance;
 
