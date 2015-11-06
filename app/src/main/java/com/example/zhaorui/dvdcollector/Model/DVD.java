@@ -56,6 +56,9 @@ public class DVD {
      */
 
     private boolean hasPhoto;
+    /**
+     * Initialize a gallery to store all photos of the dvd.
+     */
     private Gallery gallery;
 
     /**
@@ -77,7 +80,7 @@ public class DVD {
     }
     /**
      * This function is called when other function need to set the current dvd's category.
-     * @param category , a string variable.
+     * @param category a string variable.
      */
     public void setCategory(String category) {
         this.category = category;
@@ -90,7 +93,7 @@ public class DVD {
         return name;
     }
     /**
-     * This function is called when other function need to know the current dvd's quantity.
+     * This function is called when other function need to set the current dvd's name.
      * @return a string variable quantity.
      */
     public void setName(String name) {
@@ -105,7 +108,7 @@ public class DVD {
     }
     /**
      * This function is called when other function need to set the current dvd's quantity.
-     * @param quantity , a string variable.
+     * @param quantity a string variable.
      */
     public void setQuantity(String quantity) {
         this.quantity = quantity;
@@ -119,7 +122,7 @@ public class DVD {
     }
     /**
      * This function is called when other function need to set the current dvd's quality.
-     * @param quality , a string variable.
+     * @param quality a string variable.
      */
     public void setQuality(String quality) {
         this.quality = quality;
@@ -133,7 +136,7 @@ public class DVD {
     }
     /**
      * This function is called when other function need to set the user's comments about the current dvd.
-     * @param  comments , a string variable.
+     * @param  comments a string variable.
      */
     public void setComments(String comments) {
         this.comments = comments;
@@ -147,7 +150,7 @@ public class DVD {
     }
     /**
      * This function is called when other function need to set if the dvd is sharable or not.
-     * @param sharable, a boolean variable.
+     * @param sharable a boolean variable.
      */
     public void setSharable(boolean sharable) {
         this.sharable = sharable;
@@ -159,22 +162,35 @@ public class DVD {
     public static String[] getCategories() {
         return categories;
     }
+
     /**
-     * This function is called when other function need to display the photo of dvd.
-     * @return a string photoStr.
+     * This function is called when other function need to use all photos about the selected dvd.
+     * @return a list of photos.
      */
     public Gallery getGallery() {
         return gallery;
     }
 
+    /**
+     * This function is called when other function need to set a gallery to a dvd.
+     * @param gallery a array list of photo string
+     */
+
     public void setGallery(Gallery gallery) {
         this.gallery = gallery;
     }
 
+    /**
+     * This function is called when other functions need to know if the dvd contain photo information or not.
+     * @return a boolean
+     */
     public boolean isHasPhoto() {
         return hasPhoto;
     }
-
+    /**
+     * This function is called when other functions need to set if the dvd contain photo information or not.
+     * @param hasPhoto a boolean
+     */
     public void setHasPhoto(boolean hasPhoto) {
         this.hasPhoto = hasPhoto;
     }
