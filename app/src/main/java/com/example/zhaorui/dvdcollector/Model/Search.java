@@ -36,17 +36,17 @@ public class Search {
     }
     /**
      *Search inventory by index.
-     * @param index, an int variable
+     * @param index an int variable
      */
     public Inventory searchInventory(int index){return null;}
     /**
      *Search inventory by category..
-     * @param category, a string variable.
+     * @param category a string variable.
      */
     public Inventory searchByCategory(String category){return null;}
     /**
      *Search inventory by text.
-     * @param text, a string variable.
+     * @param text a string variable.
      */
     public Inventory searchByText(String text){return null;}
     /**

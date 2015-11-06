@@ -77,14 +77,21 @@ public class DVDController {
         info.add(dvd.getComments());
         return info;
     }
+
     /**
-     * This function records categories from DVD and store to an array list.
-     * @return array list of different categories.
+     * This function is to read photos from a dvd.
+     * @param dvd all information about the selected dvd
+     * @return photo gallery
      */
     public Gallery readPhoto(DVD dvd){
         return dvd.getGallery();
     }
 
+    /**
+     * To set a gallery for a dvd
+     * @param dvd all information about the selected dvd
+     * @param gallery an array list of photos
+     */
     public void changeGallery(DVD dvd, Gallery gallery){
         dvd.setGallery(gallery);
         if (gallery.getSize()!=0){
@@ -92,6 +99,10 @@ public class DVDController {
         }
     }
 
+    /**
+     * This function maanage the array list of categories we have.
+     * @return a list of categories.
+     */
     public ArrayList<String> categories(){
         ArrayList<String> categories = new ArrayList<String>();
         for (String category : DVD.getCategories()){

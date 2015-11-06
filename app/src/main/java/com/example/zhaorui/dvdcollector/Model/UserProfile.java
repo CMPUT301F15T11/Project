@@ -51,7 +51,7 @@ public class UserProfile extends Observable{
     }
     /**
      * This function is called when other function need to set the user name for the user profile.
-     * @param  name, a string variable.
+     * @param  name a string variable.
      */
 
     public void setName(String name) {this.name = name;}
@@ -83,7 +83,7 @@ public class UserProfile extends Observable{
     }
     /**
      * This function is called when other function need to set the user's city for the user profile.
-     * @param  city, a string variable.
+     * @param  city a string variable.
      */
     public void setCity(String city) {
         this.city = city;

@@ -71,7 +71,7 @@ public class Inventory extends ArrayList<DVD>{
     /**
      * Append a new DVD to the hash map
      * Notify the Observable
-     * @param dvd, a DVD variable
+     * @param dvd a DVD variable
      */
 
     public void append(DVD dvd){
@@ -82,7 +82,7 @@ public class Inventory extends ArrayList<DVD>{
     /**
      * Delete a new DVD to the hash map
      * Notify the Observable
-     * @param dvd, a DVD variable
+     * @param dvd a DVD variable
      */
     public void delete(DVD dvd){
         remove(dvd);
