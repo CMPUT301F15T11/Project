@@ -51,6 +51,18 @@ public class MyInventoryDialog extends DialogFragment {
         this.position = position;
     }
 
+    public Button getCheck() {
+        return check;
+    }
+
+    public Button getEdit() {
+        return edit;
+    }
+
+    public Button getRemove() {
+        return remove;
+    }
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         customView = getActivity().getLayoutInflater().inflate(R.layout.layout_my_inventory_dialog, null);

@@ -49,6 +49,18 @@ public class FriendListDialog extends DialogFragment {
         this.position = position;
     }
 
+    public Button getCheck() {
+        return check;
+    }
+
+    public Button getCheckInventory() {
+        return checkInventory;
+    }
+
+    public Button getRemove() {
+        return remove;
+    }
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         customView = getActivity().getLayoutInflater().inflate(R.layout.layout_friendlist_dialog, null);

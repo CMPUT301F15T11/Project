@@ -62,6 +62,14 @@ public class SearchDialog extends DialogFragment {
         this.ic = ic;
     }
 
+    public Button getSearch() {
+        return search;
+    }
+
+    public EditText getEditText() {
+        return editText;
+    }
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         customView = getActivity().getLayoutInflater().inflate(R.layout.layout_search_dialog, null);
