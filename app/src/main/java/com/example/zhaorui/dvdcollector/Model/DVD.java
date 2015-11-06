@@ -1,40 +1,96 @@
 package com.example.zhaorui.dvdcollector.Model;
 
+import android.net.Uri;
+import java.util.ArrayList;
+
 /**
  * Created by dingkai on 15/10/9.
  */
 public class DVD {
-    private  String detail;
     private String category;
-    private boolean shareable;
-    private String image;
-    public boolean hasImage = false;
+    private String name;
+    private String quantity;
+    private String quality;
+    private String comments;
+
+    private boolean hasPhoto;
+    private Gallery gallery;
+
+
+    private boolean sharable;
+    private final static String[] categories = {"Games","Romance","Documentary","Sci-Fi","Horror",
+            "Action","Comedy","Edu","Story","Fantasy"};
+
+    public DVD(){}
 
     public String getCategory() {
         return category;
     }
 
-    public boolean isShareable() {
-        return shareable;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public DVD(String detail) {
-        this.detail = detail;
+    public String getName() {
+        return name;
     }
 
-    public String getDetail(){return detail;}
-
-    public void attachPhoto(String imagePath){}
-
-    public boolean viewPhoto(){
-        String str = "";
-        return (str == "photo has viewed successful");
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void deletePhote(){}
-
-    public Boolean downloadPhoto(Configuration confirm){
-        String str = "";
-        return (str == "photo has downloaded successful");
+    public String getQuantity() {
+        return quantity;
     }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getQuality() {
+        return quality;
+    }
+
+    public void setQuality(String quality) {
+        this.quality = quality;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public boolean isSharable() {
+        return sharable;
+    }
+
+    public void setSharable(boolean sharable) {
+        this.sharable = sharable;
+    }
+
+    public static String[] getCategories() {
+        return categories;
+    }
+
+    public Gallery getGallery() {
+        return gallery;
+    }
+
+    public void setGallery(Gallery gallery) {
+        this.gallery = gallery;
+    }
+
+    public boolean isHasPhoto() {
+        return hasPhoto;
+    }
+
+    public void setHasPhoto(boolean hasPhoto) {
+        this.hasPhoto = hasPhoto;
+    }
+
+    @Override
+    public String toString(){ return name;}
 }

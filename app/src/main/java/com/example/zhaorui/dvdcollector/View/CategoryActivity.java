@@ -1,6 +1,9 @@
 package com.example.zhaorui.dvdcollector.View;
 
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,17 +12,37 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.zhaorui.dvdcollector.Controller.FriendsController;
+import com.example.zhaorui.dvdcollector.Controller.InventoryController;
 import com.example.zhaorui.dvdcollector.Model.DVD;
+import com.example.zhaorui.dvdcollector.Model.Inventory;
 import com.example.zhaorui.dvdcollector.R;
 
-public class CategoryActivity extends BaseActivity {
-    private String[] data = { "Titanic", "Love Actually"};
+import java.util.Observable;
+import java.util.Observer;
+
+public class CategoryActivity extends BaseActivity implements Observer{
+    private InventoryController ic;
+    private ArrayAdapter<?> adapter;
+    private String category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(CategoryActivity.this, android.R.layout.simple_list_item_1, data);
+
+        final int friendPosition = getIntent().getIntExtra("friendPosition",-1);
+        if (friendPosition == -1) {
+            ic = new InventoryController();
+            ic.addObserver(this);
+        } else {
+            FriendsController fc = new FriendsController();
+            ic.setInventory(fc.get(friendPosition).getInventory());
+        }
+        Intent intent = getIntent();
+        category = intent.getStringExtra("category");
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
+                ic.getInventory(category));
         ListView listView = (ListView) findViewById(R.id.listViewCategory);
         listView.setAdapter(adapter);
 
@@ -28,27 +51,19 @@ public class CategoryActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
-                // todo: retrieve the item which has been clicked
-                //sample
-                DVD dvd = new DVD("Team 11");
-
-                // open up a dialog (should with a parameter )
-                showDialog(dvd);
-
-                //now check user choose which action
-                //see MyInventoryDialog.java for implementation
+                FragmentManager fm = getFragmentManager();
+                if (friendPosition == -1) {
+                    MyInventoryDialog newDialog = new MyInventoryDialog();
+                    newDialog.setPosition(ic.indexOf(ic.get(position)));
+                    newDialog.show(fm, "abc");
+                } else {
+                    FriendInventoryDialog newDialog = new FriendInventoryDialog();
+                    newDialog.setFriendPosition(friendPosition);
+                    newDialog.setPosition(ic.indexOf(ic.get(position)));
+                    newDialog.show(fm, "abc");
+                }
             }
         });
-    }
-
-
-    //http://stackoverflow.com/questions/17287054/dialogfragment-without-fragmentactivity
-    //// TODO: 27/10/15 should take parameter of type DVD
-    public void showDialog(DVD dvd) {
-        FragmentManager fm = getFragmentManager();
-        MyInventoryDialog newDialog = (MyInventoryDialog) new MyInventoryDialog();
-        newDialog.setDvd(dvd);//sample
-        newDialog.show(fm, "abc");
     }
 
     @Override
@@ -71,5 +86,9 @@ public class CategoryActivity extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void update(Observable ob, Object o){
+        adapter.notifyDataSetChanged();
     }
 }

@@ -12,15 +12,15 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.zhaorui.dvdcollector.Model.DVD;
+import com.example.zhaorui.dvdcollector.Controller.InventoryController;
 import com.example.zhaorui.dvdcollector.R;
 
-public class MyInventoryActivity extends BaseActivity {
-    
-    // sample data
-    // TODO: 27/10/15 Delete these testing sample data 
-    private String[] data = { "Titanic", "Star war", "The Shawshank Redemption", "The God father",
-            "The Dark Knight", "12 Angry Man", "Schindler's List", "Pulp Fiction", "The Lord of Rings", "Forrest Gump",
-            "Inception", "The matrix"};
+import java.util.Observable;
+import java.util.Observer;
+
+public class MyInventoryActivity extends BaseActivity implements Observer {
+    private InventoryController controller;
+    ArrayAdapter<DVD> adapter;
 
     //http://stackoverflow.com/questions/18913635/how-to-trigger-a-menu-button-click-event-through-code-in-android
     Button btnMenuMyInvent;
@@ -30,9 +30,9 @@ public class MyInventoryActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_inventory);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(MyInventoryActivity.this, android.R.layout.simple_list_item_1, data);
         listView = (ListView) findViewById(R.id.listViewMyInventory);
-        listView.setAdapter(adapter);
+        controller = new InventoryController();
+        controller.addObserver(this);
 
         // open the menu
         btnMenuMyInvent = (Button)findViewById(R.id.btn_title_my_inventory);
@@ -48,36 +48,32 @@ public class MyInventoryActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
-                // todo: retrieve the item which has been clicked
-                //sample
-                DVD dvd= new DVD("Team 11");
-
-                // open up a dialog (should with a parameter )
-                showDialog(dvd);
-
-                //now check user choose which action
-                //see MyInventoryDialog.java for implementation
+                // open up a dialog
+                FragmentManager fm = getFragmentManager();
+                MyInventoryDialog newDialog = new MyInventoryDialog();
+                newDialog.setPosition(position);
+                newDialog.show(fm, "abc");
             }
         });
     }
 
-    //http://stackoverflow.com/questions/17287054/dialogfragment-without-fragmentactivity
-    //// TODO: 27/10/15 should take parameter of type DVD
-    private void showDialog(DVD dvd) {
-        FragmentManager fm = getFragmentManager();
-        MyInventoryDialog newDialog = (MyInventoryDialog) new MyInventoryDialog();
-        newDialog.setDvd(dvd);//sample
-        newDialog.show(fm, "abc");
+    @Override
+    protected void onStart(){
+        super.onStart();
+        adapter = new ArrayAdapter<DVD>(MyInventoryActivity.this, android.R.layout.simple_list_item_1, controller.getInventory());
+        listView.setAdapter(adapter);
     }
 
     private void showSearchDialog() {
         FragmentManager fm = getFragmentManager();
-        SearchDialog newDialog = (SearchDialog) new SearchDialog();
+        SearchDialog newDialog = new SearchDialog();
+        newDialog.setMode("inventory");
         newDialog.show(fm, "abc");
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_my_inventory, menu);
         return true;
@@ -106,6 +102,10 @@ public class MyInventoryActivity extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void update(Observable ob,Object o){
+        adapter.notifyDataSetChanged();
     }
 }
 

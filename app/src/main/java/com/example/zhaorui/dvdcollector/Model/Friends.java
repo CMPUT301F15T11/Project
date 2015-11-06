@@ -1,35 +1,27 @@
 package com.example.zhaorui.dvdcollector.Model;
 
+import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
+
 /**
  * Created by dingkai on 15/10/9.
  */
-public class Friends {
+public class Friends extends ArrayList<String>{
+    private Obs obs;
 
-    private User user;
-    private int numFriends;
+    public Friends(){obs = new Obs();}
 
-    public Friends(User user) {
-        this.user = user;
-        numFriends = 0;
+    private class Obs extends Observable{
+        public void notifying(){
+            super.setChanged();
+            super.notifyObservers();
+        }
     }
-
-    static public User track(String name){return null;}
-
-    public void add(User friend){}
-
-    public User getFriend(int index){return null;}
-
-    public void remove(int index){}
-
-    public User getUser() {
-        return user;
+    public void notifying(){obs.notifying();}
+    public Observable getObs() {
+        return obs;
     }
-
-
-    public int getSize() {
-        return numFriends;
-    }
-
-    public String viewProfile(int index){return null;}
-
 }

@@ -39,10 +39,10 @@
                 android:text="Name:"
                 style="@style/font_white" />
 
-            <EditText
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText_my_profile"
+                android:id="@+id/name_my_profile"
                 style="@style/font_white"
                 android:layout_weight="1" />
         </LinearLayout>
@@ -65,7 +65,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText2_my_profile"
+                android:id="@+id/contact_my_profile"
                 style="@style/font_white"
                 android:layout_weight="1" />
         </LinearLayout>
@@ -88,7 +88,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText3_my_profile"
+                android:id="@+id/city_my_profile"
                 style="@style/font_white"
                 android:layout_weight="1" />
         </LinearLayout>
@@ -102,7 +102,8 @@
             android:background="@drawable/button_shape_white"
             android:id="@+id/btn_save_my_profile"
             android:layout_marginBottom="10dp"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:onClick="onProfileSave"/>
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"

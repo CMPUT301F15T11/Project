@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.zhaorui.dvdcollector.Controller.FriendsController;
 import com.example.zhaorui.dvdcollector.Model.DVD;
 import com.example.zhaorui.dvdcollector.R;
 
@@ -17,13 +18,13 @@ import com.example.zhaorui.dvdcollector.R;
 public class FriendListDialog extends DialogFragment {
     private View customView;
     private Button check;
-    private Button edit;
+    private Button checkInventory;
     private Button remove;
     private Context context;
-
-    private DVD dvd; //sample
-    public void setDvd(DVD dvd) {
-        this.dvd = dvd;
+    private FriendsController fc;
+    private int position;
+    public void setPosition(int position) {
+        this.position = position;
     }
 
     @Override
@@ -37,21 +38,25 @@ public class FriendListDialog extends DialogFragment {
 
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
+        fc = new FriendsController();
+
         check = (Button)customView.findViewById(R.id.dialog_function_4);
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, FriendProfileActivity.class);
+                intent.putExtra("position",position);
                 startActivity(intent);
                 dialog.cancel();
             }
         });
 
-        edit = (Button)customView.findViewById(R.id.dialog_function_5);
-        edit.setOnClickListener(new View.OnClickListener() {
+        checkInventory = (Button)customView.findViewById(R.id.dialog_function_5);
+        checkInventory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, FriendInventoryActivity.class);
+                intent.putExtra("position",position);
                 startActivity(intent);
                 dialog.cancel();
             }
@@ -61,6 +66,7 @@ public class FriendListDialog extends DialogFragment {
         remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                fc.remove(position);
                 dialog.cancel();
             }
         });

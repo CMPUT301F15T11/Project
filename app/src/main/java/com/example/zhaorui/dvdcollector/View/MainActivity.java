@@ -1,12 +1,16 @@
 package com.example.zhaorui.dvdcollector.View;
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.zhaorui.dvdcollector.Controller.DataManager;
 import com.example.zhaorui.dvdcollector.R;
 
 public class MainActivity extends BaseActivity {
@@ -24,6 +28,7 @@ public class MainActivity extends BaseActivity {
         btnTrade = (Button)findViewById(R.id.btnTradeMain);
         btnFriends = (Button)findViewById(R.id.btnFriendsMain);
         btnConfig = (Button)findViewById(R.id.btnConfigMain);
+        DataManager.instance().loadFromFile(this);
     }
 
     @Override

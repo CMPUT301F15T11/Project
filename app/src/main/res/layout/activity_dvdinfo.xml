@@ -8,14 +8,10 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
         android:layout_margin="30dp">
 
-        <ImageView
-            android:layout_width="128dp"
-            android:layout_height="128dp"
-            android:background="@drawable/dvd"
-            android:id="@+id/imgv_add_dvd" />
 
         <LinearLayout
             android:orientation="vertical"
@@ -23,20 +19,28 @@
             android:layout_height="wrap_content"
             android:layout_margin="0dp">
 
+
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:gravity="center"
-                android:background="@drawable/button_shape_indigo">
+                android:gravity="center">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Romantic"
+                    android:layout_weight="1"
+                    android:text="Category: "
                     android:textSize="30dp"
-                    android:textColor="#fafafa"
+                    android:textColor="@color/indigo"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Romantic"
+                    android:layout_weight="5"
+                    android:textSize="30dp"
+                    android:textColor="@color/indigo"
                     android:id="@+id/tv_category_dvdinfo"
                     />
 
@@ -47,8 +51,9 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_margin="20dp"
+        android:layout_weight="2"
         android:background="@drawable/button_shape_indigo"
         style="@style/font_white">
 
@@ -64,6 +69,7 @@
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:layout_margin="5dp">
                 <TextView
                     android:layout_width="wrap_content"
@@ -85,11 +91,11 @@
             </LinearLayout>
 
 
-
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:layout_margin="5dp">
                 <TextView
                     android:layout_width="wrap_content"
@@ -112,6 +118,7 @@
 
             <LinearLayout
                 android:orientation="horizontal"
+                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp">
@@ -139,6 +146,7 @@
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_margin="5dp"
+                android:layout_weight="1"
                 android:layout_height="match_parent">
                 <TextView
                     android:layout_width="wrap_content"
@@ -162,6 +170,7 @@
 
             <LinearLayout
                 android:orientation="horizontal"
+                android:layout_weight="0.7"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp">
@@ -188,5 +197,23 @@
 
         </LinearLayout>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="match_parent"
+        android:layout_weight="4">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Show photo gallery"
+            android:id="@+id/btn_show_gallery"
+            android:textColor="#fafafa"
+            android:textSize="24dp"
+            android:layout_margin="20dp"
+            android:onClick="startGallery"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_shape_indigo"/>
     </LinearLayout>
 </LinearLayout>

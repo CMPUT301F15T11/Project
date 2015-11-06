@@ -8,4 +8,7 @@
 
     <item android:id="@+id/browse_friend_inventory" android:title="Browse"
         android:orderInCategory="100" app:showAsAction="never" />
+
+    <item android:id="@+id/close_menu" android:title="Close"
+        android:orderInCategory="100" app:showAsAction="never" />
 </menu>

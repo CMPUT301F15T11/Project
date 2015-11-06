@@ -4,6 +4,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_base">BaseActivity</string>
+    <string name="title_activity_photo">PhotoActivity</string>
+    <string name="title_activity_photo_display">DisplayPhotoActivity</string>
     <string name="title_activity_my_invent">MyInventActivity</string>
     <string name="title_activity_dvdinfo">DVDInfoActivity</string>
     <string name="title_activity_dvdinfo_edit">DVDInfoEditActivity</string>

@@ -6,8 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 
+import com.example.zhaorui.dvdcollector.Controller.InventoryController;
 import com.example.zhaorui.dvdcollector.Model.DVD;
 import com.example.zhaorui.dvdcollector.R;
 
@@ -20,10 +22,10 @@ public class MyInventoryDialog extends DialogFragment {
     private Button edit;
     private Button remove;
     private Context context;
+    private int position;
 
-    private DVD dvd; //sample
-    public void setDvd(DVD dvd) {
-        this.dvd = dvd;
+    public void setPosition(int position) {
+        this.position = position;
     }
 
     @Override
@@ -42,7 +44,7 @@ public class MyInventoryDialog extends DialogFragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DVDInfoActivity.class);
-                intent.putExtra("dvdInfo",dvd.getDetail());
+                intent.putExtra("position",position);
                 startActivity(intent);
                 dialog.cancel();
             }
@@ -52,8 +54,8 @@ public class MyInventoryDialog extends DialogFragment {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, DVDInfoEditActivity.class);
-                intent.putExtra("dvdInfo",dvd.getDetail());
+                Intent intent = new Intent(context, DVDAddActivity.class);
+                intent.putExtra("position",position);
                 startActivity(intent);
                 dialog.cancel();
             }
@@ -63,6 +65,8 @@ public class MyInventoryDialog extends DialogFragment {
         remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InventoryController ic = new InventoryController();
+                ic.remove(ic.get(position));
                 dialog.cancel();
             }
         });

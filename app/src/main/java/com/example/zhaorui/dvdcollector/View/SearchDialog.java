@@ -2,13 +2,18 @@ package com.example.zhaorui.dvdcollector.View;
 
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.example.zhaorui.dvdcollector.Controller.FriendsController;
+import com.example.zhaorui.dvdcollector.Controller.InventoryController;
+import com.example.zhaorui.dvdcollector.Model.ContextUtil;
 import com.example.zhaorui.dvdcollector.R;
 
 /**
@@ -19,7 +24,17 @@ public class SearchDialog extends DialogFragment {
     private Button search;
     private EditText editText;
     private Context context;
+    private InventoryController ic;
+    private FriendsController fc;
+    private String mode;
 
+    public void setMode(String mode) {
+        this.mode = mode;
+    }
+
+    public void setIc(InventoryController ic) {
+        this.ic = ic;
+    }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -29,15 +44,45 @@ public class SearchDialog extends DialogFragment {
         dialog.requestWindowFeature(android.view.Window.FEATURE_NO_TITLE);
         dialog.setContentView(customView);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        fc = new FriendsController();
+        if (ic == null){ic = new InventoryController();}
+        editText = (EditText) customView.findViewById(R.id.editText_search_dialog);
 
         search = (Button)customView.findViewById(R.id.btn_search);
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, DVDInfoActivity.class); // lead to this dvd's info page
-                startActivity(intent);
-                // cathch exception if no dvd if found ?
-                dialog.cancel();
+                String name = editText.getText().toString();
+                if (name.isEmpty()){
+                    Toast.makeText(ContextUtil.getInstance(), "Empty Input!", Toast.LENGTH_LONG).show();
+                } else if (mode == "inventory") {
+                    if (ic.find(name)) {
+                        Intent intent = new Intent(context, DVDInfoActivity.class);
+                        intent.putExtra("position", ic.indexOf(name));
+                        startActivity(intent);
+                    } else {
+                        FragmentManager fm = getFragmentManager();
+                        InputInvalidDialog newDialog = new InputInvalidDialog();
+                        newDialog.setText("No result found!");
+                        newDialog.show(fm, "abc");
+                    }
+                    dialog.cancel();
+                } else {
+                    if (fc.getFriends().contains(name)){
+                        FragmentManager fm = getFragmentManager();
+                        InputInvalidDialog newDialog = new InputInvalidDialog();
+                        newDialog.setText(name + " is already your friend!");
+                        newDialog.show(fm, "abc");
+                    } else if (fc.nameExist(name)){
+                        fc.add(name);
+                    } else {
+                        FragmentManager fm = getFragmentManager();
+                        InputInvalidDialog newDialog = new InputInvalidDialog();
+                        newDialog.setText(name + " is not a user!");
+                        newDialog.show(fm, "abc");
+                    }
+                    dialog.cancel();
+                }
             }
         });
 

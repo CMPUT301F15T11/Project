@@ -38,6 +38,7 @@
                         android:layout_weight="1"
                         android:layout_margin="10dp"
                         android:text="Games"
+                        android:onClick="startCategory"
                         android:background="@drawable/button_shape_white"
                         style="@style/font_indigo"/>
                     <Button
@@ -46,6 +47,7 @@
                         android:layout_weight="1"
                         android:layout_margin="10dp"
                         android:text="Romance"
+                        android:onClick="startCategory"
                         android:id="@+id/btn_romance"
                         android:background="@drawable/button_shape_white"
                     style="@style/font_indigo"/>
@@ -55,6 +57,7 @@
                         android:layout_weight="1"
                         android:layout_margin="10dp"
                         android:text="Documentary"
+                        android:onClick="startCategory"
                         android:id="@+id/btn_documentory"
                         android:background="@drawable/button_shape_white"
                         style="@style/font_indigo"/>
@@ -70,6 +73,7 @@
                         android:layout_weight="1"
                         android:layout_margin="10dp"
                         android:text="Sci-fi"
+                        android:onClick="startCategory"
                         android:id="@+id/btn_scifi"
                         android:background="@drawable/button_shape_white"
                         style="@style/font_indigo"/>
@@ -80,6 +84,7 @@
                         android:layout_margin="10dp"
                         android:text="Horror"
                         android:id="@+id/btn_horror"
+                        android:onClick="startCategory"
                         android:background="@drawable/button_shape_white"
                         style="@style/font_indigo"/>
                     <Button
@@ -89,6 +94,7 @@
                         android:layout_margin="10dp"
                         android:text="Action"
                         android:id="@+id/btn_action"
+                        android:onClick="startCategory"
                         android:background="@drawable/button_shape_white"
                         style="@style/font_indigo"/>
                     <Button
@@ -98,6 +104,7 @@
                         android:id="@+id/btn_comedy"
                         android:layout_margin="10dp"
                         android:text="Comedy"
+                        android:onClick="startCategory"
                         android:background="@drawable/button_shape_white"
                         style="@style/font_indigo"/></LinearLayout>
                 <LinearLayout
@@ -111,6 +118,7 @@
                         android:layout_weight="1"
                         android:layout_margin="10dp"
                         android:text="Edu"
+                        android:onClick="startCategory"
                         android:id="@+id/btn_edu"
                         android:background="@drawable/button_shape_white"
                         style="@style/font_indigo"/>
@@ -121,6 +129,7 @@
                         android:layout_margin="10dp"
                         android:text="Story"
                         android:id="@+id/btn_story"
+                        android:onClick="startCategory"
                         android:background="@drawable/button_shape_white"
                         style="@style/font_indigo"/>
                     <Button
@@ -130,6 +139,7 @@
                         android:layout_margin="10dp"
                         android:text="fantasy"
                         android:id="@+id/btn_fantasy"
+                        android:onClick="startCategory"
                         android:background="@drawable/button_shape_white"
                         style="@style/font_indigo"/></LinearLayout>
             </LinearLayout>
