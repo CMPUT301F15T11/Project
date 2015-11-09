@@ -74,7 +74,7 @@ public class DVDInfoActivity extends BaseActivity {
         text = (TextView) findViewById(R.id.tv_quantity_dvdinfo);
         text.setText(info.get(2));
         text = (TextView) findViewById(R.id.tv_quality_dvdinfo);
-        text.setText(info.get(3));
+        text.setText(info.get(3)+"-Star");
 
         text = (TextView) findViewById(R.id.tv_sharable_dvdinfo);
         text.setText(info.get(5));

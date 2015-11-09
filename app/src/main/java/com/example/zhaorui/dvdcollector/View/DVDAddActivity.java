@@ -34,7 +34,9 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.util.Base64;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -66,6 +68,9 @@ public class DVDAddActivity extends BaseActivity {
     private Gallery gallery;
     private GalleryController gc;
 
+    private RatingBar ratingBar;
+    private String ratingStr;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +83,14 @@ public class DVDAddActivity extends BaseActivity {
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinner = (Spinner)findViewById(R.id.spinner);
         spinner.setAdapter(adapter);
+        ratingBar = (RatingBar)findViewById(R.id.ratingBar);
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                int r = (int)rating;
+                ratingStr = String.valueOf(r);
+            }
+        });
 
         //if first time add the dvd, show default image
         if(position == -1){
@@ -93,8 +106,24 @@ public class DVDAddActivity extends BaseActivity {
             text.setText(info.get(1));
             text = (EditText) findViewById(R.id.et_add_quantity);
             text.setText(info.get(2));
-            text = (EditText) findViewById(R.id.et_add_quality);
-            text.setText(info.get(3));
+            switch (info.get(3)){
+                case "1":
+                    ratingBar.setRating(1);
+                    break;
+                case "2":
+                    ratingBar.setRating(2);
+                    break;
+                case "3":
+                    ratingBar.setRating(3);
+                    break;
+                case "4":
+                    ratingBar.setRating(4);
+                    break;
+                case "5":
+                    ratingBar.setRating(5);
+                    break;
+            }
+
             CheckBox sharable = (CheckBox) findViewById(R.id.checkBox_sharable);
 
             if(info.get(4)=="Yes"){ // check if this dvd has photos
@@ -129,8 +158,7 @@ public class DVDAddActivity extends BaseActivity {
             info.add(name); // add name 1
             text = (EditText) findViewById(R.id.et_add_quantity);
             info.add(text.getText().toString()); // add quantity
-            text = (EditText) findViewById(R.id.et_add_quality);
-            info.add(text.getText().toString()); // add quality
+            info.add(ratingStr); // add quality
 
             if (gallery.getSize()==0) { // add if the dvd has photos
                 info.add("No");
