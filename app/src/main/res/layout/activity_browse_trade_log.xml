@@ -1,9 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="1">
+    tools:context="com.example.zhaorui.dvdcollector.View.BrowseTradeLogActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,6 +16,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
+            style="@style/bkg_white"
             android:layout_height="match_parent">
             <LinearLayout
                 android:orientation="vertical"
@@ -25,17 +25,18 @@
                 android:layout_above="@+id/bottom_tile"
                 android:layout_margin="5dp"
                 style="@style/bkg_white">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="vertical">
                     <Button
+                        android:id="@+id/btn_browse_trades_current_incoming"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="30dp"
-                        android:text="new trade"
-                        android:onClick="startNewTrade"
+                        android:layout_margin="20dp"
+                        android:text="Current incoming Trades"
                         style="@style/font_white"
                         android:textStyle="bold"
                         android:background="@drawable/button_shape_indigo"/>
@@ -47,11 +48,11 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
                     <Button
+                        android:id="@+id/btn_browse_trades_current_outgoing"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="30dp"
-                        android:text="Trade requests"
-                        android:onClick="startIncomingTrade"
+                        android:layout_margin="20dp"
+                        android:text="Current outgoing Trades"
                         style="@style/font_white"
                         android:textStyle="bold"
                         android:background="@drawable/button_shape_indigo"/>
@@ -63,16 +64,31 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
                     <Button
+                        android:id="@+id/btn_browse_trades_past_incoming"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="30dp"
+                        android:layout_margin="20dp"
                         android:textStyle="bold"
-                        android:text="Trade logs"
-                        android:onClick="startAllTrade"
+                        android:text="Past incoming trades"
                         style="@style/font_white"
                         android:background="@drawable/button_shape_indigo"/>
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <Button
+                        android:id="@+id/btn_browse_trades_past_outgoing"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="20dp"
+                        android:textStyle="bold"
+                        android:text="Past outgoing trades"
+                        style="@style/font_white"
+                        android:background="@drawable/button_shape_indigo"/>
+                </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:orientation="vertical"

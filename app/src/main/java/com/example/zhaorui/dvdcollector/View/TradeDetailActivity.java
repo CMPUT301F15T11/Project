@@ -35,13 +35,13 @@ public class TradeDetailActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trade_detail);
+        setContentView(R.layout.activity_trade_details);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_trade_detail, menu);
+        getMenuInflater().inflate(R.menu.menu_completed_trade_detail, menu);
         return true;
     }
 

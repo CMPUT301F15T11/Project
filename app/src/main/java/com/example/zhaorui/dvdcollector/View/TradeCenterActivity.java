@@ -54,12 +54,12 @@ public class TradeCenterActivity extends BaseActivity {
     }
 
     public void startIncomingTrade(View view){
-        Intent i = new Intent(TradeCenterActivity.this, IncomeTradeActivity.class);
+        Intent i = new Intent(TradeCenterActivity.this, TradeRequestsActivity.class);
         startActivity(i);
     }
 
     public void startAllTrade(View view){
-        Intent i = new Intent(TradeCenterActivity.this, AllTradesActivity.class);
+        Intent i = new Intent(TradeCenterActivity.this, BrowseTradeLogActivity.class);
         startActivity(i);
     }
 

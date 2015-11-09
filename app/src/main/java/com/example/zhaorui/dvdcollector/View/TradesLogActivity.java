@@ -23,31 +23,35 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.zhaorui.dvdcollector.R;
+
 /**
  * <p>
- * The <code>IncomeTradeActivity</code> class controls the user interface of incoming trade.
+ * The <code>TradesLogActivity</code> class controls the user interface of ALL TRADES.
  * This class contains functions, onCreate, onCreateOptionsMenu and onOptionsItemSelected
  * <p>
  *
  * @author  Zhaorui Chen
  * @version 11/10/15
  */
-public class IncomeTradeActivity extends BaseActivity {
-    private String[] data = { "Trade Request From Jack","Trade Request From Lucy"};
+public class TradesLogActivity extends BaseActivity {
+
+    private String[] data = { "[Current] From Jack","[Current] From Lucy","[Current] From Jack","[Declined] From Lucy",
+            "[Accepted] From Lucy","[Declined] From Lucy","[Accepted] From Jack","[Accepted] From Jack","[Declined] From Jack",
+            "[Declined] From Jack","[Accepted] From Jack","[Declined] From Jack","[Declined] From Lucy",};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_income_trade);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(IncomeTradeActivity.this, android.R.layout.simple_list_item_1, data);
-        ListView listView = (ListView) findViewById(R.id.listViewIncomeTrades);
+        setContentView(R.layout.activity_trades_log);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(TradesLogActivity.this, android.R.layout.simple_list_item_1, data);
+        ListView listView = (ListView) findViewById(R.id.listView_trades_log);
         listView.setAdapter(adapter);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_income_trade, menu);
+        getMenuInflater().inflate(R.menu.menu_all_trades, menu);
         return true;
     }
 

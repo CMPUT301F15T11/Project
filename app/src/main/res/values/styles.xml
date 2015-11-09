@@ -14,7 +14,8 @@
     <style name="font_black" parent="@android:style/TextAppearance.Medium">
         <item name="android:textColor">#0a0a0a</item>
         <item name="android:fontFamily">monospace</item>
-        <item name="android:textSize">24dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20dp</item>
     </style>
 
     <style name="font_white" parent="@android:style/TextAppearance.Medium">
