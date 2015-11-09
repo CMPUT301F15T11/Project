@@ -140,7 +140,7 @@
                                 android:id="@+id/btn_add_owner_dvd_new_trade"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
-                                android:background="@drawable/ic_add_circle_black_24dp"/>
+                                android:background="@drawable/ic_add_circle_indigo_48dp"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
