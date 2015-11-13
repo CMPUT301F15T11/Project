@@ -29,18 +29,15 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.zhaorui.dvdcollector.Controller.FriendsController;
 import com.example.zhaorui.dvdcollector.Controller.InventoryController;
 import com.example.zhaorui.dvdcollector.Model.DVD;
 import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.Friends;
-import com.example.zhaorui.dvdcollector.Model.Inventory;
 import com.example.zhaorui.dvdcollector.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * <p>
@@ -50,7 +47,7 @@ import java.util.List;
  * @author  Zhaorui Chen
  * @version 11/10/15
  */
-public class StartTradeActivity extends BaseActivity {
+public class CounterTradeActivity extends BaseActivity {
     private LinearLayout ll1;
     private LinearLayout ll2;
     private Spinner spinner;
@@ -67,10 +64,11 @@ public class StartTradeActivity extends BaseActivity {
     String[] ownerDvdNames;
 
     //选择的dvd的缓存,可以当做intent传给下一个activity
+    ArrayList<DVD> ownerDvdBuffer = new ArrayList<>();
     ArrayList<DVD> borrowerDvdBuffer = new ArrayList<>();
-    DVD ownerDvd = null;
 
     ArrayList<Integer> borrowerDvdSelectedBuffer = new ArrayList<>();
+    ArrayList<Integer> ownerDvdSelectedBuffer = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +77,7 @@ public class StartTradeActivity extends BaseActivity {
 
         textView1 = (TextView)findViewById(R.id.tv_listing_names_borrower_dvd);
         textView2 = (TextView)findViewById(R.id.tv_listing_names_onwer_dvd);
+
 
         ll1 = (LinearLayout)findViewById(R.id.ll_add_borrower_dvd_new_trade);
         ll1.setOnClickListener(new View.OnClickListener() {
@@ -103,9 +102,8 @@ public class StartTradeActivity extends BaseActivity {
                 owner = friendsController.getByName(spinner.getSelectedItem().toString());
                 ownerDvdNames = owner.getInventory().getAllNamesFriend();
                 // in case choose another owner to trade with, clear all buffer
-                //ownerDvdSelectedBuffer.clear();
-                //ownerDvdBuffer.clear();
-                ownerDvd = null;
+                ownerDvdSelectedBuffer.clear();
+                ownerDvdBuffer.clear();
                 textView2.setText("");
 
                 ll2.setOnClickListener(new View.OnClickListener() {
@@ -129,6 +127,7 @@ public class StartTradeActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Log.e("DVD numbers for borrow", String.valueOf(borrowerDvdBuffer.size()));
+                Log.e("DVD numbers for owner", String.valueOf(ownerDvdBuffer.size()));
             }
         });
     }
@@ -142,10 +141,10 @@ public class StartTradeActivity extends BaseActivity {
 
     // open a multiple choice dialog for the borrower
     public void borrowerMultipleChoiceDialog(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(StartTradeActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(CounterTradeActivity.this);
         builder.setTitle("Select DVDs");
 
-        // load already checked items
+        // load checked items
         boolean[] checked = new boolean[inventoryBorrowerController.getSharableInventory().size()];
         for(int i=0;i<checked.length;i++) {
             if (borrowerDvdSelectedBuffer.contains(i)) {
@@ -185,37 +184,44 @@ public class StartTradeActivity extends BaseActivity {
         builder.show();
     }
 
-    // open a single choice dialog for the owner
+    // open a multiple choice dialog for the borrower
     public void ownerSingleChoiceDialog(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(StartTradeActivity.this);
-        builder.setTitle("Select one DVD");
+        AlertDialog.Builder builder = new AlertDialog.Builder(CounterTradeActivity.this);
+        builder.setTitle("Select DVDs");
 
-        int checked = 0;
-        if (ownerDvd!=null){ // if have selected a dvd before
-            for (int i=0;i<ownerDvdNames.length;i++){
-                if(ownerDvdNames[i]==ownerDvd.getName()){
-                    checked = i;
-                    break;
-                }
+        // load checked items
+        boolean[] checked = new boolean[owner.getInventory().size()];
+        for(int i=0;i<checked.length;i++) {
+            if (ownerDvdSelectedBuffer.contains(i)) {
+                checked[i] = true;
+            } else {
+                checked[i] = false;
             }
-        }else{ // if it's the first time selecting owner's dvd
-            ownerDvd = owner.getInventory().get(checked);
         }
 
-        builder.setSingleChoiceItems(ownerDvdNames, checked, new DialogInterface.OnClickListener() {
+        builder.setMultiChoiceItems(ownerDvdNames, checked, new DialogInterface.OnMultiChoiceClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                ownerDvd = owner.getInventory().get(which);
+            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                if (isChecked) { // if check the item
+                    ownerDvdBuffer.add(owner.getInventory().get(which));
+                    ownerDvdSelectedBuffer.add(which);
+                }else {// if un-check the item
+                    ownerDvdBuffer.remove(owner.getInventory().get(which));
+                    ownerDvdSelectedBuffer.remove(new Integer(which));
+                }
+
+                // write the selected dvds to the textview
+                textView2.setText("");
+                for(int index : ownerDvdSelectedBuffer)
+                {
+                    textView2.setText(textView2.getText() + ownerDvdNames[index] + " ; ");
+                }
             }
         });
-
 
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // write the selected dvd to the textview
-                textView2.setText(ownerDvd.getName());
-
             }
         });
 

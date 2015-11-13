@@ -121,6 +121,33 @@ public class InventoryController {
         return false;
     }
 
+    //newly add by TeppieC
+    // get the names of all dvds in this inventory, only for the device user
+    // see getAllNamesFriend in inventory for another version for the friends
+    public String[] getAllNames(){
+        Inventory inventorySharable = getSharableInventory();
+        String[] strings = new String[inventorySharable.size()];
+        int i = 0;
+        for (DVD dvd : inventorySharable){
+            strings[i] = dvd.getName();
+            i+=1;
+        }
+        return strings;
+    }
+
+    // newly add by TeppieC
+    // get the inventory with all sharable items
+    public Inventory getSharableInventory(){
+        Inventory inventorySharable = getInventory();
+
+        for (DVD dvd : inventorySharable){
+            if (!dvd.isSharable()){
+                inventorySharable.delete(dvd);
+            }
+        }
+        return inventorySharable;
+    }
+
     public void setInventory(Inventory inventory) {
         this.inventory = inventory;
     }

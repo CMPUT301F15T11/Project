@@ -119,4 +119,15 @@ public class Inventory extends ArrayList<DVD>{
             edit(dvd,dvd);
         }
     }
+
+    // only for retrieving names of all dvds in the inventory of a non-device-user, for example a friend
+    public String[] getAllNamesFriend(){
+        String[] strings = new String[this.size()];
+        int i = 0;
+        for (DVD dvd : this){
+            strings[i] = dvd.getName();
+            i+=1;
+        }
+        return strings;
+    }
 }

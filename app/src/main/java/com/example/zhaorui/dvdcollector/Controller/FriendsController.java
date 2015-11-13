@@ -78,6 +78,19 @@ public class FriendsController {
         }
             return cache.get(name);
     }
+
+    public Friend getByName(String name){
+        if (!cache.containsKey(name)) {
+            Gson gson = new Gson();
+            Friend friend;
+            String jsonValue = SimulatedDatabase.get(name);
+            friend = gson.fromJson(jsonValue, Friend.class);
+            friend.getInventory().fresh();
+            cache.put(name, friend);
+        }
+        return cache.get(name);
+    }
+
     /**
      * To remove a friend from the friends list by index
      * @param index , an int variable.

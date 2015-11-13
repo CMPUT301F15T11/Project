@@ -61,10 +61,31 @@ public class SimulatedDatabase{
         Gson gson = new Gson();
         database = new HashMap<>();
         for (String name : nameList){
-            sampleProfile.setName(name);
-            sampleFriend = new Friend(sampleInventory,sampleProfile);
-            jsonValue = gson.toJson(sampleFriend);
-            database.put(name,jsonValue);
+            /// for test
+            if (name == "Zhaorui"){
+                sampleProfile.setName(name);
+                Inventory specialInventory = new Inventory();
+
+                sampleDVD = new DVD();
+                sampleDVD.setName("HAHAHA");
+                sampleDVD.setQuantity("1");
+                sampleDVD.setQuality("5 Stars");
+                sampleDVD.setSharable(true);
+                sampleDVD.setCategory("Action");
+                sampleDVD.setComments("Great movie!");
+                sampleDVD.setHasPhoto(false);
+                sampleDVD.setGallery(new Gallery());
+                specialInventory.append(sampleDVD);
+
+                sampleFriend = new Friend(specialInventory, sampleProfile);
+                jsonValue = gson.toJson(sampleFriend);
+                database.put(name, jsonValue);
+            }else {
+                sampleProfile.setName(name);
+                sampleFriend = new Friend(sampleInventory, sampleProfile);
+                jsonValue = gson.toJson(sampleFriend);
+                database.put(name, jsonValue);
+            }
         }
     }
 

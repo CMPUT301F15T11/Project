@@ -63,18 +63,18 @@
                                 android:textColor="#fafafa"
                                 android:textSize="20dp"
                                 android:singleLine="true"
-                                android:text="List names of DVDs here, separated by ;"/>
+                                android:text=""/>
                         </LinearLayout>
 
                         <LinearLayout
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_weight="1"
+                            android:id="@+id/ll_add_borrower_dvd_new_trade"
                             android:layout_height="match_parent">
                             <Button
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
-                                android:id="@+id/btn_add_borrower_dvd_new_trade"
                                 android:background="@drawable/ic_add_circle_white_48dp"/>
                             <TextView
                                 android:layout_width="wrap_content"
@@ -113,6 +113,7 @@
                                 android:layout_width="match_parent"
                                 android:id="@+id/spinner_choose_owner"
                                 android:layout_weight="1"
+                                style="@style/font_indigo"
                                 android:layout_height="match_parent">
                             </Spinner>
                         </LinearLayout>
@@ -128,16 +129,16 @@
                                 android:textSize="20dp"
                                 android:id="@+id/tv_listing_names_onwer_dvd"
                                 android:singleLine="true"
-                                android:text="List names of DVDs here, separated by ;"/>
+                                android:text=""/>
                         </LinearLayout>
 
                         <LinearLayout
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_weight="1"
+                            android:id="@+id/ll_add_owner_dvd_new_trade"
                             android:layout_height="match_parent">
                             <Button
-                                android:id="@+id/btn_add_owner_dvd_new_trade"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:background="@drawable/ic_add_circle_indigo_48dp"/>
