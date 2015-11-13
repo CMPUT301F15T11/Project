@@ -17,17 +17,6 @@
 */
 package com.example.zhaorui.dvdcollector.Model;
 
-import com.example.zhaorui.dvdcollector.View.BaseActivity;
-import com.google.gson.Gson;
-
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Observable;
-import java.util.Observer;
 /**
  * <p>
  * The <code>User</code> class manages the current user's information about his trades,friends,inventory and profile.
@@ -57,11 +46,14 @@ public class User{
     /**
      * initialize a user.
      */
+    private TradeManager tradeManager;
+
     private User() {
         trades = new Trades();
         friends = new Friends();
         inventory = new Inventory();
         profile = new UserProfile();
+        tradeManager = new TradeManager();
     }
 
     public static void setInstance(User instance) {
@@ -74,6 +66,7 @@ public class User{
         }
         return instance;
     }
+    public TradeManager getTradeManager(){return tradeManager;}
     /**
      * Call <code>Trades</code> class to get the user's trades.
      * @return the user's trades.

@@ -16,13 +16,19 @@
 */
 package com.example.zhaorui.dvdcollector.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.zhaorui.dvdcollector.Controller.TradeManagerController;
+import com.example.zhaorui.dvdcollector.Model.TradeManager;
+import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
+
+import java.util.ArrayList;
 
 /**
  * <p>
@@ -35,14 +41,17 @@ import com.example.zhaorui.dvdcollector.R;
  */
 public class TradesLogActivity extends BaseActivity {
 
-    private String[] data = { "[Current] From Jack","[Current] From Lucy","[Current] From Jack","[Declined] From Lucy",
-            "[Accepted] From Lucy","[Declined] From Lucy","[Accepted] From Jack","[Accepted] From Jack","[Declined] From Jack",
-            "[Declined] From Jack","[Accepted] From Jack","[Declined] From Jack","[Declined] From Lucy",};
+    private ArrayList<String> data;
+    private TradeManager tradeManager = User.instance().getTradeManager();
+    private TradeManagerController tradeManagerController = new TradeManagerController(tradeManager);
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trades_log);
+        Intent i = getIntent();
+        String type = i.getStringExtra("type");
+
+        data = tradeManager.getAllCurrentIncomingTrades();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(TradesLogActivity.this, android.R.layout.simple_list_item_1, data);
         ListView listView = (ListView) findViewById(R.id.listView_trades_log);
         listView.setAdapter(adapter);

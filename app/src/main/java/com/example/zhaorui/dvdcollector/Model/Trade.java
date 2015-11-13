@@ -32,49 +32,63 @@ public class Trade {
     /**
      * Initialize a user to be the borrower in the trade.
      */
-    private User borrower;
+    //private User borrower;
+    private String borrower;
     /**
      * Initialize a user to be the owner in the trade.
      */
-    private User owner;
+    //private User owner;
+    private String owner;
     /**
-     * Initialize a boolean to be the status of the trade.
+     * Initialize a boolean to be the type of the trade.
      */
+    private String type;
+
     private boolean status;
     /**
      * Initialize a array list to store the dvds in the current trade.
      *
      */
-    public ArrayList<DVD> itemList;
+    public ArrayList<DVD> borrowerItemList;
+
+    public DVD ownerItem;
     /**
      * To set the borrower and the owner of the trade
      * @param borrower , a user variable
      * @param owner ,a user variable
      */
+    /*
     public Trade(User borrower, User owner) {
         this.borrower = borrower;
         this.owner = owner;
     }
+    */
+
+    public Trade() {
+    }
+
     /**
      * This function is called when other function need to know the owner of the trade.
      * @return owner, a user variable.
      */
+    /*
     public User getOwner() {
         return owner;
-    }
+    }*/
     /**
      * This function is called when other function need to know the borrower of the trade.
      * @return borrower, a user variable.
      */
+    /*
     public User getBorrower() {
         return borrower;
-    }
+    }*/
     /**
-     * This function is called when other function need to know the status of the trade.
-     * @return status, a boolean(True or False).
+     * This function is called when other function need to know the type of the trade.
+     * @return type, a boolean(True or False).
      */
-    public boolean getStatus() {
-        return status;
+    public String getType() {
+        return type;
     }
     /**
      * To set the decision of this trade.
@@ -93,5 +107,52 @@ public class Trade {
         String str = "";
         if (str == "email already sent") return false;//wait for coding
         return true;
+    }
+
+    /*
+    public void setBorrower(User borrower) {
+        this.borrower = borrower;
+    }*/
+
+    /*
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }*/
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setBorrowerItemList(ArrayList<DVD> borrowerItemList) {
+        this.borrowerItemList = borrowerItemList;
+    }
+
+    public void setOwnerItem(DVD ownerItem) {
+        this.ownerItem = ownerItem;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+
+    public String getBorrower() {
+        return borrower;
+    }
+
+    public void setBorrower(String borrower) {
+        this.borrower = borrower;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 }

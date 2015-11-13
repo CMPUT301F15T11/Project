@@ -175,7 +175,7 @@
     <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2353.82" y="1133.67">-owner</text>
     <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2353.82" y="1149.67">-dvdOwner: DVD</text>
     <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2353.82" y="1165.67">-dvdBorrower: List&lt;DVD&gt;</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2353.82" y="1181.67">-status: String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2353.82" y="1181.67">-type: String</text>
     <rect style="fill: #add8e6" x="2350.82" y="1186.07" width="186.9" height="100"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="2350.82" y="1186.07" width="186.9" height="100"/>
     <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2353.82" y="1201.67">-emailTradeInfo()</text>

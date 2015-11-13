@@ -33,14 +33,17 @@ import android.widget.Toast;
 
 import com.example.zhaorui.dvdcollector.Controller.FriendsController;
 import com.example.zhaorui.dvdcollector.Controller.InventoryController;
+import com.example.zhaorui.dvdcollector.Controller.TradeController;
+import com.example.zhaorui.dvdcollector.Controller.TradeManagerController;
+import com.example.zhaorui.dvdcollector.Model.TradeManager;
 import com.example.zhaorui.dvdcollector.Model.DVD;
 import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.Friends;
-import com.example.zhaorui.dvdcollector.Model.Inventory;
+import com.example.zhaorui.dvdcollector.Model.Trade;
+import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * <p>
@@ -71,6 +74,11 @@ public class StartTradeActivity extends BaseActivity {
     DVD ownerDvd = null;
 
     ArrayList<Integer> borrowerDvdSelectedBuffer = new ArrayList<>();
+
+    private Trade trade = new Trade();
+    private TradeManager tradeManager = User.instance().getTradeManager();
+    private TradeController tradeController = new TradeController(trade);
+    private TradeManagerController tradeManagerController = new TradeManagerController(tradeManager);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,6 +137,15 @@ public class StartTradeActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Log.e("DVD numbers for borrow", String.valueOf(borrowerDvdBuffer.size()));
+                tradeController.changeBorrower(User.instance().getProfile().getName().toString());
+                tradeController.changeOwner(owner.getProfile().getName().toString());
+                tradeController.addBorrowerItem(borrowerDvdBuffer);
+                tradeController.addOwnerItem(ownerDvd);
+                tradeController.changeType("Current Outgoing");
+                tradeController.changeStatus(false);
+                tradeManagerController.addTrade(trade);
+                Toast.makeText(StartTradeActivity.this, "Trade has been sent to the owner", Toast.LENGTH_SHORT).show();
+                StartTradeActivity.this.finish();
             }
         });
     }

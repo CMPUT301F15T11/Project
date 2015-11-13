@@ -63,16 +63,20 @@ public class BrowseTradeLogActivity extends BaseActivity {
     public void startSpecificTradesLog(View view, int mode){
         Intent i = new Intent(BrowseTradeLogActivity.this, TradesLogActivity.class);
         switch (mode){
-            case 1:
+            case 1: //current incoming trade
+                i.putExtra("type", "Current Incoming");
                 startActivity(i);
                 break;
-            case 2:
+            case 2:// current outgoing trade
+                i.putExtra("type", "Current Outgoing");
                 startActivity(i);
                 break;
-            case 3:
+            case 3://past incoming trade
+                i.putExtra("type", "Past Incoming");
                 startActivity(i);
                 break;
-            case 4:
+            case 4:// past outgoing trade
+                i.putExtra("type", "Past Outgoing");
                 startActivity(i);
                 break;
 
