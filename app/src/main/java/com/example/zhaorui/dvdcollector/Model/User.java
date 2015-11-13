@@ -67,6 +67,9 @@ public class User{
         return instance;
     }
     public TradeManager getTradeManager(){return tradeManager;}
+    public void changeTradeManager(TradeManager trades){
+        this.tradeManager = trades;
+    }
     /**
      * Call <code>Trades</code> class to get the user's trades.
      * @return the user's trades.

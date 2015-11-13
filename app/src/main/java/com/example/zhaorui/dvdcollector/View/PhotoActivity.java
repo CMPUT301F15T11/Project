@@ -184,7 +184,6 @@ public class PhotoActivity extends BaseActivity{
             case TAKE_PHOTO:
                 if (resultCode == RESULT_OK) {
                     try {
-
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
                         String photo = gc.encodeFromBitmap(bitmap); // encode image to string
                         gc.addToGallery(photo); // add the photo to the gallery

@@ -19,6 +19,16 @@ public class TradeController {
     public TradeController() {
     }
 
+    public void setName(){
+        if (trade.getType().equals("Current Outgoing") || trade.getType().equals("Past Outgoing")) {
+            trade.setName(trade.getType() + " with " + trade.getOwner() +
+                    "\nID: " + String.valueOf(System.currentTimeMillis()));
+        }else{
+            trade.setName(trade.getType() + " trade with " + trade.getBorrower() +
+                    "\nID: " + String.valueOf(System.currentTimeMillis()));
+        }
+    }
+
     public void changeBorrower(String borrowerName){
         trade.setBorrower(borrowerName);
     }
@@ -31,7 +41,7 @@ public class TradeController {
         trade.setType(type);
     }
 
-    public void changeStatus(boolean status){
+    public void changeStatus(String status){
         trade.setStatus(status);
     }
 
@@ -41,5 +51,28 @@ public class TradeController {
 
     public void addOwnerItem(DVD dvd){
         trade.setOwnerItem(dvd);
+    }
+
+    public void setTradeComplete(String result){
+        if(result.equals("Accepted")){
+            if (trade.getType().equals("Current Outgoing")) {
+                changeType("Past Outgoing");
+                changeStatus("Accepted");
+            }
+            else {
+                changeType("Past Incoming");
+                changeStatus("Accepted");
+            }
+        }else {
+            if (trade.getType().equals("Current Outgoing")) {
+                changeType("Past Outgoing");
+                changeStatus("Rejected");
+            }
+            else {
+                changeType("Past Incoming");
+                changeStatus("Rejected");
+            }
+        }
+
     }
 }

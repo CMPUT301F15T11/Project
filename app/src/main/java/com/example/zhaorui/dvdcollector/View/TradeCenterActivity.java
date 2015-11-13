@@ -18,10 +18,13 @@ package com.example.zhaorui.dvdcollector.View;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.zhaorui.dvdcollector.Model.TradeManager;
+import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
 /**
  * <p>
@@ -60,6 +63,8 @@ public class TradeCenterActivity extends BaseActivity {
 
     public void startAllTrade(View view){
         Intent i = new Intent(TradeCenterActivity.this, BrowseTradeLogActivity.class);
+        TradeManager tradeManager = User.instance().getTradeManager();
+        Log.e("DVD number of trades is", String.valueOf(tradeManager.getSize()));
         startActivity(i);
     }
 

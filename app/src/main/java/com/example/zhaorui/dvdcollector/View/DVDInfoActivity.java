@@ -28,12 +28,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.zhaorui.dvdcollector.Controller.DVDController;
 import com.example.zhaorui.dvdcollector.Controller.FriendsController;
 import com.example.zhaorui.dvdcollector.Controller.InventoryController;
 import com.example.zhaorui.dvdcollector.Model.DVD;
+import com.example.zhaorui.dvdcollector.Model.Gallery;
 import com.example.zhaorui.dvdcollector.Model.Inventory;
+import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
 
 import java.util.ArrayList;
@@ -51,6 +54,8 @@ public class DVDInfoActivity extends BaseActivity {
     private InventoryController ic;
     private DVDController dc;
 
+    private Button btnClone;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +69,22 @@ public class DVDInfoActivity extends BaseActivity {
         if (friendPosition != -1){
             FriendsController fc = new FriendsController();
             ic.setInventory(fc.get(friendPosition).getInventory());
+            Log.e("DVD", "Now it's a dvd of others");
+            btnClone = (Button)findViewById(R.id.btn_clone_dvd);
+            // color this button
+            btnClone.setBackground(getResources().getDrawable(R.drawable.button_shape_indigo));
+            btnClone.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Inventory userInventory = User.instance().getInventory();
+                    InventoryController inventoryControllerClone = new InventoryController();
+                    ArrayList<String> info = dc.read(ic.get(position));
+                    inventoryControllerClone.add(dc.create(info,info.get(5).equals("Yes"),new Gallery()));
+
+                    Toast.makeText(DVDInfoActivity.this, "Successfully cloned this dvd to my inventory", Toast.LENGTH_SHORT).show();
+                }
+            });
+
         }
         ArrayList<String> info = dc.read(ic.get(position));
         TextView text;
@@ -74,7 +95,7 @@ public class DVDInfoActivity extends BaseActivity {
         text = (TextView) findViewById(R.id.tv_quantity_dvdinfo);
         text.setText(info.get(2));
         text = (TextView) findViewById(R.id.tv_quality_dvdinfo);
-        text.setText(info.get(3)+"-Star");
+        text.setText(info.get(3));
 
         text = (TextView) findViewById(R.id.tv_sharable_dvdinfo);
         text.setText(info.get(5));

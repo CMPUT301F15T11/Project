@@ -16,11 +16,19 @@
  * and limitations under the License.
 */package com.example.zhaorui.dvdcollector.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
+import com.example.zhaorui.dvdcollector.Model.Trade;
+import com.example.zhaorui.dvdcollector.Model.TradeManager;
+import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
+
+import java.util.ArrayList;
+
 /**
  * <p>
  * The <code>TradeDetailActivity</code> class controls the user interface of trade detail.
@@ -31,11 +39,39 @@ import com.example.zhaorui.dvdcollector.R;
  * @version 11/10/15
  */
 public class TradeDetailActivity extends BaseActivity {
+    private TradeManager tradeManager = User.instance().getTradeManager();
+    private TextView textViewBorrower;
+    private TextView textViewBorrowerDvd;
+    private TextView textViewOwner;
+    private TextView textViewOwnerDvd;
+    private TextView textViewStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trade_details);
+
+        textViewBorrower = (TextView) findViewById(R.id.borrower_trade_detail_completed);
+        textViewOwner = (TextView) findViewById(R.id.owner_trade_detail_completed);
+        textViewBorrowerDvd = (TextView) findViewById(R.id.dvds_borrower_trade_detail_completed);
+        textViewOwnerDvd = (TextView) findViewById(R.id.dvds_owner_trade_detail_completed);
+        textViewStatus = (TextView) findViewById(R.id.status_trade_details_completed);
+
+        Intent i = getIntent();
+        String type = i.getStringExtra("type");
+        int pos = i.getIntExtra("position", 0);
+
+        Trade tradeToShow = tradeManager.getTradesOfType(type).get(pos);
+
+        textViewBorrower.setText(tradeToShow.getBorrower());
+        textViewOwner.setText(tradeToShow.getOwner());
+        if(tradeToShow.borrowerItemList.size()!=0){
+            textViewBorrowerDvd.setText(tradeToShow.getBorrowerItemList().toString());
+        }else{
+            textViewBorrowerDvd.setText("None");
+        }
+        textViewOwnerDvd.setText(tradeToShow.getOwnerItem().getName());
+        textViewStatus.setText(tradeToShow.getStatus());
     }
 
     @Override

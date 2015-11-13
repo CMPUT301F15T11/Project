@@ -17,7 +17,10 @@
 package com.example.zhaorui.dvdcollector.View;
 
 import android.app.AlertDialog;
+import android.app.FragmentManager;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -111,8 +114,6 @@ public class StartTradeActivity extends BaseActivity {
                 owner = friendsController.getByName(spinner.getSelectedItem().toString());
                 ownerDvdNames = owner.getInventory().getAllNamesFriend();
                 // in case choose another owner to trade with, clear all buffer
-                //ownerDvdSelectedBuffer.clear();
-                //ownerDvdBuffer.clear();
                 ownerDvd = null;
                 textView2.setText("");
 
@@ -128,7 +129,6 @@ public class StartTradeActivity extends BaseActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 
@@ -136,25 +136,57 @@ public class StartTradeActivity extends BaseActivity {
         btnSendRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("DVD numbers for borrow", String.valueOf(borrowerDvdBuffer.size()));
-                tradeController.changeBorrower(User.instance().getProfile().getName().toString());
-                tradeController.changeOwner(owner.getProfile().getName().toString());
-                tradeController.addBorrowerItem(borrowerDvdBuffer);
-                tradeController.addOwnerItem(ownerDvd);
-                tradeController.changeType("Current Outgoing");
-                tradeController.changeStatus(false);
-                tradeManagerController.addTrade(trade);
-                Toast.makeText(StartTradeActivity.this, "Trade has been sent to the owner", Toast.LENGTH_SHORT).show();
-                StartTradeActivity.this.finish();
+                if (ownerDvd!=null) {
+                    Log.e("DVD numbers for borrow", String.valueOf(borrowerDvdBuffer.size()));
+
+                    tradeController.changeBorrower(User.instance().getProfile().getName());
+                    tradeController.changeOwner(owner.getProfile().getName());
+                    tradeController.addBorrowerItem(borrowerDvdBuffer);
+                    tradeController.addOwnerItem(ownerDvd);
+                    tradeController.changeType("Current Outgoing");
+                    tradeController.changeStatus("Pending");
+                    tradeController.setName();
+                    tradeManagerController.addTrade(trade);
+                    //必须要求每个人都输入自己的邮箱
+                    //sendEmail();
+
+                    //////////////////////////////////////////////////////////////////不知道该怎么改变User的attribute，暂时先这么做
+                    User.instance().changeTradeManager(tradeManager);
+
+                    Toast.makeText(StartTradeActivity.this, "Trade has been sent to the owner", Toast.LENGTH_SHORT).show();
+                    StartTradeActivity.this.finish();
+                }else{
+                    showPromptDialog();
+                }
             }
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_start_trade, menu);
-        return true;
+    private void sendEmail(){
+        String ownerEmailAddress = owner.getProfile().getContact().toString();
+        Intent stats = new Intent(Intent.ACTION_SENDTO);
+        stats.setData(Uri.parse("mailto:" + ownerEmailAddress));
+        stats.putExtra(Intent.EXTRA_SUBJECT, "A Trade Request");
+
+        String content = "You have a trade request from: "+User.instance().getProfile().getName()
+                                + "\n Please check your Trade Center for details";
+
+        stats.putExtra(Intent.EXTRA_TEXT, content);
+        try {
+            startActivity(stats);
+        }catch (android.content.ActivityNotFoundException e) {
+            // catch an exception when no email appliactions applicable in emulator
+            // from http://stackoverflow.com/questions/14604349/activitynotfoundexception-while-sending-email-from-the-application
+            Toast.makeText(StartTradeActivity.this,
+                    "There are no email applications installed.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // A alert will be prompted if user haven't chosen a dvd from the owner
+    private void showPromptDialog() {
+        FragmentManager fm = getFragmentManager();
+        TradeRequestInvalidDialog newDialog = new TradeRequestInvalidDialog();
+        newDialog.show(fm, "abc");
     }
 
     // open a multiple choice dialog for the borrower
@@ -178,15 +210,14 @@ public class StartTradeActivity extends BaseActivity {
                 if (isChecked) { // if check the item
                     borrowerDvdBuffer.add(inventoryBorrowerController.getSharableInventory().get(which));
                     borrowerDvdSelectedBuffer.add(which);
-                }else {// if un-check the item
+                } else {// if un-check the item
                     borrowerDvdBuffer.remove(inventoryBorrowerController.getSharableInventory().get(which));
                     borrowerDvdSelectedBuffer.remove(new Integer(which));
                 }
 
                 // write the selected dvds to the textview
                 textView1.setText("");
-                for(int index : borrowerDvdSelectedBuffer)
-                {
+                for (int index : borrowerDvdSelectedBuffer) {
                     textView1.setText(textView1.getText() + borrowerDvdNames[index] + " ; ");
                 }
             }
@@ -210,9 +241,8 @@ public class StartTradeActivity extends BaseActivity {
         int checked = 0;
         if (ownerDvd!=null){ // if have selected a dvd before
             for (int i=0;i<ownerDvdNames.length;i++){
-                if(ownerDvdNames[i]==ownerDvd.getName()){
+                if(ownerDvdNames[i].equals(ownerDvd.getName())){
                     checked = i;
-                    break;
                 }
             }
         }else{ // if it's the first time selecting owner's dvd
@@ -239,6 +269,14 @@ public class StartTradeActivity extends BaseActivity {
 
         builder.show();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_start_trade, menu);
+        return true;
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

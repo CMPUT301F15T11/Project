@@ -18,12 +18,16 @@ package com.example.zhaorui.dvdcollector.View;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.zhaorui.dvdcollector.Controller.TradeManagerController;
+import com.example.zhaorui.dvdcollector.Model.Trade;
 import com.example.zhaorui.dvdcollector.Model.TradeManager;
 import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
@@ -41,21 +45,35 @@ import java.util.ArrayList;
  */
 public class TradesLogActivity extends BaseActivity {
 
-    private ArrayList<String> data;
+    private ArrayList<String> tradeNames;
     private TradeManager tradeManager = User.instance().getTradeManager();
-    private TradeManagerController tradeManagerController = new TradeManagerController(tradeManager);
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trades_log);
         Intent i = getIntent();
-        String type = i.getStringExtra("type");
+        final String type = i.getStringExtra("type");
 
-        data = tradeManager.getAllCurrentIncomingTrades();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(TradesLogActivity.this, android.R.layout.simple_list_item_1, data);
+        ArrayList<Trade> tradesToShow = tradeManager.getTradesOfType(type);
+        tradeNames = tradeManager.getNames(tradesToShow);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(TradesLogActivity.this, android.R.layout.simple_list_item_1, tradeNames);
         ListView listView = (ListView) findViewById(R.id.listView_trades_log);
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                // if click on the listview item, show the image on a new activity
+                Intent i = new Intent(TradesLogActivity.this, TradeDetailActivity.class);
+                i.putExtra("type",type);
+                i.putExtra("position", position);
+                startActivity(i);
+            }
+        });
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

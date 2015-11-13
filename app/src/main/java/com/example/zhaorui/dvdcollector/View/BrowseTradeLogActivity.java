@@ -64,19 +64,19 @@ public class BrowseTradeLogActivity extends BaseActivity {
         Intent i = new Intent(BrowseTradeLogActivity.this, TradesLogActivity.class);
         switch (mode){
             case 1: //current incoming trade
-                i.putExtra("type", "Current Incoming");
+                i.putExtra("type", "Current Incoming".toString());
                 startActivity(i);
                 break;
             case 2:// current outgoing trade
-                i.putExtra("type", "Current Outgoing");
+                i.putExtra("type", "Current Outgoing".toString());
                 startActivity(i);
                 break;
             case 3://past incoming trade
-                i.putExtra("type", "Past Incoming");
+                i.putExtra("type", "Past Incoming".toString());
                 startActivity(i);
                 break;
             case 4:// past outgoing trade
-                i.putExtra("type", "Past Outgoing");
+                i.putExtra("type", "Past Outgoing".toString());
                 startActivity(i);
                 break;
 

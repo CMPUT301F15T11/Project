@@ -110,7 +110,7 @@ public class CounterTradeActivity extends BaseActivity {
                     @Override
                     public void onClick(View v) {
                         if (owner != null) { // if have selected a friend to trade with
-                            ownerSingleChoiceDialog();
+                            ownerMultipleChoiceDialog();
                         }
                     }
                 });
@@ -185,7 +185,7 @@ public class CounterTradeActivity extends BaseActivity {
     }
 
     // open a multiple choice dialog for the borrower
-    public void ownerSingleChoiceDialog(){
+    public void ownerMultipleChoiceDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(CounterTradeActivity.this);
         builder.setTitle("Select DVDs");
 

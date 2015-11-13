@@ -1,5 +1,9 @@
 package com.example.zhaorui.dvdcollector.Controller;
 
+import android.content.Intent;
+import android.net.Uri;
+import android.widget.Toast;
+
 import com.example.zhaorui.dvdcollector.Model.Trade;
 import com.example.zhaorui.dvdcollector.Model.TradeManager;
 
@@ -16,6 +20,12 @@ public class TradeManagerController {
     }
 
     public void addTrade(Trade trade){
-        trades.add(trade);
+        ArrayList<Trade> tm = trades.getTrades();
+        tm.add(trade);
+        trades.setTrades(tm);
+
+        //此时还需要给owner发送email，告知交易请求，以此来实现notification
+
     }
+
 }

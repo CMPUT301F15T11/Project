@@ -29,6 +29,7 @@ import java.util.ArrayList;
  * @see java.util.ArrayList
  */
 public class Trade {
+    private String name; //用于在listview中展示
     /**
      * Initialize a user to be the borrower in the trade.
      */
@@ -42,9 +43,9 @@ public class Trade {
     /**
      * Initialize a boolean to be the type of the trade.
      */
-    private String type;
+    private String type;// 分为四种， Current Incoming/Current Outgoing/Past Incoming/Past Outgoing
 
-    private boolean status;
+    private String status;//分为两种，Pending/Accepted/Rejected
     /**
      * Initialize a array list to store the dvds in the current trade.
      *
@@ -131,11 +132,11 @@ public class Trade {
         this.ownerItem = ownerItem;
     }
 
-    public boolean isStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -154,5 +155,21 @@ public class Trade {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    public ArrayList<DVD> getBorrowerItemList() {
+        return borrowerItemList;
+    }
+
+    public DVD getOwnerItem() {
+        return ownerItem;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
