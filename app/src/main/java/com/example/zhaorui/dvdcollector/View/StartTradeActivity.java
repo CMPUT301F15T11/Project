@@ -37,8 +37,9 @@ import android.widget.Toast;
 import com.example.zhaorui.dvdcollector.Controller.FriendsController;
 import com.example.zhaorui.dvdcollector.Controller.InventoryController;
 import com.example.zhaorui.dvdcollector.Controller.TradeController;
-import com.example.zhaorui.dvdcollector.Controller.TradeManagerController;
-import com.example.zhaorui.dvdcollector.Model.TradeManager;
+import com.example.zhaorui.dvdcollector.Controller.TradeListController;
+import com.example.zhaorui.dvdcollector.Model.MyObserver;
+import com.example.zhaorui.dvdcollector.Model.TradeList;
 import com.example.zhaorui.dvdcollector.Model.DVD;
 import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.Friends;
@@ -47,6 +48,7 @@ import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 /**
  * <p>
@@ -56,7 +58,7 @@ import java.util.ArrayList;
  * @author  Zhaorui Chen
  * @version 11/10/15
  */
-public class StartTradeActivity extends BaseActivity {
+public class StartTradeActivity extends BaseActivity implements MyObserver{
     private LinearLayout ll1;
     private LinearLayout ll2;
     private Spinner spinner;
@@ -70,6 +72,8 @@ public class StartTradeActivity extends BaseActivity {
 
     private InventoryController inventoryBorrowerController = new InventoryController(); //需要修改inventory controller
     String[] borrowerDvdNames = inventoryBorrowerController.getAllNames();
+
+    private InventoryController inventoryOwnerController = new InventoryController();
     String[] ownerDvdNames;
 
     //选择的dvd的缓存,可以当做intent传给下一个activity
@@ -79,14 +83,18 @@ public class StartTradeActivity extends BaseActivity {
     ArrayList<Integer> borrowerDvdSelectedBuffer = new ArrayList<>();
 
     private Trade trade = new Trade();
-    private TradeManager tradeManager = User.instance().getTradeManager();
+    private TradeList tradeList = User.instance().getTradeList();
     private TradeController tradeController = new TradeController(trade);
-    private TradeManagerController tradeManagerController = new TradeManagerController(tradeManager);
+    private TradeListController tradeListController = new TradeListController(tradeList);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_trade);
+
+        tradeListController.addObserver(this);
+        inventoryOwnerController.addObserver(this);
+        inventoryBorrowerController.addObserver(this);
 
         textView1 = (TextView)findViewById(R.id.tv_listing_names_borrower_dvd);
         textView2 = (TextView)findViewById(R.id.tv_listing_names_onwer_dvd);
@@ -112,7 +120,8 @@ public class StartTradeActivity extends BaseActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 // 这里需要初始化owner为一个friend///////////////////////////////////////////////////////此段仅在没有实现es的情况下适用
                 owner = friendsController.getByName(spinner.getSelectedItem().toString());
-                ownerDvdNames = owner.getInventory().getAllNamesFriend();
+                inventoryOwnerController.setInventory(owner.getInventory());
+                ownerDvdNames = inventoryOwnerController.getAllNamesFriend();
                 // in case choose another owner to trade with, clear all buffer
                 ownerDvd = null;
                 textView2.setText("");
@@ -139,6 +148,7 @@ public class StartTradeActivity extends BaseActivity {
                 if (ownerDvd!=null) {
                     Log.e("DVD numbers for borrow", String.valueOf(borrowerDvdBuffer.size()));
 
+                    //add info to trade
                     tradeController.changeBorrower(User.instance().getProfile().getName());
                     tradeController.changeOwner(owner.getProfile().getName());
                     tradeController.addBorrowerItem(borrowerDvdBuffer);
@@ -146,12 +156,10 @@ public class StartTradeActivity extends BaseActivity {
                     tradeController.changeType("Current Outgoing");
                     tradeController.changeStatus("Pending");
                     tradeController.setName();
-                    tradeManagerController.addTrade(trade);
+                    // add trade to trademanager
+                    tradeListController.addTrade(trade);
                     //必须要求每个人都输入自己的邮箱
                     //sendEmail();
-
-                    //////////////////////////////////////////////////////////////////不知道该怎么改变User的attribute，暂时先这么做
-                    User.instance().changeTradeManager(tradeManager);
 
                     Toast.makeText(StartTradeActivity.this, "Trade has been sent to the owner", Toast.LENGTH_SHORT).show();
                     StartTradeActivity.this.finish();
@@ -163,7 +171,7 @@ public class StartTradeActivity extends BaseActivity {
     }
 
     private void sendEmail(){
-        String ownerEmailAddress = owner.getProfile().getContact().toString();
+        String ownerEmailAddress = owner.getProfile().getContact();
         Intent stats = new Intent(Intent.ACTION_SENDTO);
         stats.setData(Uri.parse("mailto:" + ownerEmailAddress));
         stats.putExtra(Intent.EXTRA_SUBJECT, "A Trade Request");
@@ -190,6 +198,7 @@ public class StartTradeActivity extends BaseActivity {
     }
 
     // open a multiple choice dialog for the borrower
+    // borrower is always the device user in this activity
     public void borrowerMultipleChoiceDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(StartTradeActivity.this);
         builder.setTitle("Select DVDs");
@@ -246,13 +255,13 @@ public class StartTradeActivity extends BaseActivity {
                 }
             }
         }else{ // if it's the first time selecting owner's dvd
-            ownerDvd = owner.getInventory().get(checked);
+            ownerDvd = inventoryOwnerController.getInventory().get(checked);
         }
 
         builder.setSingleChoiceItems(ownerDvdNames, checked, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                ownerDvd = owner.getInventory().get(which);
+                ownerDvd = inventoryOwnerController.getInventory().get(which);
             }
         });
 
@@ -265,7 +274,6 @@ public class StartTradeActivity extends BaseActivity {
 
             }
         });
-
 
         builder.show();
     }
@@ -291,5 +299,8 @@ public class StartTradeActivity extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void update(Observable ob,Object o){
     }
 }

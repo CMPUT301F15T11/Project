@@ -53,24 +53,24 @@ public class TradeController {
         trade.setOwnerItem(dvd);
     }
 
-    public void setTradeComplete(String result){
-        if(result.equals("Accepted")){
+    public void setTradeComplete(){
+        changeStatus("Complete");
+    }
+
+    public void setTradeResult(Boolean isAccepted){
+        if(isAccepted){
             if (trade.getType().equals("Current Outgoing")) {
-                changeType("Past Outgoing");
-                changeStatus("Accepted");
+                changeStatus("In-progress");
             }
             else {
-                changeType("Past Incoming");
-                changeStatus("Accepted");
+                changeStatus("In-progress");
             }
         }else {
             if (trade.getType().equals("Current Outgoing")) {
                 changeType("Past Outgoing");
-                changeStatus("Rejected");
             }
             else {
                 changeType("Past Incoming");
-                changeStatus("Rejected");
             }
         }
 

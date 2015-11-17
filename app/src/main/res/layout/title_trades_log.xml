@@ -23,7 +23,7 @@
         android:textSize="24dp" />
 
     <Button
-        android:id="@+id/btn_title_mall_trades"
+        android:id="@+id/btn_title_trades_log"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_gravity="center"

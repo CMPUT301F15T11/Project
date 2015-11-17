@@ -28,10 +28,6 @@ package com.example.zhaorui.dvdcollector.Model;
 public class User{
     static private User instance;
     /**
-     * initialize a Trades to store user's trade.
-     */
-    private Trades trades;
-    /**
      * initialize a Friends to store user's friends.
      */
     private Friends friends;
@@ -46,14 +42,13 @@ public class User{
     /**
      * initialize a user.
      */
-    private TradeManager tradeManager;
+    private TradeList tradeList;
 
     private User() {
-        trades = new Trades();
         friends = new Friends();
         inventory = new Inventory();
         profile = new UserProfile();
-        tradeManager = new TradeManager();
+        tradeList = new TradeList();
     }
 
     public static void setInstance(User instance) {
@@ -66,17 +61,8 @@ public class User{
         }
         return instance;
     }
-    public TradeManager getTradeManager(){return tradeManager;}
-    public void changeTradeManager(TradeManager trades){
-        this.tradeManager = trades;
-    }
-    /**
-     * Call <code>Trades</code> class to get the user's trades.
-     * @return the user's trades.
-     */
-    public Trades getTrades() {
-        return trades;
-    }
+
+    public TradeList getTradeList(){return tradeList;}
     /**
      * Call <code>Friends</code> class to get the user's friends.
      * @return the user's friends.

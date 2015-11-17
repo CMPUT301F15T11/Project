@@ -18,16 +18,19 @@
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.zhaorui.dvdcollector.Controller.TradeController;
+import com.example.zhaorui.dvdcollector.Controller.TradeListController;
 import com.example.zhaorui.dvdcollector.Model.Trade;
-import com.example.zhaorui.dvdcollector.Model.TradeManager;
+import com.example.zhaorui.dvdcollector.Model.TradeList;
 import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
-
-import java.util.ArrayList;
 
 /**
  * <p>
@@ -39,12 +42,17 @@ import java.util.ArrayList;
  * @version 11/10/15
  */
 public class TradeDetailActivity extends BaseActivity {
-    private TradeManager tradeManager = User.instance().getTradeManager();
+    private TradeList tradeList = User.instance().getTradeList();
+    private TradeListController tradeListController = new TradeListController(tradeList);
+    private Trade tradeToShow;
+    private TradeController tradeController;
+
     private TextView textViewBorrower;
     private TextView textViewBorrowerDvd;
     private TextView textViewOwner;
     private TextView textViewOwnerDvd;
     private TextView textViewStatus;
+    private Button btnMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,12 +64,32 @@ public class TradeDetailActivity extends BaseActivity {
         textViewBorrowerDvd = (TextView) findViewById(R.id.dvds_borrower_trade_detail_completed);
         textViewOwnerDvd = (TextView) findViewById(R.id.dvds_owner_trade_detail_completed);
         textViewStatus = (TextView) findViewById(R.id.status_trade_details_completed);
+        btnMenu = (Button)findViewById(R.id.btn_title_trade_detail);
+        btnMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openOptionsMenu();
+            }
+        });
 
         Intent i = getIntent();
-        String type = i.getStringExtra("type");
-        int pos = i.getIntExtra("position", 0);
 
-        Trade tradeToShow = tradeManager.getTradesOfType(type).get(pos);
+        if(i.hasExtra("type")) {
+            String type = i.getStringExtra("type");
+            int pos = i.getIntExtra("position", 0);
+
+            tradeToShow = tradeListController.getTradesOfType(type).get(pos);
+        }
+        else if(i.hasExtra("status")){
+            String status = i.getStringExtra("status");
+            int pos = i.getIntExtra("position", 0);
+
+            tradeToShow = tradeListController.getTradeOfStatus(status).get(pos);
+        }
+        tradeController = new TradeController(tradeToShow);
+        Log.e("DVD", tradeToShow.getStatus());
+
+        Log.e("DVD", tradeToShow.getType());
 
         textViewBorrower.setText(tradeToShow.getBorrower());
         textViewOwner.setText(tradeToShow.getOwner());
@@ -77,7 +105,7 @@ public class TradeDetailActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_completed_trade_detail, menu);
+        getMenuInflater().inflate(R.menu.menu_trade_detail, menu);
         return true;
     }
 
@@ -89,8 +117,18 @@ public class TradeDetailActivity extends BaseActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.close_menu_trade_details) {
             return true;
+        }
+
+        if(id==R.id.set_to_complete){
+            tradeController.setTradeComplete();
+            textViewStatus.setText(tradeToShow.getStatus());
+        }
+
+        if(id == R.id.start_counter_trade){
+            Intent i = new Intent(TradeDetailActivity.this, CounterTradeActivity.class);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);

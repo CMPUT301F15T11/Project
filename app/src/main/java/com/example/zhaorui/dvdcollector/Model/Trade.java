@@ -45,7 +45,7 @@ public class Trade {
      */
     private String type;// 分为四种， Current Incoming/Current Outgoing/Past Incoming/Past Outgoing
 
-    private String status;//分为两种，Pending/Accepted/Rejected
+    private String status;//3 different status，In progress/Complete/Pending/Declined
     /**
      * Initialize a array list to store the dvds in the current trade.
      *

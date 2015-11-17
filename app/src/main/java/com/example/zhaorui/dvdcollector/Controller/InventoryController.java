@@ -135,6 +135,17 @@ public class InventoryController {
         return strings;
     }
 
+    // only for retrieving names of all dvds in the inventory of a non-device-user, for example a friend
+    public String[] getAllNamesFriend(){
+        String[] strings = new String[inventory.size()];
+        int i = 0;
+        for (DVD dvd : inventory){
+            strings[i] = dvd.getName();
+            i+=1;
+        }
+        return strings;
+    }
+
     // newly add by TeppieC
     // get the inventory with all sharable items
     public Inventory getSharableInventory(){

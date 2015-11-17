@@ -23,7 +23,7 @@
         android:textSize="24dp" />
 
     <Button
-        android:id="@+id/btn_title_my_inventory"
+        android:id="@+id/btn_title_trade_detail"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_gravity="center"

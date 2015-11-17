@@ -19,7 +19,6 @@
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Context;
-import android.util.Log;
 
 import com.example.zhaorui.dvdcollector.Model.ContextUtil;
 import com.example.zhaorui.dvdcollector.Model.MyObserver;
@@ -27,7 +26,6 @@ import com.example.zhaorui.dvdcollector.Model.SimulatedDatabase;
 import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.View.NameInputDialog;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -36,9 +34,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.lang.reflect.Type;
 import java.util.Observable;
-import java.util.Observer;
 
 /**
  * <p>
@@ -103,6 +99,8 @@ public class DataManager implements MyObserver{
         User.instance().getInventory().getObs().addObserver(this);
         User.instance().getFriends().getObs().deleteObservers();
         User.instance().getFriends().getObs().addObserver(this);
+        //User.instance().getTradeList().getObs().deleteObservers();
+        //User.instance().getTradeList().getObs().addObserver(this);
     }
     /**
      * This function adds observers to user's profile and user's inventory.

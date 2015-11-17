@@ -1,24 +1,19 @@
 package com.example.zhaorui.dvdcollector.View;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.zhaorui.dvdcollector.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class BrowseTradeLogActivity extends BaseActivity {
     private Button btnCurrentIncoming;
     private Button btnCurrentOutgoing;
     private Button btnPastIncoming;
     private Button btnPastOutgoing;
-
+    private Button btnInProgress;
+    private Button btnComplete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +24,8 @@ public class BrowseTradeLogActivity extends BaseActivity {
         btnCurrentOutgoing = (Button)findViewById(R.id.btn_browse_trades_current_outgoing);
         btnPastIncoming = (Button)findViewById(R.id.btn_browse_trades_past_incoming);
         btnPastOutgoing = (Button)findViewById(R.id.btn_browse_trades_past_outgoing);
+        btnInProgress = (Button)findViewById(R.id.btn_browse_trades_in_progress);
+        btnComplete = (Button)findViewById(R.id.btn_browse_trades_completed);
 
         btnCurrentIncoming.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,10 +55,24 @@ public class BrowseTradeLogActivity extends BaseActivity {
             }
         });
 
+        btnInProgress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startSpecificTradesLog(btnInProgress,5);
+            }
+        });
+
+        btnComplete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startSpecificTradesLog(btnComplete,6);
+            }
+        });
+
     }
 
     public void startSpecificTradesLog(View view, int mode){
-        Intent i = new Intent(BrowseTradeLogActivity.this, TradesLogActivity.class);
+        Intent i = new Intent(BrowseTradeLogActivity.this, TradesLogTypeActivity.class);
         switch (mode){
             case 1: //current incoming trade
                 i.putExtra("type", "Current Incoming".toString());
@@ -79,7 +90,16 @@ public class BrowseTradeLogActivity extends BaseActivity {
                 i.putExtra("type", "Past Outgoing".toString());
                 startActivity(i);
                 break;
-
+            case 5:
+                i = new Intent(BrowseTradeLogActivity.this, TradesLogStatusActivity.class);
+                i.putExtra("status", "In-progress");
+                startActivity(i);
+                break;
+            case 6:
+                i = new Intent(BrowseTradeLogActivity.this, TradesLogStatusActivity.class);
+                i.putExtra("status","Complete");
+                startActivity(i);
+                break;
         }
     }
 }

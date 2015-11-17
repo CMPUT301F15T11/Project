@@ -23,7 +23,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.zhaorui.dvdcollector.Model.TradeManager;
+import com.example.zhaorui.dvdcollector.Model.TradeList;
 import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
 /**
@@ -63,8 +63,8 @@ public class TradeCenterActivity extends BaseActivity {
 
     public void startAllTrade(View view){
         Intent i = new Intent(TradeCenterActivity.this, BrowseTradeLogActivity.class);
-        TradeManager tradeManager = User.instance().getTradeManager();
-        Log.e("DVD number of trades is", String.valueOf(tradeManager.getSize()));
+        TradeList tradeList = User.instance().getTradeList();
+        Log.e("DVD number of trades is", String.valueOf(tradeList.getSize()));
         startActivity(i);
     }
 

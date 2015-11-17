@@ -56,6 +56,10 @@
             android:label="@string/title_activity_start_trade" >
         </activity>
         <activity
+            android:name=".View.CounterTradeActivity"
+            android:label="@string/title_activity_start_trade" >
+        </activity>
+        <activity
             android:name=".View.TradeDetailActivity"
             android:label="@string/title_activity_trade_detail" >
         </activity>
@@ -80,7 +84,11 @@
             android:label="@string/title_activity_browse_invent" >
         </activity>
         <activity
-            android:name=".View.TradesLogActivity"
+            android:name=".View.TradesLogTypeActivity"
+            android:label="@string/title_activity_all_trades" >
+        </activity>
+        <activity
+            android:name=".View.TradesLogStatusActivity"
             android:label="@string/title_activity_all_trades" >
         </activity>
         <activity

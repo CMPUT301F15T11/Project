@@ -61,6 +61,8 @@ public class CounterTradeActivity extends BaseActivity {
 
     private InventoryController inventoryBorrowerController = new InventoryController(); //需要修改inventory controller
     String[] borrowerDvdNames = inventoryBorrowerController.getAllNames();
+
+    private InventoryController inventoryOwnerController = new InventoryController();
     String[] ownerDvdNames;
 
     //选择的dvd的缓存,可以当做intent传给下一个activity
@@ -100,7 +102,8 @@ public class CounterTradeActivity extends BaseActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 // 这里需要初始化owner为一个friend///////////////////////////////////////////////////////此段仅在没有实现es的情况下适用
                 owner = friendsController.getByName(spinner.getSelectedItem().toString());
-                ownerDvdNames = owner.getInventory().getAllNamesFriend();
+                inventoryOwnerController.setInventory(owner.getInventory());
+                ownerDvdNames = inventoryOwnerController.getAllNamesFriend();
                 // in case choose another owner to trade with, clear all buffer
                 ownerDvdSelectedBuffer.clear();
                 ownerDvdBuffer.clear();
