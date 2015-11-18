@@ -20,7 +20,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.zhaorui.dvdcollector.Controller.FriendsController;
+import com.example.zhaorui.dvdcollector.Controller.TradeListController;
+import com.example.zhaorui.dvdcollector.Model.TradeList;
+import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
+
+import java.util.ArrayList;
+
 /**
  * <p>
  * The <code>TradeRequestDetailActivity</code> class controls the user interface of detail for incoming trade.
@@ -31,6 +38,12 @@ import com.example.zhaorui.dvdcollector.R;
  * @version 11/10/15
  */
 public class TradeRequestDetailActivity extends BaseActivity {
+    private ArrayList<String> tradeNames;
+    private TradeList myTradeList = User.instance().getTradeList();
+    private TradeListController myTradeListController = new TradeListController(myTradeList);
+
+    private FriendsController friendsController = new FriendsController();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

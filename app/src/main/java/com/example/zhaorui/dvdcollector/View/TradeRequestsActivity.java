@@ -16,13 +16,23 @@
 */
 package com.example.zhaorui.dvdcollector.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.zhaorui.dvdcollector.Controller.TradeListController;
+import com.example.zhaorui.dvdcollector.Model.Trade;
+import com.example.zhaorui.dvdcollector.Model.TradeList;
+import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
+
+import java.util.ArrayList;
+
 /**
  * <p>
  * The <code>TradeRequestsActivity</code> class controls the user interface of incoming trade.
@@ -33,15 +43,37 @@ import com.example.zhaorui.dvdcollector.R;
  * @version 11/10/15
  */
 public class TradeRequestsActivity extends BaseActivity {
-    private String[] data = { "Trade Request From Jack","Trade Request From Lucy"};
+    private ArrayList<String> tradeRequestNames;
+    private TradeList myTradeList = User.instance().getTradeList();
+    private TradeListController myTradeListController = new TradeListController(myTradeList);
+    private ArrayList<Trade> myTradeRequests;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trade_requests);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(TradeRequestsActivity.this, android.R.layout.simple_list_item_1, data);
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        myTradeRequests = myTradeListController.getTradeRequests();
+        tradeRequestNames = myTradeListController.getNames(myTradeRequests);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(TradeRequestsActivity.this, android.R.layout.simple_list_item_1, tradeRequestNames);
         ListView listView = (ListView) findViewById(R.id.listView_trade_requests);
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                // if click on the listview item, show the image on a new activity
+                Intent i = new Intent(TradeRequestsActivity.this, TradeRequestDetailActivity.class);
+                ///
+                startActivity(i);
+            }
+        });
     }
 
     @Override

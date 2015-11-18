@@ -54,6 +54,26 @@ public class TradeListController {
         return names;
     }
 
+    public ArrayList<Trade> getTradeRequests(){
+        ArrayList<Trade> tradesToReturn = new ArrayList<>();
+        for(Trade aTrade : trades.getTrades()){
+            if (aTrade.getStatus().equals("Pending") && aTrade.getType().equals("Current Incoming")){
+                tradesToReturn.add(aTrade);
+            }
+        }
+        return tradesToReturn;
+    }
+
+    public int getSuccessTimes(){
+        int count = 0;
+        for(Trade aTrade : trades.getTrades()){
+            if (aTrade.getStatus()!="Declined"){
+                count++;
+            }
+        }
+        return count;
+    }
+
     public void addObserver(Observer o){
         trades.getObs().addObserver(o);
     }
