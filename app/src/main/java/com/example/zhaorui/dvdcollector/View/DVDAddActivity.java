@@ -1,3 +1,19 @@
+/*
+ *
+ *University of Alberta CMPUT 301 Group: CMPUT301F15T11
+ *Copyright {2015} {Dingkai Liang, Zhaorui Chen, Jiaxuan Yue, Xi Zhang, Qingdai Du, Wei Song}
+ *
+ *Licensed under the Apache License, Version 2.0 (the "License");
+ *
+ *you may not use this file except in compliance with the License.
+ *You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+ *Unless required by applicable law or agreed to in writing,software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied.
+ * See the License for the specific language governing permissions
+ * and limitations under the License.
+*/
 package com.example.zhaorui.dvdcollector.View;
 
 import android.app.FragmentManager;
@@ -18,7 +34,9 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.util.Base64;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -33,7 +51,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-
+/**
+ * <p>
+ * The <code>DVDAddActivity</code> class controls the user interface of adding a new dvd
+ * <p>
+ *
+ * @author  Zhaorui Chen
+ * @version 11/10/15
+ */
 public class DVDAddActivity extends BaseActivity {
     private DVDController dc = new DVDController();
     private InventoryController ic = new InventoryController();
@@ -42,6 +67,9 @@ public class DVDAddActivity extends BaseActivity {
 
     private Gallery gallery;
     private GalleryController gc;
+
+    private RatingBar ratingBar;
+    private String ratingStr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +83,14 @@ public class DVDAddActivity extends BaseActivity {
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinner = (Spinner)findViewById(R.id.spinner);
         spinner.setAdapter(adapter);
+        ratingBar = (RatingBar)findViewById(R.id.ratingBar);
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                int r = (int)rating;
+                ratingStr = String.valueOf(r);
+            }
+        });
 
         //if first time add the dvd, show default image
         if(position == -1){
@@ -70,8 +106,24 @@ public class DVDAddActivity extends BaseActivity {
             text.setText(info.get(1));
             text = (EditText) findViewById(R.id.et_add_quantity);
             text.setText(info.get(2));
-            text = (EditText) findViewById(R.id.et_add_quality);
-            text.setText(info.get(3));
+            switch (info.get(3)){
+                case "1":
+                    ratingBar.setRating(1);
+                    break;
+                case "2":
+                    ratingBar.setRating(2);
+                    break;
+                case "3":
+                    ratingBar.setRating(3);
+                    break;
+                case "4":
+                    ratingBar.setRating(4);
+                    break;
+                case "5":
+                    ratingBar.setRating(5);
+                    break;
+            }
+
             CheckBox sharable = (CheckBox) findViewById(R.id.checkBox_sharable);
 
             if(info.get(4)=="Yes"){ // check if this dvd has photos
@@ -106,8 +158,7 @@ public class DVDAddActivity extends BaseActivity {
             info.add(name); // add name 1
             text = (EditText) findViewById(R.id.et_add_quantity);
             info.add(text.getText().toString()); // add quantity
-            text = (EditText) findViewById(R.id.et_add_quality);
-            info.add(text.getText().toString()); // add quality
+            info.add(ratingStr); // add quality
 
             if (gallery.getSize()==0) { // add if the dvd has photos
                 info.add("No");

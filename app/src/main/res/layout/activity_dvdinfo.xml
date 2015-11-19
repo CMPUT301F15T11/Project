@@ -16,8 +16,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="0dp">
+            android:layout_height="wrap_content">
 
 
             <LinearLayout
@@ -201,7 +200,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_height="match_parent"
         android:layout_weight="4">
         <Button
@@ -211,9 +210,22 @@
             android:id="@+id/btn_show_gallery"
             android:textColor="#fafafa"
             android:textSize="24dp"
-            android:layout_margin="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:onClick="startGallery"
             android:layout_marginBottom="10dp"
             android:background="@drawable/button_shape_indigo"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Clone this DVD"
+            android:id="@+id/btn_clone_dvd"
+            android:textColor="#fafafa"
+            android:textSize="24dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_shape_grey"/>
     </LinearLayout>
 </LinearLayout>

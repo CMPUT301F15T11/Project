@@ -1,3 +1,19 @@
+/*
+ *
+ *University of Alberta CMPUT 301 Group: CMPUT301F15T11
+ *Copyright {2015} {Dingkai Liang, Zhaorui Chen, Jiaxuan Yue, Xi Zhang, Qingdai Du, Wei Song}
+ *
+ *Licensed under the Apache License, Version 2.0 (the "License");
+ *
+ *you may not use this file except in compliance with the License.
+ *You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+ *Unless required by applicable law or agreed to in writing,software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied.
+ * See the License for the specific language governing permissions
+ * and limitations under the License.
+*/
 package com.example.zhaorui.dvdcollector.View;
 
 import android.app.Dialog;
@@ -17,7 +33,12 @@ import com.example.zhaorui.dvdcollector.Model.ContextUtil;
 import com.example.zhaorui.dvdcollector.R;
 
 /**
- * Created by teppie on 27/10/15.
+ * <p>
+ * The <code>SearchDialog</code> class controls the search dialog.
+ * <p>
+ *
+ * @author  Zhaorui Chen
+ * @version 27/10/15
  */
 public class SearchDialog extends DialogFragment {
     private View customView;
@@ -27,13 +48,26 @@ public class SearchDialog extends DialogFragment {
     private InventoryController ic;
     private FriendsController fc;
     private String mode;
+    private int friendPosition = -1;
 
     public void setMode(String mode) {
         this.mode = mode;
     }
 
+    public void setFriendPosition(int friendPosition) {
+        this.friendPosition = friendPosition;
+    }
+
     public void setIc(InventoryController ic) {
         this.ic = ic;
+    }
+
+    public Button getSearch() {
+        return search;
+    }
+
+    public EditText getEditText() {
+        return editText;
     }
 
     @Override
@@ -45,7 +79,7 @@ public class SearchDialog extends DialogFragment {
         dialog.setContentView(customView);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         fc = new FriendsController();
-        if (ic == null){ic = new InventoryController();}
+        if (ic == null) {ic = new InventoryController();}
         editText = (EditText) customView.findViewById(R.id.editText_search_dialog);
 
         search = (Button)customView.findViewById(R.id.btn_search);
@@ -55,10 +89,11 @@ public class SearchDialog extends DialogFragment {
                 String name = editText.getText().toString();
                 if (name.isEmpty()){
                     Toast.makeText(ContextUtil.getInstance(), "Empty Input!", Toast.LENGTH_LONG).show();
-                } else if (mode == "inventory") {
+                } else if (mode.equals("inventory")) {
                     if (ic.find(name)) {
                         Intent intent = new Intent(context, DVDInfoActivity.class);
-                        intent.putExtra("position", ic.indexOf(name));
+                        intent.putExtra("position",ic.indexOf(name));
+                        intent.putExtra("friendPosition", friendPosition);
                         startActivity(intent);
                     } else {
                         FragmentManager fm = getFragmentManager();

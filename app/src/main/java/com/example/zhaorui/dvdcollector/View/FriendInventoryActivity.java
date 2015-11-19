@@ -1,3 +1,19 @@
+/*
+ *
+ *University of Alberta CMPUT 301 Group: CMPUT301F15T11
+ *Copyright {2015} {Dingkai Liang, Zhaorui Chen, Jiaxuan Yue, Xi Zhang, Qingdai Du, Wei Song}
+ *
+ *Licensed under the Apache License, Version 2.0 (the "License");
+ *
+ *you may not use this file except in compliance with the License.
+ *You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+ *Unless required by applicable law or agreed to in writing,software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied.
+ * See the License for the specific language governing permissions
+ * and limitations under the License.
+*/
 package com.example.zhaorui.dvdcollector.View;
 
 import android.app.FragmentManager;
@@ -17,7 +33,15 @@ import com.example.zhaorui.dvdcollector.Controller.FriendsController;
 import com.example.zhaorui.dvdcollector.Controller.InventoryController;
 import com.example.zhaorui.dvdcollector.Model.DVD;
 import com.example.zhaorui.dvdcollector.R;
-
+/**
+ * <p>
+ * The <code>FriendInventoryActivity</code> class controls the user interface of Friend's inventory..
+ * This class contains functions, onCreate, onCreateOptionsMenu and onOptionsItemSelected
+ * <p>
+ *
+ * @author  Zhaorui Chen
+ * @version 11/10/15
+ */
 public class FriendInventoryActivity extends BaseActivity {
     // sample data
 
@@ -77,6 +101,7 @@ public class FriendInventoryActivity extends BaseActivity {
         FragmentManager fm = getFragmentManager();
         SearchDialog newDialog = new SearchDialog();
         newDialog.setMode("inventory");
+        newDialog.setFriendPosition(friendPostion);
         newDialog.setIc(ic);
         newDialog.show(fm, "abc");
     }

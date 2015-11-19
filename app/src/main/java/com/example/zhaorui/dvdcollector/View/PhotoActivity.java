@@ -1,3 +1,19 @@
+/*
+ *
+ *University of Alberta CMPUT 301 Group: CMPUT301F15T11
+ *Copyright {2015} {Dingkai Liang, Zhaorui Chen, Jiaxuan Yue, Xi Zhang, Qingdai Du, Wei Song}
+ *
+ *Licensed under the Apache License, Version 2.0 (the "License");
+ *
+ *you may not use this file except in compliance with the License.
+ *You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+ *Unless required by applicable law or agreed to in writing,software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied.
+ * See the License for the specific language governing permissions
+ * and limitations under the License.
+*/
 package com.example.zhaorui.dvdcollector.View;
 
 /*
@@ -8,20 +24,27 @@ package com.example.zhaorui.dvdcollector.View;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.zhaorui.dvdcollector.Controller.DVDController;
+import com.example.zhaorui.dvdcollector.Controller.FriendsController;
 import com.example.zhaorui.dvdcollector.Controller.GalleryController;
 import com.example.zhaorui.dvdcollector.Controller.InventoryController;
+import com.example.zhaorui.dvdcollector.Model.DVD;
 import com.example.zhaorui.dvdcollector.Model.Gallery;
 import com.example.zhaorui.dvdcollector.R;
 
@@ -29,13 +52,27 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
+/**
+ * <p>
+ * The <code>PhotoActivity</code> class controls the the interface that the list of photo of the selected dvd
+ * It will call  <code>DisplyPhotoActivity</code> to display the photo if the user select a photo from the list of view
+ * It can also take a new photo if the button start camera is pressed.
+ * <p>
+ *
+ * @author  Zhaorui Chen
+ * @version 4/11/15
+ */
 public class PhotoActivity extends BaseActivity{
     private int position;
     private InventoryController ic = new InventoryController();
     private DVDController dc = new DVDController();
+    private FriendsController fc = new FriendsController();
     private Gallery gallery;
     private GalleryController gc;
+    private DVD dvd;
 
     private int numPhotos;
     private ArrayList<Integer> indexes;
@@ -54,11 +91,18 @@ public class PhotoActivity extends BaseActivity{
 
         Intent intent = getIntent();
         position = intent.getIntExtra("position", -1);
+        int friendPosition = intent.getIntExtra("friendPosition",-1);
+        if (friendPosition != -1){
+            ic.setInventory(fc.get(friendPosition).getInventory());
+            Button upload = (Button) findViewById(R.id.button_upload_photo);
+            upload.setVisibility(View.INVISIBLE);
+        }
         ArrayList<String> info = dc.read(ic.get(position));//get the current dvd
+        dvd = ic.get(position);
 
         // check if there is photos for this dvd
         if (info.get(4)=="Yes") {
-            this.gallery = dc.readPhoto(ic.get(position));//get its gallery
+            this.gallery = dc.readPhoto(dvd);//get its gallery
             this.gc = new GalleryController(gallery);
         }else{
             this.gallery = new Gallery();
@@ -90,10 +134,8 @@ public class PhotoActivity extends BaseActivity{
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 int index = indexes.get(position);
                 gc.removeFromGallery(gallery.getPhotoStrs().get(position)); // remove the image from the gallery
-                dc.changeGallery(ic.get(position), gallery);// change the dvd with the new gallery
+                dc.changeGallery(dvd, gallery);// change the dvd with the new gallery
 
-                Log.e("DVD", String.valueOf(position));
-                Log.e("DVDPhoto", String.valueOf(index));
                 // update the listview
                 indexes.remove(position);
                 adapter.notifyDataSetChanged();
@@ -142,11 +184,10 @@ public class PhotoActivity extends BaseActivity{
             case TAKE_PHOTO:
                 if (resultCode == RESULT_OK) {
                     try {
-
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
                         String photo = gc.encodeFromBitmap(bitmap); // encode image to string
                         gc.addToGallery(photo); // add the photo to the gallery
-                        dc.changeGallery(ic.get(position), gallery);// change the dvd with the new gallery
+                        dc.changeGallery(dvd, gallery);// change the dvd with the new gallery
 
                         // update the listview
                         numPhotos = gallery.getSize();

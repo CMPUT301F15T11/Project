@@ -9,28 +9,176 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <include layout="@layout/title_trade_details"/>
+        <include layout="@layout/title_new_trade"/>
     </LinearLayout>
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="465dp">
+        android:layout_height="match_parent"
+        style="@style/bkg_white">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_above="@+id/bottom_tile"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:orientation="vertical"
+                android:layout_above="@+id/lll"
+                android:background="@drawable/button_shape_indigo">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_margin="10dp">
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="Borrower: Me"
+                                android:textStyle="bold"
+                                style="@style/font_white"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/tv_listing_names_borrower_dvd"
+                                android:textColor="#fafafa"
+                                android:textSize="20dp"
+                                android:singleLine="true"
+                                android:text=""/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:id="@+id/ll_add_borrower_dvd_new_trade"
+                            android:layout_height="match_parent">
+                            <Button
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:background="@drawable/ic_add_circle_white_48dp"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                style="@style/font_white"
+                                android:text="choose DVDs"
+                                android:textStyle="bold"
+                                android:layout_gravity="center_vertical" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/button_shape_white">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_margin="10dp">
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="Owner: "
+                                android:layout_weight="2"
+                                style="@style/font_indigo"/>
+                            <Spinner
+                                android:layout_width="match_parent"
+                                android:id="@+id/spinner_choose_owner"
+                                android:layout_weight="1"
+                                style="@style/font_indigo"
+                                android:layout_height="match_parent">
+                            </Spinner>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:textColor="@color/indigo"
+                                android:textSize="20dp"
+                                android:id="@+id/tv_listing_names_onwer_dvd"
+                                android:singleLine="true"
+                                android:text=""/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:id="@+id/ll_add_owner_dvd_new_trade"
+                            android:layout_height="match_parent">
+                            <Button
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:background="@drawable/ic_add_circle_indigo_48dp"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                style="@style/font_indigo"
+                                android:text="choose DVDs"
+                                android:layout_gravity="center_vertical" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_alignParentBottom="true"
+                android:id="@+id/lll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:id="@+id/btn_send_trade_request"
+                    android:background="@drawable/button_shape_indigo"
+                    style="@style/font_white"
+                    android:textStyle="bold"
+                    android:text="Send"/>
+            </LinearLayout>
+        </RelativeLayout>
+
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="0dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp">
-            <include layout="@layout/start_page_layout"/>
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/bottom_tile">
+            <include layout="@layout/bottom"/>
         </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <include layout="@layout/bottom"/>
-    </LinearLayout>
+    </RelativeLayout>
 
 
 </LinearLayout>

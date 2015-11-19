@@ -2,6 +2,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.zhaorui.dvdcollector.View.TradeDetailActivity">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+    <item android:id="@+id/start_counter_trade" android:title="Counter-Trade"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/set_to_complete" android:title="Set to complete"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/close_menu_trade_details" android:title="Close"
         android:orderInCategory="100" app:showAsAction="never" />
 </menu>

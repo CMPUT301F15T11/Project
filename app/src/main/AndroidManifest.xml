@@ -2,9 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.zhaorui.dvdcollector" >
 
-    <uses-feature android:name="android.hardware.camera"
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="true" />
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:name=".Model.ContextUtil"
         android:allowBackup="true"
@@ -20,8 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".View.BaseActivity"
             android:label="@string/title_activity_base" >
@@ -55,15 +56,19 @@
             android:label="@string/title_activity_start_trade" >
         </activity>
         <activity
+            android:name=".View.CounterTradeActivity"
+            android:label="@string/title_activity_start_trade" >
+        </activity>
+        <activity
             android:name=".View.TradeDetailActivity"
             android:label="@string/title_activity_trade_detail" >
         </activity>
         <activity
-            android:name=".View.IncomeTradeActivity"
+            android:name=".View.TradeRequestsActivity"
             android:label="@string/title_activity_income_trade" >
         </activity>
         <activity
-            android:name=".View.IncomeTradeDetailActivity"
+            android:name=".View.TradeRequestDetailActivity"
             android:label="@string/title_activity_income_trade_detail" >
         </activity>
         <activity
@@ -79,7 +84,11 @@
             android:label="@string/title_activity_browse_invent" >
         </activity>
         <activity
-            android:name=".View.AllTradesActivity"
+            android:name=".View.TradesLogTypeActivity"
+            android:label="@string/title_activity_all_trades" >
+        </activity>
+        <activity
+            android:name=".View.TradesLogStatusActivity"
             android:label="@string/title_activity_all_trades" >
         </activity>
         <activity
@@ -102,7 +111,10 @@
             android:name=".View.DisplayPhotoActivity"
             android:label="@string/title_activity_photo_display" >
         </activity>
-
+        <activity
+            android:name=".View.BrowseTradeLogActivity"
+            android:label="@string/title_activity_browse_trade_log" >
+        </activity>
     </application>
 
 </manifest>

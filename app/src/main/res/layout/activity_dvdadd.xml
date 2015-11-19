@@ -47,8 +47,8 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:background="@drawable/button_shape_indigo">
 
         <LinearLayout
@@ -116,26 +116,33 @@
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_margin="5dp"
                 android:layout_weight="1">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#fafafa"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp"
                     android:textSize="20dp"
                     android:text="Quality "
                     android:id="@+id/tv_add_quality"
                     android:layout_gravity="center_vertical" />
 
-                <EditText
+
+                <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:ems="12"
-                    android:id="@+id/et_add_quality"
-                    android:textColor="#fafafa"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1" />
+                    android:layout_height="match_parent">
+
+                    <RatingBar
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:numStars="5"
+                        android:stepSize="1"
+                        android:id="@+id/ratingBar" />
+
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
