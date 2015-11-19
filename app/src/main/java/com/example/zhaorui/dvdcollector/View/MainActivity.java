@@ -27,6 +27,9 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.zhaorui.dvdcollector.Controller.DataManager;
+import com.example.zhaorui.dvdcollector.Controller.FriendUserController;
+import com.example.zhaorui.dvdcollector.Model.Friend;
+import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
 /**
  * <p>
@@ -41,6 +44,7 @@ public class MainActivity extends BaseActivity {
     Button btnTrade;
     Button btnFriends;
     Button btnConfig;
+    private FriendUserController friendUserController;
 
 
     @Override
@@ -53,6 +57,51 @@ public class MainActivity extends BaseActivity {
         btnConfig = (Button)findViewById(R.id.btnConfigMain);
         DataManager.instance().loadFromFile(this);
     }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+        //upload user info to the webservice
+        Friend userAsFriend = new Friend(User.instance());
+        Log.e("dvd",userAsFriend.getProfile().getName());
+        friendUserController = new FriendUserController(userAsFriend);
+        ////////////////////////////////////////////////
+        Log.e("dvd", "Here");
+
+        // Execute the thread
+        Thread thread = new AddThread(userAsFriend);
+        thread.start();
+
+    }
+
+    class AddThread extends Thread {
+        private Friend friend;
+
+        public AddThread(Friend friend) {
+            this.friend = friend;
+        }
+
+        @Override
+        public void run() {
+            friendUserController.addMovie(friend);
+
+            // Give some time to get updated info
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            runOnUiThread(doFinishAdd);
+        }
+    }
+
+    private Runnable doFinishAdd = new Runnable() {
+        public void run() {
+            finish();
+        }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

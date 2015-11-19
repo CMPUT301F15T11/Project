@@ -22,6 +22,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.zhaorui.dvdcollector.Model.ContextUtil;
+import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.MyObserver;
 import com.example.zhaorui.dvdcollector.Model.SimulatedDatabase;
 import com.example.zhaorui.dvdcollector.Model.User;
@@ -82,7 +83,7 @@ public class DataManager implements MyObserver{
      * This function loads information from file.
      */
     public void loadFromFile(Context context){
-        try {
+        try {//set the device user instance from the local file
             FileInputStream in = context.openFileInput(FILENAME);
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));
             Gson gson = new Gson();
@@ -90,6 +91,7 @@ public class DataManager implements MyObserver{
             User.instance().getInventory().fresh();
             observing();
         } catch (FileNotFoundException e) {
+            Log.e("DVD", "No local file found");
             Activity activity = (Activity) context;
             FragmentManager fm = activity.getFragmentManager();
             NameInputDialog newDialog = new NameInputDialog();
@@ -102,12 +104,18 @@ public class DataManager implements MyObserver{
      * Initialize an new user instance if the application is run for the first time
      * @param name , a string variable
      */
-    public void initFile(String name){
+    public void initFile(String name, String email){
         User.instance().getProfile().setName(name);
+        User.instance().getProfile().setContact(email);
         saveLocal();
+        /*
         //upload user info to the webservice
-        UserController userController = new UserController(User.instance());
-        userController.pushUser();///////////////////////////////////////////////////////////////
+        Friend userAsFriend = new Friend(User.instance());
+        Log.e("dvd",userAsFriend.getProfile().getName());
+        FriendUserController friendUserController = new FriendUserController(userAsFriend);
+        friendUserController.addMovie(userAsFriend);/////////////////////////////////////////////////
+        Log.e("dvd","Here");
+        */
         observing();
     }
 
@@ -172,7 +180,6 @@ public class DataManager implements MyObserver{
         }
 
         return sr.getSource();
-
     }
 
 

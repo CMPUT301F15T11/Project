@@ -30,6 +30,8 @@ import java.util.ArrayList;
  * @version 04/11/15
  */
 public class Friend {
+    private static final String RESOURCE_URL = "http://cmput301.softwareprocess.es:8080/cmput301f15t11/friend/";
+    private static final String SEARCH_URL = "http://cmput301.softwareprocess.es:8080/cmput301f15t11/friend/_search";
     /**
      * Initialize a Inventory to store the friends inventory.
      *
@@ -74,5 +76,13 @@ public class Friend {
         return profile;
     }
 
+
+    public static String getResourceUrl() {
+        return RESOURCE_URL;
+    }
+
+    public static String getSearchUrl() {
+        return SEARCH_URL;
+    }
 
 }

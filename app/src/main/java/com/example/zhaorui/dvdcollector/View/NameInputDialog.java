@@ -48,6 +48,7 @@ public class NameInputDialog extends DialogFragment {
     private View customView;
     private Button ok;
     private EditText editText;
+    private EditText editTextEmail;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -57,18 +58,20 @@ public class NameInputDialog extends DialogFragment {
         dialog.setContentView(customView);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         editText = (EditText) customView.findViewById(R.id.editText_name_input_dialog);
+        editTextEmail = (EditText) customView.findViewById(R.id.editText_name_input_email_dialog);
         ok = (Button)customView.findViewById(R.id.btn_ok_name_dialog);
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String name = editText.getText().toString();
+                String email = editTextEmail.getText().toString();
                 FriendsController fc = new FriendsController();
-                if (name.isEmpty()){
-                    Toast.makeText(ContextUtil.getInstance(), "Name can not be empty!", Toast.LENGTH_LONG).show();
-                } else if (fc.nameExist(name)) {
+                if (name.isEmpty()||email.isEmpty()){
+                    Toast.makeText(ContextUtil.getInstance(), "Name or Email can not be empty!", Toast.LENGTH_LONG).show();
+                } else if (fc.nameExist(name)) {//////////////////////need to change!!!!
                     Toast.makeText(ContextUtil.getInstance(), "Same name user existed!", Toast.LENGTH_LONG).show();
                 } else {
-                    DataManager.instance().initFile(name);
+                    DataManager.instance().initFile(name, email);
                     dialog.cancel();
                 }
             }

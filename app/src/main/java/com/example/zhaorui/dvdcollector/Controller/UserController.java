@@ -2,6 +2,7 @@ package com.example.zhaorui.dvdcollector.Controller;
 
 import android.util.Log;
 
+import com.example.zhaorui.dvdcollector.Model.ContextUtil;
 import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.es.data.SearchHit;
 import com.example.zhaorui.dvdcollector.es.data.SearchResponse;
@@ -15,12 +16,16 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -32,11 +37,21 @@ public class UserController {
     private Gson gson = new Gson();
     private User user;
     private static final String TAG = "UserController";
+    private String FILENAME;
 
 
     public UserController(User user) {
         super();
         this.user = user;
+        FILENAME = user.getProfile().getName() + ".local";
+    }
+
+    public UserController() {
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+        this.FILENAME = user.getProfile().getName() + ".local";
     }
 
     /**
@@ -44,7 +59,9 @@ public class UserController {
      */
     public void pushUser() {
         HttpClient httpClient = new DefaultHttpClient();
-
+        Log.e("DVD"+TAG, "Pushing to "+user.getResourceUrl() + user.getProfile().getName());
+    ///catch exception if not connected to the internet
+        //////////////////////////////////////////////////////////
         try {
             HttpPost addRequest = new HttpPost(user.getResourceUrl() + user.getProfile().getName());
 
@@ -55,37 +72,16 @@ public class UserController {
             HttpResponse response = httpClient.execute(addRequest);
             String status = response.getStatusLine().toString();
             Log.i(TAG, status);
+            Log.e("DVD"+TAG, status);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-    /**
-     * Deletes the movie with the specified id
-     */
-    public void deleteUser(String userName) {
-        HttpClient httpClient = new DefaultHttpClient();
-
-        try {
-            HttpDelete deleteRequest = new HttpDelete(user.getResourceUrl() + userName);
-            deleteRequest.setHeader("Accept", "application/json");
-
-            HttpResponse response = httpClient.execute(deleteRequest);
-            String status = response.getStatusLine().toString();
-            Log.i(TAG, status);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
+/*
     public User searchUser(String searchString, String field) {
         User result = new User();
 
-        /**
-         * Creates a search request from a search string and a field
-         */
 
         HttpPost searchRequest = new HttpPost(user.getSearchUrl());
 
@@ -120,9 +116,6 @@ public class UserController {
             throw new RuntimeException(e);
         }
 
-        /**
-         * Parses the response of a search
-         */
         Type searchResponseType = new TypeToken<SearchResponse<User>>() {
         }.getType();
 
@@ -149,5 +142,57 @@ public class UserController {
         movies.notifyObservers();
 
         return movies;
+    }
+*/
+    // when Controller is not specified at the first
+    // use this function to pull the user from the webservice
+    // and then call setUser function to set the user
+    public User pullUser(String userName) {
+        SearchHit<User> sr = null;
+        HttpClient httpClient = new DefaultHttpClient();
+        HttpGet httpGet = new HttpGet(user.getResourceUrl() + userName);
+
+        HttpResponse response = null;
+
+        try {
+            response = httpClient.execute(httpGet);
+        } catch (ClientProtocolException e1) {
+            throw new RuntimeException(e1);
+        } catch (IOException e1) {
+            throw new RuntimeException(e1);
+        }
+
+        Type searchHitType = new TypeToken<SearchHit<User>>() {}.getType();
+
+        try {
+            sr = gson.fromJson(
+                    new InputStreamReader(response.getEntity().getContent()),
+                    searchHitType);
+        } catch (JsonIOException e) {
+            throw new RuntimeException(e);
+        } catch (JsonSyntaxException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalStateException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return sr.getSource();
+    }
+
+    public void saveUserLocal(){
+        try {
+            FileOutputStream out = ContextUtil.getInstance().openFileOutput(FILENAME, 0);
+            OutputStreamWriter writer = new OutputStreamWriter(out);
+            Gson gson = new Gson();
+            gson.toJson(user, writer);
+            writer.flush();
+            out.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException();
+        } catch (IOException e) {
+            throw new RuntimeException();
+        }
     }
 }
