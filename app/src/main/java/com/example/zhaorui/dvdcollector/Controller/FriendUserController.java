@@ -66,7 +66,7 @@ public class FriendUserController {
             Log.e("DVD Friend Controller", gson.toJson(friend));
             addRequest.setEntity(stringEntity);
             addRequest.setHeader("Accept", "application/json");
-
+////////////////////////////////////////////////////////////////////////////////Error happened here!!!!!!!!!!!!!!!!
             HttpResponse response = httpClient.execute(addRequest);
             String status = response.getStatusLine().toString();
             Log.e("DVD Friend Controller", status);
@@ -76,7 +76,7 @@ public class FriendUserController {
         }
     }
 
-    public void addMovie(Friend movie) {
+    public void addMovie(Friend movie) {////////////////////////////////////////////
         HttpClient httpClient = new DefaultHttpClient();
 
         Log.e("MovieES", "Start adding");
