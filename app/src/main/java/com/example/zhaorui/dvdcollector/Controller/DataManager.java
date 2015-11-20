@@ -110,10 +110,10 @@ public class DataManager implements MyObserver{
         saveLocal();
 
         //upload user info to the webservice
-        Friend userAsFriend = new Friend(User.instance());
+        //Friend userAsFriend = new Friend(User.instance());
         //Log.e("dvd",userAsFriend.getProfile().getName());
-        FriendUserController friendUserController = new FriendUserController(userAsFriend);
-        friendUserController.pushFriend();/////////////////////////////////////////////////
+        //FriendUserController friendUserController = new FriendUserController(userAsFriend);
+        //friendUserController.pushFriend();/////////////////////////////////////////////////
         //Log.e("dvd","Here");
 
         observing();

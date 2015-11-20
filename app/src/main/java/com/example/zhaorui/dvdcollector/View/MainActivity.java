@@ -31,6 +31,9 @@ import com.example.zhaorui.dvdcollector.Controller.FriendUserController;
 import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
+
+import java.io.IOException;
+
 /**
  * <p>
  * The <code>MainActivity</code> class controls the user interface of the main menu.
@@ -44,6 +47,8 @@ public class MainActivity extends BaseActivity {
     Button btnTrade;
     Button btnFriends;
     Button btnConfig;
+    private Friend friend;
+    private FriendUserController friendUserController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +59,47 @@ public class MainActivity extends BaseActivity {
         btnFriends = (Button)findViewById(R.id.btnFriendsMain);
         btnConfig = (Button)findViewById(R.id.btnConfigMain);
         DataManager.instance().loadFromFile(this);
+
+        ////似乎不对 不清楚什么时候pull什么时候push
+        friend = new Friend(User.instance());
+        Thread thread = new AddThread(friend);
+        thread.start();
     }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+
+    class AddThread extends Thread {
+        private Friend friend;
+
+        public AddThread(Friend friend) {
+            this.friend = friend;
+        }
+
+        @Override
+        public void run() {
+            friendUserController = new FriendUserController(friend);
+            friendUserController.pushFriend();
+
+            // Give some time to get updated info
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            runOnUiThread(doFinishAdd);
+        }
+    }
+
+    private Runnable doFinishAdd = new Runnable() {
+        public void run() {
+        }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

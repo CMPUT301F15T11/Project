@@ -24,6 +24,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 
 /**
@@ -32,9 +33,7 @@ import java.lang.reflect.Type;
 public class FriendUserController {
     private Gson gson = new Gson();
     private Friend friend;
-    private static final String TAG = "FriendUserController";
     private String FILENAME;
-
 
     public FriendUserController(Friend friend) {
         super();
@@ -50,47 +49,34 @@ public class FriendUserController {
         this.FILENAME = friend.getProfile().getName() + ".local";
     }
 
-    /**
-     * Adds a new movie
-     */
+
     public void pushFriend() {
         HttpClient httpClient = new DefaultHttpClient();
         ///catch exception if not connected to the internet
         //////////////////////////////////////////////////////////
         try {
-            HttpPost addRequest = new HttpPost("http://cmput301.softwareprocess.es:8080/testing/movie/" + "1");
+            HttpPost addRequest = new HttpPost(friend.getResourceUrl() + friend.getProfile().getName());
 
             StringEntity stringEntity = new StringEntity(gson.toJson(friend));
-            Log.e("dvd","start");
-            Log.e("DVD Friend",friend.getResourceUrl() + "1");
+            Log.e("dvd","start pushing");
+            Log.e("DVD Friend",friend.getResourceUrl() + friend.getProfile().getName());
             Log.e("DVD Friend Controller", gson.toJson(friend));
-            addRequest.setEntity(stringEntity);
             addRequest.setHeader("Accept", "application/json");
-////////////////////////////////////////////////////////////////////////////////Error happened here!!!!!!!!!!!!!!!!
-            HttpResponse response = httpClient.execute(addRequest);
+
+            addRequest.setEntity(stringEntity);
+            HttpResponse response = null;
+            try {
+                Log.e("dvd","connecting to the webservice...");
+                response = httpClient.execute(addRequest);
+                Log.e("dvd","Done executing!!");
+            } catch (ClientProtocolException e) {
+                Log.e("dvd","Failed connecting!");
+                throw new RuntimeException(e.getMessage());
+            }
+            Log.e("dvd","Now finished");
             String status = response.getStatusLine().toString();
+            Log.e("dvd","end pushing");
             Log.e("DVD Friend Controller", status);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void addMovie(Friend movie) {////////////////////////////////////////////
-        HttpClient httpClient = new DefaultHttpClient();
-
-        Log.e("MovieES", "Start adding");
-        try {
-            HttpPost addRequest = new HttpPost("http://cmput301.softwareprocess.es:8080/testing/movie/116");
-
-            StringEntity stringEntity = new StringEntity(gson.toJson(movie));
-            Log.e("MovieES", gson.toJson(movie));
-            addRequest.setEntity(stringEntity);
-            addRequest.setHeader("Accept", "application/json");
-
-            HttpResponse response = httpClient.execute(addRequest);
-            String status = response.getStatusLine().toString();
-            Log.e("MovieES", status);
 
         } catch (Exception e) {
             e.printStackTrace();
