@@ -33,7 +33,9 @@ import android.widget.Toast;
 import com.example.zhaorui.dvdcollector.Controller.DVDController;
 import com.example.zhaorui.dvdcollector.Controller.FriendsController;
 import com.example.zhaorui.dvdcollector.Controller.InventoryController;
+import com.example.zhaorui.dvdcollector.Controller.UserHttpClient;
 import com.example.zhaorui.dvdcollector.Model.DVD;
+import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.Gallery;
 import com.example.zhaorui.dvdcollector.Model.Inventory;
 import com.example.zhaorui.dvdcollector.Model.User;
@@ -81,6 +83,10 @@ public class DVDInfoActivity extends BaseActivity {
                     ArrayList<String> info = dc.read(ic.get(position));
                     inventoryControllerClone.add(dc.create(info,info.get(5).equals("Yes"),new Gallery()));
 
+                    // push to the webservice
+                    Thread thread = new PushThread(new Friend(User.instance()));
+                    thread.start();
+
                     Toast.makeText(DVDInfoActivity.this, "Successfully cloned this dvd to my inventory", Toast.LENGTH_SHORT).show();
                     btnClone.setBackground(getResources().getDrawable(R.drawable.button_shape_grey));
                 }
@@ -104,6 +110,37 @@ public class DVDInfoActivity extends BaseActivity {
         text.setText(info.get(6));
 
     }
+
+    // will be triggered only if clone this dvd
+    // from Joshua's AndroidElasticSearch
+    class PushThread extends Thread {
+        private Friend friend;
+
+        public PushThread(Friend friend) {
+            this.friend = friend;
+        }
+
+        @Override
+        public void run() {
+            UserHttpClient userHttpClient = new UserHttpClient(friend);
+            userHttpClient.pushFriend();
+
+            // Give some time to get updated info
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            runOnUiThread(doFinishPush);
+        }
+    }
+
+    // from Joshua's AndroidElasticSearch
+    private Runnable doFinishPush = new Runnable() {
+        public void run() {
+        }
+    };
 
     public void startGallery(View view){
         // open the activity to show the list of photos attached to this dvd

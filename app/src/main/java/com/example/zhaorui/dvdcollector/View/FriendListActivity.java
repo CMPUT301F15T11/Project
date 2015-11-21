@@ -88,44 +88,6 @@ public class FriendListActivity extends BaseActivity implements MyObserver {
         });
     }
 
-    @Override
-    protected void onStop(){
-        super.onStop();
-
-        Thread thread = new PushThread(new Friend(User.instance()));
-        thread.start();
-    }
-
-    // from Joshua's AndroidElasticSearch
-    class PushThread extends Thread {
-        private Friend friend;
-
-        public PushThread(Friend friend) {
-            this.friend = friend;
-        }
-
-        @Override
-        public void run() {
-            UserHttpClient userHttpClient = new UserHttpClient(friend);
-            userHttpClient.pushFriend();
-
-            // Give some time to get updated info
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            runOnUiThread(doFinishPush);
-        }
-    }
-
-    // from Joshua's AndroidElasticSearch
-    private Runnable doFinishPush = new Runnable() {
-        public void run() {
-        }
-    };
-
     public void showSearchDialog() {
         FragmentManager fm = getFragmentManager();
         SearchDialog newDialog = new SearchDialog();
