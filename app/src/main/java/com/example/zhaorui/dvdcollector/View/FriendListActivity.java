@@ -28,7 +28,10 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.zhaorui.dvdcollector.Controller.FriendsController;
+import com.example.zhaorui.dvdcollector.Controller.UserHttpClient;
+import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.MyObserver;
+import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
 
 import java.util.Observable;
@@ -53,6 +56,12 @@ public class FriendListActivity extends BaseActivity implements MyObserver {
         setContentView(R.layout.activity_friend_list);
         fc = new FriendsController();
         fc.addObserver(this);
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, fc.getFriends());
         ListView listView = (ListView) findViewById(R.id.listViewFriendList);
         listView.setAdapter(adapter);
@@ -78,6 +87,44 @@ public class FriendListActivity extends BaseActivity implements MyObserver {
             }
         });
     }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+
+        Thread thread = new PushThread(new Friend(User.instance()));
+        thread.start();
+    }
+
+    // from Joshua's AndroidElasticSearch
+    class PushThread extends Thread {
+        private Friend friend;
+
+        public PushThread(Friend friend) {
+            this.friend = friend;
+        }
+
+        @Override
+        public void run() {
+            UserHttpClient userHttpClient = new UserHttpClient(friend);
+            userHttpClient.pushFriend();
+
+            // Give some time to get updated info
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            runOnUiThread(doFinishPush);
+        }
+    }
+
+    // from Joshua's AndroidElasticSearch
+    private Runnable doFinishPush = new Runnable() {
+        public void run() {
+        }
+    };
 
     public void showSearchDialog() {
         FragmentManager fm = getFragmentManager();

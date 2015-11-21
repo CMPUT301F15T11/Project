@@ -58,47 +58,50 @@ public class MyProfileActivity extends BaseActivity {
         city = (EditText) findViewById(R.id.city_my_profile);
         contact.setText(profile.getContact());
         city.setText(profile.getCity());
-        //Friend userAsFriend = new Friend(User.instance());
-        //userHttpClient = new UserHttpClient(userAsFriend);
     }
 
     @Override
     protected void onStart(){
         super.onStart();
-        //Thread thread = new GetThread(profile.getName());
-        //thread.start();
     }
 
     public void onProfileSave(View view){
         profile.setCity(city.getText().toString());
         profile.setContact(contact.getText().toString());
-        //userHttpClient.pushFriend();
+        Thread thread = new PushThread(new Friend(User.instance()));
+        thread.start();
         this.finish();
     }
 
-    private Runnable doUpdateGUIDetails = new Runnable() {
-        public void run() {
-            contact = (EditText) findViewById(R.id.contact_my_profile);
-            city = (EditText) findViewById(R.id.city_my_profile);
-            contact.setText(profile.getContact());
-            city.setText(profile.getCity());
-        }
-    };
+    // from Joshua's AndroidElasticSearch
+    class PushThread extends Thread {
+        private Friend friend;
 
-    class GetThread extends Thread {
-        private String userName;
-
-        public GetThread(String userName) {
-            this.userName = userName;
+        public PushThread(Friend friend) {
+            this.friend = friend;
         }
 
         @Override
         public void run() {
-            User.setInstance(userHttpClient.pullFriend(userName));
-            profile = User.instance().getProfile();
-            runOnUiThread(doUpdateGUIDetails);
+            userHttpClient = new UserHttpClient(friend);
+            userHttpClient.pushFriend();
+
+            // Give some time to get updated info
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            runOnUiThread(doFinishPush);
         }
     }
+
+    // from Joshua's AndroidElasticSearch
+    private Runnable doFinishPush = new Runnable() {
+        public void run() {
+        }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -36,14 +36,12 @@ import android.widget.Toast;
 
 import com.example.zhaorui.dvdcollector.Controller.FriendsController;
 import com.example.zhaorui.dvdcollector.Controller.InventoryController;
-import com.example.zhaorui.dvdcollector.Controller.TradeController;
 import com.example.zhaorui.dvdcollector.Controller.TradeListController;
 import com.example.zhaorui.dvdcollector.Model.MyObserver;
 import com.example.zhaorui.dvdcollector.Model.TradeList;
 import com.example.zhaorui.dvdcollector.Model.DVD;
 import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.Friends;
-import com.example.zhaorui.dvdcollector.Model.Trade;
 import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
 
@@ -77,14 +75,12 @@ public class StartTradeActivity extends BaseActivity implements MyObserver{
     String[] ownerDvdNames;
 
     //选择的dvd的缓存,可以当做intent传给下一个activity
-    ArrayList<DVD> borrowerDvdBuffer = new ArrayList<>();
-    DVD ownerDvd = null;
+    ArrayList<String> borrowerDvdNameBuffer = new ArrayList<>();
+    String ownerDvdNameBuffer = null;
 
-    ArrayList<Integer> borrowerDvdSelectedBuffer = new ArrayList<>();
+    ArrayList<Integer> borrowerDvdIndexBuffer = new ArrayList<>();
 
-    private Trade trade = new Trade();
     private TradeList tradeList = User.instance().getTradeList();
-    private TradeController tradeController = new TradeController(trade);
     private TradeListController tradeListController = new TradeListController(tradeList);
 
     @Override
@@ -123,7 +119,7 @@ public class StartTradeActivity extends BaseActivity implements MyObserver{
                 inventoryOwnerController.setInventory(owner.getInventory());
                 ownerDvdNames = inventoryOwnerController.getAllNamesFriend();
                 // in case choose another owner to trade with, clear all buffer
-                ownerDvd = null;
+                ownerDvdNameBuffer = null;
                 textView2.setText("");
 
                 ll2.setOnClickListener(new View.OnClickListener() {
@@ -145,19 +141,17 @@ public class StartTradeActivity extends BaseActivity implements MyObserver{
         btnSendRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ownerDvd!=null) {
-                    Log.e("DVD numbers for borrow", String.valueOf(borrowerDvdBuffer.size()));
+                if (ownerDvdNameBuffer !=null) {
+                    Log.e("DVD numbers for borrow", String.valueOf(borrowerDvdNameBuffer.size()));
 
                     //add info to trade
-                    tradeController.changeBorrower(User.instance().getProfile().getName());
-                    tradeController.changeOwner(owner.getProfile().getName());
-                    tradeController.addBorrowerItem(borrowerDvdBuffer);
-                    tradeController.addOwnerItem(ownerDvd);
-                    tradeController.changeType("Current Outgoing");
-                    tradeController.changeStatus("Pending");
-                    tradeController.setName();
                     // add trade to trademanager
-                    tradeListController.addTrade(trade);
+                    tradeListController.addTrade(User.instance().getProfile().getName(),
+                            owner.getProfile().getName(),
+                            borrowerDvdNameBuffer,
+                            ownerDvdNameBuffer,
+                            "Current Outgoing",
+                            "Pending");
                     //必须要求每个人都输入自己的邮箱
                     //sendEmail();
 
@@ -206,7 +200,7 @@ public class StartTradeActivity extends BaseActivity implements MyObserver{
         // load already checked items
         boolean[] checked = new boolean[inventoryBorrowerController.getSharableInventory().size()];
         for(int i=0;i<checked.length;i++) {
-            if (borrowerDvdSelectedBuffer.contains(i)) {
+            if (borrowerDvdIndexBuffer.contains(i)) {
                 checked[i] = true;
             } else {
                 checked[i] = false;
@@ -217,16 +211,16 @@ public class StartTradeActivity extends BaseActivity implements MyObserver{
             @Override
             public void onClick(DialogInterface dialog, int which, boolean isChecked) {
                 if (isChecked) { // if check the item
-                    borrowerDvdBuffer.add(inventoryBorrowerController.getSharableInventory().get(which));
-                    borrowerDvdSelectedBuffer.add(which);
+                    borrowerDvdNameBuffer.add(inventoryBorrowerController.getSharableInventory().get(which).getName());
+                    borrowerDvdIndexBuffer.add(which);
                 } else {// if un-check the item
-                    borrowerDvdBuffer.remove(inventoryBorrowerController.getSharableInventory().get(which));
-                    borrowerDvdSelectedBuffer.remove(new Integer(which));
+                    borrowerDvdNameBuffer.remove(inventoryBorrowerController.getSharableInventory().get(which).getCategory());
+                    borrowerDvdIndexBuffer.remove(new Integer(which));
                 }
 
                 // write the selected dvds to the textview
                 textView1.setText("");
-                for (int index : borrowerDvdSelectedBuffer) {
+                for (int index : borrowerDvdIndexBuffer) {
                     textView1.setText(textView1.getText() + borrowerDvdNames[index] + " ; ");
                 }
             }
@@ -248,20 +242,20 @@ public class StartTradeActivity extends BaseActivity implements MyObserver{
         builder.setTitle("Select one DVD");
 
         int checked = 0;
-        if (ownerDvd!=null){ // if have selected a dvd before
+        if (ownerDvdNameBuffer !=null){ // if have selected a dvd before
             for (int i=0;i<ownerDvdNames.length;i++){
-                if(ownerDvdNames[i].equals(ownerDvd.getName())){
+                if(ownerDvdNames[i].equals(ownerDvdNameBuffer)){
                     checked = i;
                 }
             }
         }else{ // if it's the first time selecting owner's dvd
-            ownerDvd = inventoryOwnerController.getInventory().get(checked);
+            ownerDvdNameBuffer = inventoryOwnerController.getInventory().get(checked).getName();
         }
 
         builder.setSingleChoiceItems(ownerDvdNames, checked, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                ownerDvd = inventoryOwnerController.getInventory().get(which);
+                ownerDvdNameBuffer = inventoryOwnerController.getInventory().get(which).getName();
             }
         });
 
@@ -270,7 +264,7 @@ public class StartTradeActivity extends BaseActivity implements MyObserver{
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // write the selected dvd to the textview
-                textView2.setText(ownerDvd.getName());
+                textView2.setText(ownerDvdNameBuffer);
 
             }
         });

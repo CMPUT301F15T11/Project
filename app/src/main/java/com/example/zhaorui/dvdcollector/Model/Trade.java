@@ -54,7 +54,15 @@ public class Trade {
 
     private String ownerItem;
 
-    public Trade() {
+    public Trade(String borrower, String owner, ArrayList<String> borrowerItemNames,
+                 String ownerItemName, String type, String status) {
+        this.borrower = borrower;
+        this.owner = owner;
+        this.borrowerItemList = borrowerItemNames;
+        this.ownerItem = ownerItemName;
+        this.type = type;
+        this.status = status;
+
     }
 
     /**
@@ -98,16 +106,6 @@ public class Trade {
         if (str == "email already sent") return false;//wait for coding
         return true;
     }
-
-    /*
-    public void setBorrower(User borrower) {
-        this.borrower = borrower;
-    }*/
-
-    /*
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }*/
 
     public void setType(String type) {
         this.type = type;

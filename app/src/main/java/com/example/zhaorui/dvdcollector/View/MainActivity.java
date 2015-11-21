@@ -54,42 +54,8 @@ public class MainActivity extends BaseActivity {
         btnFriends = (Button)findViewById(R.id.btnFriendsMain);
         btnConfig = (Button)findViewById(R.id.btnConfigMain);
         DataManager.instance().loadFromFile(this);
-
-        ////似乎不对 不清楚什么时候pull什么时候push
-        //friend = new Friend(User.instance());
-        //Thread thread = new PushThread(friend);
-        //thread.start();
     }
 
-    // from Joshua's AndroidElasticSearch
-    class PushThread extends Thread {
-        private Friend friend;
-
-        public PushThread(Friend friend) {
-            this.friend = friend;
-        }
-
-        @Override
-        public void run() {
-            userHttpClient = new UserHttpClient(friend);
-            userHttpClient.pushFriend();
-
-            // Give some time to get updated info
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            runOnUiThread(doFinishPush);
-        }
-    }
-
-    // from Joshua's AndroidElasticSearch
-    private Runnable doFinishPush = new Runnable() {
-        public void run() {
-        }
-    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

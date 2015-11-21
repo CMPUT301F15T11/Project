@@ -1,8 +1,11 @@
 package com.example.zhaorui.dvdcollector.Controller;
 
+import android.widget.Toast;
+
 import com.example.zhaorui.dvdcollector.Model.ObserverManager;
 import com.example.zhaorui.dvdcollector.Model.Trade;
 import com.example.zhaorui.dvdcollector.Model.TradeList;
+import com.example.zhaorui.dvdcollector.Model.User;
 
 import java.util.ArrayList;
 import java.util.Observer;
@@ -17,7 +20,16 @@ public class TradeListController {
         this.trades = trades;
     }
 
-    public void addTrade(Trade trade){
+    public void addTrade(String borrower, String owner, ArrayList<String> borrowerItemNames,
+                         String ownerItemName, String type, String status){
+        Trade trade = new Trade(borrower,owner,borrowerItemNames,ownerItemName,type,status);
+        if (trade.getType().equals("Current Outgoing") || trade.getType().equals("Past Outgoing")) {
+            trade.setName(trade.getType() + " with " + trade.getOwner() +
+                    "\nID: " + String.valueOf(System.currentTimeMillis()));
+        }else{
+            trade.setName(trade.getType() + " trade with " + trade.getBorrower() +
+                    "\nID: " + String.valueOf(System.currentTimeMillis()));
+        }
         trades.add(trade);
         ObserverManager.getInstance().notifying(this);
     }
@@ -54,6 +66,14 @@ public class TradeListController {
         return names;
     }
 
+    public Trade getTradeByName(String name){
+        for(Trade aTrade : trades){
+            if(aTrade.getName().equals(name))
+                return aTrade;
+        }
+        return null;
+    }
+
     public ArrayList<Trade> getTradeRequests(){
         ArrayList<Trade> tradesToReturn = new ArrayList<>();
         for(Trade aTrade : trades){
@@ -66,7 +86,7 @@ public class TradeListController {
 
     public int getSuccessTimes(){
         int count = 0;
-        for(Trade aTrade : trades.getTrades()){
+        for(Trade aTrade : trades){
             if (aTrade.getStatus()!="Declined"){
                 count++;
             }
@@ -78,11 +98,62 @@ public class TradeListController {
         ObserverManager.getInstance().addObserver(this,o);
     }
 
-    public void setType(String name, String type){
+    // change the trade's type based on its current type
+    public void setTradeType(String name){
         for (Trade trade : trades){
             if (trade.getName().equals(name)){
-                trade.setType(type);
-                ObserverManager.getInstance().notifying(this);
+                if(trade.getType().equals("Current Incoming")) {
+                    trade.setType("Past Incoming");
+                    ObserverManager.getInstance().notifying(this);
+                    return;
+                }else if (trade.getType().equals("Current Outgoing")){
+                    trade.setType("Past Outgoing");
+                    ObserverManager.getInstance().notifying(this);
+                    return;
+                }else {
+                    return;
+                    // do nothing
+                }
+            }
+        }
+    }
+
+    // change a trade request's status and type
+    public void setTradeResult(String name, Boolean isAccepted){
+        for (Trade trade : trades){
+            if(trade.getName().equals(name)){
+                if(isAccepted && trade.getStatus().equals("Pending")){
+                    trade.setStatus("In-progress");
+                    //////
+                }else if(!isAccepted && trade.getStatus().equals("Pending")){
+                    trade.setStatus("Declined");
+                    setTradeType(trade.getName());
+                }
+                break;
+            }
+        }
+    }
+
+    // set an In-progress trade to Complete status
+    public void setTradeComplete(String name){
+        for (Trade trade : trades){
+            if (trade.getName().equals(name)){
+                switch (trade.getStatus()) {
+                    case "Pending":
+                        break;
+                    case "In-progress"://Set to complete also set type to past
+                        if(trade.getOwner().equals(User.instance().getProfile().getName())) {
+                            trade.setType("Complete");
+                            setTradeType(trade.getName());
+                            ObserverManager.getInstance().notifying(this);
+                        }
+                        break;
+                    case "Complete":
+                        break;
+                    case "Declined":
+                        break;
+                }
+                break;
             }
         }
     }

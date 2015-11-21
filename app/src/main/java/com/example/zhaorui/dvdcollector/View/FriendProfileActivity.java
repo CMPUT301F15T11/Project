@@ -20,9 +20,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.zhaorui.dvdcollector.Controller.FriendsController;
+import com.example.zhaorui.dvdcollector.Controller.UserHttpClient;
+import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.Model.UserProfile;
 import com.example.zhaorui.dvdcollector.R;
@@ -39,21 +42,47 @@ import org.w3c.dom.Text;
  */
 public class FriendProfileActivity extends BaseActivity {
     FriendsController fc;
+    private UserHttpClient userHttpClient;
+    private Friend friendToShow;
+
+    TextView text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend_profile);
         fc = new FriendsController();
-        int position = getIntent().getIntExtra("position",-1);
-        UserProfile profile = fc.get(position).getProfile();
-        TextView text;
-        text = (TextView) findViewById(R.id.tv_friend_profile_name);
-        text.setText(profile.getName());
-        text = (TextView) findViewById(R.id.tv_friend_profile_contact);
-        text.setText(profile.getContact());
-        text = (TextView) findViewById(R.id.tv_friend_profile_city);
-        text.setText(profile.getCity());
+        userHttpClient = new UserHttpClient();
+        int position = getIntent().getIntExtra("position", -1);
+        Thread getThread = new GetThread(fc.getNameByIndex(position));
+        getThread.start();
     }
 
+
+    class GetThread extends Thread {
+        private String userName;
+
+        public GetThread(String userName) {
+            this.userName = userName;
+        }
+
+        @Override
+        public void run() {
+            friendToShow = new Friend(userHttpClient.pullFriend(userName));
+            fc.putFriendInCache(friendToShow);
+            runOnUiThread(doUpdateGUIDetails);
+        }
+    }
+
+    private Runnable doUpdateGUIDetails = new Runnable() {
+        public void run() {
+            UserProfile profile = friendToShow.getProfile();
+            text = (TextView) findViewById(R.id.tv_friend_profile_name);
+            text.setText(profile.getName());
+            text = (TextView) findViewById(R.id.tv_friend_profile_contact);
+            text.setText(profile.getContact());
+            text = (TextView) findViewById(R.id.tv_friend_profile_city);
+            text.setText(profile.getCity());
+        }
+    };
 }

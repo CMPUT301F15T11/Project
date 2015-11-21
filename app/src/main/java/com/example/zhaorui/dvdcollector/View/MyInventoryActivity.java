@@ -27,9 +27,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.zhaorui.dvdcollector.Controller.UserHttpClient;
 import com.example.zhaorui.dvdcollector.Model.DVD;
 import com.example.zhaorui.dvdcollector.Controller.InventoryController;
+import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.MyObserver;
+import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
 
 import java.util.Observable;
@@ -88,6 +91,44 @@ public class MyInventoryActivity extends BaseActivity implements MyObserver {
         adapter = new ArrayAdapter<DVD>(MyInventoryActivity.this, android.R.layout.simple_list_item_1, controller.getInventory());
         listView.setAdapter(adapter);
     }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+
+        Thread thread = new PushThread(new Friend(User.instance()));
+        thread.start();
+    }
+
+    // from Joshua's AndroidElasticSearch
+    class PushThread extends Thread {
+        private Friend friend;
+
+        public PushThread(Friend friend) {
+            this.friend = friend;
+        }
+
+        @Override
+        public void run() {
+            UserHttpClient userHttpClient = new UserHttpClient(friend);
+            userHttpClient.pushFriend();
+
+            // Give some time to get updated info
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            runOnUiThread(doFinishPush);
+        }
+    }
+
+    // from Joshua's AndroidElasticSearch
+    private Runnable doFinishPush = new Runnable() {
+        public void run() {
+        }
+    };
 
     private void showSearchDialog() {
         FragmentManager fm = getFragmentManager();

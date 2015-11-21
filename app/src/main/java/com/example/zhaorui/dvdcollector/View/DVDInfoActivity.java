@@ -82,6 +82,7 @@ public class DVDInfoActivity extends BaseActivity {
                     inventoryControllerClone.add(dc.create(info,info.get(5).equals("Yes"),new Gallery()));
 
                     Toast.makeText(DVDInfoActivity.this, "Successfully cloned this dvd to my inventory", Toast.LENGTH_SHORT).show();
+                    btnClone.setBackground(getResources().getDrawable(R.drawable.button_shape_grey));
                 }
             });
 

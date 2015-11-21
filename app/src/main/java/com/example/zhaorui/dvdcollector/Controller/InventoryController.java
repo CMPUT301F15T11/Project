@@ -85,6 +85,15 @@ public class InventoryController {
      * @return the inventory in the selected index
      */
     public DVD get(int index){ return inventory.get(index);}
+
+    public DVD getByName(String name){
+        for (DVD dvd:inventory){
+            if(dvd.getName().equals(name)){
+                return dvd;
+            }
+        }
+        return null;
+    }
     /**
      * This function is called when other function need to get a dvd by index.
      * @param dvd , a DVD variable

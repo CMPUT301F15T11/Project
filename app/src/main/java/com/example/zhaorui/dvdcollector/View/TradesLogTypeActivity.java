@@ -47,16 +47,21 @@ public class TradesLogTypeActivity extends BaseActivity {
     private ArrayList<String> tradeNames;
     private TradeList tradeList = User.instance().getTradeList();
     private TradeListController tradeListController = new TradeListController(tradeList);
+    private String type;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trades_log);
         Intent i = getIntent();
-        final String type = i.getStringExtra("type");
+        type = i.getStringExtra("type");
 
         ArrayList<Trade> tradesToShow = tradeListController.getTradesOfType(type);
         tradeNames = tradeListController.getNames(tradesToShow);
+    }
 
+    @Override
+    protected void onStart(){
+        super.onStart();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(TradesLogTypeActivity.this, android.R.layout.simple_list_item_1, tradeNames);
         ListView listView = (ListView) findViewById(R.id.listView_trades_log);
         listView.setAdapter(adapter);
@@ -67,13 +72,13 @@ public class TradesLogTypeActivity extends BaseActivity {
                                     long id) {
                 // if click on the listview item, show the image on a new activity
                 Intent i = new Intent(TradesLogTypeActivity.this, TradeDetailActivity.class);
-                i.putExtra("type",type);
+                i.putExtra("type", type);
                 i.putExtra("position", position);
+                i.putExtra("name", tradeNames.get(position));
                 startActivity(i);
             }
         });
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

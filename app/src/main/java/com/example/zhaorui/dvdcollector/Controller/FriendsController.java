@@ -17,6 +17,8 @@
 */
 package com.example.zhaorui.dvdcollector.Controller;
 
+import android.util.Log;
+
 import com.example.zhaorui.dvdcollector.Model.Cache;
 import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.Friends;
@@ -45,6 +47,8 @@ import java.util.Observer;
 public class FriendsController {
     private Friends friends;
     private Cache cache;
+    private UserHttpClient userHttpClient = new UserHttpClient();
+    private Boolean result;
 
     /**
      * Get friend list
@@ -77,7 +81,20 @@ public class FriendsController {
             friend.getInventory().fresh();
             cache.put(name, friend);
         }
-            return cache.get(name);
+        return cache.get(name);
+    }
+
+    public String getNameByIndex(int index){
+        String name = friends.get(index);
+        return name;
+    }
+
+    public void putFriendInCache(Friend friend){
+        String name = friend.getProfile().getName();
+        if (!cache.containsKey(name)) {
+            friend.getInventory().fresh();
+            cache.put(name, friend);
+        }
     }
 
     public Friend getByName(String name){
@@ -120,5 +137,28 @@ public class FriendsController {
         ObserverManager.getInstance().addObserver(friends,o);
     }
 
-    public boolean nameExist(String name){ return SimulatedDatabase.nameExist(name);}
+    // if there exist this name in webservice database, return true
+    public boolean nameExist(String name){
+        //return SimulatedDatabase.nameExist(name);
+        SearchThread thread = new SearchThread(name);
+        thread.start();
+
+        while (result==null){//do nothing but wait
+        }
+        return result;
+    }
+
+    class SearchThread extends Thread {
+        private String search;
+
+        public SearchThread(String search) {
+            this.search = search;
+        }
+
+        @Override
+        public void run() {
+            UserHttpClient userHttpClient1 = new UserHttpClient();
+            result = userHttpClient1.searchFriend(search, null);
+        }
+    }
 }

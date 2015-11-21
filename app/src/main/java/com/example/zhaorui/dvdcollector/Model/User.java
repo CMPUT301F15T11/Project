@@ -28,8 +28,6 @@ import com.example.zhaorui.dvdcollector.Controller.DataManager;
  * @version 01/11/15
  */
 public class User{
-    private static final String RESOURCE_URL = "http://cmput301.softwareprocess.es:8080/cmput301f15t11/users/";
-    private static final String SEARCH_URL = "http://cmput301.softwareprocess.es:8080/cmput301f15t11/users/_search";
     static private User instance;
     /**
      * initialize a Friends to store user's friends.
@@ -87,13 +85,5 @@ public class User{
      */
     public UserProfile getProfile() {
         return profile;
-    }
-
-    public static String getResourceUrl() {
-        return RESOURCE_URL;
-    }
-
-    public static String getSearchUrl() {
-        return SEARCH_URL;
     }
 }
