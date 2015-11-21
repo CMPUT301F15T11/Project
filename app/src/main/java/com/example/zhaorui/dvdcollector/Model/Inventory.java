@@ -40,10 +40,6 @@ import java.util.Observer;
  */
 public class Inventory extends ArrayList<DVD>{
     /**
-     * initialize the observer.
-     */
-    private Obs obs;
-    /**
      * initialize categoryInventories,m a hash map which maps categories and dvd together,
      * @see java.util.HashMap
      */
@@ -61,7 +57,6 @@ public class Inventory extends ArrayList<DVD>{
      * Create a new list of inventories, map dvds and categories together.
      */
     public Inventory(){
-        obs = new Obs();
         categoryInventories = new HashMap<>();
         String[] categories = DVD.getCategories();
         for( String category : categories){
@@ -77,7 +72,7 @@ public class Inventory extends ArrayList<DVD>{
     public void append(DVD dvd){
         add(dvd);
         categoryInventories.get(dvd.getCategory()).add(dvd);
-        obs.notifying();
+        ObserverManager.getInstance().notifying(this);
     }
     /**
      * Delete a new DVD to the hash map
@@ -87,31 +82,14 @@ public class Inventory extends ArrayList<DVD>{
     public void delete(DVD dvd){
         remove(dvd);
         categoryInventories.get(dvd.getCategory()).remove(dvd);
-        obs.notifying();
+        ObserverManager.getInstance().notifying(this);
     }
 
     public void edit(DVD dvd,DVD dvd2){
         categoryInventories.get(dvd.getCategory()).remove(dvd);
         set(indexOf(dvd), dvd2);
         categoryInventories.get(dvd2.getCategory()).add(dvd2);
-        obs.notifying();
-    }
-    /**
-     * This class extends the class Observable
-     * implement new function notifying.
-     */
-    private class Obs extends Observable{
-        public void notifying(){
-            super.setChanged();
-            super.notifyObservers();
-        }
-    }
-    /**
-     * Get obs from Observable
-     * @return  an Observable obs.
-     */
-    public Observable getObs() {
-        return obs;
+        ObserverManager.getInstance().notifying(this);
     }
 
     public void fresh(){
@@ -119,6 +97,4 @@ public class Inventory extends ArrayList<DVD>{
             edit(dvd,dvd);
         }
     }
-
-
 }

@@ -19,6 +19,7 @@ package com.example.zhaorui.dvdcollector.Controller;
 
 import com.example.zhaorui.dvdcollector.Model.DVD;
 import com.example.zhaorui.dvdcollector.Model.Inventory;
+import com.example.zhaorui.dvdcollector.Model.ObserverManager;
 import com.example.zhaorui.dvdcollector.Model.User;
 
 import java.util.ArrayList;
@@ -108,7 +109,7 @@ public class InventoryController {
      * @param o , an observer
      */
     public void addObserver(Observer o){
-        inventory.getObs().addObserver(o);
+        ObserverManager.getInstance().addObserver(inventory,o);
     }
     /**
      * To test if a dvd is in inventory.

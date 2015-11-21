@@ -45,11 +45,11 @@ public class TradeController {
         trade.setStatus(status);
     }
 
-    public void addBorrowerItem(ArrayList<DVD> dvds){
+    public void addBorrowerItem(ArrayList<String> dvds){
         trade.setBorrowerItemList(dvds);
     }
 
-    public void addOwnerItem(DVD dvd){
+    public void addOwnerItem(String dvd){
         trade.setOwnerItem(dvd);
     }
 

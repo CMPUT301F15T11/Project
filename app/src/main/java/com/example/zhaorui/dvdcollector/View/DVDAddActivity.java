@@ -69,7 +69,7 @@ public class DVDAddActivity extends BaseActivity {
     private GalleryController gc;
 
     private RatingBar ratingBar;
-    private String ratingStr;
+    private String ratingStr = "0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +106,11 @@ public class DVDAddActivity extends BaseActivity {
             text.setText(info.get(1));
             text = (EditText) findViewById(R.id.et_add_quantity);
             text.setText(info.get(2));
+            Log.e("DVD", info.get(3));
             switch (info.get(3)){
+                case "0":
+                    ratingBar.setRating(0);
+                    break;
                 case "1":
                     ratingBar.setRating(1);
                     break;

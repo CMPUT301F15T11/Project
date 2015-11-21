@@ -30,18 +30,18 @@ import java.lang.reflect.Type;
 /**
  * Created by zhaorui on 11/19/15.
  */
-public class FriendUserController {
+public class UserHttpClient {
     private Gson gson = new Gson();
     private Friend friend;
     private String FILENAME;
 
-    public FriendUserController(Friend friend) {
+    public UserHttpClient(Friend friend) {
         super();
         this.friend = friend;
         FILENAME = friend.getProfile().getName() + ".local";
     }
 
-    public FriendUserController() {
+    public UserHttpClient() {
     }
 
     public void setUser(Friend friend) {
@@ -82,72 +82,7 @@ public class FriendUserController {
             e.printStackTrace();
         }
     }
-    /*
-        public User searchUser(String searchString, String field) {
-            User result = new User();
 
-
-            HttpPost searchRequest = new HttpPost(user.getSearchUrl());
-
-            String[] fields = null;
-            if (field != null) {
-                throw new UnsupportedOperationException("Not implemented!");
-            }
-
-            SimpleSearchCommand command = new SimpleSearchCommand(searchString);
-
-            String query = gson.toJson(command);
-            Log.i(TAG, "Json command: " + query);
-
-            StringEntity stringEntity = null;
-            try {
-                stringEntity = new StringEntity(query);
-            } catch (UnsupportedEncodingException e) {
-                throw new RuntimeException(e);
-            }
-
-            searchRequest.setHeader("Accept", "application/json");
-            searchRequest.setEntity(stringEntity);
-
-            HttpClient httpClient = new DefaultHttpClient();
-
-            HttpResponse response = null;
-            try {
-                response = httpClient.execute(searchRequest);
-            } catch (ClientProtocolException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-            Type searchResponseType = new TypeToken<SearchResponse<User>>() {
-            }.getType();
-
-            SearchResponse<User> esResponse;
-
-            try {
-                esResponse = gson.fromJson(
-                        new InputStreamReader(response.getEntity().getContent()),
-                        searchResponseType);
-            } catch (JsonIOException e) {
-                throw new RuntimeException(e);
-            } catch (JsonSyntaxException e) {
-                throw new RuntimeException(e);
-            } catch (IllegalStateException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-            for (SearchHit<User> hit: esResponse.getHits().getHits()){
-                movies.add(hit.getSource());
-            }
-
-            movies.notifyObservers();
-
-            return movies;
-        }
-    */
     // when Controller is not specified at the first
     // use this function to pull the user from the webservice
     // and then call setUser function to set the user

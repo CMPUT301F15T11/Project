@@ -1,5 +1,6 @@
 package com.example.zhaorui.dvdcollector.Controller;
 
+import com.example.zhaorui.dvdcollector.Model.ObserverManager;
 import com.example.zhaorui.dvdcollector.Model.Trade;
 import com.example.zhaorui.dvdcollector.Model.TradeList;
 
@@ -17,15 +18,14 @@ public class TradeListController {
     }
 
     public void addTrade(Trade trade){
-        ArrayList<Trade> tm = trades.getTrades();
-        tm.add(trade);
-        trades.setTrades(tm);
+        trades.add(trade);
+        ObserverManager.getInstance().notifying(this);
     }
 
     // get all trades of the specified type, eg. "Current Outgoing"
     public ArrayList<Trade> getTradesOfType(String type){
-        ArrayList<Trade> tradesToReturn = new ArrayList<>();
-        for (Trade aTrade : trades.getTrades()){
+        TradeList tradesToReturn = new TradeList();
+        for (Trade aTrade : trades){
             if (aTrade.getType().equals(type)){
                 tradesToReturn.add(aTrade);
             }
@@ -36,7 +36,7 @@ public class TradeListController {
     // get all trades of the specified status,  eg. "In-progress"
     public ArrayList<Trade> getTradeOfStatus(String status){
         ArrayList<Trade> tradesToReturn = new ArrayList<>();
-        for (Trade aTrade : this.trades.getTrades()){
+        for (Trade aTrade : this.trades){
             if (aTrade.getStatus().equals(status)){
                 tradesToReturn.add(aTrade);
             }
@@ -56,7 +56,7 @@ public class TradeListController {
 
     public ArrayList<Trade> getTradeRequests(){
         ArrayList<Trade> tradesToReturn = new ArrayList<>();
-        for(Trade aTrade : trades.getTrades()){
+        for(Trade aTrade : trades){
             if (aTrade.getStatus().equals("Pending") && aTrade.getType().equals("Current Incoming")){
                 tradesToReturn.add(aTrade);
             }
@@ -75,6 +75,15 @@ public class TradeListController {
     }
 
     public void addObserver(Observer o){
-        trades.getObs().addObserver(o);
+        ObserverManager.getInstance().addObserver(this,o);
+    }
+
+    public void setType(String name, String type){
+        for (Trade trade : trades){
+            if (trade.getName().equals(name)){
+                trade.setType(type);
+                ObserverManager.getInstance().notifying(this);
+            }
+        }
     }
 }

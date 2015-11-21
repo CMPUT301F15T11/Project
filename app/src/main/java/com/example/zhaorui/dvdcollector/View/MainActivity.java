@@ -16,23 +16,18 @@
 */
 package com.example.zhaorui.dvdcollector.View;
 
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.zhaorui.dvdcollector.Controller.DataManager;
-import com.example.zhaorui.dvdcollector.Controller.FriendUserController;
+import com.example.zhaorui.dvdcollector.Controller.UserHttpClient;
 import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
-
-import java.io.IOException;
 
 /**
  * <p>
@@ -48,7 +43,7 @@ public class MainActivity extends BaseActivity {
     Button btnFriends;
     Button btnConfig;
     private Friend friend;
-    private FriendUserController friendUserController;
+    private UserHttpClient userHttpClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,29 +56,23 @@ public class MainActivity extends BaseActivity {
         DataManager.instance().loadFromFile(this);
 
         ////似乎不对 不清楚什么时候pull什么时候push
-        friend = new Friend(User.instance());
-        Thread thread = new AddThread(friend);
-        thread.start();
+        //friend = new Friend(User.instance());
+        //Thread thread = new PushThread(friend);
+        //thread.start();
     }
 
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-
-    class AddThread extends Thread {
+    // from Joshua's AndroidElasticSearch
+    class PushThread extends Thread {
         private Friend friend;
 
-        public AddThread(Friend friend) {
+        public PushThread(Friend friend) {
             this.friend = friend;
         }
 
         @Override
         public void run() {
-            friendUserController = new FriendUserController(friend);
-            friendUserController.pushFriend();
+            userHttpClient = new UserHttpClient(friend);
+            userHttpClient.pushFriend();
 
             // Give some time to get updated info
             try {
@@ -92,11 +81,12 @@ public class MainActivity extends BaseActivity {
                 e.printStackTrace();
             }
 
-            runOnUiThread(doFinishAdd);
+            runOnUiThread(doFinishPush);
         }
     }
 
-    private Runnable doFinishAdd = new Runnable() {
+    // from Joshua's AndroidElasticSearch
+    private Runnable doFinishPush = new Runnable() {
         public void run() {
         }
     };

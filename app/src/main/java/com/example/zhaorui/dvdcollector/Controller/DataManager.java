@@ -24,6 +24,7 @@ import android.util.Log;
 import com.example.zhaorui.dvdcollector.Model.ContextUtil;
 import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.MyObserver;
+import com.example.zhaorui.dvdcollector.Model.ObserverManager;
 import com.example.zhaorui.dvdcollector.Model.SimulatedDatabase;
 import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.View.NameInputDialog;
@@ -66,7 +67,6 @@ import java.util.Observable;
 public class DataManager implements MyObserver{
     private static final String FILENAME = "DVDCollector.Local";
     private static DataManager instance;
-    private Gson gson = new Gson();
 
     public static DataManager instance(){
         if (instance == null){
@@ -112,7 +112,7 @@ public class DataManager implements MyObserver{
         //upload user info to the webservice
         //Friend userAsFriend = new Friend(User.instance());
         //Log.e("dvd",userAsFriend.getProfile().getName());
-        //FriendUserController friendUserController = new FriendUserController(userAsFriend);
+        //UserHttpClient friendUserController = new UserHttpClient(userAsFriend);
         //friendUserController.pushFriend();/////////////////////////////////////////////////
         //Log.e("dvd","Here");
 
@@ -120,14 +120,10 @@ public class DataManager implements MyObserver{
     }
 
     private void observing(){
-        User.instance().getProfile().deleteObservers();
-        User.instance().getProfile().addObserver(this);
-        User.instance().getInventory().getObs().deleteObservers();
-        User.instance().getInventory().getObs().addObserver(this);
-        User.instance().getFriends().getObs().deleteObservers();
-        User.instance().getFriends().getObs().addObserver(this);
-        //User.instance().getTradeList().getObs().deleteObservers();
-        //User.instance().getTradeList().getObs().addObserver(this);
+        ObserverManager.getInstance().addObserver(User.instance().getProfile(),this);
+        ObserverManager.getInstance().addObserver(User.instance().getInventory(), this);
+        ObserverManager.getInstance().addObserver(User.instance().getFriends(),this);
+        ObserverManager.getInstance().addObserver(User.instance().getTradeList(),this);
     }
     /**
      * This function adds observers to user's profile and user's inventory.
@@ -146,40 +142,6 @@ public class DataManager implements MyObserver{
         } catch (IOException e) {
             throw new RuntimeException();
         }
-    }
-
-    public User getUser(User user) {
-        SearchHit<User> sr = null;
-        HttpClient httpClient = new DefaultHttpClient();
-        HttpGet httpGet = new HttpGet(user.getResourceUrl() + user.getProfile().getName());
-
-        HttpResponse response = null;
-
-        try {
-            response = httpClient.execute(httpGet);
-        } catch (ClientProtocolException e1) {
-            throw new RuntimeException(e1);
-        } catch (IOException e1) {
-            throw new RuntimeException(e1);
-        }
-
-        Type searchHitType = new TypeToken<SearchHit<User>>() {}.getType();
-
-        try {
-            sr = gson.fromJson(
-                    new InputStreamReader(response.getEntity().getContent()),
-                    searchHitType);
-        } catch (JsonIOException e) {
-            throw new RuntimeException(e);
-        } catch (JsonSyntaxException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalStateException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        return sr.getSource();
     }
 
 

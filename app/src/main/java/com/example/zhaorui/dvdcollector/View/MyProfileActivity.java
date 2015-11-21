@@ -26,6 +26,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.zhaorui.dvdcollector.Controller.DataManager;
+import com.example.zhaorui.dvdcollector.Controller.UserHttpClient;
+import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.Model.UserProfile;
 import com.example.zhaorui.dvdcollector.R;
@@ -42,6 +44,8 @@ public class MyProfileActivity extends BaseActivity {
     private EditText contact;
     private EditText city;
     private UserProfile profile;
+    private UserHttpClient userHttpClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,16 +53,51 @@ public class MyProfileActivity extends BaseActivity {
         TextView name = (TextView) findViewById(R.id.name_my_profile);
         profile = User.instance().getProfile();
         name.setText(profile.getName());
+
         contact = (EditText) findViewById(R.id.contact_my_profile);
         city = (EditText) findViewById(R.id.city_my_profile);
         contact.setText(profile.getContact());
         city.setText(profile.getCity());
+        //Friend userAsFriend = new Friend(User.instance());
+        //userHttpClient = new UserHttpClient(userAsFriend);
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        //Thread thread = new GetThread(profile.getName());
+        //thread.start();
     }
 
     public void onProfileSave(View view){
         profile.setCity(city.getText().toString());
         profile.setContact(contact.getText().toString());
+        //userHttpClient.pushFriend();
         this.finish();
+    }
+
+    private Runnable doUpdateGUIDetails = new Runnable() {
+        public void run() {
+            contact = (EditText) findViewById(R.id.contact_my_profile);
+            city = (EditText) findViewById(R.id.city_my_profile);
+            contact.setText(profile.getContact());
+            city.setText(profile.getCity());
+        }
+    };
+
+    class GetThread extends Thread {
+        private String userName;
+
+        public GetThread(String userName) {
+            this.userName = userName;
+        }
+
+        @Override
+        public void run() {
+            User.setInstance(userHttpClient.pullFriend(userName));
+            profile = User.instance().getProfile();
+            runOnUiThread(doUpdateGUIDetails);
+        }
     }
 
     @Override

@@ -20,6 +20,7 @@ package com.example.zhaorui.dvdcollector.Controller;
 import com.example.zhaorui.dvdcollector.Model.Cache;
 import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.Friends;
+import com.example.zhaorui.dvdcollector.Model.ObserverManager;
 import com.example.zhaorui.dvdcollector.Model.SimulatedDatabase;
 import com.example.zhaorui.dvdcollector.Model.User;
 import com.google.gson.Gson;
@@ -116,7 +117,7 @@ public class FriendsController {
      * @param o , an observer.
      */
     public void addObserver(Observer o){
-        friends.getObs().addObserver(o);
+        ObserverManager.getInstance().addObserver(friends,o);
     }
 
     public boolean nameExist(String name){ return SimulatedDatabase.nameExist(name);}

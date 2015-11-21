@@ -50,20 +50,9 @@ public class Trade {
      * Initialize a array list to store the dvds in the current trade.
      *
      */
-    public ArrayList<DVD> borrowerItemList;
+    private ArrayList<String> borrowerItemList;
 
-    public DVD ownerItem;
-    /**
-     * To set the borrower and the owner of the trade
-     * @param borrower , a user variable
-     * @param owner ,a user variable
-     */
-    /*
-    public Trade(User borrower, User owner) {
-        this.borrower = borrower;
-        this.owner = owner;
-    }
-    */
+    private String ownerItem;
 
     public Trade() {
     }
@@ -124,11 +113,11 @@ public class Trade {
         this.type = type;
     }
 
-    public void setBorrowerItemList(ArrayList<DVD> borrowerItemList) {
+    public void setBorrowerItemList(ArrayList<String> borrowerItemList) {
         this.borrowerItemList = borrowerItemList;
     }
 
-    public void setOwnerItem(DVD ownerItem) {
+    public void setOwnerItem(String ownerItem) {
         this.ownerItem = ownerItem;
     }
 
@@ -157,11 +146,11 @@ public class Trade {
         this.owner = owner;
     }
 
-    public ArrayList<DVD> getBorrowerItemList() {
+    public ArrayList<String> getBorrowerItemList() {
         return borrowerItemList;
     }
 
-    public DVD getOwnerItem() {
+    public String getOwnerItem() {
         return ownerItem;
     }
 

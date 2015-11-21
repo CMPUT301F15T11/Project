@@ -16,6 +16,7 @@
 */
 package com.example.zhaorui.dvdcollector.Model;
 
+import com.example.zhaorui.dvdcollector.Controller.InventoryController;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -42,9 +43,7 @@ public class Friend {
      *
      */
     private UserProfile profile;
-
-    private Friends friends;
-    private TradeList tradeList;
+    //private TradeList tradeList;
     /**
      * To get the selected friend's information.
      * @param user ,the selected friend.
@@ -52,12 +51,7 @@ public class Friend {
 
     public Friend(User user){
         inventory = user.getInventory();
-        inventory.getObs().deleteObservers();
         profile = user.getProfile();
-        profile.deleteObservers();
-        friends = user.getFriends();
-        friends.getObs().deleteObservers();
-        tradeList = user.getTradeList();
     }
     /**
      * To store the select friend's information.
@@ -82,13 +76,6 @@ public class Friend {
         return profile;
     }
 
-    public void setFriends(Friends friends) {
-        this.friends = friends;
-    }
-
-    public void setTradeList(TradeList tradeList) {
-        this.tradeList = tradeList;
-    }
 
     public static String getResourceUrl() {
         return RESOURCE_URL;
