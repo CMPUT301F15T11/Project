@@ -38,17 +38,15 @@ import com.example.zhaorui.dvdcollector.Controller.FriendsController;
 import com.example.zhaorui.dvdcollector.Controller.InventoryController;
 import com.example.zhaorui.dvdcollector.Controller.TradeHttpClient;
 import com.example.zhaorui.dvdcollector.Controller.TradeListController;
-import com.example.zhaorui.dvdcollector.Model.MyObserver;
 import com.example.zhaorui.dvdcollector.Model.TradeList;
-import com.example.zhaorui.dvdcollector.Model.DVD;
 import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.Friends;
 import com.example.zhaorui.dvdcollector.Model.User;
-import com.example.zhaorui.dvdcollector.Model.UserProfile;
 import com.example.zhaorui.dvdcollector.R;
 
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.Observer;
 
 /**
  * <p>
@@ -58,7 +56,7 @@ import java.util.Observable;
  * @author  Zhaorui Chen
  * @version 11/10/15
  */
-public class StartTradeActivity extends BaseActivity implements MyObserver{
+public class StartTradeActivity extends BaseActivity implements Observer {
     private LinearLayout ll1;
     private LinearLayout ll2;
     private Spinner spinner;

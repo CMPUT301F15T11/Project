@@ -21,17 +21,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.zhaorui.dvdcollector.Controller.FriendsController;
-import com.example.zhaorui.dvdcollector.Controller.UserHttpClient;
-import com.example.zhaorui.dvdcollector.Model.Friend;
-import com.example.zhaorui.dvdcollector.Model.MyObserver;
-import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
 
 import java.util.Observable;
@@ -45,7 +40,7 @@ import java.util.Observer;
  * @author  Zhaorui Chen
  * @version 11/10/15
  */
-public class FriendListActivity extends BaseActivity implements MyObserver {
+public class FriendListActivity extends BaseActivity implements Observer {
     Button btnMenuMyInvent;
     private FriendsController fc;
     private ArrayAdapter<String> adapter;

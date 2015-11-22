@@ -118,7 +118,7 @@ public class InventoryController {
      * @param o , an observer
      */
     public void addObserver(Observer o){
-        ObserverManager.getInstance().addObserver(inventory,o);
+        ObserverManager.getInstance().addObserver("Inventory",o);
     }
     /**
      * To test if a dvd is in inventory.

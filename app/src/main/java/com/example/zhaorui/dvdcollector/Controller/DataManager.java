@@ -23,26 +23,11 @@ import android.util.Log;
 
 import com.example.zhaorui.dvdcollector.Model.ContextUtil;
 import com.example.zhaorui.dvdcollector.Model.Friend;
-import com.example.zhaorui.dvdcollector.Model.MyObserver;
 import com.example.zhaorui.dvdcollector.Model.ObserverManager;
-import com.example.zhaorui.dvdcollector.Model.SimulatedDatabase;
-import com.example.zhaorui.dvdcollector.Model.Trade;
 import com.example.zhaorui.dvdcollector.Model.TradeList;
 import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.View.NameInputDialog;
-import com.example.zhaorui.dvdcollector.es.data.SearchHit;
 import com.google.gson.Gson;
-import com.google.gson.JsonIOException;
-import com.google.gson.JsonSyntaxException;
-import com.google.gson.reflect.TypeToken;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -51,9 +36,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Type;
 import java.util.Observable;
+import java.util.Observer;
 
 /**
  * <p>
@@ -66,14 +50,13 @@ import java.util.Observable;
  * @version 03/11/15
  * @see com.google.gson.Gson
  */
-public class DataManager implements MyObserver{
+public class DataManager implements Observer {
     private static final String FILENAME = "DVDCollector.Local";
     private static DataManager instance;
 
     public static DataManager instance(){
         if (instance == null){
             instance = new DataManager();
-            //SimulatedDatabase.init();
         }
         return instance;
     }
@@ -91,7 +74,7 @@ public class DataManager implements MyObserver{
             Gson gson = new Gson();
             User.setInstance(gson.fromJson(reader, User.class));
             User.instance().getInventory().fresh();
-            observing();
+            ObserverManager.getInstance().observeAll(this);
         } catch (FileNotFoundException e) {
             Log.e("DVD", "No local file found");
             Activity activity = (Activity) context;
@@ -110,8 +93,7 @@ public class DataManager implements MyObserver{
         User.instance().getProfile().setName(name);
         User.instance().getProfile().setContact(email);
         saveLocal();
-
-        observing();
+        ObserverManager.getInstance().observeAll(this);
     }
 
     public void retrieveFile(String name, String email){
@@ -126,15 +108,9 @@ public class DataManager implements MyObserver{
         User.instance().getInventory().addAll(user.getInventory());
         User.instance().getTradeList().setTrades(tradeList.getTrades());
         saveLocal();
-        observing();
+        ObserverManager.getInstance().observeAll(this);
     }
 
-    private void observing(){
-        ObserverManager.getInstance().addObserver(User.instance().getProfile(),this);
-        ObserverManager.getInstance().addObserver(User.instance().getInventory(), this);
-        ObserverManager.getInstance().addObserver(User.instance().getFriends(),this);
-        ObserverManager.getInstance().addObserver(User.instance().getTradeList(),this);
-    }
     /**
      * This function adds observers to user's profile and user's inventory.
      * @see java.util.Observer;
@@ -157,5 +133,13 @@ public class DataManager implements MyObserver{
 
     public void update(Observable ob, Object o){
         saveLocal();
+        // push user's tradelist online
+        TradeHttpClient tradeHttpClient = new TradeHttpClient(User.instance().getTradeList(),
+                User.instance().getProfile().getName());
+        tradeHttpClient.runPush();
+
+        //push user's info online
+        UserHttpClient userHttpClient = new UserHttpClient(new Friend(User.instance()));
+        userHttpClient.runPush();
     }
 }

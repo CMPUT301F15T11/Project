@@ -70,7 +70,7 @@ public class UserProfile{
 
     public void setContact(String contact) {
         this.contact = contact;
-        ObserverManager.getInstance().notifying(this);
+        ObserverManager.getInstance().notifying("Profile");
     }
     /**
      * This function is called when other function need to know the user's city for the user profile.
@@ -86,6 +86,6 @@ public class UserProfile{
      */
     public void setCity(String city) {
         this.city = city;
-        ObserverManager.getInstance().notifying(this);
+        ObserverManager.getInstance().notifying("Profile");
     }
 }

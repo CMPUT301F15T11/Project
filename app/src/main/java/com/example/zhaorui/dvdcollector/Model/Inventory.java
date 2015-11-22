@@ -72,7 +72,7 @@ public class Inventory extends ArrayList<DVD>{
     public void append(DVD dvd){
         add(dvd);
         categoryInventories.get(dvd.getCategory()).add(dvd);
-        ObserverManager.getInstance().notifying(this);
+        ObserverManager.getInstance().notifying("Inventory");
     }
     /**
      * Delete a new DVD to the hash map
@@ -82,14 +82,14 @@ public class Inventory extends ArrayList<DVD>{
     public void delete(DVD dvd){
         remove(dvd);
         categoryInventories.get(dvd.getCategory()).remove(dvd);
-        ObserverManager.getInstance().notifying(this);
+        ObserverManager.getInstance().notifying("Inventory");
     }
 
     public void edit(DVD dvd,DVD dvd2){
         categoryInventories.get(dvd.getCategory()).remove(dvd);
         set(indexOf(dvd), dvd2);
         categoryInventories.get(dvd2.getCategory()).add(dvd2);
-        ObserverManager.getInstance().notifying(this);
+        ObserverManager.getInstance().notifying("Inventory");
     }
 
     public void fresh(){

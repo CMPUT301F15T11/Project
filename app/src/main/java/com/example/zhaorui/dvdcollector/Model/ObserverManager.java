@@ -9,9 +9,13 @@ import java.util.Observer;
  */
 public class ObserverManager{
     static private ObserverManager instance;
+    final static private String[] keys = {"Inventory","Friends","Trades","Profile"};
     private HashMap<Object,MyObservable> observables;
     private ObserverManager(){
         observables = new HashMap<>();
+        for (String key : keys){
+            observables.put(key,new MyObservable());
+        }
     }
 
     public static ObserverManager getInstance() {
@@ -21,17 +25,17 @@ public class ObserverManager{
         return instance;
     }
 
-    public void addObserver(Object o, Observer ob){
-        if (observables.get(o) == null) setObservable(o);
-        observables.get(o).addObserver(ob);
+    public void addObserver(String key, Observer ob){
+        observables.get(key).addObserver(ob);
     }
 
-    public void notifying(Object o){
-        if (observables.get(o) == null) setObservable(o);
-        observables.get(o).notifying();
+    public void notifying(String key){
+        observables.get(key).notifying();
     }
 
-    private void setObservable(Object o){
-        observables.put(o,new MyObservable());
+    public void observeAll(Observer ob){
+        for (String key : keys){
+            observables.get(key).addObserver(ob);
+        }
     }
 }

@@ -68,40 +68,9 @@ public class MyProfileActivity extends BaseActivity {
     public void onProfileSave(View view){
         profile.setCity(city.getText().toString());
         profile.setContact(contact.getText().toString());
-        Thread thread = new PushThread(new Friend(User.instance()));
-        thread.start();
         this.finish();
     }
 
-    // from Joshua's AndroidElasticSearch
-    class PushThread extends Thread {
-        private Friend friend;
-
-        public PushThread(Friend friend) {
-            this.friend = friend;
-        }
-
-        @Override
-        public void run() {
-            userHttpClient = new UserHttpClient(friend);
-            userHttpClient.pushFriend();
-
-            // Give some time to get updated info
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            runOnUiThread(doFinishPush);
-        }
-    }
-
-    // from Joshua's AndroidElasticSearch
-    private Runnable doFinishPush = new Runnable() {
-        public void run() {
-        }
-    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

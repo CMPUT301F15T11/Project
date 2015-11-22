@@ -60,19 +60,6 @@ public class MainActivity extends BaseActivity {
         DataManager.instance().loadFromFile(this);
     }
 
-    @Override
-    protected void onStop(){
-        super.onStop();
-        // push user's tradelist online
-        TradeHttpClient tradeHttpClient = new TradeHttpClient(User.instance().getTradeList(),
-                User.instance().getProfile().getName());
-        tradeHttpClient.runPush();
-
-        // push user's info online
-        UserHttpClient userHttpClient = new UserHttpClient(new Friend(User.instance()));
-        userHttpClient.runPush();
-    }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

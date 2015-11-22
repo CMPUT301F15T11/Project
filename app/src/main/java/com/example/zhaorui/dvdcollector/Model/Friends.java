@@ -33,5 +33,4 @@ import java.util.Observer;
  * @version 04/11/15
  */
 public class Friends extends ArrayList<String>{
-    public void notifying(){ObserverManager.getInstance().notifying(this);}
 }

@@ -16,8 +16,6 @@
 */
 package com.example.zhaorui.dvdcollector.View;
 
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,9 +28,6 @@ import android.widget.ListView;
 
 import com.example.zhaorui.dvdcollector.Controller.FriendsController;
 import com.example.zhaorui.dvdcollector.Controller.InventoryController;
-import com.example.zhaorui.dvdcollector.Model.DVD;
-import com.example.zhaorui.dvdcollector.Model.Inventory;
-import com.example.zhaorui.dvdcollector.Model.MyObserver;
 import com.example.zhaorui.dvdcollector.R;
 
 import java.util.Observable;
@@ -46,7 +41,7 @@ import java.util.Observer;
  * @author  Zhaorui Chen
  * @version 11/10/15
  */
-public class CategoryActivity extends BaseActivity implements MyObserver{
+public class CategoryActivity extends BaseActivity implements Observer{
     private InventoryController ic;
     private ArrayAdapter<?> adapter;
     private String category;

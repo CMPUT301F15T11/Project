@@ -71,7 +71,7 @@ public class FriendsController {
             while (resultGet==null){//do nothing but wait
             }
         }
-        friends.notifying();
+        ObserverManager.getInstance().notifying("Inventory");
     }
     /**
      * To get a friend from the friends list by index
@@ -126,7 +126,7 @@ public class FriendsController {
         if (!cache.containsKey(name)) {
             cache.remove(name);
         }
-        friends.notifying();
+        ObserverManager.getInstance().notifying("Friends");
     }
     /**
      * get all friends
@@ -141,7 +141,7 @@ public class FriendsController {
      * @param o , an observer.
      */
     public void addObserver(Observer o){
-        ObserverManager.getInstance().addObserver(friends,o);
+        ObserverManager.getInstance().addObserver("Friends",o);
     }
 
     // if there exist this name in webservice database, return true

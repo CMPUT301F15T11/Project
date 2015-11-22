@@ -31,7 +31,7 @@ public class TradeListController {
                     "\nID: " + String.valueOf(System.currentTimeMillis()));
         }
         trades.add(trade);
-        ObserverManager.getInstance().notifying(this);
+        ObserverManager.getInstance().notifying("Trades");
     }
 
     public TradeList getTrades() {
@@ -99,7 +99,7 @@ public class TradeListController {
     }
 
     public void addObserver(Observer o){
-        ObserverManager.getInstance().addObserver(this,o);
+        ObserverManager.getInstance().addObserver("Trades",o);
     }
 
     // change the trade's type based on its current type
@@ -108,11 +108,11 @@ public class TradeListController {
             if (trade.getName().equals(name)){
                 if(trade.getType().equals("Current Incoming")) {
                     trade.setType("Past Incoming");
-                    ObserverManager.getInstance().notifying(this);
+                    ObserverManager.getInstance().notifying("Trades");
                     return;
                 }else if (trade.getType().equals("Current Outgoing")){
                     trade.setType("Past Outgoing");
-                    ObserverManager.getInstance().notifying(this);
+                    ObserverManager.getInstance().notifying("Trades");
                     return;
                 }else {
                     return;
@@ -149,7 +149,7 @@ public class TradeListController {
                         if(trade.getOwner().equals(User.instance().getProfile().getName())) {
                             trade.setType("Complete");
                             setTradeType(trade.getName());
-                            ObserverManager.getInstance().notifying(this);
+                            ObserverManager.getInstance().notifying("Trades");
                         }
                         break;
                     case "Complete":

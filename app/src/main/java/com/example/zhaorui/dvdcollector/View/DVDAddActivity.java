@@ -182,12 +182,6 @@ public class DVDAddActivity extends BaseActivity {
             } else {
                 ic.set(ic.get(position), dc.create(info, sharable.isChecked(), this.gallery)); // create a new dvd or update the dvd
             }
-
-
-            // push user's info online
-            UserHttpClient userHttpClient = new UserHttpClient(new Friend(User.instance()));
-            userHttpClient.runPush();
-
             this.finish();
         }
     }
