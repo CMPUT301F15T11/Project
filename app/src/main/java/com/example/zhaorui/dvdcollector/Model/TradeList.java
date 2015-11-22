@@ -8,21 +8,41 @@ import java.util.Observable;
 /**
  * Created by teppie on 12/11/15.
  */
-public class TradeList {
+public class TradeList{
+    private static final String RESOURCE_URL_TRADE = "http://cmput301.softwareprocess.es:8080/cmput301f15t11/tradelist/";
+    private static final String SEARCH_URL_TRADE = "http://cmput301.softwareprocess.es:8080/cmput301f15t11/tradelist/_search";
     /*
     A List containing all trades related to the device user
      */
-    private Obs obs;
 
     private ArrayList<Trade> trades;
 
-    public TradeList() {
-        obs = new Obs();
-        this.trades = new ArrayList<>();
+    public TradeList(ArrayList<Trade> trades) {
+        this.trades = trades;
     }
 
-    public Trade getTradeAtIndex(int index){
-        return this.trades.get(index);
+    public TradeList() {
+        this.trades = new ArrayList<Trade>();
+    }
+
+    public void add(Trade trade){
+        trades.add(trade);
+    }
+
+    public int size(){
+        return trades.size();
+    }
+
+    public Trade get(int i){
+        return trades.get(i);
+    }
+
+    public static String getResourceUrlTrade() {
+        return RESOURCE_URL_TRADE;
+    }
+
+    public static String getSearchUrlTrade() {
+        return SEARCH_URL_TRADE;
     }
 
     public ArrayList<Trade> getTrades() {
@@ -31,22 +51,5 @@ public class TradeList {
 
     public void setTrades(ArrayList<Trade> trades) {
         this.trades = trades;
-//        obs.notifying();
     }
-
-    public int getSize(){
-        return this.trades.size();
-    }
-
-    private class Obs extends Observable {
-        public void notifying(){
-            super.setChanged();
-            super.notifyObservers();
-        }
-    }
-    public void notifying(){obs.notifying();}
-    public Observable getObs() {
-        return obs;
-    }
-
 }

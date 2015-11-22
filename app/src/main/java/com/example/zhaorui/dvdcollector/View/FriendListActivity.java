@@ -28,7 +28,10 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.zhaorui.dvdcollector.Controller.FriendsController;
+import com.example.zhaorui.dvdcollector.Controller.UserHttpClient;
+import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.MyObserver;
+import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
 
 import java.util.Observable;
@@ -53,6 +56,12 @@ public class FriendListActivity extends BaseActivity implements MyObserver {
         setContentView(R.layout.activity_friend_list);
         fc = new FriendsController();
         fc.addObserver(this);
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, fc.getFriends());
         ListView listView = (ListView) findViewById(R.id.listViewFriendList);
         listView.setAdapter(adapter);

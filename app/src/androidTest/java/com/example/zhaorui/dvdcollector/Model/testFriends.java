@@ -31,7 +31,7 @@ public class testFriends extends ActivityInstrumentationTestCase2 {
     }
 
     public void testAddFriend() throws Exception {
-        DataManager.instance().initFile("test");
+        DataManager.instance().initFile("test","test@test");
         assertEquals(User.instance().getFriends().size(), 0);
         activity = getActivity();
         activity.openOptionsMenu();

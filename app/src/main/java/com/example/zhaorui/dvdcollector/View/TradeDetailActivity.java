@@ -25,7 +25,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.zhaorui.dvdcollector.Controller.TradeController;
 import com.example.zhaorui.dvdcollector.Controller.TradeListController;
 import com.example.zhaorui.dvdcollector.Model.Trade;
 import com.example.zhaorui.dvdcollector.Model.TradeList;
@@ -45,7 +44,7 @@ public class TradeDetailActivity extends BaseActivity {
     private TradeList tradeList = User.instance().getTradeList();
     private TradeListController tradeListController = new TradeListController(tradeList);
     private Trade tradeToShow;
-    private TradeController tradeController;
+    private String nameOfTrade;
 
     private TextView textViewBorrower;
     private TextView textViewBorrowerDvd;
@@ -86,19 +85,19 @@ public class TradeDetailActivity extends BaseActivity {
 
             tradeToShow = tradeListController.getTradeOfStatus(status).get(pos);
         }
-        tradeController = new TradeController(tradeToShow);
-        Log.e("DVD", tradeToShow.getStatus());
+        nameOfTrade = i.getStringExtra("name");
 
+        Log.e("DVD", tradeToShow.getStatus());
         Log.e("DVD", tradeToShow.getType());
 
         textViewBorrower.setText(tradeToShow.getBorrower());
         textViewOwner.setText(tradeToShow.getOwner());
-        if(tradeToShow.borrowerItemList.size()!=0){
-            textViewBorrowerDvd.setText(tradeToShow.getBorrowerItemList().toString());
+        if(tradeToShow.getBorrowerItemList().size()!=0){
+            textViewBorrowerDvd.setText(String.valueOf(tradeToShow.getBorrowerItemList()));
         }else{
             textViewBorrowerDvd.setText("None");
         }
-        textViewOwnerDvd.setText(tradeToShow.getOwnerItem().getName());
+        textViewOwnerDvd.setText(tradeToShow.getOwnerItem());
         textViewStatus.setText(tradeToShow.getStatus());
     }
 
@@ -122,8 +121,8 @@ public class TradeDetailActivity extends BaseActivity {
         }
 
         if(id==R.id.set_to_complete){
-            tradeController.setTradeComplete();
-            textViewStatus.setText(tradeToShow.getStatus());
+            tradeListController.setTradeComplete(nameOfTrade);
+            textViewStatus.setText(tradeListController.getTradeByName(nameOfTrade).getStatus());
         }
 
         if(id == R.id.start_counter_trade){

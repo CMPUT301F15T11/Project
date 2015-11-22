@@ -64,7 +64,7 @@ public class TradeCenterActivity extends BaseActivity {
     public void startAllTrade(View view){
         Intent i = new Intent(TradeCenterActivity.this, BrowseTradeLogActivity.class);
         TradeList tradeList = User.instance().getTradeList();
-        Log.e("DVD number of trades is", String.valueOf(tradeList.getSize()));
+        Log.e("DVD number of trades is", String.valueOf(tradeList.size()));
         startActivity(i);
     }
 

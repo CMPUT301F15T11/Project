@@ -28,10 +28,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.zhaorui.dvdcollector.Controller.FriendsController;
 import com.example.zhaorui.dvdcollector.Controller.InventoryController;
+import com.example.zhaorui.dvdcollector.Controller.UserHttpClient;
 import com.example.zhaorui.dvdcollector.Model.DVD;
+import com.example.zhaorui.dvdcollector.Model.Friend;
+import com.example.zhaorui.dvdcollector.Model.UserProfile;
 import com.example.zhaorui.dvdcollector.R;
 /**
  * <p>
@@ -50,8 +54,11 @@ public class FriendInventoryActivity extends BaseActivity {
     private ListView listView;
     private FriendsController fc;
     private InventoryController ic;
-    private ArrayAdapter<?> adapter;
+    private ArrayAdapter<DVD> adapter;
     private int friendPostion;
+
+    private UserHttpClient userHttpClient;
+    private Friend friendToShow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +67,17 @@ public class FriendInventoryActivity extends BaseActivity {
         fc = new FriendsController();
         ic = new InventoryController();
         friendPostion = getIntent().getIntExtra("position", -1);
-        ic.setInventory(fc.get(friendPostion).getInventory());
+        userHttpClient = new UserHttpClient(fc.getNameByIndex(friendPostion));
+        friendToShow = userHttpClient.runPull();
+    }
 
-        adapter = new ArrayAdapter<>(this,
+    @Override
+    protected void onResume(){
+        super.onResume();
+        ic = new InventoryController();
+        ic.setInventory(friendToShow.getInventory());
+
+        adapter = new ArrayAdapter<DVD>(FriendInventoryActivity.this,
                 android.R.layout.simple_list_item_1, ic.getInventory());
         listView = (ListView) findViewById(R.id.listViewFriendInventory);
         listView.setAdapter(adapter);
@@ -89,6 +104,55 @@ public class FriendInventoryActivity extends BaseActivity {
             }
         });
     }
+
+    class GetThread extends Thread {
+        private String userName;
+
+        public GetThread(String userName) {
+            this.userName = userName;
+        }
+
+        @Override
+        public void run() {
+            friendToShow = userHttpClient.pullFriend(userName);
+            fc.putFriendInCache(friendToShow);
+            runOnUiThread(doUpdateGUIDetails);
+        }
+    }
+
+    private Runnable doUpdateGUIDetails = new Runnable() {
+        public void run() {
+            ic = new InventoryController();
+            ic.setInventory(friendToShow.getInventory());
+
+            adapter = new ArrayAdapter<DVD>(FriendInventoryActivity.this,
+                    android.R.layout.simple_list_item_1, ic.getInventory());
+            listView = (ListView) findViewById(R.id.listViewFriendInventory);
+            listView.setAdapter(adapter);
+
+            // open the menu
+            btnMenuFriendInvent = (Button)findViewById(R.id.btn_title_friend_inventory);
+            btnMenuFriendInvent.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openOptionsMenu();
+                }
+            });
+
+            // click on a item from the listView
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position,
+                                        long id) {
+                    FragmentManager fm = getFragmentManager();
+                    FriendInventoryDialog newDialog = new FriendInventoryDialog();
+                    newDialog.setPosition(position);
+                    newDialog.setFriendPosition(friendPostion);
+                    newDialog.show(fm, "abc");
+                }
+            });
+        }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

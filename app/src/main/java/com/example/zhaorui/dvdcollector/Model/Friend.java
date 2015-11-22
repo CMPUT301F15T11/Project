@@ -16,6 +16,7 @@
 */
 package com.example.zhaorui.dvdcollector.Model;
 
+import com.example.zhaorui.dvdcollector.Controller.InventoryController;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -30,6 +31,8 @@ import java.util.ArrayList;
  * @version 04/11/15
  */
 public class Friend {
+    private static final String RESOURCE_URL_FRIEND = "http://cmput301.softwareprocess.es:8080/cmput301f15t11/friend/";
+    private static final String SEARCH_URL_FRIEND = "http://cmput301.softwareprocess.es:8080/cmput301f15t11/friend/_search";
     /**
      * Initialize a Inventory to store the friends inventory.
      *
@@ -40,6 +43,7 @@ public class Friend {
      *
      */
     private UserProfile profile;
+    //private TradeList tradeList;
     /**
      * To get the selected friend's information.
      * @param user ,the selected friend.
@@ -47,9 +51,7 @@ public class Friend {
 
     public Friend(User user){
         inventory = user.getInventory();
-        inventory.getObs().deleteObservers();
         profile = user.getProfile();
-        profile.deleteObservers();
     }
     /**
      * To store the select friend's information.
@@ -75,4 +77,13 @@ public class Friend {
     }
 
 
+    public static String getResourceUrl() {
+        return RESOURCE_URL_FRIEND;
+    }
+
+    public static String getSearchUrl() {
+        return SEARCH_URL_FRIEND;
+    }
+
+    private static final long serialVersionUID = 3199561696102797345L;
 }

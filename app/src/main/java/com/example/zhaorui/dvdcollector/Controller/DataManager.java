@@ -19,13 +19,30 @@
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.util.Log;
 
 import com.example.zhaorui.dvdcollector.Model.ContextUtil;
+import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.MyObserver;
+import com.example.zhaorui.dvdcollector.Model.ObserverManager;
 import com.example.zhaorui.dvdcollector.Model.SimulatedDatabase;
+import com.example.zhaorui.dvdcollector.Model.Trade;
+import com.example.zhaorui.dvdcollector.Model.TradeList;
 import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.View.NameInputDialog;
+import com.example.zhaorui.dvdcollector.es.data.SearchHit;
 import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -34,6 +51,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
 import java.util.Observable;
 
 /**
@@ -54,7 +73,7 @@ public class DataManager implements MyObserver{
     public static DataManager instance(){
         if (instance == null){
             instance = new DataManager();
-            SimulatedDatabase.init();
+            //SimulatedDatabase.init();
         }
         return instance;
     }
@@ -66,7 +85,7 @@ public class DataManager implements MyObserver{
      * This function loads information from file.
      */
     public void loadFromFile(Context context){
-        try {
+        try {//set the device user instance from the local file
             FileInputStream in = context.openFileInput(FILENAME);
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));
             Gson gson = new Gson();
@@ -74,6 +93,7 @@ public class DataManager implements MyObserver{
             User.instance().getInventory().fresh();
             observing();
         } catch (FileNotFoundException e) {
+            Log.e("DVD", "No local file found");
             Activity activity = (Activity) context;
             FragmentManager fm = activity.getFragmentManager();
             NameInputDialog newDialog = new NameInputDialog();
@@ -83,24 +103,37 @@ public class DataManager implements MyObserver{
     }
 
     /**
-     * Initialize an output file
+     * Initialize an new user instance if the application is run for the first time
      * @param name , a string variable
      */
-    public void initFile(String name){
+    public void initFile(String name, String email){
         User.instance().getProfile().setName(name);
+        User.instance().getProfile().setContact(email);
+        saveLocal();
+
+        observing();
+    }
+
+    public void retrieveFile(String name, String email){
+        UserHttpClient userHttpClient = new UserHttpClient();
+        Friend user = userHttpClient.runRetrieve(name);
+        TradeHttpClient tradeHttpClient = new TradeHttpClient();
+        TradeList tradeList = tradeHttpClient.runRetrieve(name);
+        //missing friendlist
+        User.instance().getProfile().setName(name);
+        User.instance().getProfile().setCity(user.getProfile().getCity());
+        User.instance().getProfile().setContact(email);
+        User.instance().getInventory().addAll(user.getInventory());
+        User.instance().getTradeList().setTrades(tradeList.getTrades());
         saveLocal();
         observing();
     }
 
     private void observing(){
-        User.instance().getProfile().deleteObservers();
-        User.instance().getProfile().addObserver(this);
-        User.instance().getInventory().getObs().deleteObservers();
-        User.instance().getInventory().getObs().addObserver(this);
-        User.instance().getFriends().getObs().deleteObservers();
-        User.instance().getFriends().getObs().addObserver(this);
-        //User.instance().getTradeList().getObs().deleteObservers();
-        //User.instance().getTradeList().getObs().addObserver(this);
+        ObserverManager.getInstance().addObserver(User.instance().getProfile(),this);
+        ObserverManager.getInstance().addObserver(User.instance().getInventory(), this);
+        ObserverManager.getInstance().addObserver(User.instance().getFriends(),this);
+        ObserverManager.getInstance().addObserver(User.instance().getTradeList(),this);
     }
     /**
      * This function adds observers to user's profile and user's inventory.
@@ -120,6 +153,7 @@ public class DataManager implements MyObserver{
             throw new RuntimeException();
         }
     }
+
 
     public void update(Observable ob, Object o){
         saveLocal();

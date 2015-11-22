@@ -1,7 +1,11 @@
 package com.example.zhaorui.dvdcollector.Controller;
 
+import android.widget.Toast;
+
+import com.example.zhaorui.dvdcollector.Model.ObserverManager;
 import com.example.zhaorui.dvdcollector.Model.Trade;
 import com.example.zhaorui.dvdcollector.Model.TradeList;
+import com.example.zhaorui.dvdcollector.Model.User;
 
 import java.util.ArrayList;
 import java.util.Observer;
@@ -16,15 +20,27 @@ public class TradeListController {
         this.trades = trades;
     }
 
-    public void addTrade(Trade trade){
-        ArrayList<Trade> tm = trades.getTrades();
-        tm.add(trade);
-        trades.setTrades(tm);
+    public void addTrade(String borrower, String owner, ArrayList<String> borrowerItemNames,
+                         String ownerItemName, String type, String status){
+        Trade trade = new Trade(borrower,owner,borrowerItemNames,ownerItemName,type,status);
+        if (trade.getType().equals("Current Outgoing") || trade.getType().equals("Past Outgoing")) {
+            trade.setName(trade.getType() + " with " + trade.getOwner() +
+                    "\nID: " + String.valueOf(System.currentTimeMillis()));
+        }else{
+            trade.setName(trade.getType() + " trade with " + trade.getBorrower() +
+                    "\nID: " + String.valueOf(System.currentTimeMillis()));
+        }
+        trades.add(trade);
+        ObserverManager.getInstance().notifying(this);
+    }
+
+    public TradeList getTrades() {
+        return trades;
     }
 
     // get all trades of the specified type, eg. "Current Outgoing"
-    public ArrayList<Trade> getTradesOfType(String type){
-        ArrayList<Trade> tradesToReturn = new ArrayList<>();
+    public TradeList getTradesOfType(String type){
+        TradeList tradesToReturn = new TradeList();
         for (Trade aTrade : trades.getTrades()){
             if (aTrade.getType().equals(type)){
                 tradesToReturn.add(aTrade);
@@ -34,9 +50,9 @@ public class TradeListController {
     }
 
     // get all trades of the specified status,  eg. "In-progress"
-    public ArrayList<Trade> getTradeOfStatus(String status){
-        ArrayList<Trade> tradesToReturn = new ArrayList<>();
-        for (Trade aTrade : this.trades.getTrades()){
+    public TradeList getTradeOfStatus(String status){
+        TradeList tradesToReturn = new TradeList();
+        for (Trade aTrade : trades.getTrades()){
             if (aTrade.getStatus().equals(status)){
                 tradesToReturn.add(aTrade);
             }
@@ -46,16 +62,24 @@ public class TradeListController {
 
     // returns the names of all input trades in an arraylist
     // in order to show the names in the listview
-    public ArrayList<String> getNames(ArrayList<Trade> trades){
+    public ArrayList<String> getNames(TradeList trades){
         ArrayList<String> names = new ArrayList<>();
-        for(Trade aTrade : trades){
+        for(Trade aTrade : trades.getTrades()){
             names.add(aTrade.getName());
         }
         return names;
     }
 
-    public ArrayList<Trade> getTradeRequests(){
-        ArrayList<Trade> tradesToReturn = new ArrayList<>();
+    public Trade getTradeByName(String name){
+        for(Trade aTrade : trades.getTrades()){
+            if(aTrade.getName().equals(name))
+                return aTrade;
+        }
+        return null;
+    }
+
+    public TradeList getTradeRequests(){
+        TradeList tradesToReturn = new TradeList();
         for(Trade aTrade : trades.getTrades()){
             if (aTrade.getStatus().equals("Pending") && aTrade.getType().equals("Current Incoming")){
                 tradesToReturn.add(aTrade);
@@ -75,6 +99,66 @@ public class TradeListController {
     }
 
     public void addObserver(Observer o){
-        trades.getObs().addObserver(o);
+        ObserverManager.getInstance().addObserver(this,o);
+    }
+
+    // change the trade's type based on its current type
+    public void setTradeType(String name){
+        for (Trade trade : trades.getTrades()){
+            if (trade.getName().equals(name)){
+                if(trade.getType().equals("Current Incoming")) {
+                    trade.setType("Past Incoming");
+                    ObserverManager.getInstance().notifying(this);
+                    return;
+                }else if (trade.getType().equals("Current Outgoing")){
+                    trade.setType("Past Outgoing");
+                    ObserverManager.getInstance().notifying(this);
+                    return;
+                }else {
+                    return;
+                    // do nothing
+                }
+            }
+        }
+    }
+
+    // change a trade request's status and type
+    public void setTradeResult(String name, Boolean isAccepted){
+        for (Trade trade : trades.getTrades()){
+            if(trade.getName().equals(name)){
+                if(isAccepted && trade.getStatus().equals("Pending")){
+                    trade.setStatus("In-progress");
+                    //////
+                }else if(!isAccepted && trade.getStatus().equals("Pending")){
+                    trade.setStatus("Declined");
+                    setTradeType(trade.getName());
+                }
+                break;
+            }
+        }
+    }
+
+    // set an In-progress trade to Complete status
+    public void setTradeComplete(String name){
+        for (Trade trade : trades.getTrades()){
+            if (trade.getName().equals(name)){
+                switch (trade.getStatus()) {
+                    case "Pending":
+                        break;
+                    case "In-progress"://Set to complete also set type to past
+                        if(trade.getOwner().equals(User.instance().getProfile().getName())) {
+                            trade.setType("Complete");
+                            setTradeType(trade.getName());
+                            ObserverManager.getInstance().notifying(this);
+                        }
+                        break;
+                    case "Complete":
+                        break;
+                    case "Declined":
+                        break;
+                }
+                break;
+            }
+        }
     }
 }

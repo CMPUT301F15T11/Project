@@ -33,7 +33,9 @@ import android.widget.Toast;
 import com.example.zhaorui.dvdcollector.Controller.DVDController;
 import com.example.zhaorui.dvdcollector.Controller.FriendsController;
 import com.example.zhaorui.dvdcollector.Controller.InventoryController;
+import com.example.zhaorui.dvdcollector.Controller.UserHttpClient;
 import com.example.zhaorui.dvdcollector.Model.DVD;
+import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.Gallery;
 import com.example.zhaorui.dvdcollector.Model.Inventory;
 import com.example.zhaorui.dvdcollector.Model.User;
@@ -79,9 +81,14 @@ public class DVDInfoActivity extends BaseActivity {
                     //Inventory userInventory = User.instance().getInventory();
                     InventoryController inventoryControllerClone = new InventoryController();
                     ArrayList<String> info = dc.read(ic.get(position));
-                    inventoryControllerClone.add(dc.create(info,info.get(5).equals("Yes"),new Gallery()));
+                    inventoryControllerClone.add(dc.create(info, info.get(5).equals("Yes"), new Gallery()));
+
+                    // push to the webservice
+                    UserHttpClient userHttpClient = new UserHttpClient(new Friend(User.instance()));
+                    userHttpClient.runPush();
 
                     Toast.makeText(DVDInfoActivity.this, "Successfully cloned this dvd to my inventory", Toast.LENGTH_SHORT).show();
+                    btnClone.setBackground(getResources().getDrawable(R.drawable.button_shape_grey));
                 }
             });
 

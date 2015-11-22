@@ -17,9 +17,12 @@
 */
 package com.example.zhaorui.dvdcollector.Controller;
 
+import android.util.Log;
+
 import com.example.zhaorui.dvdcollector.Model.Cache;
 import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.Friends;
+import com.example.zhaorui.dvdcollector.Model.ObserverManager;
 import com.example.zhaorui.dvdcollector.Model.SimulatedDatabase;
 import com.example.zhaorui.dvdcollector.Model.User;
 import com.google.gson.Gson;
@@ -44,6 +47,9 @@ import java.util.Observer;
 public class FriendsController {
     private Friends friends;
     private Cache cache;
+    private UserHttpClient userHttpClient = new UserHttpClient();
+    private Boolean resultSearch;
+    private Boolean resultGet;
 
     /**
      * Get friend list
@@ -58,7 +64,13 @@ public class FriendsController {
      * @param name , a string variable, the friend to be add.
      */
     public void add(String name){
-        friends.add(name);
+        if (!cache.containsKey(name)) {
+            Thread getThread = new GetThread(name);
+            getThread.start();
+
+            while (resultGet==null){//do nothing but wait
+            }
+        }
         friends.notifying();
     }
     /**
@@ -66,27 +78,40 @@ public class FriendsController {
      * @param index , an int variable.
      * @return the target friend's name.
      */
+
     public Friend get(int index){
         String name = friends.get(index);
         if (!cache.containsKey(name)) {
-            Gson gson = new Gson();
-            Friend friend;
-            String jsonValue = SimulatedDatabase.get(name);
-            friend = gson.fromJson(jsonValue, Friend.class);
+            Thread getThread = new GetThread(name);
+            getThread.start();
+
+            while (resultGet==null){//do nothing but wait
+            }
+        }
+        return cache.get(name);
+    }
+
+
+    public String getNameByIndex(int index){
+        String name = friends.get(index);
+        return name;
+    }
+
+    public void putFriendInCache(Friend friend){
+        String name = friend.getProfile().getName();
+        if (!cache.containsKey(name)) {
             friend.getInventory().fresh();
             cache.put(name, friend);
         }
-            return cache.get(name);
     }
 
     public Friend getByName(String name){
         if (!cache.containsKey(name)) {
-            Gson gson = new Gson();
-            Friend friend;
-            String jsonValue = SimulatedDatabase.get(name);
-            friend = gson.fromJson(jsonValue, Friend.class);
-            friend.getInventory().fresh();
-            cache.put(name, friend);
+            Thread getThread = new GetThread(name);
+            getThread.start();
+
+            while (resultGet==null){//do nothing but wait
+            }
         }
         return cache.get(name);
     }
@@ -116,8 +141,48 @@ public class FriendsController {
      * @param o , an observer.
      */
     public void addObserver(Observer o){
-        friends.getObs().addObserver(o);
+        ObserverManager.getInstance().addObserver(friends,o);
     }
 
-    public boolean nameExist(String name){ return SimulatedDatabase.nameExist(name);}
+    // if there exist this name in webservice database, return true
+    public boolean nameExist(String name){
+        //return SimulatedDatabase.nameExist(name);
+        SearchThread thread = new SearchThread(name);
+        thread.start();
+
+        while (resultSearch==null){//do nothing but wait
+        }
+        return resultSearch;
+    }
+
+    class SearchThread extends Thread {
+        private String search;
+
+        public SearchThread(String search) {
+            this.search = search;
+        }
+
+        @Override
+        public void run() {
+            UserHttpClient userHttpClient1 = new UserHttpClient();
+            resultSearch = userHttpClient1.searchFriend(search, null);
+        }
+    }
+
+
+    class GetThread extends Thread {
+        private String userName;
+
+        public GetThread(String userName) {
+            this.userName = userName;
+        }
+
+        @Override
+        public void run() {
+            Friend friendToShow = userHttpClient.pullFriend(userName);
+            friends.add(userName);
+            putFriendInCache(friendToShow);
+            resultGet = true;
+        }
+    }
 }

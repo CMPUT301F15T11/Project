@@ -28,7 +28,7 @@ import java.util.Observable;
  * @version 01/11/15
  * @see java.util.Observable
  */
-public class UserProfile extends Observable{
+public class UserProfile{
     /**
      * initialize a string name to store user's name.
      */
@@ -70,8 +70,7 @@ public class UserProfile extends Observable{
 
     public void setContact(String contact) {
         this.contact = contact;
-        super.setChanged();
-        super.notifyObservers();
+        ObserverManager.getInstance().notifying(this);
     }
     /**
      * This function is called when other function need to know the user's city for the user profile.
@@ -87,7 +86,6 @@ public class UserProfile extends Observable{
      */
     public void setCity(String city) {
         this.city = city;
-        super.setChanged();
-        super.notifyObservers();
+        ObserverManager.getInstance().notifying(this);
     }
 }

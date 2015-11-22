@@ -17,6 +17,8 @@
 */
 package com.example.zhaorui.dvdcollector.Model;
 
+import com.example.zhaorui.dvdcollector.Controller.DataManager;
+
 /**
  * <p>
  * The <code>User</code> class manages the current user's information about his trades,friends,inventory and profile.

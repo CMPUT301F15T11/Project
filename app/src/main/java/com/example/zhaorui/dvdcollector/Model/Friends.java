@@ -33,19 +33,5 @@ import java.util.Observer;
  * @version 04/11/15
  */
 public class Friends extends ArrayList<String>{
-    private Obs obs;
-
-    public Friends(){obs = new Obs();}
-
-    private class Obs extends Observable{
-        public void notifying(){
-            super.setChanged();
-            super.notifyObservers();
-        }
-    }
-    public void notifying(){obs.notifying();}
-    public Observable getObs() {
-        return obs;
-    }
-
+    public void notifying(){ObserverManager.getInstance().notifying(this);}
 }

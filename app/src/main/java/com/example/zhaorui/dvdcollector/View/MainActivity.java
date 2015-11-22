@@ -16,18 +16,25 @@
 */
 package com.example.zhaorui.dvdcollector.View;
 
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.zhaorui.dvdcollector.Controller.DataManager;
+import com.example.zhaorui.dvdcollector.Controller.TradeHttpClient;
+import com.example.zhaorui.dvdcollector.Controller.TradeListController;
+import com.example.zhaorui.dvdcollector.Controller.UserHttpClient;
+import com.example.zhaorui.dvdcollector.Model.Friend;
+import com.example.zhaorui.dvdcollector.Model.TradeList;
+import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
+
+import java.util.ArrayList;
+
 /**
  * <p>
  * The <code>MainActivity</code> class controls the user interface of the main menu.
@@ -42,7 +49,6 @@ public class MainActivity extends BaseActivity {
     Button btnFriends;
     Button btnConfig;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +59,20 @@ public class MainActivity extends BaseActivity {
         btnConfig = (Button)findViewById(R.id.btnConfigMain);
         DataManager.instance().loadFromFile(this);
     }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+        // push user's tradelist online
+        TradeHttpClient tradeHttpClient = new TradeHttpClient(User.instance().getTradeList(),
+                User.instance().getProfile().getName());
+        tradeHttpClient.runPush();
+
+        // push user's info online
+        UserHttpClient userHttpClient = new UserHttpClient(new Friend(User.instance()));
+        userHttpClient.runPush();
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

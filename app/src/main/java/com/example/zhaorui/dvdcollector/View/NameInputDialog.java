@@ -32,8 +32,13 @@ import android.widget.Toast;
 
 import com.example.zhaorui.dvdcollector.Controller.DataManager;
 import com.example.zhaorui.dvdcollector.Controller.FriendsController;
+import com.example.zhaorui.dvdcollector.Controller.TradeHttpClient;
+import com.example.zhaorui.dvdcollector.Controller.UserHttpClient;
 import com.example.zhaorui.dvdcollector.Model.ContextUtil;
+import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.Inventory;
+import com.example.zhaorui.dvdcollector.Model.TradeList;
+import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
 
 /**
@@ -48,6 +53,7 @@ public class NameInputDialog extends DialogFragment {
     private View customView;
     private Button ok;
     private EditText editText;
+    private EditText editTextEmail;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -57,18 +63,22 @@ public class NameInputDialog extends DialogFragment {
         dialog.setContentView(customView);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         editText = (EditText) customView.findViewById(R.id.editText_name_input_dialog);
+        editTextEmail = (EditText) customView.findViewById(R.id.editText_name_input_email_dialog);
         ok = (Button)customView.findViewById(R.id.btn_ok_name_dialog);
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String name = editText.getText().toString();
+                String email = editTextEmail.getText().toString();
                 FriendsController fc = new FriendsController();
-                if (name.isEmpty()){
-                    Toast.makeText(ContextUtil.getInstance(), "Name can not be empty!", Toast.LENGTH_LONG).show();
+                if (name.isEmpty()||email.isEmpty()){
+                    Toast.makeText(ContextUtil.getInstance(), "Name or Email can not be empty!", Toast.LENGTH_LONG).show();
                 } else if (fc.nameExist(name)) {
-                    Toast.makeText(ContextUtil.getInstance(), "Same name user existed!", Toast.LENGTH_LONG).show();
+                    DataManager.instance().retrieveFile(name,email);
+                    Toast.makeText(ContextUtil.getInstance(), "Log in!", Toast.LENGTH_LONG).show();
+                    dialog.cancel();
                 } else {
-                    DataManager.instance().initFile(name);
+                    DataManager.instance().initFile(name, email);
                     dialog.cancel();
                 }
             }
@@ -76,6 +86,8 @@ public class NameInputDialog extends DialogFragment {
 
         return dialog;
     }
+
+
 
 
 }

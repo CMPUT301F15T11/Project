@@ -46,7 +46,7 @@ public class TradeRequestsActivity extends BaseActivity {
     private ArrayList<String> tradeRequestNames;
     private TradeList myTradeList = User.instance().getTradeList();
     private TradeListController myTradeListController = new TradeListController(myTradeList);
-    private ArrayList<Trade> myTradeRequests;
+    private TradeList myTradeRequests;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

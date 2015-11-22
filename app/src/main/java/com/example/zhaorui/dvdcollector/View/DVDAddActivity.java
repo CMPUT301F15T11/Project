@@ -43,7 +43,10 @@ import android.widget.Toast;
 import com.example.zhaorui.dvdcollector.Controller.DVDController;
 import com.example.zhaorui.dvdcollector.Controller.GalleryController;
 import com.example.zhaorui.dvdcollector.Controller.InventoryController;
+import com.example.zhaorui.dvdcollector.Controller.UserHttpClient;
+import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.Gallery;
+import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
 
 import java.io.ByteArrayOutputStream;
@@ -69,7 +72,7 @@ public class DVDAddActivity extends BaseActivity {
     private GalleryController gc;
 
     private RatingBar ratingBar;
-    private String ratingStr;
+    private String ratingStr = "0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +109,11 @@ public class DVDAddActivity extends BaseActivity {
             text.setText(info.get(1));
             text = (EditText) findViewById(R.id.et_add_quantity);
             text.setText(info.get(2));
+            Log.e("DVD", info.get(3));
             switch (info.get(3)){
+                case "0":
+                    ratingBar.setRating(0);
+                    break;
                 case "1":
                     ratingBar.setRating(1);
                     break;
@@ -175,6 +182,12 @@ public class DVDAddActivity extends BaseActivity {
             } else {
                 ic.set(ic.get(position), dc.create(info, sharable.isChecked(), this.gallery)); // create a new dvd or update the dvd
             }
+
+
+            // push user's info online
+            UserHttpClient userHttpClient = new UserHttpClient(new Friend(User.instance()));
+            userHttpClient.runPush();
+
             this.finish();
         }
     }

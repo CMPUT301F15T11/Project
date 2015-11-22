@@ -47,15 +47,21 @@ public class TradesLogStatusActivity extends BaseActivity {
     private ArrayList<String> tradeNames;
     private TradeList tradeList = User.instance().getTradeList();
     private TradeListController tradeListController = new TradeListController(tradeList);
+    private String status;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trades_log);
         Intent i = getIntent();
-        final String status = i.getStringExtra("status");
+        status = i.getStringExtra("status");
 
-        ArrayList<Trade> tradesToShow = tradeListController.getTradeOfStatus(status);
+        TradeList tradesToShow = tradeListController.getTradeOfStatus(status);
         tradeNames = tradeListController.getNames(tradesToShow);
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(TradesLogStatusActivity.this, android.R.layout.simple_list_item_1, tradeNames);
         ListView listView = (ListView) findViewById(R.id.listView_trades_log);
@@ -67,8 +73,9 @@ public class TradesLogStatusActivity extends BaseActivity {
                                     long id) {
                 // if click on the listview item, show the image on a new activity
                 Intent i = new Intent(TradesLogStatusActivity.this, TradeDetailActivity.class);
-                i.putExtra("status",status);
+                i.putExtra("status", status);
                 i.putExtra("position", position);
+                i.putExtra("name", tradeNames.get(position));
                 startActivity(i);
             }
         });
