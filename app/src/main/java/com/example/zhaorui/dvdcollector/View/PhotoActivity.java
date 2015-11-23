@@ -23,11 +23,13 @@ package com.example.zhaorui.dvdcollector.View;
 */
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -71,8 +73,11 @@ public class PhotoActivity extends BaseActivity{
 
     private ListView listView;
 
+    private static final int CHOOSE_PHOTO = 11;
     private static final int TAKE_PHOTO = 22;
     private Uri imageUri;
+
+    private String imagePath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,7 +151,7 @@ public class PhotoActivity extends BaseActivity{
 
     //https://github.com/CMPUT301W15T06/Project/blob/master/App/src/ca/ualberta/CMPUT301W15T06/ClaimantReceiptActivity.java
     // Modified: Zhaorui CHEN
-    public void addPhoto(View view) {
+    public void takePhoto(View view) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
         // create a path for storing the photograph
@@ -165,6 +170,26 @@ public class PhotoActivity extends BaseActivity{
         startActivityForResult(intent, TAKE_PHOTO);
     }
 
+    public void uploadFromGallery(View view){
+        String folder = Environment.getExternalStorageDirectory().getAbsolutePath() + "/tmp";
+        File folderF = new File(folder);
+        if (!folderF.exists()) {
+            folderF.mkdir();
+        }
+
+        String imageFilePath = folder + "/" + String.valueOf(System.currentTimeMillis()) + ".jpeg";
+        File imageFile = new File(imageFilePath);
+
+        imageUri = Uri.fromFile(imageFile);
+        //Intent intent = new Intent("android.intent.action.GET_CONTENT");
+
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent,
+                "Select Picture"), CHOOSE_PHOTO);
+    }
+
 
     //https://github.com/CMPUT301W15T06/Project/blob/master/App/src/ca/ualberta/CMPUT301W15T06/ClaimantReceiptActivity.java
     // Modified: Zhaorui CHEN
@@ -175,6 +200,8 @@ public class PhotoActivity extends BaseActivity{
             case TAKE_PHOTO:
                 if (resultCode == RESULT_OK) {
                     try {
+                        imageUri = data.getData();
+                        imagePath = getPath(imageUri);
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
                         String photo = gc.encodeFromBitmap(bitmap); // encode image to string
                         gc.addToGallery(photo); // add the photo to the gallery
@@ -196,7 +223,52 @@ public class PhotoActivity extends BaseActivity{
                 } else if (resultCode == RESULT_CANCELED) {
                     Toast.makeText(getApplicationContext(), "Take photo canceled!", Toast.LENGTH_LONG).show();
                 }
+                break;
+            case CHOOSE_PHOTO:
+                if (resultCode == RESULT_OK) {
+                    try {
+                        Log.e("Taking Photo", String.valueOf(imageUri));
+                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+                        String photo = gc.encodeFromBitmap(bitmap); // encode image to string
+                        gc.addToGallery(photo); // add the photo to the gallery
+                        dc.changeGallery(ic.get(position), gallery);// change the dvd with the new gallery
+
+                        // update the listview
+                        numPhotos = gallery.getSize();
+                        photoIndexes = new ArrayList<Integer>();
+                        for (int i=0;i<numPhotos;i++){
+                            photoIndexes.add(i);
+                        }
+                        photoAdapter.notifyDataSetChanged(); //update the listview
+
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException(e);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                } else if (resultCode == RESULT_CANCELED) {
+                    Toast.makeText(getApplicationContext(), "Choose photo canceled!", Toast.LENGTH_LONG).show();
+                }
+                break;
         }
     }
 
+    /**
+     * helper to retrieve the path of an image URI
+     */
+    //http://stackoverflow.com/questions/2169649/get-pick-an-image-from-androids-built-in-gallery-app-programmatically
+    public String getPath(Uri uri) {
+        String[] projection = { MediaStore.Images.Media.DATA };
+        Cursor cursor = managedQuery(uri, projection, null, null, null);
+        if(cursor!=null)
+        {
+            //HERE YOU WILL GET A NULLPOINTER IF CURSOR IS NULL
+            //THIS CAN BE, IF YOU USED OI FILE MANAGER FOR PICKING THE MEDIA
+            int column_index = cursor
+                    .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        }
+        else return null;
+    }
 }

@@ -52,7 +52,7 @@
                         android:layout_margin="20dp"
                         android:id="@+id/button_upload_photo"
                         android:layout_gravity="bottom"
-                        android:onClick="addPhoto"
+                        android:onClick="takePhoto"
                         style="@style/font_indigo"
                         android:background="@drawable/button_shape_white"
                         android:layout_weight="1" />
