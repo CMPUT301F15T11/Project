@@ -83,7 +83,8 @@ public class PhotoActivity extends BaseActivity{
         Intent intent = getIntent();
         position = intent.getIntExtra("position", -1);
         int friendPosition = intent.getIntExtra("friendPosition",-1);
-        if (friendPosition != -1){
+        if (friendPosition != -1) {
+            // if is viewing friend's dvd gallery, disable upload
             ic.setInventory(fc.get(friendPosition).getInventory());
             Button upload = (Button) findViewById(R.id.button_upload_photo);
             upload.setVisibility(View.INVISIBLE);

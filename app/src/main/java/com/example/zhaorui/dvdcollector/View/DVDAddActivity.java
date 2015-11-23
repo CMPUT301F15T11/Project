@@ -192,4 +192,12 @@ public class DVDAddActivity extends BaseActivity {
         }
     }
 
+    public void startGallery(View view){
+        // open the activity to show the list of photos attached to this dvd
+        Intent intent = new Intent(DVDAddActivity.this, PhotoActivity.class);
+        intent.putExtra("position",position);
+        intent.putExtra("friendPosition",-1);
+        startActivity(intent);
+    }
+
 }
