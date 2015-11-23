@@ -161,22 +161,28 @@ public class DVDAddActivity extends BaseActivity {
             newDialog.show(fm, "abc");
         } else {
             ArrayList<String> info = new ArrayList<String>();
-            info.add(spinner.getSelectedItem().toString()); // add category
+            info.add(spinner.getSelectedItem().toString()); // add category 0
             info.add(name); // add name 1
             text = (EditText) findViewById(R.id.et_add_quantity);
-            info.add(text.getText().toString()); // add quantity
-            info.add(ratingStr); // add quality
+            info.add(text.getText().toString()); // add quantity 2
+            info.add(ratingStr); // add quality 3
 
-            if (gallery.getSize()==0) { // add if the dvd has photos
+            if (gallery.getSize()==0) { // add if the dvd has photos 4
                 info.add("No");
             }else{
                 info.add("Yes");
             }
 
-            text = (EditText) findViewById(R.id.ed_add_comment);
-            info.add(text.getText().toString()); // add comments
-
             CheckBox sharable = (CheckBox) findViewById(R.id.checkBox_sharable);
+            if(sharable.isChecked()){ // add if sharable 5
+                info.add("Yes");
+            }else{
+                info.add("No");
+            }
+
+            text = (EditText) findViewById(R.id.ed_add_comment);
+            info.add(text.getText().toString()); // add comments 6
+
             if (position == -1) {
                 ic.add(dc.create(info, sharable.isChecked(),this.gallery));
             } else {

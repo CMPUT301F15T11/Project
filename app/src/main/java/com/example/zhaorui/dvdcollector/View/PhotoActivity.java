@@ -24,15 +24,10 @@ package com.example.zhaorui.dvdcollector.View;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -44,7 +39,6 @@ import com.example.zhaorui.dvdcollector.Controller.DVDController;
 import com.example.zhaorui.dvdcollector.Controller.FriendsController;
 import com.example.zhaorui.dvdcollector.Controller.GalleryController;
 import com.example.zhaorui.dvdcollector.Controller.InventoryController;
-import com.example.zhaorui.dvdcollector.Model.DVD;
 import com.example.zhaorui.dvdcollector.Model.Gallery;
 import com.example.zhaorui.dvdcollector.R;
 
@@ -52,8 +46,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 
 /**
  * <p>
@@ -72,11 +64,10 @@ public class PhotoActivity extends BaseActivity{
     private FriendsController fc = new FriendsController();
     private Gallery gallery;
     private GalleryController gc;
-    private DVD dvd;
 
     private int numPhotos;
-    private ArrayList<Integer> indexes;
-    private ArrayAdapter<Integer> adapter;
+    private ArrayList<Integer> photoIndexes;
+    private ArrayAdapter<Integer> photoAdapter;
 
     private ListView listView;
 
@@ -98,11 +89,10 @@ public class PhotoActivity extends BaseActivity{
             upload.setVisibility(View.INVISIBLE);
         }
         ArrayList<String> info = dc.read(ic.get(position));//get the current dvd
-        dvd = ic.get(position);
 
-        // check if there is photos for this dvd
+        // check if this dvd has an non-empty gallery
         if (info.get(4)=="Yes") {
-            this.gallery = dc.readPhoto(dvd);//get its gallery
+            this.gallery = dc.readPhoto(ic.get(position));//get its gallery
             this.gc = new GalleryController(gallery);
         }else{
             this.gallery = new Gallery();
@@ -111,9 +101,9 @@ public class PhotoActivity extends BaseActivity{
 
         // initialize the listview, each entry is provided with an index of image
         numPhotos = gallery.getSize();
-        indexes = new ArrayList<Integer>();
+        photoIndexes = new ArrayList<Integer>();
         for (int i=0;i<numPhotos;i++){
-            indexes.add(i);
+            photoIndexes.add(i);
         }
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -132,13 +122,13 @@ public class PhotoActivity extends BaseActivity{
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                int index = indexes.get(position);
+                //int index = photoIndexes.get(position);
                 gc.removeFromGallery(gallery.getPhotoStrs().get(position)); // remove the image from the gallery
-                dc.changeGallery(dvd, gallery);// change the dvd with the new gallery
+                dc.changeGallery(ic.get(position), gallery);// change the dvd with the new gallery///////////////////////////////////////////////////
 
                 // update the listview
-                indexes.remove(position);
-                adapter.notifyDataSetChanged();
+                photoIndexes.remove(position);
+                photoAdapter.notifyDataSetChanged();
 
                 return true;
             }
@@ -148,9 +138,9 @@ public class PhotoActivity extends BaseActivity{
     @Override
     protected void onStart(){
         super.onStart();
-        adapter = new ArrayAdapter<Integer>(PhotoActivity.this, android.R.layout.simple_list_item_1, indexes);
-        listView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        photoAdapter = new ArrayAdapter<Integer>(PhotoActivity.this, android.R.layout.simple_list_item_1, photoIndexes);
+        listView.setAdapter(photoAdapter);
+        photoAdapter.notifyDataSetChanged();
     }
 
     //https://github.com/CMPUT301W15T06/Project/blob/master/App/src/ca/ualberta/CMPUT301W15T06/ClaimantReceiptActivity.java
@@ -187,15 +177,15 @@ public class PhotoActivity extends BaseActivity{
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
                         String photo = gc.encodeFromBitmap(bitmap); // encode image to string
                         gc.addToGallery(photo); // add the photo to the gallery
-                        dc.changeGallery(dvd, gallery);// change the dvd with the new gallery
+                        dc.changeGallery(ic.get(position), gallery);// change the dvd with the new gallery
 
                         // update the listview
                         numPhotos = gallery.getSize();
-                        indexes = new ArrayList<Integer>();
+                        photoIndexes = new ArrayList<Integer>();
                         for (int i=0;i<numPhotos;i++){
-                            indexes.add(i);
+                            photoIndexes.add(i);
                         }
-                        adapter.notifyDataSetChanged(); //update the listview
+                        photoAdapter.notifyDataSetChanged(); //update the listview
 
                     } catch (FileNotFoundException e) {
                         throw new RuntimeException(e);

@@ -27,6 +27,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,6 +58,7 @@ public class DVDInfoActivity extends BaseActivity {
     private DVDController dc;
 
     private Button btnClone;
+    private static String TAG = "DVDInfoActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,14 +73,14 @@ public class DVDInfoActivity extends BaseActivity {
         if (friendPosition != -1){
             FriendsController fc = new FriendsController();
             ic.setInventory(fc.get(friendPosition).getInventory());
-            Log.e("DVD", "Now it's a dvd of others");
+            Log.e(TAG, "Now it's a dvd of others");
             btnClone = (Button)findViewById(R.id.btn_clone_dvd);
             // color this button
             btnClone.setBackground(getResources().getDrawable(R.drawable.button_shape_indigo));
             btnClone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //Inventory userInventory = User.instance().getInventory();
+                    Log.e(TAG, "Cloning other's DVD");
                     InventoryController inventoryControllerClone = new InventoryController();
                     ArrayList<String> info = dc.read(ic.get(position));
                     inventoryControllerClone.add(dc.create(info, info.get(5).equals("Yes"), new Gallery()));
@@ -101,8 +103,27 @@ public class DVDInfoActivity extends BaseActivity {
         text.setText(info.get(1));
         text = (TextView) findViewById(R.id.tv_quantity_dvdinfo);
         text.setText(info.get(2));
-        text = (TextView) findViewById(R.id.tv_quality_dvdinfo);
-        text.setText(info.get(3));
+        RatingBar ratingBar = (RatingBar)findViewById(R.id.ratingBar_info);
+        switch (info.get(3)){
+            case "0":
+                ratingBar.setRating(0);
+                break;
+            case "1":
+                ratingBar.setRating(1);
+                break;
+            case "2":
+                ratingBar.setRating(2);
+                break;
+            case "3":
+                ratingBar.setRating(3);
+                break;
+            case "4":
+                ratingBar.setRating(4);
+                break;
+            case "5":
+                ratingBar.setRating(5);
+                break;
+        }
 
         text = (TextView) findViewById(R.id.tv_sharable_dvdinfo);
         text.setText(info.get(5));

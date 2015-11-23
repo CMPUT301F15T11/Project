@@ -60,7 +60,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp"
+            android:layout_margin="3dp"
             android:layout_gravity="bottom">
 
 
@@ -120,23 +120,21 @@
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_margin="5dp">
+                android:layout_marginLeft="5dp"
+                >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#fafafa"
                     android:textSize="20dp"
-                    android:text="Quality:         "
+                    android:text="Quality: "
                     android:layout_gravity="center_vertical" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#fafafa"
-                    android:textSize="20dp"
-                    android:text="Good"
-                    android:id="@+id/tv_quality_dvdinfo"
-                    android:layout_gravity="center_vertical" />
+                <RatingBar
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/ratingBar_info"
+                    />
 
             </LinearLayout>
 
@@ -190,7 +188,7 @@
                     android:textColor="#fafafa"
                     android:text="This is a romantic movie. You don't wanna miss it!"
                     android:id="@+id/tv_comment_view_dvdinfo"
-                    android:layout_gravity="right" />
+                    android:layout_gravity="center" />
 
             </LinearLayout>
 

@@ -47,9 +47,9 @@ public class DVDController {
         dvd.setName(info.get(1));
         dvd.setQuantity(info.get(2));
         dvd.setQuality(info.get(3));
-        dvd.setHasPhoto(info.get(4)=="Yes");
-        dvd.setComments(info.get(5));
+        dvd.setHasPhoto(gallery.getSize() != 0);
         dvd.setSharable(sharable);
+        dvd.setComments(info.get(6));
         dvd.setGallery(gallery);
         return dvd;
     }
@@ -60,21 +60,21 @@ public class DVDController {
      */
     public ArrayList<String> read(DVD dvd){
         ArrayList<String> info = new ArrayList<String>();
-        info.add(dvd.getCategory());
-        info.add(dvd.getName());
-        info.add(dvd.getQuantity());
-        info.add(dvd.getQuality());
-        if (dvd.isHasPhoto()){
+        info.add(dvd.getCategory());//0
+        info.add(dvd.getName());//1
+        info.add(dvd.getQuantity());//2
+        info.add(dvd.getQuality());//3
+        if (dvd.isHasPhoto()){//4
             info.add("Yes");
         }else{
             info.add("No");
         }
-        if (dvd.isSharable()){
+        if (dvd.isSharable()){//5
             info.add("Yes");
         } else{
             info.add("No");
         }
-        info.add(dvd.getComments());
+        info.add(dvd.getComments());//6
         return info;
     }
 
