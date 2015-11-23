@@ -29,7 +29,11 @@ import java.util.ArrayList;
  * @see java.util.ArrayList
  */
 public class Trade {
-    private String name; //用于在listview中展示
+    // for showing in the listview
+    private String name;
+
+    // for identify the trade
+    private String id;
     /**
      * Initialize a user to be the borrower in the trade.
      */
@@ -158,5 +162,13 @@ public class Trade {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

@@ -57,6 +57,7 @@ public class TradesLogTypeActivity extends BaseActivity {
 
         TradeList tradesToShow = tradeListController.getTradesOfType(type);
         tradeNames = tradeListController.getNames(tradesToShow);
+        tradeListController.pullTrade(User.instance().getProfile().getName());
     }
 
     @Override

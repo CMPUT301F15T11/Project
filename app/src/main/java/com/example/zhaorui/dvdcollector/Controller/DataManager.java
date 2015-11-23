@@ -133,13 +133,9 @@ public class DataManager implements Observer {
 
     public void update(Observable ob, Object o){
         saveLocal();
-        // push user's tradelist online
-        TradeHttpClient tradeHttpClient = new TradeHttpClient(User.instance().getTradeList(),
-                User.instance().getProfile().getName());
-        tradeHttpClient.runPush();
-
-        //push user's info online
-        UserHttpClient userHttpClient = new UserHttpClient(new Friend(User.instance()));
-        userHttpClient.runPush();
+        HttpClient httpClient = new HttpClient(new Friend(User.instance()));
+        httpClient.setTradeList(User.instance().getTradeList(), User.instance().getProfile().getName());
+        httpClient.runPushFriend();
+        httpClient.runPushTradeList();
     }
 }

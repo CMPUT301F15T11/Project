@@ -74,28 +74,30 @@ public class StartTradeActivity extends BaseActivity implements Observer {
     private InventoryController inventoryOwnerController = new InventoryController();
     String[] ownerDvdNames;
 
-    //选择的dvd的缓存,可以当做intent传给下一个activity
+    //Buffer for selecting dvds in the checkbox and radiobutton
     ArrayList<String> borrowerDvdNameBuffer = new ArrayList<>();
     String ownerDvdNameBuffer = null;
-
     ArrayList<Integer> borrowerDvdIndexBuffer = new ArrayList<>();
 
-    private TradeList tradeList = User.instance().getTradeList();
-    private TradeListController tradeListController = new TradeListController(tradeList);
+    private TradeListController tradeListController = new TradeListController(User.instance().getTradeList());
+
+    private static String TAG = "StartTradeActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_trade);
-
         tradeListController.addObserver(this);
         inventoryOwnerController.addObserver(this);
         inventoryBorrowerController.addObserver(this);
-
         textView1 = (TextView)findViewById(R.id.tv_listing_names_borrower_dvd);
         textView2 = (TextView)findViewById(R.id.tv_listing_names_onwer_dvd);
-
         ll1 = (LinearLayout)findViewById(R.id.ll_add_borrower_dvd_new_trade);
+        ll2 = (LinearLayout)findViewById(R.id.ll_add_owner_dvd_new_trade);
+
+        Log.e(TAG, String.valueOf(inventoryBorrowerController.getSharableInventory().size()));
+
+        // click to add dvds from borrower's inventory
         ll1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,9 +105,7 @@ public class StartTradeActivity extends BaseActivity implements Observer {
             }
         });
 
-        ll2 = (LinearLayout)findViewById(R.id.ll_add_owner_dvd_new_trade);
-
-        // set the spinner showing all friends
+        // check to select a friend to trade with
         spinner = (Spinner)findViewById(R.id.spinner_choose_owner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 R.layout.spinner_item, friendsList);
@@ -114,14 +114,12 @@ public class StartTradeActivity extends BaseActivity implements Observer {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // 这里需要初始化owner为一个friend///////////////////////////////////////////////////////此段仅在没有实现es的情况下适用
                 owner = friendsController.getByName(spinner.getSelectedItem().toString());
                 inventoryOwnerController.setInventory(owner.getInventory());
                 ownerDvdNames = inventoryOwnerController.getAllNamesFriend();
                 // in case choose another owner to trade with, clear all buffer
                 ownerDvdNameBuffer = null;
                 textView2.setText("");
-
 
                 ll2.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -144,37 +142,18 @@ public class StartTradeActivity extends BaseActivity implements Observer {
             public void onClick(View v) {
                 if (ownerDvdNameBuffer !=null) {
                     Log.e("DVD numbers for borrow", String.valueOf(borrowerDvdNameBuffer.size()));
-
+                    String tradeId =  String.valueOf(System.currentTimeMillis());
                     // add this trade to borrower's tradelist
                     tradeListController.addTrade(User.instance().getProfile().getName(),
                             owner.getProfile().getName(),
                             borrowerDvdNameBuffer,
                             ownerDvdNameBuffer,
                             "Current Outgoing",
-                            "Pending");
-                    TradeHttpClient tradeHttpClientBorrower = new TradeHttpClient(User.instance().getTradeList(),
-                            User.instance().getProfile().getName());
-                    tradeHttpClientBorrower.runPush();
+                            "Pending",
+                            tradeId);
 
-                    //必须要求每个人都输入自己的邮箱
-                    //sendEmail();
-
-
-                    // pull the current tradelist of owner from the webservie
-                    TradeHttpClient tradeHttpClientOwner = new TradeHttpClient(owner.getProfile().getName());
-                    TradeList tradeList = tradeHttpClientOwner.runPull();
-                    // add this new trade to owner's tradelist
-                    TradeListController tradeListControllerOwner = new TradeListController(tradeList);
-                    tradeListControllerOwner.addTrade(User.instance().getProfile().getName(),
-                            owner.getProfile().getName(),
-                            borrowerDvdNameBuffer,
-                            ownerDvdNameBuffer,
-                            "Current Incoming",
-                            "Pending");
-                    // set the updated tradelist to owner's httpClient for uploading
-                    tradeHttpClientOwner.setTradeList(tradeList, owner.getProfile().getName());
-                    tradeHttpClientOwner.runPush();
-
+                    //send trade to the owner
+                    tradeListController.sendTrade(owner.getProfile().getName(),borrowerDvdNameBuffer,ownerDvdNameBuffer,tradeId);
 
                     Toast.makeText(StartTradeActivity.this, "Trade has been sent to the owner", Toast.LENGTH_SHORT).show();
                     StartTradeActivity.this.finish();
@@ -184,7 +163,6 @@ public class StartTradeActivity extends BaseActivity implements Observer {
             }
         });
     }
-
 
     private void sendEmail(){
         String ownerEmailAddress = owner.getProfile().getContact();
@@ -253,7 +231,6 @@ public class StartTradeActivity extends BaseActivity implements Observer {
             public void onClick(DialogInterface dialog, int which) {
             }
         });
-
 
         builder.show();
     }

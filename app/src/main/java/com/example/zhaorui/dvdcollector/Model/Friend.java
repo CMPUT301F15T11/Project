@@ -50,7 +50,10 @@ public class Friend {
      */
 
     public Friend(User user){
-        inventory = user.getInventory();
+        //only push sharable dvds online
+        InventoryController inventoryController = new InventoryController();
+        inventoryController.setInventory(user.getInventory());
+        inventory = inventoryController.getSharableInventory();
         profile = user.getProfile();
     }
     /**

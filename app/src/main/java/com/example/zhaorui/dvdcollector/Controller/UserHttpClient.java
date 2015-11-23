@@ -69,24 +69,17 @@ public class UserHttpClient {
             HttpPost addRequest = new HttpPost(friend.getResourceUrl() + friend.getProfile().getName());
 
             StringEntity stringEntity = new StringEntity(gson.toJson(friend));
-            Log.e("dvd","start pushing");
             Log.e("DVD Friend",friend.getResourceUrl() + friend.getProfile().getName());
             Log.e("DVD Friend Controller", gson.toJson(friend));
-            addRequest.setHeader("Accept", "application/json");
 
             addRequest.setEntity(stringEntity);
             HttpResponse response = null;
             try {
-                Log.e("dvd","connecting to the webservice...");
                 response = httpClient.execute(addRequest);
-                Log.e("dvd","Done executing!!");
             } catch (ClientProtocolException e) {
-                Log.e("dvd","Failed connecting!");
                 throw new RuntimeException(e.getMessage());
             }
-            Log.e("dvd","Now finished");
             String status = response.getStatusLine().toString();
-            Log.e("dvd","end pushing");
             Log.e("DVD Friend Controller", status);
 
         } catch (Exception e) {
@@ -280,4 +273,5 @@ public class UserHttpClient {
         Thread thread = new PushThread();
         thread.start();
     }
+
 }

@@ -25,6 +25,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.zhaorui.dvdcollector.Controller.DataManager;
+import com.example.zhaorui.dvdcollector.Controller.HttpClient;
 import com.example.zhaorui.dvdcollector.Controller.TradeHttpClient;
 import com.example.zhaorui.dvdcollector.Controller.TradeListController;
 import com.example.zhaorui.dvdcollector.Controller.UserHttpClient;

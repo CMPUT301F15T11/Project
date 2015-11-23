@@ -57,6 +57,8 @@ public class TradesLogStatusActivity extends BaseActivity {
 
         TradeList tradesToShow = tradeListController.getTradeOfStatus(status);
         tradeNames = tradeListController.getNames(tradesToShow);
+
+        tradeListController.pullTrade(User.instance().getProfile().getName());
     }
 
     @Override

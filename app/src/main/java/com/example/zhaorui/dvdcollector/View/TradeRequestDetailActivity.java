@@ -16,12 +16,18 @@
 */
 package com.example.zhaorui.dvdcollector.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.zhaorui.dvdcollector.Controller.FriendsController;
 import com.example.zhaorui.dvdcollector.Controller.TradeListController;
+import com.example.zhaorui.dvdcollector.Model.Trade;
 import com.example.zhaorui.dvdcollector.Model.TradeList;
 import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
@@ -41,14 +47,52 @@ public class TradeRequestDetailActivity extends BaseActivity {
     private ArrayList<String> tradeNames;
     private TradeList myTradeList = User.instance().getTradeList();
     private TradeListController myTradeListController = new TradeListController(myTradeList);
-
+    private Trade trade;
     private FriendsController friendsController = new FriendsController();
 
+    private Button btnAccept;
+    private Button btnDecline;
+    private TextView tvBorrower;
+    private TextView tvOwner;
+    private TextView dvdBorrower;
+    private TextView dvdOwner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trade_request_detail);
+        btnAccept = (Button)findViewById(R.id.btn_accept_trade);
+        btnDecline = (Button)findViewById(R.id.btn_decline_trade);
+        tvBorrower = (TextView)findViewById(R.id.borrower_trade_detail_ongoing);
+        tvOwner = (TextView)findViewById(R.id.owner_trade_detail_ongoing);
+        dvdBorrower = (TextView)findViewById(R.id.dvds_borrower_trade_detail_ongoing);
+        dvdOwner = (TextView)findViewById(R.id.dvds_owner_trade_detail_ongoing);
+
+        Intent i = getIntent();
+        final int position = i.getIntExtra("position",0);
+
+        tvBorrower.setText(myTradeListController.getTradeRequests().get(position).getBorrower());
+        tvOwner.setText(myTradeListController.getTradeRequests().get(position).getOwner());
+        dvdOwner.setText(myTradeListController.getTradeRequests().get(position).getOwnerItem());
+        dvdBorrower.setText(String.valueOf(myTradeListController.getTradeRequests().get(position).getBorrowerItemList()));
+
+        btnAccept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myTradeListController.acceptTrade(position);
+                Toast.makeText(TradeRequestDetailActivity.this,"Accepted the trade!",Toast.LENGTH_SHORT);
+                TradeRequestDetailActivity.this.finish();
+            }
+        });
+
+        btnDecline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myTradeListController.declineTrade(position);
+                Toast.makeText(TradeRequestDetailActivity.this, "Declined the trade!", Toast.LENGTH_SHORT);
+                TradeRequestDetailActivity.this.finish();
+            }
+        });
     }
 
     @Override

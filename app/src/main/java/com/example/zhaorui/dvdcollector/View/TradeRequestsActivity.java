@@ -44,14 +44,15 @@ import java.util.ArrayList;
  */
 public class TradeRequestsActivity extends BaseActivity {
     private ArrayList<String> tradeRequestNames;
-    private TradeList myTradeList = User.instance().getTradeList();
-    private TradeListController myTradeListController = new TradeListController(myTradeList);
+    private TradeListController myTradeListController = new TradeListController(User.instance().getTradeList());
     private TradeList myTradeRequests;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trade_requests);
+
+        myTradeListController.pullTrade(User.instance().getProfile().getName());
     }
 
     @Override
@@ -70,7 +71,7 @@ public class TradeRequestsActivity extends BaseActivity {
                                     long id) {
                 // if click on the listview item, show the image on a new activity
                 Intent i = new Intent(TradeRequestsActivity.this, TradeRequestDetailActivity.class);
-                ///
+                i.putExtra("Position",position);
                 startActivity(i);
             }
         });

@@ -120,6 +120,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
+                            android:id="@+id/btn_accept_trade"
                             android:layout_margin="5dp"
                             style="@style/font_white"
                             android:text="Accept"
@@ -131,6 +132,7 @@
                             android:layout_margin="5dp"
                             android:layout_weight="1"
                             style="@style/font_white"
+                            android:id="@+id/btn_decline_trade"
                             android:text="Decline"
                             android:background="@drawable/button_shape_indigo"/>
                     </LinearLayout>

@@ -17,6 +17,8 @@
 */
 package com.example.zhaorui.dvdcollector.Controller;
 
+import android.util.Log;
+
 import com.example.zhaorui.dvdcollector.Model.DVD;
 import com.example.zhaorui.dvdcollector.Model.Inventory;
 import com.example.zhaorui.dvdcollector.Model.ObserverManager;
@@ -34,6 +36,7 @@ import java.util.Observer;
  * @see java.util.ArrayList
  */
 public class InventoryController {
+    private static String TAG = "InventoryController";
     /**
      * Initialize a Inventory to store the inventory information.
      */
@@ -159,11 +162,11 @@ public class InventoryController {
     // newly add by TeppieC
     // get the inventory with all sharable items
     public Inventory getSharableInventory(){
-        Inventory inventorySharable = getInventory();
+        Inventory inventorySharable = new Inventory();
 
-        for (DVD dvd : inventorySharable){
-            if (!dvd.isSharable()){
-                inventorySharable.delete(dvd);
+        for (DVD dvd : getInventory()){
+            if (dvd.isSharable()){
+                inventorySharable.add(dvd);
             }
         }
         return inventorySharable;
