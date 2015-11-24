@@ -91,12 +91,15 @@ public class FriendsController {
         return cache.get(name);
     }
 
-
     public String getNameByIndex(int index){
         String name = friends.get(index);
         return name;
     }
 
+    /**
+     * To put friend's name in Cache
+     * @param friend user's friend
+     */
     public void putFriendInCache(Friend friend){
         String name = friend.getProfile().getName();
         if (!cache.containsKey(name)) {
@@ -105,6 +108,11 @@ public class FriendsController {
         }
     }
 
+    /**
+     * To get a firend form friend list by name
+     * @param name a string variable which indicates a friend's name
+     * @return the target friend's name
+     */
     public Friend getByName(String name){
         if (!cache.containsKey(name)) {
             Thread getThread = new GetThread(name);
@@ -155,6 +163,9 @@ public class FriendsController {
         return resultSearch;
     }
 
+    /**
+     * To search a friend
+     */
     class SearchThread extends Thread {
         private String search;
 
@@ -169,7 +180,9 @@ public class FriendsController {
         }
     }
 
-
+    /**
+     * To reurn a friend's name
+     */
     class GetThread extends Thread {
         private String userName;
 

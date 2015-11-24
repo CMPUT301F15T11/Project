@@ -28,7 +28,7 @@ public class GalleryController {
 
     /**
      * Get the input gallery.
-     * @param gallery
+     * @param gallery array list of photo strings.
      */
     public GalleryController(Gallery gallery) {
         this.gallery = gallery;
@@ -52,8 +52,8 @@ public class GalleryController {
 
     /**
      * encode to store.
-     * @param bitmap
-     * @return a string
+     * @param bitmap array list of bitmap string
+     * @return encoded bitmap
      */
     public String encodeFromBitmap(Bitmap bitmap){
         String encoded =null;
