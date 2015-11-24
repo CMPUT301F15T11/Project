@@ -164,13 +164,14 @@ public class StartTradeActivity extends BaseActivity implements Observer {
         });
     }
 
-    private void sendEmail(){
-        String ownerEmailAddress = owner.getProfile().getContact();
+    private void sendEmail(String emailAddress, String ownerComments){
         Intent stats = new Intent(Intent.ACTION_SENDTO);
-        stats.setData(Uri.parse("mailto:" + ownerEmailAddress));
-        stats.putExtra(Intent.EXTRA_SUBJECT, "A Trade Request");
+        stats.setData(Uri.parse("mailto:" + emailAddress));
+        stats.putExtra(Intent.EXTRA_SUBJECT, "Trade Details");
 
-        String content = "You have a trade request from: "+User.instance().getProfile().getName()
+        String content = "Trade Items from owner: "+ String.valueOf(ownerDvdNames)
+                                + "\n Trade Items from borrower: "+String.valueOf(borrowerDvdNames)
+                                + "\n Owner's comments: " + ownerComments
                                 + "\n Please check your Trade Center for details";
 
         stats.putExtra(Intent.EXTRA_TEXT, content);

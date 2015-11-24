@@ -1,13 +1,16 @@
 package com.example.zhaorui.dvdcollector.Controller;
 
 import android.util.Log;
+import android.widget.Toast;
 
+import com.example.zhaorui.dvdcollector.Model.ContextUtil;
 import com.example.zhaorui.dvdcollector.Model.DVD;
 import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.ObserverManager;
 import com.example.zhaorui.dvdcollector.Model.Trade;
 import com.example.zhaorui.dvdcollector.Model.TradeList;
 import com.example.zhaorui.dvdcollector.Model.User;
+import com.example.zhaorui.dvdcollector.View.DVDInfoActivity;
 
 import java.util.ArrayList;
 import java.util.Observer;
@@ -126,7 +129,6 @@ public class TradeListController {
             }
         }
     }
-
     // change a trade request's status and type
     // pending --> In-progress
     // pending --> Declined, Current xxxx --> Past xxxx
@@ -153,6 +155,7 @@ public class TradeListController {
             if (trade.getId().equals(id)){
                 switch (trade.getStatus()) {
                     case "Pending":
+                        Toast.makeText(ContextUtil.getInstance(),"This trade hasn't been accepted", Toast.LENGTH_SHORT).show();
                         break;
                     case "In-progress"://Set to complete also set type to past
                         if(trade.getOwner().equals(User.instance().getProfile().getName())) {
@@ -162,8 +165,10 @@ public class TradeListController {
                         }
                         break;
                     case "Complete":
+                        Toast.makeText(ContextUtil.getInstance(),"This trade is already complete", Toast.LENGTH_SHORT).show();
                         break;
                     case "Declined":
+                        Toast.makeText(ContextUtil.getInstance(),"This trade cannot be set to complete", Toast.LENGTH_SHORT).show();
                         break;
                 }
                 break;
@@ -214,8 +219,10 @@ public class TradeListController {
 
         //set this dvd to not sharable because it's been borrowed
         InventoryController icOwner = new InventoryController();
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //set owner(device user) item not-sharable
         icOwner.getByName(trade.getOwnerItem()).setSharable(false);
-        ////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
         //set this trade to current incoming & In-progress
         setTradeResult(trade.getId(), true);
         //update on the tradelist
@@ -230,8 +237,6 @@ public class TradeListController {
         //push online
         httpClientBorrower.setTradeList(tradeList,trade.getBorrower());
         httpClientBorrower.runPushTradeList();
-
-        //send emails to both part
 
         Log.e(TAG,"Accept the trade");
 
