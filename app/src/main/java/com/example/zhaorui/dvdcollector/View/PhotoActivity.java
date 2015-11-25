@@ -64,6 +64,7 @@ public class PhotoActivity extends BaseActivity{
     private InventoryController ic = new InventoryController();
     private DVDController dc = new DVDController();
     private FriendsController fc = new FriendsController();
+
     private Gallery gallery;
     private GalleryController gc;
 
@@ -92,17 +93,24 @@ public class PhotoActivity extends BaseActivity{
             // if is viewing friend's dvd gallery, disable upload
             ic.setInventory(fc.get(friendPosition).getInventory());
             Button upload = (Button) findViewById(R.id.button_upload_photo);
-            upload.setVisibility(View.INVISIBLE);
+            upload.setText("Download Photos");
+            //TODO:如果这是Friend的DVD照片集, 此处按钮就不再是"添加照片",而是"下载照片"
+            upload.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //TODO:下载照片
+                }
+            });
         }
         ArrayList<String> info = dc.read(ic.get(position));//get the current dvd
 
         // check if this dvd has an non-empty gallery
         if (info.get(4)=="Yes") {
-            this.gallery = dc.readPhoto(ic.get(position));//get its gallery
-            this.gc = new GalleryController(gallery);
+            gallery = dc.readPhoto(ic.get(position));//get its gallery
+            gc = new GalleryController(gallery);
         }else{
-            this.gallery = new Gallery();
-            this.gc = new GalleryController(gallery);
+            gallery = new Gallery();
+            gc = new GalleryController(gallery);
         }
 
         // initialize the listview, each entry is provided with an index of image
@@ -171,6 +179,7 @@ public class PhotoActivity extends BaseActivity{
     }
 
     public void uploadFromGallery(View view){
+        //TODO:现在没有使用这个,因为数据会丢失,如果需要使用可以在xml里面换用这个
         String folder = Environment.getExternalStorageDirectory().getAbsolutePath() + "/tmp";
         File folderF = new File(folder);
         if (!folderF.exists()) {

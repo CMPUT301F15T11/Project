@@ -31,6 +31,7 @@ import com.example.zhaorui.dvdcollector.Controller.FriendsController;
 import com.example.zhaorui.dvdcollector.Controller.InventoryController;
 import com.example.zhaorui.dvdcollector.Model.ContextUtil;
 import com.example.zhaorui.dvdcollector.Model.Friend;
+import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
 
 /**
@@ -104,10 +105,15 @@ public class SearchDialog extends DialogFragment {
                     }
                     dialog.cancel();
                 } else {
-                    if (fc.getFriends().contains(name)){
+                    if (fc.getFriends().contains(name)) {
                         FragmentManager fm = getFragmentManager();
                         InputInvalidDialog newDialog = new InputInvalidDialog();
                         newDialog.setText(name + " is already your friend!");
+                        newDialog.show(fm, "abc");
+                    } else if(name.equals(User.instance().getProfile().getName())){
+                        FragmentManager fm = getFragmentManager();
+                        InputInvalidDialog newDialog = new InputInvalidDialog();
+                        newDialog.setText("Cannot add yourself as a friend");
                         newDialog.show(fm, "abc");
                     } else if (fc.nameExist(name)){
                         fc.add(name);

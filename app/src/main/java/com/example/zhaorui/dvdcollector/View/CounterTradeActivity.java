@@ -38,6 +38,7 @@ import com.example.zhaorui.dvdcollector.Controller.FriendsController;
 import com.example.zhaorui.dvdcollector.Controller.InventoryController;
 import com.example.zhaorui.dvdcollector.Controller.MyHttpClient;
 import com.example.zhaorui.dvdcollector.Controller.TradeListController;
+import com.example.zhaorui.dvdcollector.Model.DVD;
 import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.Friends;
 import com.example.zhaorui.dvdcollector.Model.Trade;
@@ -60,21 +61,16 @@ import java.util.Observer;
  * @version 11/10/15
  */
 public class CounterTradeActivity extends BaseActivity implements Observer {
-    private LinearLayout ll1;
-    private LinearLayout ll2;
-    private Spinner spinner;
-    private TextView textView;
-    private Button btnSendRequest;
     private TextView textView1;
     private TextView textView2;
 
-    private MyHttpClient ownerHttpClient;
-    private MyHttpClient borrowerHttpClient;
-    private Friend borrower = null;
+    private FriendsController fc = new FriendsController();
 
+    //Inventory controller for borrower, in this case-->Device user
     private InventoryController inventoryOwnerController;
     String[] ownerDvdNames;
 
+    //Inventory controller for owner, in this case-->One friend(This friend is fixed)
     private InventoryController inventoryBorrowerController;
     String[] borrowerDvdNames;
 
@@ -83,6 +79,7 @@ public class CounterTradeActivity extends BaseActivity implements Observer {
     String ownerDvdNameBuffer = null;
     ArrayList<Integer> borrowerDvdIndexBuffer = new ArrayList<>();
 
+    //TradeList Controller for user(owner)
     private TradeListController tradeListController = new TradeListController(User.instance().getTradeList());
 
     private static String TAG = "CounterTradeActivity";
@@ -91,33 +88,35 @@ public class CounterTradeActivity extends BaseActivity implements Observer {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_counter_trade);
-        textView = (TextView)findViewById(R.id.tv_counter_trade_borrower);
+        TextView textView = (TextView)findViewById(R.id.tv_counter_trade_borrower);
         textView1 = (TextView)findViewById(R.id.tv_listing_names_borrower_dvd);
         textView2 = (TextView)findViewById(R.id.tv_listing_names_onwer_dvd);
-        ll1 = (LinearLayout)findViewById(R.id.ll_add_borrower_dvd_new_trade);
-        ll2 = (LinearLayout)findViewById(R.id.ll_add_owner_dvd_new_trade);
+        LinearLayout ll1 = (LinearLayout)findViewById(R.id.ll_add_borrower_dvd_new_trade);
+        LinearLayout ll2 = (LinearLayout)findViewById(R.id.ll_add_owner_dvd_new_trade);
 
         Intent i = getIntent();
         String tradeStr = i.getStringExtra("trade");
         Gson gson = new Gson();
+        // TODO: Need to avoid using model instance?
         Trade trade = gson.fromJson(tradeStr,Trade.class);
+        final String friendName = trade.getBorrower();
 
-        //get borrower's information
-        borrowerHttpClient = new MyHttpClient(trade.getBorrower());
-        borrower = borrowerHttpClient.runPullFriend();
         inventoryBorrowerController = new InventoryController();
-        inventoryBorrowerController.setInventory(borrower.getInventory());
+        inventoryBorrowerController.setInventory(fc.getByName(friendName).getInventory());
         borrowerDvdNames = inventoryBorrowerController.getAllNames();
 
         //get owner's information
-        ownerHttpClient = new MyHttpClient(trade.getOwner());
+        //ownerHttpClient = new MyHttpClient(trade.getOwner());
         inventoryOwnerController = new InventoryController();
         ownerDvdNames = inventoryOwnerController.getAllNames();
 
         // set default info with the declined trade
         textView.setText(trade.getBorrower());
-        ////////////////////////////////////////////////////////////////////////////////////////////
         textView2.setText(trade.getOwnerItem());
+        for (String dvd:trade.getBorrowerItemList()){
+            textView1.setText(textView1.getText()+"; "+dvd);
+            borrowerDvdIndexBuffer.add(inventoryBorrowerController.indexOf(dvd));
+        }
         textView1.setText(String.valueOf(trade.getBorrowerItemList()));
         ownerDvdNameBuffer = trade.getOwnerItem();
         borrowerDvdNameBuffer = trade.getBorrowerItemList();
@@ -130,26 +129,35 @@ public class CounterTradeActivity extends BaseActivity implements Observer {
             }
         });
 
-        btnSendRequest = (Button)findViewById(R.id.btn_send_trade_request);
+        Button btnSendRequest = (Button)findViewById(R.id.btn_send_trade_request);
         btnSendRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (ownerDvdNameBuffer !=null) {
-                    Log.e("DVD numbers for borrow", String.valueOf(borrowerDvdNameBuffer.size()));
-                    String tradeId =  String.valueOf(System.currentTimeMillis());
+                    borrowerDvdNameBuffer.clear();
+                    for(int i:borrowerDvdIndexBuffer) {
+                        borrowerDvdNameBuffer.add(inventoryBorrowerController.getSharableInventory().get(i).getName());
+                    }
+                    Log.e(TAG, String.valueOf(borrowerDvdNameBuffer));
+                    Log.e(TAG, String.valueOf(borrowerDvdIndexBuffer));
+                    String tradeId =  String.valueOf(System.currentTimeMillis());// giving a new ID for the counter trade
                     // add this trade to borrower's tradelist
+                    //NOTE: Upon sending the counter trade, the role of borrower and owner switched
+                    //Owner in the counter trade --> Borrower of the new trade request
+                    //vice versa.
                     tradeListController.addTrade(
-                            borrower.getProfile().getName(),
-                            User.instance().getProfile().getName(),
+                            User.instance().getProfile().getName(),//Now, treat user as borrower
+                            fc.getByName(friendName).getProfile().getName(),// treat friend as owner
                             borrowerDvdNameBuffer,
                             ownerDvdNameBuffer,
                             "Current Outgoing",
                             "Pending",
-                            tradeId);
+                            tradeId);// save to user's tradelist
 
-                    //send trade to the owner
-                    tradeListController.sendCounterTrade(borrower.getProfile().getName(),
-                            User.instance().getProfile().getName(), borrowerDvdNameBuffer, ownerDvdNameBuffer, tradeId);
+                    //send trade to the owner(now--> friend)
+                    tradeListController.sendCounterTrade(User.instance().getProfile().getName(),
+                            fc.getByName(friendName).getProfile().getName(),
+                            borrowerDvdNameBuffer, ownerDvdNameBuffer, tradeId);
 
                     Toast.makeText(CounterTradeActivity.this, "Trade has been sent to the borrower", Toast.LENGTH_SHORT).show();
                     CounterTradeActivity.this.finish();
@@ -171,26 +179,6 @@ public class CounterTradeActivity extends BaseActivity implements Observer {
         inventoryBorrowerController.addObserver(this);
     }
 
-    private void sendEmail(String emailAddress, String ownerComments){
-        Intent stats = new Intent(Intent.ACTION_SENDTO);
-        stats.setData(Uri.parse("mailto:" + emailAddress));
-        stats.putExtra(Intent.EXTRA_SUBJECT, "Trade Details");
-
-        String content = "Trade Items from owner: "+ String.valueOf(ownerDvdNames)
-                                + "\n Trade Items from borrower: "+String.valueOf(borrowerDvdNames)
-                                + "\n Owner's comments: " + ownerComments
-                                + "\n Please check your Trade Center for details";
-
-        stats.putExtra(Intent.EXTRA_TEXT, content);
-        try {
-            startActivity(stats);
-        }catch (android.content.ActivityNotFoundException e) {
-            // catch an exception when no email appliactions applicable in emulator
-            // from http://stackoverflow.com/questions/14604349/activitynotfoundexception-while-sending-email-from-the-application
-            Toast.makeText(CounterTradeActivity.this,
-                    "There are no email applications installed.", Toast.LENGTH_SHORT).show();
-        }
-    }
 
     // A alert will be prompted if user haven't chosen a dvd from the owner
     private void showPromptDialog() {
@@ -219,11 +207,9 @@ public class CounterTradeActivity extends BaseActivity implements Observer {
             @Override
             public void onClick(DialogInterface dialog, int which, boolean isChecked) {
                 if (isChecked) { // if check the item
-                    borrowerDvdNameBuffer.add(inventoryBorrowerController.getSharableInventory().get(which).getName());
                     borrowerDvdIndexBuffer.add(which);
                 } else {// if un-check the item
-                    borrowerDvdNameBuffer.remove(inventoryBorrowerController.getSharableInventory().get(which).getCategory());
-                    borrowerDvdIndexBuffer.remove(new Integer(which));
+                    borrowerDvdIndexBuffer.remove(Integer.valueOf(which));
                 }
 
                 // write the selected dvds to the textview

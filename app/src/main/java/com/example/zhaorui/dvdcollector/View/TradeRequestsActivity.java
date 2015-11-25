@@ -26,8 +26,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.zhaorui.dvdcollector.Controller.TradeListController;
-import com.example.zhaorui.dvdcollector.Model.Trade;
-import com.example.zhaorui.dvdcollector.Model.TradeList;
 import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
 
@@ -45,21 +43,19 @@ import java.util.ArrayList;
 public class TradeRequestsActivity extends BaseActivity {
     private ArrayList<String> tradeRequestNames;
     private TradeListController myTradeListController = new TradeListController(User.instance().getTradeList());
-    private TradeList myTradeRequests;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trade_requests);
 
-        myTradeListController.pullTrade(User.instance().getProfile().getName());
+        myTradeListController.updateTradeList(User.instance().getProfile().getName());
     }
 
     @Override
     protected void onResume(){
         super.onResume();
-        myTradeRequests = myTradeListController.getTradeRequests();
-        tradeRequestNames = myTradeListController.getNames(myTradeRequests);
+        tradeRequestNames = myTradeListController.getNames(myTradeListController.getTradeRequests());
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(TradeRequestsActivity.this, android.R.layout.simple_list_item_1, tradeRequestNames);
         ListView listView = (ListView) findViewById(R.id.listView_trade_requests);

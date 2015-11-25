@@ -44,7 +44,7 @@ public class TradeCenterActivity extends BaseActivity {
         setContentView(R.layout.activity_trade_center);
 
         TradeListController tradeListController = new TradeListController(User.instance().getTradeList());
-        tradeListController.pullTrade(User.instance().getProfile().getName());
+        tradeListController.updateTradeList(User.instance().getProfile().getName());
     }
 
     @Override

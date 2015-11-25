@@ -26,8 +26,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.zhaorui.dvdcollector.Controller.TradeListController;
-import com.example.zhaorui.dvdcollector.Model.Trade;
-import com.example.zhaorui.dvdcollector.Model.TradeList;
 import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
 
@@ -46,8 +44,7 @@ public class TradesLogTypeActivity extends BaseActivity {
 
     private ArrayList<String> tradeIDs;
     private ArrayList<String> tradeNames;
-    private TradeList tradeList = User.instance().getTradeList();
-    private TradeListController tradeListController = new TradeListController(tradeList);
+    private TradeListController tradeListController = new TradeListController(User.instance().getTradeList());
     private String type;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,15 +53,14 @@ public class TradesLogTypeActivity extends BaseActivity {
         Intent i = getIntent();
         type = i.getStringExtra("type");
 
-        TradeList tradesToShow = tradeListController.getTradesOfType(type);
-        tradeIDs = tradeListController.getIds(tradesToShow);
-        tradeNames = tradeListController.getNames(tradesToShow);
-        tradeListController.pullTrade(User.instance().getProfile().getName());
+        tradeListController.updateTradeList(User.instance().getProfile().getName());
     }
 
     @Override
     protected void onStart(){
         super.onStart();
+        tradeIDs = tradeListController.getIds(tradeListController.getTradesOfType(type));
+        tradeNames = tradeListController.getNames(tradeListController.getTradesOfType(type));
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(TradesLogTypeActivity.this, android.R.layout.simple_list_item_1, tradeNames);
         ListView listView = (ListView) findViewById(R.id.listView_trades_log);
         listView.setAdapter(adapter);

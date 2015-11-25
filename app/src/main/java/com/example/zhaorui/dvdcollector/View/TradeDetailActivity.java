@@ -24,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.zhaorui.dvdcollector.Controller.TradeListController;
 import com.example.zhaorui.dvdcollector.Model.Trade;
@@ -123,16 +124,21 @@ public class TradeDetailActivity extends BaseActivity {
         }
 
         if(id==R.id.set_to_complete){
-            tradeListController.setTradeComplete(idOfTrade);
-            textViewStatus.setText(tradeListController.getTradeById(idOfTrade).getStatus());
-            Log.e("dvd",tradeListController.getTradeById(idOfTrade).getStatus());
+            if(tradeToShow.getStatus().equals("Declined")){
+                tradeListController.setTradeComplete(idOfTrade);
+                textViewStatus.setText(tradeListController.getTradeById(idOfTrade).getStatus());
+            }
         }
 
         if(id == R.id.start_counter_trade){
-            Intent i = new Intent(TradeDetailActivity.this, CounterTradeActivity.class);
-            Gson gson = new Gson();
-            i.putExtra("trade",gson.toJson(tradeToShow));
-            startActivity(i);
+            if(tradeToShow.getOwner().equals(User.instance().getProfile().getName())) {
+                Intent i = new Intent(TradeDetailActivity.this, CounterTradeActivity.class);
+                Gson gson = new Gson();
+                i.putExtra("trade", gson.toJson(tradeToShow));
+                startActivity(i);
+            }else {
+                Toast.makeText(TradeDetailActivity.this, "Borrower can't start counter trade", Toast.LENGTH_SHORT).show();
+            }
         }
 
         return super.onOptionsItemSelected(item);
