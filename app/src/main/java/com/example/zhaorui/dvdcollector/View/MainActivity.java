@@ -18,23 +18,13 @@ package com.example.zhaorui.dvdcollector.View;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.zhaorui.dvdcollector.Controller.DataManager;
-import com.example.zhaorui.dvdcollector.Controller.HttpClient;
-import com.example.zhaorui.dvdcollector.Controller.TradeHttpClient;
-import com.example.zhaorui.dvdcollector.Controller.TradeListController;
-import com.example.zhaorui.dvdcollector.Controller.UserHttpClient;
-import com.example.zhaorui.dvdcollector.Model.Friend;
-import com.example.zhaorui.dvdcollector.Model.TradeList;
-import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
-
-import java.util.ArrayList;
 
 /**
  * <p>

@@ -250,7 +250,7 @@ public class StartTradeActivity extends BaseActivity implements Observer {
             }
         }else{ // if it's the first time selecting owner's dvd
             try {
-                ownerDvdNameBuffer = inventoryOwnerController.getInventory().get(checked).getName();
+                ownerDvdNameBuffer = inventoryOwnerController.get(checked).getName();
             }catch (IndexOutOfBoundsException e){
                 e.printStackTrace();
                 ownerDvdNameBuffer = null;
@@ -260,7 +260,7 @@ public class StartTradeActivity extends BaseActivity implements Observer {
         builder.setSingleChoiceItems(ownerDvdNames, checked, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                ownerDvdNameBuffer = inventoryOwnerController.getInventory().get(which).getName();
+                ownerDvdNameBuffer = inventoryOwnerController.get(which).getName();
             }
         });
 

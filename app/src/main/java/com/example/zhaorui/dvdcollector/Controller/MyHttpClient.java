@@ -9,7 +9,7 @@ import com.google.gson.Gson;
 /**
  * Created by teppie on 22/11/15.
  */
-public class HttpClient {
+public class MyHttpClient {
     private Friend friend;
     private String name;
     private TradeList tradeList;
@@ -17,24 +17,24 @@ public class HttpClient {
     private Gson gson = new Gson();
     private Boolean result;
 
-    public HttpClient() {
+    public MyHttpClient() {
     }
 
-    public HttpClient(Friend friend) {
+    public MyHttpClient(Friend friend) {
         this.friend = friend;
     }
 
-    public HttpClient(String name, TradeList tradeList) {
+    public MyHttpClient(String name, TradeList tradeList) {
         this.name = name;
         this.tradeList = tradeList;
     }
 
-    public HttpClient(Gallery gallery, String name) {
+    public MyHttpClient(Gallery gallery, String name) {
         this.gallery = gallery;
         this.name = name;
     }
 
-    public HttpClient(String name) {
+    public MyHttpClient(String name) {
         this.name = name;
     }
 

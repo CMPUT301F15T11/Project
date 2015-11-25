@@ -30,6 +30,7 @@ import com.example.zhaorui.dvdcollector.Model.Trade;
 import com.example.zhaorui.dvdcollector.Model.TradeList;
 import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
+import com.google.gson.Gson;
 
 /**
  * <p>
@@ -45,6 +46,7 @@ public class TradeDetailActivity extends BaseActivity {
     private TradeListController tradeListController = new TradeListController(tradeList);
     private Trade tradeToShow;
     private String nameOfTrade;
+    private String idOfTrade;
 
     private TextView textViewBorrower;
     private TextView textViewBorrowerDvd;
@@ -85,7 +87,7 @@ public class TradeDetailActivity extends BaseActivity {
 
             tradeToShow = tradeListController.getTradeOfStatus(status).get(pos);
         }
-        nameOfTrade = i.getStringExtra("name");
+        idOfTrade = i.getStringExtra("id");
 
         Log.e("DVD", tradeToShow.getStatus());
         Log.e("DVD", tradeToShow.getType());
@@ -121,12 +123,15 @@ public class TradeDetailActivity extends BaseActivity {
         }
 
         if(id==R.id.set_to_complete){
-            tradeListController.setTradeComplete(nameOfTrade);
-            textViewStatus.setText(tradeListController.getTradeByName(nameOfTrade).getStatus());
+            tradeListController.setTradeComplete(idOfTrade);
+            textViewStatus.setText(tradeListController.getTradeById(idOfTrade).getStatus());
+            Log.e("dvd",tradeListController.getTradeById(idOfTrade).getStatus());
         }
 
         if(id == R.id.start_counter_trade){
             Intent i = new Intent(TradeDetailActivity.this, CounterTradeActivity.class);
+            Gson gson = new Gson();
+            i.putExtra("trade",gson.toJson(tradeToShow));
             startActivity(i);
         }
 

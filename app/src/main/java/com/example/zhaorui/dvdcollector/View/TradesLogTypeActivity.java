@@ -44,6 +44,7 @@ import java.util.ArrayList;
  */
 public class TradesLogTypeActivity extends BaseActivity {
 
+    private ArrayList<String> tradeIDs;
     private ArrayList<String> tradeNames;
     private TradeList tradeList = User.instance().getTradeList();
     private TradeListController tradeListController = new TradeListController(tradeList);
@@ -56,6 +57,7 @@ public class TradesLogTypeActivity extends BaseActivity {
         type = i.getStringExtra("type");
 
         TradeList tradesToShow = tradeListController.getTradesOfType(type);
+        tradeIDs = tradeListController.getIds(tradesToShow);
         tradeNames = tradeListController.getNames(tradesToShow);
         tradeListController.pullTrade(User.instance().getProfile().getName());
     }
@@ -75,7 +77,7 @@ public class TradesLogTypeActivity extends BaseActivity {
                 Intent i = new Intent(TradesLogTypeActivity.this, TradeDetailActivity.class);
                 i.putExtra("type", type);
                 i.putExtra("position", position);
-                i.putExtra("name", tradeNames.get(position));
+                i.putExtra("id", tradeIDs.get(position));
                 startActivity(i);
             }
         });
