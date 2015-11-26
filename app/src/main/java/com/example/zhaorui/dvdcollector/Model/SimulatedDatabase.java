@@ -37,6 +37,9 @@ public class SimulatedDatabase{
             "Dingkai", "Dylan", "Zhaorui", "Jiaxuan", "Qingdai", "Xi", "Jonathan", "James", "John",
             "Bob", "Adam", "Liam", "Mars", "Andrew", "Anderson", "Leon"};
 
+    /**
+     * Initialize a simulated database
+     */
     private SimulatedDatabase(){}
 
     public static void init(){

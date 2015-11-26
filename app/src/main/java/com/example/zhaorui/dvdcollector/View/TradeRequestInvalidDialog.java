@@ -35,7 +35,13 @@ import com.example.zhaorui.dvdcollector.R;
  */
 
 public class TradeRequestInvalidDialog extends DialogFragment {
+    /**
+     * Initialize a custom view
+     */
     private View customView;
+    /**
+     * Initialize an OK button
+     */
     private Button ok;
 
     @Override

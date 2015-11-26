@@ -50,9 +50,21 @@ import com.example.zhaorui.dvdcollector.R;
  * @version 27/10/15
  */
 public class NameInputDialog extends DialogFragment {
+    /**
+     * Initialize view of custom view
+     */
     private View customView;
+    /**
+     * Initialize ok button
+     */
     private Button ok;
+    /**
+     * Initialize edit text
+     */
     private EditText editText;
+    /**
+     * Initialize edit text email
+     */
     private EditText editTextEmail;
 
     @Override

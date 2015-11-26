@@ -42,7 +42,13 @@ import java.util.Observer;
  */
 public class FriendListActivity extends BaseActivity implements Observer {
     Button btnMenuMyInvent;
+    /**
+     * Initialize friend controller
+     */
     private FriendsController fc;
+    /**
+     * Initialize array adapter of string
+     */
     private ArrayAdapter<String> adapter;
 
     @Override
@@ -112,6 +118,11 @@ public class FriendListActivity extends BaseActivity implements Observer {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Update observer
+     * @param ob observer variable
+     * @param o object variable
+     */
     public void update(Observable ob, Object o){
         adapter.notifyDataSetChanged();
     }

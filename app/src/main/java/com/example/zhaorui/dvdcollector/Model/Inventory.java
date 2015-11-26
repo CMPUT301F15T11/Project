@@ -85,6 +85,11 @@ public class Inventory extends ArrayList<DVD>{
         ObserverManager.getInstance().notifying("Inventory");
     }
 
+    /**
+     * To edit DVDs to the hash map
+     * @param dvd DVD variable
+     * @param dvd2 DVD2 variable
+     */
     public void edit(DVD dvd,DVD dvd2){
         categoryInventories.get(dvd.getCategory()).remove(dvd);
         set(indexOf(dvd), dvd2);
@@ -92,6 +97,9 @@ public class Inventory extends ArrayList<DVD>{
         ObserverManager.getInstance().notifying("Inventory");
     }
 
+    /**
+     * Update information about this DVD
+     */
     public void fresh(){
         for (DVD dvd : this){
             edit(dvd,dvd);

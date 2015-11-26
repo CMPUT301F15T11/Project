@@ -35,8 +35,14 @@ import android.widget.ImageView;
 import com.example.zhaorui.dvdcollector.R;
 
 public class DisplayPhotoActivity extends BaseActivity {
-
+    /**
+     * Initialize imageview
+     */
     private ImageView imageView;
+
+    /**
+     * Initialize a string to store photostring
+     */
     private String photoStr;
 
     @Override

@@ -42,9 +42,14 @@ import org.w3c.dom.Text;
  */
 public class FriendProfileActivity extends BaseActivity {
     FriendsController fc;
+    /**
+     * Set user http client variable
+     */
     private UserHttpClient userHttpClient;
+    /**
+     * Set friend variable
+     */
     private Friend friendToShow;
-
     TextView text;
 
     @Override
@@ -68,12 +73,22 @@ public class FriendProfileActivity extends BaseActivity {
 
 
     class GetThread extends Thread {
+        /**
+         * Initialize a string to store username
+         */
         private String userName;
 
+        /**
+         * Initialize username
+         * @param userName a string variable of username
+         */
         public GetThread(String userName) {
             this.userName = userName;
         }
 
+        /**
+         * Update username to userhttpclient
+         */
         @Override
         public void run() {
             friendToShow = userHttpClient.pullFriend(userName);
@@ -82,6 +97,9 @@ public class FriendProfileActivity extends BaseActivity {
         }
     }
 
+    /**
+     * Run to update friend's related variable
+     */
     private Runnable doUpdateGUIDetails = new Runnable() {
         public void run() {
         }

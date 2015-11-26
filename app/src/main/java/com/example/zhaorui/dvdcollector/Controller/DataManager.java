@@ -98,9 +98,9 @@ public class DataManager implements Observer {
     }
 
     /**
-     *
-     * @param name
-     * @param email
+     *Retrieve File
+     * @param name string variable of username
+     * @param email string variable of user's email
      */
     public void retrieveFile(String name, String email){
         UserHttpClient userHttpClient = new UserHttpClient();
@@ -139,7 +139,7 @@ public class DataManager implements Observer {
     /**
      *To update Observable
      * @param ob observable variable
-     * @param o object variable
+     * @param o  object variable
      */
     public void update(Observable ob, Object o){
         saveLocal();

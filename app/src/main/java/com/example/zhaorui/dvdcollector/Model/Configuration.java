@@ -25,14 +25,29 @@ package com.example.zhaorui.dvdcollector.Model;
  * @version 09/10/15
  */
 public class Configuration {
+    /**
+     * Initialize a boolean variable to store whether use confirms request
+     */
     private boolean confirm;
+
+    /**
+     * Configure user's profile
+     */
     public Configuration() {
     }
 
+    /**
+     * This function is called when oher functions need to set whether user confirm trade or not
+     * @param confirm a boolean variable
+     */
     public Configuration(boolean confirm) {
         this.confirm = confirm;
     }
 
+    /**
+     * This function is to return whether the user confirms request or not
+     * @return  boolean value of whether confirm or not
+     */
     public boolean isConfirm() {
         return confirm;
     }

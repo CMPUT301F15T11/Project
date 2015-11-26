@@ -47,12 +47,19 @@ public class ConfigActivity extends BaseActivity {
         return true;
     }
 
-
+    /**
+     * Initialize user profile
+     * @param view view varibale
+     */
     public void startMyProfile(View view){
         Intent i = new Intent(ConfigActivity.this, MyProfileActivity.class);
         startActivity(i);
     }
 
+    /**
+     * Start to switch download
+     * @param view view variable
+     */
     public void startSwitchDownload(View view){
         Intent i = new Intent(ConfigActivity.this, SwitchDownloadActivity.class);
         startActivity(i);

@@ -100,7 +100,7 @@ public class DVDController {
     }
 
     /**
-     * This function maanage the array list of categories we have.
+     * This function manage the array list of categories we have.
      * @return a list of categories.
      */
     public ArrayList<String> categories(){

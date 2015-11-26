@@ -27,12 +27,22 @@ import android.app.Application;
  * @version 03/11/15
  * */
 public class ContextUtil extends Application{
+    /**
+     * Initialize a static content
+     */
     private static ContextUtil instance;
 
+    /**
+     * This function is to get the content for loading and writing to lacal files
+     * @return instance
+     */
     public static ContextUtil getInstance() {
         return instance;
     }
 
+    /**
+     * This function is to control the content for loading and writing to local file
+     */
     public void onCreate(){
         super.onCreate();
         instance = this;

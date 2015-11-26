@@ -63,22 +63,36 @@ import java.util.Observer;
 public class CounterTradeActivity extends BaseActivity implements Observer {
     private TextView textView1;
     private TextView textView2;
-
+    /**
+     * Initialize friend controller
+     */
     private FriendsController fc = new FriendsController();
 
+    /**
+     * Initialize inventory controller for borrower
+     */
     //Inventory controller for borrower, in this case-->Device user
     private InventoryController inventoryOwnerController;
     String[] ownerDvdNames;
 
+    /**
+     * Initialize inventory controller for owner
+     */
     //Inventory controller for owner, in this case-->One friend(This friend is fixed)
     private InventoryController inventoryBorrowerController;
     String[] borrowerDvdNames;
 
+    /**
+     * Initialize array list of string of buffer for selecting DVDs
+     */
     //Buffer for selecting dvds in the checkbox and radiobutton
     ArrayList<String> borrowerDvdNameBuffer = new ArrayList<>();
     String ownerDvdNameBuffer = null;
     ArrayList<Integer> borrowerDvdIndexBuffer = new ArrayList<>();
 
+    /**
+     * Initialize trade list controller for owner
+     */
     //TradeList Controller for user(owner)
     private TradeListController tradeListController = new TradeListController(User.instance().getTradeList());
 
@@ -179,7 +193,9 @@ public class CounterTradeActivity extends BaseActivity implements Observer {
         inventoryBorrowerController.addObserver(this);
     }
 
-
+    /**
+     * Alert user to chose DVD from owner if they didn't choose yet
+     */
     // A alert will be prompted if user haven't chosen a dvd from the owner
     private void showPromptDialog() {
         FragmentManager fm = getFragmentManager();
@@ -187,6 +203,9 @@ public class CounterTradeActivity extends BaseActivity implements Observer {
         newDialog.show(fm, "abc");
     }
 
+    /**
+     * Open multiple choice dialog for borrowers
+     */
     // open a multiple choice dialog for the borrower
     // borrower is always the device user in this activity
     public void borrowerMultipleChoiceDialog(){
@@ -229,6 +248,9 @@ public class CounterTradeActivity extends BaseActivity implements Observer {
         builder.show();
     }
 
+    /**
+     * Open single choice dialog for owner
+     */
     // open a single choice dialog for the owner
     public void ownerSingleChoiceDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(CounterTradeActivity.this);
@@ -293,6 +315,11 @@ public class CounterTradeActivity extends BaseActivity implements Observer {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Update Observer
+     * @param ob observable variable
+     * @param o object variable
+     */
     public void update(Observable ob,Object o){
     }
 }

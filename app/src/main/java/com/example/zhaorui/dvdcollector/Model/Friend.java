@@ -56,10 +56,12 @@ public class Friend {
         inventory = inventoryController.getSharableInventory();
         profile = user.getProfile();
     }
-    /**
-     * To store the select friend's information.
-     */
 
+    /**
+     * To store inventory under user's profile
+     * @param inventory
+     * @param profile
+     */
     public Friend(Inventory inventory, UserProfile profile) {
         this.inventory = inventory;
         this.profile = profile;

@@ -107,6 +107,11 @@ public class CategoryActivity extends BaseActivity implements Observer{
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Update observer
+     * @param ob observable variable
+     * @param o object variable
+     */
     public void update(Observable ob, Object o){
         adapter.notifyDataSetChanged();
     }

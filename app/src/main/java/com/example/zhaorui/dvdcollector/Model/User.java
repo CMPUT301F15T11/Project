@@ -46,6 +46,9 @@ public class User{
      */
     private TradeList tradeList;
 
+    /**
+     * Initialize user's related variable
+     */
     private User() {
         friends = new Friends();
         inventory = new Inventory();
@@ -53,10 +56,18 @@ public class User{
         tradeList = new TradeList();
     }
 
+    /**
+     * Initialize static instance of user
+     * @param instance user varibale
+     */
     public static void setInstance(User instance) {
         User.instance = instance;
     }
 
+    /**
+     * Get instance of user
+     * @return instance
+     */
     public static User instance(){
         if (instance == null){
             instance = new User();
@@ -64,7 +75,12 @@ public class User{
         return instance;
     }
 
+    /**
+     * Call <code>TradeList</code> class to get trade list
+     * @return the user's friends.
+     */
     public TradeList getTradeList(){return tradeList;}
+
     /**
      * Call <code>Friends</code> class to get the user's friends.
      * @return the user's friends.
@@ -72,6 +88,7 @@ public class User{
     public Friends getFriends() {
         return friends;
     }
+
     /**
      * Call <code>Inventory</code> class to get the user's inventories.
      * @return the user's inventories.
@@ -79,6 +96,7 @@ public class User{
     public Inventory getInventory() {
         return inventory;
     }
+
     /**
      * Call <code>UserProfile</code> class to get the user's prifile information.
      * @return the user's profile information.

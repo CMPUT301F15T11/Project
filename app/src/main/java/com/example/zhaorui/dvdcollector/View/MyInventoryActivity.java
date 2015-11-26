@@ -43,7 +43,11 @@ import java.util.Observer;
  * @version 11/10/15
  */
 public class MyInventoryActivity extends BaseActivity implements Observer {
+    /**
+     * Initialize Inventory Controller
+     */
     private InventoryController controller;
+
     ArrayAdapter<DVD> adapter;
 
     //http://stackoverflow.com/questions/18913635/how-to-trigger-a-menu-button-click-event-through-code-in-android
@@ -87,7 +91,9 @@ public class MyInventoryActivity extends BaseActivity implements Observer {
         adapter = new ArrayAdapter<DVD>(MyInventoryActivity.this, android.R.layout.simple_list_item_1, controller.getInventory());
         listView.setAdapter(adapter);
     }
-
+    /**
+     * Showing search dialog
+     */
     private void showSearchDialog() {
         FragmentManager fm = getFragmentManager();
         SearchDialog newDialog = new SearchDialog();
@@ -128,6 +134,11 @@ public class MyInventoryActivity extends BaseActivity implements Observer {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Update observer
+     * @param ob Observable variable
+     * @param o Object variable
+     */
     public void update(Observable ob,Object o){
         adapter.notifyDataSetChanged();
     }

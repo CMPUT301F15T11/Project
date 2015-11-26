@@ -29,8 +29,15 @@ import java.util.HashMap;
 public class Cache extends HashMap<String,Friend> {
     private static Cache instance;
 
+    /**
+     * Initialize cache
+     */
     private Cache(){}
 
+    /**
+     * To build temperate storage
+     * @return cache instance
+     */
     public static Cache getInstance() {
         if (instance == null) instance = new Cache();
         return instance;

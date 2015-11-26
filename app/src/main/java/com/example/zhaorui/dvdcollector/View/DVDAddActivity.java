@@ -63,15 +63,45 @@ import java.util.ArrayList;
  * @version 11/10/15
  */
 public class DVDAddActivity extends BaseActivity {
+
+    /**
+     * Initialize DVD controller
+     */
     private DVDController dc = new DVDController();
+
+    /**
+     * Initialize  inventory controller
+     */
     private InventoryController ic = new InventoryController();
+
+    /**
+     * Initialize a spinner
+     */
     private Spinner spinner;
+
+    /**
+     * Initialize an int to store position
+     */
     private int position;
 
+    /**
+     * Initialize gallery
+     */
     private Gallery gallery;
+
+    /**
+     * Initialize gallery controller
+     */
     private GalleryController gc;
 
+    /**
+     * Initialize  rating bar
+     */
     private RatingBar ratingBar;
+
+    /**
+     * Initialize a string to store rating string
+     */
     private String ratingStr = "0";
 
     @Override
@@ -147,6 +177,10 @@ public class DVDAddActivity extends BaseActivity {
         }
    }
 
+    /**
+     * Add and save DVD
+     * @param view view variable
+     */
     public void onAddSave(View view){
         EditText text;
         text = (EditText) findViewById(R.id.ed_add_name);
@@ -192,6 +226,10 @@ public class DVDAddActivity extends BaseActivity {
         }
     }
 
+    /**
+     * To start gallery
+     * @param view view variable
+     */
     public void startGallery(View view){
         // open the activity to show the list of photos attached to this dvd
         Intent intent = new Intent(DVDAddActivity.this, PhotoActivity.class);

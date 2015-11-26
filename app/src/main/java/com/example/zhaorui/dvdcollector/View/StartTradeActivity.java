@@ -57,19 +57,45 @@ import java.util.Observer;
  * @version 11/10/15
  */
 public class StartTradeActivity extends BaseActivity implements Observer {
+    /**
+     * Initialize linear layout ll1
+     */
     private LinearLayout ll1;
+    /**
+     * Initialize linear layout ll2
+     */
     private LinearLayout ll2;
+    /**
+     * Initialize Spinner
+     */
     private Spinner spinner;
+    /**
+     * Initialize Send Request button
+     */
     private Button btnSendRequest;
+    /**
+     * Initialize TextView textView1
+     */
     private TextView textView1;
+    /**
+     * Initialize TextView textView2
+     */
     private TextView textView2;
-
+    /**
+     * Initialize Friends Controller
+     */
     private FriendsController friendsController = new FriendsController();
 
+    /**
+     * Initialize Inventory controller for borrower
+     */
     //Inventory controller for borrower, in this case-->Device user
     private InventoryController inventoryBorrowerController = new InventoryController();
     String[] borrowerDvdNames = inventoryBorrowerController.getAllNames();
 
+    /**
+     * Initialize Inventory controller for owner
+     */
     //Inventory controller for owner, in this case-->One friend
     private InventoryController inventoryOwnerController = new InventoryController();
     String[] ownerDvdNames;
@@ -79,8 +105,13 @@ public class StartTradeActivity extends BaseActivity implements Observer {
     String ownerDvdNameBuffer = null;
     ArrayList<Integer> borrowerDvdIndexBuffer = new ArrayList<>();
 
+    /**
+     * Initialize TradeList Controller
+     */
     private TradeListController tradeListController = new TradeListController(User.instance().getTradeList());
-
+    /**
+     * Initialize static string TAG
+     */
     private static String TAG = "StartTradeActivity";
 
     @Override
@@ -312,6 +343,11 @@ public class StartTradeActivity extends BaseActivity implements Observer {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Update observer
+     * @param ob Observable variable
+     * @param o Object variable
+     */
     public void update(Observable ob,Object o){
     }
 }

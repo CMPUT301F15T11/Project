@@ -41,10 +41,21 @@ import java.util.ArrayList;
  * @version 11/10/15
  */
 public class TradesLogTypeActivity extends BaseActivity {
-
+    /**
+     * Initialize an array list to store name of trade IDs
+     */
     private ArrayList<String> tradeIDs;
+    /**
+     * Initialize an array list to store name of trade names
+     */
     private ArrayList<String> tradeNames;
+    /**
+     * Initialize an array list of trade list controller to user instance
+     */
     private TradeListController tradeListController = new TradeListController(User.instance().getTradeList());
+    /**
+     * Initialize a string to store typr
+     */
     private String type;
 
     protected void onCreate(Bundle savedInstanceState) {

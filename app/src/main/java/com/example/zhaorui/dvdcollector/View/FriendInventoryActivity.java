@@ -50,14 +50,37 @@ public class FriendInventoryActivity extends BaseActivity {
     // sample data
 
     //http://stackoverflow.com/questions/18913635/how-to-trigger-a-menu-button-click-event-through-code-in-android
+    /**
+     * Initialize button
+     */
     private Button btnMenuFriendInvent;
+    /**
+     * Initialize lis view
+     */
     private ListView listView;
+    /**
+     * Initialize friend controller
+     */
     private FriendsController fc;
+    /**
+     * Initialize invenory controller
+     */
     private InventoryController ic;
+    /**
+     * Initialize array adapter of DVD
+     */
     private ArrayAdapter<DVD> adapter;
+    /**
+     * Initialize an int to store friend position
+     */
     private int friendPostion;
-
+    /**
+     * Initialize user http client
+     */
     private UserHttpClient userHttpClient;
+    /**
+     * Initialize friend
+     */
     private Friend friendToShow;
 
     @Override
@@ -108,10 +131,17 @@ public class FriendInventoryActivity extends BaseActivity {
     class GetThread extends Thread {
         private String userName;
 
+        /**
+         * Initialize username
+         * @param userName a string variable for username
+         */
         public GetThread(String userName) {
             this.userName = userName;
         }
 
+        /**
+         * Update user http client
+         */
         @Override
         public void run() {
             friendToShow = userHttpClient.pullFriend(userName);
@@ -120,6 +150,9 @@ public class FriendInventoryActivity extends BaseActivity {
         }
     }
 
+    /**
+     * Run and display related list and dialog
+     */
     private Runnable doUpdateGUIDetails = new Runnable() {
         public void run() {
             ic = new InventoryController();
@@ -161,6 +194,9 @@ public class FriendInventoryActivity extends BaseActivity {
         return true;
     }
 
+    /**
+     * Display search dialog
+     */
     private void showSearchDialog() {
         FragmentManager fm = getFragmentManager();
         SearchDialog newDialog = new SearchDialog();

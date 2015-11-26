@@ -60,24 +60,61 @@ import java.util.ArrayList;
  * @version 4/11/15
  */
 public class PhotoActivity extends BaseActivity{
+    /**
+     * Initialize an int to store position
+     */
     private int position;
+    /**
+     * Initialize an inventory controller
+     */
     private InventoryController ic = new InventoryController();
+    /**
+     * Initialize a DVD controller
+     */
     private DVDController dc = new DVDController();
+    /**
+     * Initialize a friend controller
+     */
     private FriendsController fc = new FriendsController();
-
+    /**
+     * Initialize a galley
+     */
     private Gallery gallery;
+    /**
+     * Initialize a galley controller
+     */
     private GalleryController gc;
-
+    /**
+     * Initialize an int to store number of photos
+     */
     private int numPhotos;
+    /**
+     * Initialize an int of array list to store index of photos
+     */
     private ArrayList<Integer> photoIndexes;
+    /**
+     * Initialize an int of array adapter to store photo adapter
+     */
     private ArrayAdapter<Integer> photoAdapter;
-
+    /**
+     * Initialize a list view
+     */
     private ListView listView;
-
+    /**
+     * Initialize a static final int
+     */
     private static final int CHOOSE_PHOTO = 11;
+    /**
+     * Initialize a static final int
+     */
     private static final int TAKE_PHOTO = 22;
+    /**
+     * Initialize an uri
+     */
     private Uri imageUri;
-
+    /**
+     * Initialize a string to store image path
+     */
     private String imagePath;
 
     @Override
@@ -266,6 +303,12 @@ public class PhotoActivity extends BaseActivity{
      * helper to retrieve the path of an image URI
      */
     //http://stackoverflow.com/questions/2169649/get-pick-an-image-from-androids-built-in-gallery-app-programmatically
+
+    /**
+     * get string of uri path
+     * @param uri uri variable
+     * @return column index or null
+     */
     public String getPath(Uri uri) {
         String[] projection = { MediaStore.Images.Media.DATA };
         Cursor cursor = managedQuery(uri, projection, null, null, null);
