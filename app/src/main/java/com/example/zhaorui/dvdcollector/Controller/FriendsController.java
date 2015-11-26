@@ -73,12 +73,12 @@ public class FriendsController {
         }
         ObserverManager.getInstance().notifying("Inventory");
     }
+
     /**
      * To get a friend from the friends list by index
      * @param index , an int variable.
      * @return the target friend's name.
      */
-
     public Friend get(int index){
         String name = friends.get(index);
         if (!cache.containsKey(name)) {
@@ -91,14 +91,19 @@ public class FriendsController {
         return cache.get(name);
     }
 
+    /**
+     * This function is to get friends by index
+     * @param index is an int variable
+     * @return the target friend's name
+     */
     public String getNameByIndex(int index){
         String name = friends.get(index);
         return name;
     }
 
     /**
-     * To put friend's name in Cache
-     * @param friend user's friend
+     * This function is to pull friends to cache
+     * @param friend a string variable and is user's friend
      */
     public void putFriendInCache(Friend friend){
         String name = friend.getProfile().getName();
@@ -109,7 +114,7 @@ public class FriendsController {
     }
 
     /**
-     * To get a firend form friend list by name
+     * Will be called when other function need to know all name of friends through name
      * @param name a string variable which indicates a friend's name
      * @return the target friend's name
      */
@@ -137,7 +142,7 @@ public class FriendsController {
         ObserverManager.getInstance().notifying("Friends");
     }
     /**
-     * get all friends
+     * This function is called when other function need to know all friends
      * @return a Friends variable
      */
     public Friends getFriends() {
@@ -153,6 +158,11 @@ public class FriendsController {
     }
 
     // if there exist this name in webservice database, return true
+    /**
+     * Return true if the name exists in database
+     * @param name a string variable a existing name in database
+     * @return the existing name
+     */
     public boolean nameExist(String name){
         //return SimulatedDatabase.nameExist(name);
         SearchThread thread = new SearchThread(name);
@@ -164,7 +174,7 @@ public class FriendsController {
     }
 
     /**
-     * To search a friend
+     * To search friend
      */
     class SearchThread extends Thread {
         private String search;
@@ -173,6 +183,9 @@ public class FriendsController {
             this.search = search;
         }
 
+        /**
+         * To execute search
+         */
         @Override
         public void run() {
             UserHttpClient userHttpClient1 = new UserHttpClient();
@@ -181,7 +194,7 @@ public class FriendsController {
     }
 
     /**
-     * To reurn a friend's name
+     * To search and add friend
      */
     class GetThread extends Thread {
         private String userName;
@@ -190,6 +203,9 @@ public class FriendsController {
             this.userName = userName;
         }
 
+        /**
+         * to add new friend's name to database
+         */
         @Override
         public void run() {
             Friend friendToShow = userHttpClient.pullFriend(userName);

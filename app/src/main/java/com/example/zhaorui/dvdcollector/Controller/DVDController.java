@@ -39,7 +39,7 @@ public class DVDController {
     /**
      * This function creates a new DVD by inputting an info array
      * which contains all information about the DVD
-     * @return DVD with all informations.
+     * @return DVD with all information
      */
     public DVD create(ArrayList<String> info,boolean sharable, Gallery gallery){
         DVD dvd = new DVD();

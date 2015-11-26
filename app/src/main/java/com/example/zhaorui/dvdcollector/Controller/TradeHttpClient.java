@@ -31,30 +31,54 @@ import java.util.ArrayList;
 /**
  * Created by zhaorui on 11/19/15.
  */
+
+/**
+ * Push and pull username and trade list online
+ */
 public class TradeHttpClient {
     private Gson gson = new Gson();
     private String userName;
     private TradeList tradeList;
     private Boolean result;
 
+    /**
+     * Assign username and trade list
+     * @param tradeList string variable of trade list
+     * @param userName string variable of username
+     */
     public TradeHttpClient(TradeList tradeList, String userName) {
         super();
         this.userName = userName;
         this.tradeList = tradeList;
     }
 
+    /**
+     * Trade HttpClient
+     */
     public TradeHttpClient() {
     }
 
+    /**
+     * Assign username
+     * @param userName string variable of username
+     */
     public TradeHttpClient(String userName) {
         this.userName = userName;
     }
 
+    /**
+     * Initialize trade list and username
+     * @param tradeList stirng variable of trade list
+     * @param userName string variable of username
+     */
     public void setTradeList(TradeList tradeList, String userName) {
         this.userName = userName;
         this.tradeList = tradeList;
     }
 
+    /**
+     * Push trade list to webservice
+     */
     public void pushTradeList() {
         HttpClient httpClient = new DefaultHttpClient();
         ///catch exception if not connected to the internet
@@ -81,6 +105,11 @@ public class TradeHttpClient {
         }
     }
 
+    /**
+     * Pull trade list from webservice
+     * @param userName string list of username
+     * @return trade list from webservice
+     */
     public TradeList pullTradeList(String userName) {
         SearchHit<TradeList> sr = null;
         HttpClient httpClient = new DefaultHttpClient();
@@ -115,13 +144,22 @@ public class TradeHttpClient {
         return sr.getSource();
     }
 
+    /**
+     * Pull trade list from webservice
+     */
     private class PullThread extends Thread {
+        /**
+         * Pull trade list from webservice
+         */
         public PullThread() {
         }
 
+        /**
+         * Push user's trade list to webservice if it's first created
+         */
         @Override
         public void run() {
-            // push user's tradelist online if it's first created
+            // push user's tradelist to webservice if it's first created
             tradeList = pullTradeList(userName);
             result = true;
             // Give some time to get updated info
@@ -133,6 +171,10 @@ public class TradeHttpClient {
         }
     }
 
+    /**
+     * Execute to pull trade list online
+     * @return result trade list
+     */
     public TradeList runPull(){
         Thread thread = new PullThread();
         thread.start();
@@ -142,13 +184,23 @@ public class TradeHttpClient {
         return tradeList;
     }
 
+    /**
+     * Retrieve trade list and username
+     */
     private class RetrieveThread extends Thread {
         private String userName;
 
+        /**
+         * Retrieve username
+         * @param userName string variable of username
+         */
         public RetrieveThread(String userName) {
             this.userName = userName;
         }
 
+        /**
+         * Push user's trade list to webservice if i's first created
+         */
         @Override
         public void run() {
             // push user's tradelist online if it's first created
@@ -163,6 +215,11 @@ public class TradeHttpClient {
         }
     }
 
+    /**
+     * Retrieve trade list
+     * @param userName string variable of username
+     * @return result trade list
+     */
     public TradeList runRetrieve(String userName){
         Thread thread = new RetrieveThread(userName);
         thread.start();
@@ -172,14 +229,20 @@ public class TradeHttpClient {
         return tradeList;
     }
 
+    /**
+     * Push user's trade list
+     */
     private class PushThread extends Thread {
         public PushThread() {
         }
 
+        /**
+         * Push user's trade list to webservice if it's first created
+         */
         @Override
         public void run() {
 
-            // push user's tradelist online if it's first created
+            // push user's tradelist to webservice if it's first created
             pushTradeList();
 
             // Give some time to get updated info
@@ -191,6 +254,9 @@ public class TradeHttpClient {
         }
     }
 
+    /**
+     * Push trade list to webservice
+     */
     public void runPush(){
         Thread thread = new PushThread();
         thread.start();

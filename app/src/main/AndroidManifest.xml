@@ -56,12 +56,12 @@
             android:label="@string/title_activity_start_trade" >
         </activity>
         <activity
-            android:name=".View.CounterTradeActivity"
-            android:label="@string/title_activity_start_trade" >
-        </activity>
-        <activity
             android:name=".View.TradeDetailActivity"
             android:label="@string/title_activity_trade_detail" >
+        </activity>
+        <activity
+        android:name=".View.CounterTradeActivity"
+        android:label="@string/title_activity_trade_detail" >
         </activity>
         <activity
             android:name=".View.TradeRequestsActivity"

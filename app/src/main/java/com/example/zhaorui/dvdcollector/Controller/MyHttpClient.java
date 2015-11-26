@@ -6,17 +6,14 @@ import com.example.zhaorui.dvdcollector.Model.TradeList;
 import com.example.zhaorui.dvdcollector.Model.User;
 import com.google.gson.Gson;
 
+/**
+ * Created by teppie on 22/11/15.
+ */
 
 /**
- * <p>
- * The <code>HttpClient</code> initialize and edit users' and friends' files and upload and download users' info, trade log and gallary to/from web server.
- * <p>
- *
- * @author  Zhaorui Chen
- * @version 22/11/15
- * @see org.apache.http.client
+ *Push and pull friend's name and trade list and gallery online
  */
-public class HttpClient {
+public class MyHttpClient {
     private Friend friend;
     private String name;
     private TradeList tradeList;
@@ -24,57 +21,60 @@ public class HttpClient {
     private Gson gson = new Gson();
     private Boolean result;
 
-    public HttpClient() {
+    /**
+     * User's HttpClient
+     */
+    public MyHttpClient() {
     }
 
     /**
-     *
-     * @param friend a string variable
+     * Assign friends
+     * @param friend string variable of user's friend
      */
-    public HttpClient(Friend friend) {
+    public MyHttpClient(Friend friend) {
         this.friend = friend;
     }
 
     /**
-     *
-     * @param name users' name
-     * @param tradeList dvd trade list of the user
+     * Assign username and trade list
+     * @param name string variable of username
+     * @param tradeList string variable of trade list
      */
-    public HttpClient(String name, TradeList tradeList) {
+    public MyHttpClient(String name, TradeList tradeList) {
         this.name = name;
         this.tradeList = tradeList;
     }
 
     /**
-     *
-     * @param gallery a set of photos of user
-     * @param name user's profile name
+     * Assign gallery and username
+     * @param gallery string variable of gallery
+     * @param name string variable of username
      */
-    public HttpClient(Gallery gallery, String name) {
+    public MyHttpClient(Gallery gallery, String name) {
         this.gallery = gallery;
         this.name = name;
     }
 
     /**
-     *
-     * @param name user's profile name
+     * Assign username
+     * @param name string variable of username
      */
-    public HttpClient(String name) {
+    public MyHttpClient(String name) {
         this.name = name;
     }
 
     /**
-     *
-     * @param friend user's firend
+     * Initialize user's friend
+     * @param friend string variable of user's friend
      */
     public void setUser(Friend friend) {
         this.friend = friend;
     }
 
     /**
-     *
-     * @param tradeList dvd trade list of the user
-     * @param userName user's profile name
+     * Initialize trade list and username
+     * @param tradeList string variable of trade list
+     * @param userName string variable of username
      */
     public void setTradeList(TradeList tradeList, String userName) {
         this.name = userName;
@@ -82,9 +82,9 @@ public class HttpClient {
     }
 
     /**
-     *
-     * @param gallery a set a photos of users
-     * @param userName user's profile name
+     * Initialize gallery
+     * @param gallery string variable of gallery
+     * @param userName string variable of username
      */
     public void setGallery(Gallery gallery, String userName){
         this.name = userName;
@@ -92,7 +92,7 @@ public class HttpClient {
     }
 
     /**
-     * to upload user's friend to web server
+     * Push user's friend to webservice
      */
     public void runPushFriend(){
         UserHttpClient userHttpClient = new UserHttpClient(this.friend);
@@ -100,7 +100,7 @@ public class HttpClient {
     }
 
     /**
-     * to upload user's trade list to web server
+     * Push trade list to webservice
      */
     public void runPushTradeList(){
         TradeHttpClient tradeHttpClient = new TradeHttpClient(this.tradeList, this.name);
@@ -108,7 +108,7 @@ public class HttpClient {
     }
 
     /**
-     * to upload user's gallery to web server
+     * Push gallery to webservice
      */
     public void runPushGallery(){
         GalleryHttpClient galleryHttpClient = new GalleryHttpClient(this.gallery, this.name);
@@ -116,8 +116,8 @@ public class HttpClient {
     }
 
     /**
-     * to download user's friend from web server
-     * @return user's frined
+     * Pull friends from webservice
+     * @return friends data from webservice
      */
     public Friend runPullFriend(){
         UserHttpClient userHttpClient = new UserHttpClient(this.name);
@@ -127,8 +127,8 @@ public class HttpClient {
     }
 
     /**
-     * to download user's trade list from web server
-     * @return user's trade list
+     * Pull trade list from webservice
+     * @return trade list form webservice
      */
     public TradeList runPullTradeList(){
         TradeHttpClient tradeHttpClient = new TradeHttpClient(this.name);
@@ -138,8 +138,8 @@ public class HttpClient {
     }
 
     /**
-     * to download user's gallery from web server
-     * @return user's gallery
+     * Pull gallery from webservice
+     * @return gallery data from webservice
      */
     public Gallery runPullGallery(){
         GalleryHttpClient galleryHttpClient = new GalleryHttpClient(this.name);

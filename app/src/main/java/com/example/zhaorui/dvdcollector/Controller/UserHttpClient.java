@@ -39,28 +39,50 @@ import java.lang.reflect.Type;
 /**
  * Created by zhaorui on 11/19/15.
  */
+
+/**
+ * Push and pull friend online
+ */
 public class UserHttpClient {
     private Gson gson = new Gson();
     private Friend friend;
     private String name;
     private Boolean result;
 
+    /**
+     * Assign friend
+     * @param friend string variable of friend
+     */
     public UserHttpClient(Friend friend) {
         super();
         this.friend = friend;
     }
 
+    /**
+     * Username HttpClient
+     */
     public UserHttpClient() {
     }
 
+    /**
+     * Assign username
+     * @param name string variable of username
+     */
     public UserHttpClient(String name) {
         this.name = name;
     }
 
+    /**
+     * Initialize friend
+     * @param friend string variable of friend
+     */
     public void setUser(Friend friend) {
         this.friend = friend;
     }
 
+    /**
+     * Push friend to webservice
+     */
     public void pushFriend() {
         HttpClient httpClient = new DefaultHttpClient();
         ///catch exception if not connected to the internet
@@ -90,6 +112,12 @@ public class UserHttpClient {
     // when Controller is not specified at the first
     // use this function to pull the user from the webservice
     // and then call setUser function to set the user
+
+    /**
+     *Pull friends form webservice
+     * @param userName string variable of username
+     * @return username from webservice
+     */
     public Friend pullFriend(String userName) {
         SearchHit<Friend> sr = null;
         HttpClient httpClient = new DefaultHttpClient();
@@ -124,6 +152,12 @@ public class UserHttpClient {
         return sr.getSource();
     }
 
+    /**
+     * Search friends
+     * @param searchString string variable of a string to search
+     * @param field string variable of field
+     * @return search result of friends
+     */
     public Boolean searchFriend(String searchString, String field) {
         Boolean result = false;
 
@@ -194,10 +228,16 @@ public class UserHttpClient {
         return result;
     }
 
+    /**
+     *Pull friend's name
+     */
     private class PullThread extends Thread {
         public PullThread() {
         }
 
+        /**
+         * Push friend's name to webservice if it's first created
+         */
         @Override
         public void run() {
             // push user's tradelist online if it's first created
@@ -212,6 +252,10 @@ public class UserHttpClient {
         }
     }
 
+    /**
+     * Pull thread of friends
+     * @return result friend
+     */
     public Friend runPull(){
         Thread thread = new PullThread();
         thread.start();
@@ -221,6 +265,11 @@ public class UserHttpClient {
         return friend;
     }
 
+    /**
+     * retrieve friend
+     * @param name string variable of username
+     * @return result friend's name
+     */
     public Friend runRetrieve(String name){
         Thread thread = new RetrieveThread(name);
         thread.start();
@@ -230,12 +279,23 @@ public class UserHttpClient {
         return friend;
     }
 
+    /**
+     * Retrieve thread of friend's name
+     */
     private class RetrieveThread extends Thread {
         private String userName;
+
+        /**
+         * Retrieve thread of friend's name
+         * @param userName string variable of friend's name
+         */
         public RetrieveThread(String userName) {
             this.userName = userName;
         }
 
+        /**
+         * Push friend's name online if it's first created
+         */
         @Override
         public void run() {
             // push user's tradelist online if it's first created
@@ -250,10 +310,16 @@ public class UserHttpClient {
         }
     }
 
+    /**
+     * Push thread of friend
+     */
     private class PushThread extends Thread {
         public PushThread() {
         }
 
+        /**
+         * Push friend's name online if it's first created
+         */
         @Override
         public void run() {
 
@@ -269,6 +335,9 @@ public class UserHttpClient {
         }
     }
 
+    /**
+     * Execute push to webservice
+     */
     public void runPush(){
         Thread thread = new PushThread();
         thread.start();

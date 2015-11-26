@@ -35,6 +35,10 @@ import java.util.Observer;
  * @version 01/11/15
  * @see java.util.ArrayList
  */
+
+/**
+ * The inventory controller
+ */
 public class InventoryController {
     private static String TAG = "InventoryController";
     /**
@@ -89,6 +93,11 @@ public class InventoryController {
      */
     public DVD get(int index){ return inventory.get(index);}
 
+    /**
+     * This function is called when other function need to get DVD names by name
+     * @param name a string name variable
+     * @return null
+     */
     public DVD getByName(String name){
         for (DVD dvd:inventory){
             if(dvd.getName().equals(name)){
@@ -137,6 +146,11 @@ public class InventoryController {
     //newly add by TeppieC
     // get the names of all dvds in this inventory, only for the device user
     // see getAllNamesFriend in inventory for another version for the friends
+
+    /**
+     * Get name of all DVDs in this Inventory for the device user
+     * @return names of DVDs
+     */
     public String[] getAllNames(){
         Inventory inventorySharable = getSharableInventory();
         String[] strings = new String[inventorySharable.size()];
@@ -149,6 +163,11 @@ public class InventoryController {
     }
 
     // only for retrieving names of all dvds in the inventory of a non-device-user, for example a friend
+
+    /**
+     * Get name of all friends for the device user
+     * @return friends' names
+     */
     public String[] getAllNamesFriend(){
         String[] strings = new String[inventory.size()];
         int i = 0;
@@ -161,6 +180,11 @@ public class InventoryController {
 
     // newly add by TeppieC
     // get the inventory with all sharable items
+
+    /**
+     * Get all sharable inventories
+     * @return inventories which are sharable
+     */
     public Inventory getSharableInventory(){
         Inventory inventorySharable = new Inventory();
 
@@ -172,6 +196,10 @@ public class InventoryController {
         return inventorySharable;
     }
 
+    /**
+     * Build a new inventory
+     * @param inventory a string variable indicating a inventory
+     */
     public void setInventory(Inventory inventory) {
         this.inventory = inventory;
     }

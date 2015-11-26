@@ -17,6 +17,7 @@
 package com.example.zhaorui.dvdcollector.View;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -44,11 +45,9 @@ import java.util.ArrayList;
  * @version 11/10/15
  */
 public class TradeRequestDetailActivity extends BaseActivity {
-    private ArrayList<String> tradeNames;
-    private TradeList myTradeList = User.instance().getTradeList();
-    private TradeListController myTradeListController = new TradeListController(myTradeList);
-    private Trade trade;
-    private FriendsController friendsController = new FriendsController();
+
+    private TradeListController myTradeListController = new TradeListController(User.instance().getTradeList());
+    private FriendsController fc = new FriendsController();
 
     private Button btnAccept;
     private Button btnDecline;
@@ -80,7 +79,9 @@ public class TradeRequestDetailActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 myTradeListController.acceptTrade(position);
-                Toast.makeText(TradeRequestDetailActivity.this,"Accepted the trade!",Toast.LENGTH_SHORT);
+                Toast.makeText(TradeRequestDetailActivity.this, "Accepted the trade!", Toast.LENGTH_SHORT);
+                //TODO:Send emails
+                //sendEmail(fc.getByName(myTradeListController.getTradeRequests().get(position).getBorrower()).getProfile().getContact(),);
                 TradeRequestDetailActivity.this.finish();
             }
         });
@@ -93,6 +94,29 @@ public class TradeRequestDetailActivity extends BaseActivity {
                 TradeRequestDetailActivity.this.finish();
             }
         });
+    }
+
+    private void sendEmail(String emailAddress, String ownerComments, int position){
+        Intent stats = new Intent(Intent.ACTION_SENDTO);
+        stats.setData(Uri.parse("mailto:" + emailAddress));
+        stats.putExtra(Intent.EXTRA_SUBJECT, "Trade Details");
+
+        String content = "Trade Items from owner: "
+                + String.valueOf(myTradeListController.getTradeRequests().get(position).getOwnerItem())
+                + "\n Trade Items from borrower: "
+                + String.valueOf(myTradeListController.getTradeRequests().get(position).getBorrowerItemList())
+                + "\n Owner's comments: " + ownerComments
+                + "\n Please check your Trade Center for details";
+
+        stats.putExtra(Intent.EXTRA_TEXT, content);
+        try {
+            startActivity(stats);
+        }catch (android.content.ActivityNotFoundException e) {
+            // catch an exception when no email appliactions applicable in emulator
+            // from http://stackoverflow.com/questions/14604349/activitynotfoundexception-while-sending-email-from-the-application
+            Toast.makeText(TradeRequestDetailActivity.this,
+                    "There are no email applications installed.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

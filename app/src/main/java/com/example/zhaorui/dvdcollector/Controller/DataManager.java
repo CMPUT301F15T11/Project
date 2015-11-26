@@ -86,15 +86,9 @@ public class DataManager implements Observer {
     }
 
     /**
-     * Initialize an new user instance if the application is run for the first time
-     * @param name , a string variable
-     */
-
-
-    /**
-     * Initialize user profile and save
-     * @param name name of user profile
-     * @param email emmail of user profile
+     * Initialize a user profile and save if the applicant is run for the first time
+     * @param name a string variable, name of user profile
+     * @param email email in user profile
      */
     public void initFile(String name, String email){
         User.instance().getProfile().setName(name);
@@ -104,7 +98,7 @@ public class DataManager implements Observer {
     }
 
     /**
-     * Retrieve user profile
+     *
      * @param name
      * @param email
      */
@@ -143,15 +137,15 @@ public class DataManager implements Observer {
     }
 
     /**
-     *
-     * @param ob
-     * @param o
+     *To update Observable
+     * @param ob observable variable
+     * @param o object variable
      */
     public void update(Observable ob, Object o){
         saveLocal();
-        HttpClient httpClient = new HttpClient(new Friend(User.instance()));
-        httpClient.setTradeList(User.instance().getTradeList(), User.instance().getProfile().getName());
-        httpClient.runPushFriend();
-        httpClient.runPushTradeList();
+        MyHttpClient myHttpClient = new MyHttpClient(new Friend(User.instance()));
+        myHttpClient.setTradeList(User.instance().getTradeList(), User.instance().getProfile().getName());
+        myHttpClient.runPushFriend();
+        myHttpClient.runPushTradeList();
     }
 }

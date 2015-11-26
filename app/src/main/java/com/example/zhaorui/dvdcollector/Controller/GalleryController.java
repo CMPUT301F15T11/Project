@@ -20,6 +20,9 @@ import java.util.ArrayList;
  * @see android.graphics.Bitmap
  */
 
+/**
+ * User's gallery
+ */
 public class GalleryController {
     /**
      * Initialize a gallery.
@@ -28,7 +31,7 @@ public class GalleryController {
 
     /**
      * Get the input gallery.
-     * @param gallery array list of photo strings.
+     * @param gallery
      */
     public GalleryController(Gallery gallery) {
         this.gallery = gallery;
@@ -71,9 +74,9 @@ public class GalleryController {
     }
 
     /**
-     * Decode to laod
+     * Decode to load
      * @param string which returned by encode
-     * @return the bitmap.
+     * @return  bitmap
      */
     public Bitmap decodeFromString(String string){
         //modified based on https://github.com/CMPUT301W15T06/Project/blob/master/App/src/ca/ualberta/CMPUT301W15T06/ClaimantReceiptController.java

@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.zhaorui.dvdcollector.Controller.TradeListController;
+import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
 
 public class BrowseTradeLogActivity extends BaseActivity {
@@ -69,6 +71,8 @@ public class BrowseTradeLogActivity extends BaseActivity {
             }
         });
 
+        TradeListController tradeListController = new TradeListController(User.instance().getTradeList());
+        tradeListController.updateTradeList(User.instance().getProfile().getName());
     }
 
     public void startSpecificTradesLog(View view, int mode){

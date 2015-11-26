@@ -25,29 +25,52 @@ import java.lang.reflect.Type;
 /**
  * Created by zhaorui on 11/19/15.
  */
+
+/**
+ *Push and pull username and gallery online
+ */
 public class GalleryHttpClient {
     private Gson gson = new Gson();
     private String userName;
     private Gallery gallery;
     private Boolean result;
 
+    /**
+     * Assign username and gallery
+     * @param gallery a string variable of user's gallery
+     * @param userName a string variable of username
+     */
     public GalleryHttpClient(Gallery gallery, String userName) {
         super();
         this.userName = userName;
         this.gallery = gallery;
     }
 
+    /**
+     * Gallery HttpClient
+     */
     public GalleryHttpClient() {
     }
 
+    /**
+     * Assign username
+     * @param userName
+     */
     public GalleryHttpClient(String userName) {
         this.userName = userName;
     }
 
+    /**
+     * Assign gallery
+     * @param gallery
+     */
     public void setGallery(Gallery gallery) {
         this.gallery = gallery;
     }
 
+    /**
+     * Push trade list to webservice
+     */
     public void pushTradeList() {
         HttpClient httpClient = new DefaultHttpClient();
         ///catch exception if not connected to the internet
@@ -81,6 +104,11 @@ public class GalleryHttpClient {
         }
     }
 
+    /**
+     * Pull Gallery from webservice
+     * @param userName string variable of username
+     * @return gallery source from webservice
+     */
     public Gallery pullGallery(String userName) {
         SearchHit<Gallery> sr = null;
         HttpClient httpClient = new DefaultHttpClient();
@@ -115,13 +143,22 @@ public class GalleryHttpClient {
         return sr.getSource();
     }
 
+    /**
+     * Pull gallery
+     */
     private class PullThread extends Thread {
+        /**
+         * Pull gallery
+         */
         public PullThread() {
         }
 
+        /**
+         * Push user's trade list to webservice if it's first created
+         */
         @Override
         public void run() {
-            // push user's tradelist online if it's first created
+            // push user's trade list webservice if it's first created
             gallery = pullGallery(userName);
             result = true;
             // Give some time to get updated info
@@ -133,6 +170,10 @@ public class GalleryHttpClient {
         }
     }
 
+    /**
+     * Pull gallery webservice
+     * @return gallery result
+     */
     public Gallery runPull(){
         Thread thread = new PullThread();
         thread.start();
@@ -142,16 +183,26 @@ public class GalleryHttpClient {
         return gallery;
     }
 
+    /**
+     * Retrieve gallery and username
+     */
     private class RetrieveThread extends Thread {
         private String userName;
 
+        /**
+         * Retrieve username
+         * @param userName string variable of username
+         */
         public RetrieveThread(String userName) {
             this.userName = userName;
         }
 
+        /**
+         * Push user's trade list online if it's first created
+         */
         @Override
         public void run() {
-            // push user's tradelist online if it's first created
+            // push user's trade list online if it's first created
             gallery = pullGallery(userName);
             result = true;
             // Give some time to get updated info
@@ -163,6 +214,11 @@ public class GalleryHttpClient {
         }
     }
 
+    /**
+     * Run retrieve username
+     * @param userName string variable of username
+     * @return result gallery
+     */
     public Gallery runRetrieve(String userName){
         Thread thread = new RetrieveThread(userName);
         thread.start();
@@ -172,14 +228,23 @@ public class GalleryHttpClient {
         return gallery;
     }
 
+    /**
+     * Push trade log to webservice
+     */
     private class PushThread extends Thread {
+        /**
+         * Push trade log to webservice
+         */
         public PushThread() {
         }
 
+        /**
+         * Push trade log to webservice if it's first created
+         */
         @Override
         public void run() {
 
-            // push user's tradelist online if it's first created
+            // push user's trade list online if it's first created
             pushTradeList();
 
             // Give some time to get updated info
@@ -191,6 +256,9 @@ public class GalleryHttpClient {
         }
     }
 
+    /**
+     * Push username and gallery to webservice
+     */
     public void runPush(){
         Thread thread = new PushThread();
         thread.start();

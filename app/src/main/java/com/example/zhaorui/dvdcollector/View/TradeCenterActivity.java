@@ -23,9 +23,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.zhaorui.dvdcollector.Controller.HttpClient;
 import com.example.zhaorui.dvdcollector.Controller.TradeListController;
-import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.TradeList;
 import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
@@ -46,7 +44,7 @@ public class TradeCenterActivity extends BaseActivity {
         setContentView(R.layout.activity_trade_center);
 
         TradeListController tradeListController = new TradeListController(User.instance().getTradeList());
-        tradeListController.pullTrade(User.instance().getProfile().getName());
+        tradeListController.updateTradeList(User.instance().getProfile().getName());
     }
 
     @Override
