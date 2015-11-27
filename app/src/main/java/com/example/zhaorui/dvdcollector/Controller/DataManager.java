@@ -66,6 +66,7 @@ public class DataManager implements Observer {
     private DataManager(){}
     /**
      * This function loads information from file.
+     * @param context context variable
      */
     public void loadFromFile(Context context){
         try {//set the device user instance from the local file
@@ -137,9 +138,9 @@ public class DataManager implements Observer {
     }
 
     /**
-     *To update Observable
+     * Update date from webservice
      * @param ob observable variable
-     * @param o  object variable
+     * @param o object variable
      */
     public void update(Observable ob, Object o){
         saveLocal();

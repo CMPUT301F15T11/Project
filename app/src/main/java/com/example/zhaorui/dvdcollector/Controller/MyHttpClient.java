@@ -6,29 +6,51 @@ import com.example.zhaorui.dvdcollector.Model.TradeList;
 import com.example.zhaorui.dvdcollector.Model.User;
 import com.google.gson.Gson;
 
-/**
- * Created by teppie on 22/11/15.
- */
 
 /**
- *Push and pull friend's name and trade list and gallery online
+ * <p>
+ * The <code>MyHttpClient</code> is a HttpClient of <code>User</code> from webservice to store and load data.
+ * <p>
+ *
+ * @author  Zhaorui Chen
+ * @version 11/22/15
  */
+
+
 public class MyHttpClient {
+    /**
+     * Initialize friend
+     */
     private Friend friend;
+    /**
+     * Initialize a string to store name
+     */
     private String name;
+    /**
+     * Initialize tradelist
+     */
     private TradeList tradeList;
+    /**
+     * Initialize gallery
+     */
     private Gallery gallery;
+    /**
+     * Initialize a new gson
+     */
     private Gson gson = new Gson();
+    /**
+     * Initialize a boolean value to store result
+     */
     private Boolean result;
 
     /**
-     * User's HttpClient
+     * Initialize myhttpclient
      */
     public MyHttpClient() {
     }
 
     /**
-     * Assign friends
+     * Initialize friend in my httpclient
      * @param friend string variable of user's friend
      */
     public MyHttpClient(Friend friend) {
@@ -36,7 +58,7 @@ public class MyHttpClient {
     }
 
     /**
-     * Assign username and trade list
+     * Initialize usernames and trade list in my httpclient
      * @param name string variable of username
      * @param tradeList string variable of trade list
      */
@@ -46,7 +68,7 @@ public class MyHttpClient {
     }
 
     /**
-     * Assign gallery and username
+     * Load gallery and username in my httpclient
      * @param gallery string variable of gallery
      * @param name string variable of username
      */
@@ -56,7 +78,7 @@ public class MyHttpClient {
     }
 
     /**
-     * Assign username
+     * Load username in my httpclient
      * @param name string variable of username
      */
     public MyHttpClient(String name) {

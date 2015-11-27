@@ -29,16 +29,30 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 /**
- * Created by zhaorui on 11/19/15.
+ * <p>
+ * The <code>TradeHttpClient</code> is a HttpClient of <code>Trade</code> from webservice to store and load data.
+ * <p>
+ *
+ * @author  Zhaorui Chen
+ * @version 11/19/15
  */
 
-/**
- * Push and pull username and trade list online
- */
 public class TradeHttpClient {
+    /**
+     * Initialize a new gson
+     */
     private Gson gson = new Gson();
+    /**
+     * Initialize a string to store username
+     */
     private String userName;
+    /**
+     * Initialize tradeList
+     */
     private TradeList tradeList;
+    /**
+     * Initialize a boolean value to store result
+     */
     private Boolean result;
 
     /**

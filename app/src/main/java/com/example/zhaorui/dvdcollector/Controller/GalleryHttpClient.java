@@ -23,16 +23,30 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 
 /**
- * Created by zhaorui on 11/19/15.
+ * <p>
+ * The <code>GalleryHttpClient</code> is a HttpClient of <code>Gallery</code> from webservice to store and load data.
+ * <p>
+ *
+ * @author  Zhaorui Chen
+ * @version 11/19/15
  */
 
-/**
- *Push and pull username and gallery online
- */
 public class GalleryHttpClient {
+    /**
+     * Initialize a new gson
+     */
     private Gson gson = new Gson();
+    /**
+     * Initialize a string to store username
+     */
     private String userName;
+    /**
+     * Initialize gallery
+     */
     private Gallery gallery;
+    /**
+     * Initialize a boolean value to store result
+     */
     private Boolean result;
 
     /**
@@ -53,16 +67,16 @@ public class GalleryHttpClient {
     }
 
     /**
-     * Assign username
-     * @param userName
+     * Load username of gallery http client
+     * @param userName string variable
      */
     public GalleryHttpClient(String userName) {
         this.userName = userName;
     }
 
     /**
-     * Assign gallery
-     * @param gallery
+     * Initialize gallery
+     * @param gallery gallery variable
      */
     public void setGallery(Gallery gallery) {
         this.gallery = gallery;

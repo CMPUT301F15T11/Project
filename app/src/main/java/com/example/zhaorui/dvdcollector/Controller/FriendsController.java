@@ -45,10 +45,25 @@ import java.util.Observer;
  * @see java.util.Observer
  */
 public class FriendsController {
+    /**
+     * Initialize a new friends
+     */
     private Friends friends;
+    /**
+     * Initialize a new cache
+     */
     private Cache cache;
+    /**
+     * Initialize a new user http client
+     */
     private UserHttpClient userHttpClient = new UserHttpClient();
+    /**
+     * Initialize a boolean variable to store search result
+     */
     private Boolean resultSearch;
+    /**
+     * Initialize a boolean variable to store get result
+     */
     private Boolean resultGet;
 
     /**
@@ -92,9 +107,9 @@ public class FriendsController {
     }
 
     /**
-     * This function is to get friends by index
-     * @param index is an int variable
-     * @return the target friend's name
+     * Initialize an int variable to store target friend's name
+     * @param index int variable
+     * @return friend's name in string
      */
     public String getNameByIndex(int index){
         String name = friends.get(index);
@@ -102,7 +117,7 @@ public class FriendsController {
     }
 
     /**
-     * This function is to pull friends to cache
+     * This function is to put friends to cache
      * @param friend a string variable and is user's friend
      */
     public void putFriendInCache(Friend friend){
@@ -114,9 +129,9 @@ public class FriendsController {
     }
 
     /**
-     * Will be called when other function need to know all name of friends through name
-     * @param name a string variable which indicates a friend's name
-     * @return the target friend's name
+     * Get friend's name by name
+     * @param name string variable
+     * @return friend's name in cache
      */
     public Friend getByName(String name){
         if (!cache.containsKey(name)) {
@@ -177,8 +192,15 @@ public class FriendsController {
      * To search friend
      */
     class SearchThread extends Thread {
+        /**
+         * Initialize a string to store a search
+         */
         private String search;
 
+        /**
+         * Initialize a search thread of search
+         * @param search string variable
+         */
         public SearchThread(String search) {
             this.search = search;
         }
@@ -197,8 +219,15 @@ public class FriendsController {
      * To search and add friend
      */
     class GetThread extends Thread {
+        /**
+         * Initialize a string to store username
+         */
         private String userName;
 
+        /**
+         * Initialize get thread of username
+         * @param userName string variable
+         */
         public GetThread(String userName) {
             this.userName = userName;
         }

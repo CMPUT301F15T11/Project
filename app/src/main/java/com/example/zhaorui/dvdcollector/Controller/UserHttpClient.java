@@ -36,17 +36,32 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 
-/**
- * Created by zhaorui on 11/19/15.
- */
 
 /**
- * Push and pull friend online
+ * <p>
+ * The <code>UserHttpClient</code> is a HttpClient of <code>User</code> from webservice to store and load data.
+ * <p>
+ *
+ * @author  Zhaorui Chen
+ * @version 11/19/15
  */
+
 public class UserHttpClient {
+    /**
+     * Initialize a new gson
+     */
     private Gson gson = new Gson();
+    /**
+     * Initialize friend
+     */
     private Friend friend;
+    /**
+     * Initialize a string to store name
+     */
     private String name;
+    /**
+     * Initialize a boolean value to store result
+     */
     private Boolean result;
 
     /**
