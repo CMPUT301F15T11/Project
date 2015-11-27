@@ -134,8 +134,8 @@ public class DataManager implements Observer {
     public void update(Observable ob, Object o){
         saveLocal();
         MyHttpClient myHttpClient = new MyHttpClient(new Friend(User.instance()));
-        myHttpClient.setTradeList(User.instance().getTradeList(), User.instance().getProfile().getName());
+        myHttpClient.setGallery(User.instance().getGallery());
         myHttpClient.runPushFriend();
-        myHttpClient.runPushTradeList();
+        myHttpClient.runPushGallery();
     }
 }

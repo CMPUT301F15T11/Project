@@ -58,7 +58,7 @@ public class Inventory extends ArrayList<DVD>{
      */
     public Inventory(){
         categoryInventories = new HashMap<>();
-        String[] categories = DVD.getCategories();
+        ArrayList<String> categories = DVD.getCategories();
         for( String category : categories){
             categoryInventories.put(category, new ArrayList<DVD>());
         }
@@ -85,16 +85,17 @@ public class Inventory extends ArrayList<DVD>{
         ObserverManager.getInstance().notifying("Inventory");
     }
 
-    public void edit(DVD dvd,DVD dvd2){
+    public void edit(int index, ArrayList<String> info){
+        DVD dvd = get(index);
         categoryInventories.get(dvd.getCategory()).remove(dvd);
-        set(indexOf(dvd), dvd2);
-        categoryInventories.get(dvd2.getCategory()).add(dvd2);
+        dvd.set(info);
+        categoryInventories.get(dvd.getCategory()).add(dvd);
         ObserverManager.getInstance().notifying("Inventory");
     }
 
     public void fresh(){
         for (DVD dvd : this){
-            edit(dvd,dvd);
+            categoryInventories.get(dvd.getCategory()).add(dvd);
         }
     }
 }

@@ -9,7 +9,7 @@ import java.util.Observer;
  */
 public class ObserverManager{
     static private ObserverManager instance;
-    final static private String[] keys = {"Inventory","Friends","Trades","Profile"};
+    final static private String[] keys = {"Inventory","Friends","Trades","Profile","Gallery"};
     private HashMap<Object,MyObservable> observables;
     private ObserverManager(){
         observables = new HashMap<>();

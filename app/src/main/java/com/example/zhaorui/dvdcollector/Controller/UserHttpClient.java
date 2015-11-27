@@ -66,10 +66,10 @@ public class UserHttpClient {
         ///catch exception if not connected to the internet
         //////////////////////////////////////////////////////////
         try {
-            HttpPost addRequest = new HttpPost(friend.getResourceUrl() + friend.getProfile().getName());
+            HttpPost addRequest = new HttpPost(Friend.URL + friend.getProfile().getName());
 
             StringEntity stringEntity = new StringEntity(gson.toJson(friend));
-            Log.e("DVD Friend",friend.getResourceUrl() + friend.getProfile().getName());
+            Log.e("DVD Friend",Friend.URL + friend.getProfile().getName());
             Log.e("DVD Friend Controller", gson.toJson(friend));
 
             addRequest.setEntity(stringEntity);
@@ -93,7 +93,7 @@ public class UserHttpClient {
     public Friend pullFriend(String userName) {
         SearchHit<Friend> sr = null;
         HttpClient httpClient = new DefaultHttpClient();
-        HttpGet httpGet = new HttpGet(friend.getResourceUrl() + userName);
+        HttpGet httpGet = new HttpGet(Friend.URL + userName);
 
         HttpResponse response = null;
 

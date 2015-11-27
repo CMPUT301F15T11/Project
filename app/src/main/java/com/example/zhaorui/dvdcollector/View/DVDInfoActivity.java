@@ -17,28 +17,20 @@
 package com.example.zhaorui.dvdcollector.View;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.zhaorui.dvdcollector.Controller.DVDController;
 import com.example.zhaorui.dvdcollector.Controller.FriendsController;
 import com.example.zhaorui.dvdcollector.Controller.InventoryController;
 import com.example.zhaorui.dvdcollector.Controller.UserHttpClient;
 import com.example.zhaorui.dvdcollector.Model.DVD;
 import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.Gallery;
-import com.example.zhaorui.dvdcollector.Model.Inventory;
 import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
 
@@ -55,8 +47,6 @@ public class DVDInfoActivity extends BaseActivity {
     private int position;
     private int friendPosition;
     private InventoryController ic;
-    private DVDController dc;
-
     private Button btnClone;
     private static String TAG = "DVDInfoActivity";
 
@@ -64,8 +54,6 @@ public class DVDInfoActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dvdinfo);
-
-        dc = new DVDController();
         ic = new InventoryController();
         Intent intent = getIntent();
         position = intent.getIntExtra("position",-1);
@@ -82,8 +70,8 @@ public class DVDInfoActivity extends BaseActivity {
                 public void onClick(View v) {
                     Log.e(TAG, "Cloning other's DVD");
                     InventoryController inventoryControllerClone = new InventoryController();
-                    ArrayList<String> info = dc.read(ic.get(position));
-                    inventoryControllerClone.add(dc.create(info, info.get(5).equals("Yes"), new Gallery()));
+                    ArrayList<String> info = ic.getInfo(position);
+                    inventoryControllerClone.add(info);
 
                     // push to the webservice
                     UserHttpClient userHttpClient = new UserHttpClient(new Friend(User.instance()));
@@ -95,7 +83,7 @@ public class DVDInfoActivity extends BaseActivity {
             });
 
         }
-        ArrayList<String> info = dc.read(ic.get(position));
+        ArrayList<String> info = (ic.getInfo(position));
         TextView text;
         text = (TextView) findViewById(R.id.tv_category_dvdinfo);
         text.setText(info.get(0));
@@ -126,13 +114,13 @@ public class DVDInfoActivity extends BaseActivity {
         }
 
         text = (TextView) findViewById(R.id.tv_sharable_dvdinfo);
-        text.setText(info.get(5));
+        text.setText(info.get(4));
         text = (TextView) findViewById(R.id.tv_comment_view_dvdinfo);
-        text.setText(info.get(6));
+        text.setText(info.get(5));
 
     }
 
-    public void startGallery(View view){
+    public void onPhotoShow(View view){
         // open the activity to show the list of photos attached to this dvd
         Intent intent = new Intent(DVDInfoActivity.this, PhotoActivity.class);
         intent.putExtra("position",position);

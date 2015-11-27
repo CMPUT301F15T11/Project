@@ -232,8 +232,8 @@
         style="@style/font_white"
         android:layout_height="match_parent"
         android:layout_margin="5dp"
-        android:text="Show Photo Gallery"
-        android:onClick="startGallery"
+        android:text="Show Photo"
+        android:onClick="onAddPhoto"
         android:id="@+id/btn_show_gallery_add"
         android:layout_gravity="center_horizontal" />
     </LinearLayout>

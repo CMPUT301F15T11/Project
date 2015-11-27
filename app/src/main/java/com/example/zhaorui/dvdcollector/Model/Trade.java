@@ -29,6 +29,8 @@ import java.util.ArrayList;
  * @see java.util.ArrayList
  */
 public class Trade {
+    private String changed;
+
     // for showing in the listview
     private String name;
 
@@ -66,7 +68,7 @@ public class Trade {
         this.ownerItem = ownerItemName;
         this.type = type;
         this.status = status;
-
+        this.changed = "";
     }
 
     /**
@@ -170,5 +172,9 @@ public class Trade {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public void setChanged(String changed) {
+        this.changed = changed;
     }
 }

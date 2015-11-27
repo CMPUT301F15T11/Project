@@ -9,6 +9,7 @@ import com.example.zhaorui.dvdcollector.Model.Trade;
 import com.example.zhaorui.dvdcollector.Model.TradeList;
 import com.example.zhaorui.dvdcollector.Model.User;
 
+import java.security.acl.Owner;
 import java.util.ArrayList;
 import java.util.Observer;
 
@@ -16,12 +17,9 @@ import java.util.Observer;
  * Created by teppie on 12/11/15.
  */
 public class TradeListController {
-    private TradeList trades;
     private static String TAG = "TradeListController";
 
-    public TradeListController(TradeList trades) {
-        this.trades = trades;
-    }
+    public TradeListController() {}
 
     // Add a trade to the tradelist
     public void addTrade(String borrower, String owner, ArrayList<String> borrowerItemNames,
@@ -34,18 +32,28 @@ public class TradeListController {
             trade.setName(trade.getType() + "\nID: " + id);//set name
             trade.setId(id);//set id
         }
-        trades.add(trade);
+        outgoingTrades.add(trade);
+        MyHttpClient httpClient = new MyHttpClient(borrower,outgoingTrades);
+        httpClient.runPushTradeList("Outgoing");
+        httpClient.setName(owner);
+        TradeList ownerTradeList = httpClient.runPullTradeList("Incoming");
+        ownerTradeList.add(trade);
+        httpClient.setTradeList(ownerTradeList);
+        httpClient.runPushTradeList("Incoming");
         ObserverManager.getInstance().notifying("Trades");
-    }
-
-    public TradeList getTrades() {
-        return trades;
     }
 
     // get all trades of the specified type, eg. "Current Outgoing"
     public TradeList getTradesOfType(String type){
         TradeList tradesToReturn = new TradeList();
-        for (Trade aTrade : trades.getTrades()){
+        for (Trade aTrade : outgoingTrades.getTrades()){
+            if (aTrade.getType().equals(type)){
+                tradesToReturn.add(aTrade);
+            }
+        }
+        MyHttpClient httpClient = new MyHttpClient(User.instance().getProfile().getName());
+        TradeList incomingTrades = httpClient.runPullTradeList("Incoming");
+        for (Trade aTrade : incomingTrades.getTrades()){
             if (aTrade.getType().equals(type)){
                 tradesToReturn.add(aTrade);
             }
@@ -56,7 +64,14 @@ public class TradeListController {
     // get all trades of the specified status,  eg. "In-progress"
     public TradeList getTradeOfStatus(String status){
         TradeList tradesToReturn = new TradeList();
-        for (Trade aTrade : trades.getTrades()){
+        for (Trade aTrade : outgoingTrades.getTrades()){
+            if (aTrade.getStatus().equals(status)){
+                tradesToReturn.add(aTrade);
+            }
+        }
+        MyHttpClient httpClient = new MyHttpClient(User.instance().getProfile().getName());
+        TradeList incomingTrades = httpClient.runPullTradeList("Incoming");
+        for (Trade aTrade : incomingTrades.getTrades()){
             if (aTrade.getStatus().equals(status)){
                 tradesToReturn.add(aTrade);
             }
@@ -100,6 +115,7 @@ public class TradeListController {
         }
         return tradesToReturn;
     }
+    */
 
     public void addObserver(Observer o){
         ObserverManager.getInstance().addObserver("Trades", o);
@@ -181,16 +197,6 @@ public class TradeListController {
         }
 
         Log.e(TAG,"Set the trade to complete");
-    }
-
-    public void updateTradeList(String userName){
-        MyHttpClient myHttpClient = new MyHttpClient(userName);
-        this.trades = myHttpClient.runPullTradeList();
-        //////////////////////////////////////////////////////////////////////////////////////////
-        //TODO:可能不对
-        User.instance().getTradeList().setTrades(trades.getTrades());
-        ObserverManager.getInstance().notifying("Trades");
-        Log.e(TAG, "Pulled tradelist");
     }
 
     public void sendTrade(String ownerName, ArrayList<String> borrowerDvdNameBuffer,

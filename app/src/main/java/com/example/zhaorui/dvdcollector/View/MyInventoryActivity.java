@@ -18,6 +18,7 @@ package com.example.zhaorui.dvdcollector.View;
 
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;

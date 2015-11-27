@@ -74,9 +74,7 @@ public class NameInputDialog extends DialogFragment {
                 if (name.isEmpty()||email.isEmpty()){
                     Toast.makeText(ContextUtil.getInstance(), "Name or Email can not be empty!", Toast.LENGTH_LONG).show();
                 } else if (fc.nameExist(name)) {
-                    DataManager.instance().retrieveFile(name,email);
-                    Toast.makeText(ContextUtil.getInstance(), "Log in!", Toast.LENGTH_LONG).show();
-                    dialog.cancel();
+                    Toast.makeText(ContextUtil.getInstance(), "Same Name User Existed!", Toast.LENGTH_LONG).show();
                 } else {
                     DataManager.instance().initFile(name, email);
                     dialog.cancel();

@@ -18,13 +18,15 @@
 package com.example.zhaorui.dvdcollector.Controller;
 
 import android.util.Log;
+import android.util.Pair;
 
 import com.example.zhaorui.dvdcollector.Model.Cache;
 import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.Friends;
+import com.example.zhaorui.dvdcollector.Model.Gallery;
 import com.example.zhaorui.dvdcollector.Model.ObserverManager;
-import com.example.zhaorui.dvdcollector.Model.SimulatedDatabase;
 import com.example.zhaorui.dvdcollector.Model.User;
+import com.example.zhaorui.dvdcollector.View.FriendInventoryActivity;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -47,7 +49,6 @@ import java.util.Observer;
 public class FriendsController {
     private Friends friends;
     private Cache cache;
-    private UserHttpClient userHttpClient = new UserHttpClient();
     private Boolean resultSearch;
     private Boolean resultGet;
 
@@ -64,14 +65,8 @@ public class FriendsController {
      * @param name , a string variable, the friend to be add.
      */
     public void add(String name){
-        if (!cache.containsKey(name)) {
-            Thread getThread = new GetThread(name);
-            getThread.start();
-
-            while (resultGet==null){//do nothing but wait
-            }
-        }
-        ObserverManager.getInstance().notifying("Inventory");
+        friends.add(name);
+        ObserverManager.getInstance().notifying("Friends");
     }
     /**
      * To get a friend from the friends list by index
@@ -81,28 +76,21 @@ public class FriendsController {
 
     public Friend get(int index){
         String name = friends.get(index);
-        if (!cache.containsKey(name)) {
-            Thread getThread = new GetThread(name);
-            getThread.start();
-
-            while (resultGet==null){//do nothing but wait
-            }
-        }
-        return cache.get(name);
+        Thread getThread = new GetThread(name);
+        getThread.start();
+        while (resultGet==null){}//do nothing but wait
+        return cache.get(name).first;
     }
 
 
     public String getNameByIndex(int index){
-        String name = friends.get(index);
-        return name;
+        return friends.get(index);
     }
 
-    public void putFriendInCache(Friend friend){
+    public void putFriendInCache(Friend friend, Gallery gallery){
         String name = friend.getProfile().getName();
-        if (!cache.containsKey(name)) {
-            friend.getInventory().fresh();
-            cache.put(name, friend);
-        }
+        friend.getInventory().fresh();
+        cache.put(name, new Pair<>(friend,gallery));
     }
 
     public Friend getByName(String name){
@@ -113,7 +101,7 @@ public class FriendsController {
             while (resultGet==null){//do nothing but wait
             }
         }
-        return cache.get(name);
+        return cache.get(name).first;
     }
 
     /**
@@ -123,7 +111,7 @@ public class FriendsController {
     public void remove(int index){
         String name = friends.get(index);
         friends.remove(name);
-        if (!cache.containsKey(name)) {
+        if (cache.containsKey(name)) {
             cache.remove(name);
         }
         ObserverManager.getInstance().notifying("Friends");
@@ -146,7 +134,6 @@ public class FriendsController {
 
     // if there exist this name in webservice database, return true
     public boolean nameExist(String name){
-        //return SimulatedDatabase.nameExist(name);
         SearchThread thread = new SearchThread(name);
         thread.start();
 
@@ -179,9 +166,15 @@ public class FriendsController {
 
         @Override
         public void run() {
-            Friend friendToShow = userHttpClient.pullFriend(userName);
-            friends.add(userName);
-            putFriendInCache(friendToShow);
+            MyHttpClient httpClient = new MyHttpClient(userName);
+            Friend friendToShow = httpClient.runPullFriend();
+            Gallery gallery;
+            if (User.instance().isDownloadImage()) {
+                gallery = httpClient.runPullGallery();
+            } else {
+                gallery = new Gallery(friendToShow.getInventory().size());
+            }
+            putFriendInCache(friendToShow,gallery);
             resultGet = true;
         }
     }

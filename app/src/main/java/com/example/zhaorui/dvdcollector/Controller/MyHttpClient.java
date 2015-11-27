@@ -42,13 +42,11 @@ public class MyHttpClient {
         this.friend = friend;
     }
 
-    public void setTradeList(TradeList tradeList, String userName) {
-        this.name = userName;
+    public void setTradeList(TradeList tradeList) {
         this.tradeList = tradeList;
     }
 
-    public void setGallery(Gallery gallery, String userName){
-        this.name = userName;
+    public void setGallery(Gallery gallery){
         this.gallery = gallery;
     }
 
@@ -57,9 +55,9 @@ public class MyHttpClient {
         userHttpClient.runPush();
     }
 
-    public void runPushTradeList(){
+    public void runPushTradeList(String mode){
         TradeHttpClient tradeHttpClient = new TradeHttpClient(this.tradeList, this.name);
-        tradeHttpClient.runPush();
+        tradeHttpClient.runPush(mode);
     }
 
     public void runPushGallery(){
@@ -74,9 +72,9 @@ public class MyHttpClient {
         return friend;
     }
 
-    public TradeList runPullTradeList(){
+    public TradeList runPullTradeList(String mode){
         TradeHttpClient tradeHttpClient = new TradeHttpClient(this.name);
-        TradeList tradeList = tradeHttpClient.runPull();
+        TradeList tradeList = tradeHttpClient.runPull(mode);
         this.tradeList = tradeList;
         return tradeList;
     }
@@ -88,4 +86,7 @@ public class MyHttpClient {
         return gallery;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 }

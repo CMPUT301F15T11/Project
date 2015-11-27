@@ -31,8 +31,7 @@ import java.util.ArrayList;
  * @version 04/11/15
  */
 public class Friend {
-    private static final String RESOURCE_URL_FRIEND = "http://cmput301.softwareprocess.es:8080/cmput301f15t11/friend/";
-    private static final String SEARCH_URL_FRIEND = "http://cmput301.softwareprocess.es:8080/cmput301f15t11/friend/_search";
+    public static final String URL = "http://cmput301.softwareprocess.es:8080/cmput301f15t11/friend/";
     /**
      * Initialize a Inventory to store the friends inventory.
      *
@@ -79,14 +78,8 @@ public class Friend {
         return profile;
     }
 
-
-    public static String getResourceUrl() {
-        return RESOURCE_URL_FRIEND;
+    @Override
+    public String toString() {
+        return profile.getName();
     }
-
-    public static String getSearchUrl() {
-        return SEARCH_URL_FRIEND;
-    }
-
-    private static final long serialVersionUID = 3199561696102797345L;
 }

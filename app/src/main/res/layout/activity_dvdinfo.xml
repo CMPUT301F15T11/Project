@@ -204,13 +204,13 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Show photo gallery"
+            android:text="Show photo"
             android:id="@+id/btn_show_gallery"
             android:textColor="#fafafa"
             android:textSize="24dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:onClick="startGallery"
+            android:onClick="onPhotoShow"
             android:layout_marginBottom="10dp"
             android:background="@drawable/button_shape_indigo"/>
 

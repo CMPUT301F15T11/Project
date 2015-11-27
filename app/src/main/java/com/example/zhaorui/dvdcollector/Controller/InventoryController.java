@@ -17,13 +17,18 @@
 */
 package com.example.zhaorui.dvdcollector.Controller;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.util.Log;
 
 import com.example.zhaorui.dvdcollector.Model.DVD;
+import com.example.zhaorui.dvdcollector.Model.Gallery;
 import com.example.zhaorui.dvdcollector.Model.Inventory;
 import com.example.zhaorui.dvdcollector.Model.ObserverManager;
 import com.example.zhaorui.dvdcollector.Model.User;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Observer;
 /**
@@ -36,6 +41,7 @@ import java.util.Observer;
  * @see java.util.ArrayList
  */
 public class InventoryController {
+    private Gallery gallery;
     private static String TAG = "InventoryController";
     /**
      * Initialize a Inventory to store the inventory information.
@@ -46,6 +52,7 @@ public class InventoryController {
      */
     public InventoryController(){
         inventory = User.instance().getInventory();
+        gallery = User.instance().getGallery();
     }
     /**
      * This function is called when other function need to know all inventories.
@@ -62,24 +69,23 @@ public class InventoryController {
     }
     /**
      * This function is called when other function need to add a new dvd into the inventory.
-     * @param dvd
      */
-    public void add(DVD dvd){
-        inventory.append(dvd);
+    public void add(ArrayList<String> info){
+        inventory.append(new DVD(info));
+        gallery.add("No Photo");
     }
     /**
      * This function is called when other function need to edit a dvd from the inventory.
-     * @param dvd ,a DVD variable
-     * @param dvd2 ,a DVD variable
      */
-    public void set(DVD dvd, DVD dvd2){
-        inventory.edit(dvd, dvd2);
+    public void set(int index, ArrayList<String> info){
+        inventory.edit(index, info);
     }
     /**
      * This function is called when other function need to remove a dvd from the inventory.
      * @param dvd ,a DVD variable
      */
     public void remove(DVD dvd){
+        gallery.remove(indexOf(dvd));
         inventory.delete(dvd);
     }
     /**
@@ -89,7 +95,7 @@ public class InventoryController {
      */
     public DVD get(int index){ return inventory.get(index);}
 
-    public DVD getByName(String name){
+    public DVD get(String name){
         for (DVD dvd:inventory){
             if(dvd.getName().equals(name)){
                 return dvd;
@@ -174,5 +180,52 @@ public class InventoryController {
 
     public void setInventory(Inventory inventory) {
         this.inventory = inventory;
+    }
+
+    public ArrayList<String> getInfo(int index){ return get(index).read();}
+
+    /**
+     * encode to store.
+     * @param bitmap
+     * @return a string
+     */
+    private String encodeFromBitmap(Bitmap bitmap){
+        String encoded =null;
+        int quality=100;
+        do{
+            //http://stackoverflow.com/questions/9224056/android-bitmap-to-base64-string Author: jeet
+            //modified based on https://github.com/CMPUT301W15T06/Project/blob/master/App/src/ca/ualberta/CMPUT301W15T06/ClaimantReceiptController.java
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, byteArrayOutputStream);
+            byte[] byteArray = byteArrayOutputStream .toByteArray();
+            encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
+            quality-=10;
+        }while(encoded.length()>=65536);
+        return encoded;
+    }
+
+    /**
+     * Decode to laod
+     * @param string which returned by encode
+     * @return the bitmap.
+     */
+    private Bitmap decodeFromString(String string){
+        //modified based on https://github.com/CMPUT301W15T06/Project/blob/master/App/src/ca/ualberta/CMPUT301W15T06/ClaimantReceiptController.java
+        byte[] byteArray = Base64.decode(string, Base64.DEFAULT);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+        return bitmap;
+    }
+
+    public Bitmap getPhoto(int index){
+        if (gallery.get(index).equals("No Photo")) return null;
+        return decodeFromString(gallery.get(index));
+    }
+
+    public void setPhoto(int index, Bitmap image){
+        gallery.set(index,encodeFromBitmap(image));
+    }
+
+    public void setGallery(Gallery gallery) {
+        this.gallery = gallery;
     }
 }

@@ -48,7 +48,7 @@ public class GalleryHttpClient {
         this.gallery = gallery;
     }
 
-    public void pushTradeList() {
+    public void pushGallery() {
         HttpClient httpClient = new DefaultHttpClient();
         ///catch exception if not connected to the internet
         //////////////////////////////////////////////////////////
@@ -180,7 +180,7 @@ public class GalleryHttpClient {
         public void run() {
 
             // push user's tradelist online if it's first created
-            pushTradeList();
+            pushGallery();
 
             // Give some time to get updated info
             try {

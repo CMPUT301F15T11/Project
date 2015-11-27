@@ -16,7 +16,13 @@
 */
 package com.example.zhaorui.dvdcollector.Model;
 
+import android.app.Activity;
 import android.app.Application;
+import android.app.FragmentManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+
+import com.example.zhaorui.dvdcollector.View.InputInvalidDialog;
 
 /**
  * <p>
@@ -38,3 +44,4 @@ public class ContextUtil extends Application{
         instance = this;
     }
 }
+

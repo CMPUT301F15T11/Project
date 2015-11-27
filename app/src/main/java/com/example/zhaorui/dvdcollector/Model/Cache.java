@@ -16,6 +16,8 @@
 */
 package com.example.zhaorui.dvdcollector.Model;
 
+import android.util.Pair;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 /**
@@ -26,7 +28,7 @@ import java.util.HashMap;
  * @author  Dingkai Liang
  * @version 09/10/15
  */
-public class Cache extends HashMap<String,Friend> {
+public class Cache extends HashMap<String,Pair<Friend,Gallery>> {
     private static Cache instance;
 
     private Cache(){}

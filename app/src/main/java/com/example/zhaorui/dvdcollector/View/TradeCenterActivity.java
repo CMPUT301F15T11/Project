@@ -42,9 +42,6 @@ public class TradeCenterActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trade_center);
-
-        TradeListController tradeListController = new TradeListController(User.instance().getTradeList());
-        tradeListController.updateTradeList(User.instance().getProfile().getName());
     }
 
     @Override

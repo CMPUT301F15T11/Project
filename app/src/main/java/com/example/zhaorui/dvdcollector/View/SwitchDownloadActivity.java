@@ -20,7 +20,12 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
 
+import com.example.zhaorui.dvdcollector.Controller.InventoryController;
+import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
 /**
  * <p>
@@ -32,11 +37,22 @@ import com.example.zhaorui.dvdcollector.R;
  * @version 11/10/15
  */
 public class SwitchDownloadActivity extends BaseActivity {
+    private CheckBox checkBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_switch_download);
+        Button save = (Button)findViewById(R.id.btn_download_switch);
+        checkBox = (CheckBox) findViewById(R.id.checkbox_download);
+        checkBox.setChecked(User.instance().isDownloadImage());
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                User.instance().setDownloadImage(checkBox.isChecked());
+                finish();
+            }
+        });
     }
 
     @Override

@@ -31,48 +31,33 @@ public class Gallery {
     /**
      * Initialize a array list to store photos.
      */
-    private ArrayList<String> photoStrs=null;
+    private ArrayList<String> gallery;
 
-    /**
-     * Get input photos.
-     * @param photoStrs an array list variable contain photo strings.
-     */
-    public Gallery(ArrayList<String> photoStrs) {
-        this.photoStrs = photoStrs;
+    public Gallery(){
+        gallery = new ArrayList<>();
     }
 
-    /**
-     * Initialize a gallery(set photoStrs to a new array list)
-     */
-    public Gallery() {
-        this.photoStrs = new ArrayList<String>();
-    }
-
-    /**
-     * This function is called when other functions need to use the photo string.
-     * @return a array list of string.
-     */
-    public ArrayList<String> getPhotoStrs() {
-        return photoStrs;
-    }
-
-    /**
-     * This function is called when other functions need to set the photo string.
-     * @param photoStrs an array list variable contain photo strings.
-     */
-    public void setPhotoStrs(ArrayList<String> photoStrs) {
-        this.photoStrs = photoStrs;
-    }
-
-    /**
-     * This function is called when other functions need to use the size of the array list.
-     * @return a string value, the size of the array.
-     */
-    public int getSize() {
-        if (this.photoStrs == null) {
-            return 0;
-        } else {
-            return photoStrs.size();
+    public Gallery(int size){
+        gallery = new ArrayList<>();
+        for (int i = 0; i < size; ++i){
+            gallery.add("No Photo");
         }
+    }
+    public void add(String photoStr){
+        gallery.add(photoStr);
+        ObserverManager.getInstance().notifying("Gallery");
+    }
+
+    public void remove(int index){
+        gallery.remove(index);
+        ObserverManager.getInstance().notifying("Gallery");
+    }
+
+    public String get(int index){
+        return gallery.get(index);
+    }
+
+    public void set(int index, String imageStr){
+        gallery.set(index,imageStr);
     }
 }

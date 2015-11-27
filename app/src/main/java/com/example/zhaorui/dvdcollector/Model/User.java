@@ -46,11 +46,17 @@ public class User{
      */
     private TradeList tradeList;
 
+    private Gallery gallery;
+
+    private boolean downloadImage;
+
     private User() {
         friends = new Friends();
         inventory = new Inventory();
         profile = new UserProfile();
         tradeList = new TradeList();
+        gallery = new Gallery();
+        downloadImage = true;
     }
 
     public static void setInstance(User instance) {
@@ -85,5 +91,17 @@ public class User{
      */
     public UserProfile getProfile() {
         return profile;
+    }
+
+    public boolean isDownloadImage() {
+        return downloadImage;
+    }
+
+    public void setDownloadImage(boolean downloadImage) {
+        this.downloadImage = downloadImage;
+    }
+
+    public Gallery getGallery() {
+        return gallery;
     }
 }
