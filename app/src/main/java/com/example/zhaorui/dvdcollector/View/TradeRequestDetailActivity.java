@@ -45,15 +45,37 @@ import java.util.ArrayList;
  * @version 11/10/15
  */
 public class TradeRequestDetailActivity extends BaseActivity {
-
+    /**
+     * Initialize trade list controller
+     */
     private TradeListController myTradeListController = new TradeListController(User.instance().getTradeList());
+    /**
+     * Initialize friend controller
+     */
     private FriendsController fc = new FriendsController();
-
+    /**
+     * Initialize an accept button
+     */
     private Button btnAccept;
+    /**
+     * Initialize a decline button
+     */
     private Button btnDecline;
+    /**
+     * Initialize a textview of tv borrower
+     */
     private TextView tvBorrower;
+    /**
+     * Initialize a textview of tv owner
+     */
     private TextView tvOwner;
+    /**
+     * Initialize a textview of DVD borrower
+     */
     private TextView dvdBorrower;
+    /**
+     * Initialize a textview of DVD owner
+     */
     private TextView dvdOwner;
 
     @Override
@@ -96,6 +118,12 @@ public class TradeRequestDetailActivity extends BaseActivity {
         });
     }
 
+    /**
+     * Email sent during trade
+     * @param emailAddress string variable
+     * @param ownerComments string variable
+     * @param position int variable
+     */
     private void sendEmail(String emailAddress, String ownerComments, int position){
         Intent stats = new Intent(Intent.ACTION_SENDTO);
         stats.setData(Uri.parse("mailto:" + emailAddress));

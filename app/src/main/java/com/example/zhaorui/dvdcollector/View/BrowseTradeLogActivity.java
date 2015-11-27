@@ -8,7 +8,16 @@ import android.widget.Button;
 import com.example.zhaorui.dvdcollector.Controller.TradeListController;
 import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
-
+/**
+ * <p>
+ * The <code>BrowseTradeLogActivity</code> class controls the user interface of Trade.
+ * This class contains functions, onCreate.
+ * Also startCategory if the button is pressed.
+ * <p>
+ *
+ * @author  Zhaorui Chen
+ * @version 11/10/15
+ */
 public class BrowseTradeLogActivity extends BaseActivity {
     /**
      * Initialize Current Incoming button

@@ -209,6 +209,11 @@ public class StartTradeActivity extends BaseActivity implements Observer {
         inventoryBorrowerController.addObserver(this);
     }
 
+    /**
+     * Send email during trade
+     * @param emailAddress string variable
+     * @param ownerComments string variable
+     */
     private void sendEmail(String emailAddress, String ownerComments){
         Intent stats = new Intent(Intent.ACTION_SENDTO);
         stats.setData(Uri.parse("mailto:" + emailAddress));
@@ -231,6 +236,10 @@ public class StartTradeActivity extends BaseActivity implements Observer {
     }
 
     // A alert will be prompted if user haven't chosen a dvd from the owner
+
+    /**
+     * Prompt alert if user haven't chosen a dvd from the owner
+     */
     private void showPromptDialog() {
         FragmentManager fm = getFragmentManager();
         TradeRequestInvalidDialog newDialog = new TradeRequestInvalidDialog();
@@ -239,6 +248,9 @@ public class StartTradeActivity extends BaseActivity implements Observer {
 
     // open a multiple choice dialog for the borrower
     // borrower is always the device user in this activity
+    /**
+     * Open a multiple choice dialog for the borrower
+     */
     public void borrowerMultipleChoiceDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(StartTradeActivity.this);
         builder.setTitle("Select DVDs");
@@ -280,6 +292,9 @@ public class StartTradeActivity extends BaseActivity implements Observer {
     }
 
     // open a single choice dialog for the owner
+    /**
+     * Open a single choice dialog for the owner
+     */
     public void ownerSingleChoiceDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(StartTradeActivity.this);
         builder.setTitle("Select one DVD");

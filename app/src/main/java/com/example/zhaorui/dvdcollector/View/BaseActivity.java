@@ -33,7 +33,13 @@ import android.view.Window;
 import com.example.zhaorui.dvdcollector.R;
 
 /**
- * Created by teppie on 06/10/15.
+ * <p>
+ * The <code>BaseActivity</code> controls base user interface
+ * This class contains onCreate
+ * <p>
+ *
+ * @author  Zhaorui Chen
+ * @version 10/06/15
  */
 public class BaseActivity extends Activity {//////////////////
     @Override
