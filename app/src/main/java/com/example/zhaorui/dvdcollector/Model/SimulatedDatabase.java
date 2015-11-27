@@ -42,6 +42,9 @@ public class SimulatedDatabase{
      */
     private SimulatedDatabase(){}
 
+    /**
+     * Set values to sample inventory
+     */
     public static void init(){
         Inventory sampleInventory = new Inventory();
         DVD sampleDVD;
@@ -92,9 +95,19 @@ public class SimulatedDatabase{
         }
     }
 
+    /**
+     * Set boolean variable to indicate existence of name
+     * @param name string variable
+     * @return key name in database
+     */
     public static boolean nameExist(String name){
         return database.containsKey(name);
     }
 
+    /**
+     * Get string of name
+     * @param name string variable
+     * @return name in database
+     */
     public static String get(String name){return database.get(name);}
 }

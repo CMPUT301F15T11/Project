@@ -43,12 +43,12 @@ public class Friend {
      *
      */
     private UserProfile profile;
+
     //private TradeList tradeList;
     /**
      * To get the selected friend's information.
      * @param user ,the selected friend.
      */
-
     public Friend(User user){
         //only push sharable dvds online
         InventoryController inventoryController = new InventoryController();
@@ -59,8 +59,8 @@ public class Friend {
 
     /**
      * To store inventory under user's profile
-     * @param inventory
-     * @param profile
+     * @param inventory inventory variable
+     * @param profile user profile variable
      */
     public Friend(Inventory inventory, UserProfile profile) {
         this.inventory = inventory;
@@ -81,14 +81,23 @@ public class Friend {
         return profile;
     }
 
-
+    /**
+     * Get resource url
+     * @return friend's resource url
+     */
     public static String getResourceUrl() {
         return RESOURCE_URL_FRIEND;
     }
-
+    /**
+     * Get search url
+     * @return search resource url
+     */
     public static String getSearchUrl() {
         return SEARCH_URL_FRIEND;
     }
 
+    /**
+     * Set serial version UserID
+     */
     private static final long serialVersionUID = 3199561696102797345L;
 }

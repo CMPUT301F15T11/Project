@@ -52,9 +52,8 @@ public class DVD {
      */
     private String comments;
     /**
-     * Initialize a string to store photo of the dvd.
+     * Initialize a boolean variable to store photo of the dvd.
      */
-
     private boolean hasPhoto;
     /**
      * Initialize a gallery to store all photos of the dvd.
