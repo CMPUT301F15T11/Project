@@ -41,7 +41,8 @@ public class TradeListController {
         DVD dvd;
         for (Trade trade:trades.getTrades()){
             if (trade.getChanged().equals("Pending")){
-                //TODO:Notification
+
+                // giving notification if a new trade request arrives
                 nm = (NotificationManager)ContextUtil.getInstance().getSystemService(Context.NOTIFICATION_SERVICE);
                 Notification notification = new Notification.Builder(ContextUtil.getInstance())
                         .setAutoCancel(true)
@@ -49,7 +50,6 @@ public class TradeListController {
                         .setTicker("Notification")
                         .setContentTitle("A new trade request")
                         .setContentText("You have a new trade request")
-                        .setWhen(System.currentTimeMillis())
                         .build();
                 nm.notify(NOTIFY_ID, notification);
 
@@ -122,10 +122,10 @@ public class TradeListController {
                 break;
             case "In-progress"://Set to complete also set type to past
                 if (trade.getOwner().equals(User.instance().getProfile().getName())) {
-                    Log.e(TAG, trade.getStatus());
                     trade.setStatus("Complete");
                     Log.e(TAG, trade.getStatus());
                     trades.changeTradeType(trade.getId());
+                    User.instance().getInventory().getByName(trade.getOwnerItem()).setSharable(true);
                     MyHttpClient httpClient = new MyHttpClient(User.instance().getProfile().getName(),trades);
                     httpClient.runPushTradeList();
 
@@ -136,9 +136,7 @@ public class TradeListController {
                     tradeBorrower.setChanged("Complete");
                     tradeBorrower.setStatus("Complete");
                     tradeList.changeTradeType(tradeBorrower.getId());
-                    Log.e("status is : ", tradeBorrower.getStatus());
-                    Log.e("status is: ", tradeList.getTradeById(trade.getId()).getStatus());
-                    Log.e("changed is : ", tradeBorrower.getChanged());
+
                     //push online
                     myHttpClientBorrower.setTradeList(tradeList);
                     myHttpClientBorrower.runPushTradeList();

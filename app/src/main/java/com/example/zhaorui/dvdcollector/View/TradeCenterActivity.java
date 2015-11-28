@@ -69,6 +69,11 @@ public class TradeCenterActivity extends BaseActivity {
         startActivity(i);
     }
 
+    public void startTopTrade(View view){
+        Intent i = new Intent(TradeCenterActivity.this, TopTradeActivity.class);
+        startActivity(i);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

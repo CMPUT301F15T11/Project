@@ -8,6 +8,7 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".Model.ContextUtil"
         android:allowBackup="true"
@@ -64,8 +65,8 @@
             android:label="@string/title_activity_trade_detail" >
         </activity>
         <activity
-        android:name=".View.CounterTradeActivity"
-        android:label="@string/title_activity_trade_detail" >
+            android:name=".View.CounterTradeActivity"
+            android:label="@string/title_activity_trade_detail" >
         </activity>
         <activity
             android:name=".View.TradeRequestsActivity"
@@ -114,6 +115,10 @@
         <activity
             android:name=".View.BrowseTradeLogActivity"
             android:label="@string/title_activity_browse_trade_log" >
+        </activity>
+        <activity
+            android:name=".View.TopTradeActivity"
+            android:label="@string/title_activity_top_trade" >
         </activity>
     </application>
 

@@ -112,7 +112,7 @@ public class CounterTradeActivity extends BaseActivity implements Observer {
         // set default info with the declined trade
         textView.setText(trade.getBorrower());
         textView1.setText(trade.getBorrowerItemList().get(0));
-        textView2.setText(trade.getOwnerItem());cd
+        textView2.setText(trade.getOwnerItem());
         ownerDvdNameBuffer = trade.getOwnerItem();
         borrowerDvdNameBuffer = trade.getBorrowerItemList().get(0);
 

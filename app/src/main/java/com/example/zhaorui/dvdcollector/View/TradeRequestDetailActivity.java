@@ -16,6 +16,8 @@
 */
 package com.example.zhaorui.dvdcollector.View;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,6 +25,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,6 +58,8 @@ public class TradeRequestDetailActivity extends BaseActivity {
     private TextView tvOwner;
     private TextView dvdBorrower;
     private TextView dvdOwner;
+    private String ownerComments = "No comments";
+    private int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +73,7 @@ public class TradeRequestDetailActivity extends BaseActivity {
         dvdOwner = (TextView)findViewById(R.id.dvds_owner_trade_detail_ongoing);
 
         Intent i = getIntent();
-        final int position = i.getIntExtra("position",0);
+        position = i.getIntExtra("position",0);
 
         tvBorrower.setText(myTradeListController.getTradeRequests().get(position).getBorrower());
         tvOwner.setText(myTradeListController.getTradeRequests().get(position).getOwner());
@@ -78,9 +83,7 @@ public class TradeRequestDetailActivity extends BaseActivity {
         btnAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myTradeListController.acceptTrade(position);
-                Toast.makeText(TradeRequestDetailActivity.this, "Accepted the trade!", Toast.LENGTH_SHORT);
-                TradeRequestDetailActivity.this.finish();
+                showCommentDialog();
             }
         });
 
@@ -92,6 +95,24 @@ public class TradeRequestDetailActivity extends BaseActivity {
                 TradeRequestDetailActivity.this.finish();
             }
         });
+    }
+
+    private void showCommentDialog(){
+        final EditText et = new EditText(this);
+        new AlertDialog.Builder(this)
+            .setTitle("Any comments?")
+                .setIcon( android.R.drawable.ic_dialog_info)
+                .setView( et )
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            ownerComments = et.getText().toString();
+                            myTradeListController.acceptTrade(position);
+                            Toast.makeText(TradeRequestDetailActivity.this, "Accept the trade!", Toast.LENGTH_SHORT);
+                            TradeRequestDetailActivity.this.finish();
+                        }
+                })
+        .show();
     }
 
     private void sendEmail(String emailAddress, String ownerComments, int position){

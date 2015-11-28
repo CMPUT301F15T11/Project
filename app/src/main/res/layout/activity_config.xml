@@ -48,15 +48,7 @@
                 android:onClick="startSwitchDownload"
                 />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Top Traders"
-                style="@style/font_white"
-                android:id="@+id/btn_top_traders"
-                android:layout_margin="20dp"
-                android:background="@drawable/button_shape_nograd"
-                android:layout_weight="1"/>
+
 
         </LinearLayout>
         <LinearLayout
