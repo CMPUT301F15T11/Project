@@ -28,9 +28,7 @@ import android.widget.Toast;
 import com.example.zhaorui.dvdcollector.Controller.FriendsController;
 import com.example.zhaorui.dvdcollector.Controller.InventoryController;
 import com.example.zhaorui.dvdcollector.Controller.UserHttpClient;
-import com.example.zhaorui.dvdcollector.Model.DVD;
 import com.example.zhaorui.dvdcollector.Model.Friend;
-import com.example.zhaorui.dvdcollector.Model.Gallery;
 import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
 

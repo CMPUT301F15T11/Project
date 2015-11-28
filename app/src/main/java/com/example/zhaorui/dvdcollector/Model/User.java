@@ -46,7 +46,7 @@ public class User{
      */
     private TradeList tradeList;
 
-    private Gallery gallery;
+    private GalleryList galleryList;
 
     private boolean downloadImage;
 
@@ -55,7 +55,7 @@ public class User{
         inventory = new Inventory();
         profile = new UserProfile();
         tradeList = new TradeList();
-        gallery = new Gallery();
+        galleryList = new GalleryList();
         downloadImage = true;
     }
 
@@ -101,7 +101,7 @@ public class User{
         this.downloadImage = downloadImage;
     }
 
-    public Gallery getGallery() {
-        return gallery;
+    public GalleryList getGalleryList() {
+        return galleryList;
     }
 }

@@ -24,6 +24,7 @@ import android.util.Log;
 
 import com.example.zhaorui.dvdcollector.Model.DVD;
 import com.example.zhaorui.dvdcollector.Model.Gallery;
+import com.example.zhaorui.dvdcollector.Model.GalleryList;
 import com.example.zhaorui.dvdcollector.Model.Inventory;
 import com.example.zhaorui.dvdcollector.Model.ObserverManager;
 import com.example.zhaorui.dvdcollector.Model.User;
@@ -41,7 +42,7 @@ import java.util.Observer;
  * @see java.util.ArrayList
  */
 public class InventoryController {
-    private Gallery gallery;
+    private GalleryList galleryList;
     private static String TAG = "InventoryController";
     /**
      * Initialize a Inventory to store the inventory information.
@@ -52,7 +53,7 @@ public class InventoryController {
      */
     public InventoryController(){
         inventory = User.instance().getInventory();
-        gallery = User.instance().getGallery();
+        galleryList = User.instance().getGalleryList();
     }
     /**
      * This function is called when other function need to know all inventories.
@@ -72,7 +73,8 @@ public class InventoryController {
      */
     public void add(ArrayList<String> info){
         inventory.append(new DVD(info));
-        gallery.add("No Photo");
+        GalleryListController glc = new GalleryListController();
+        glc.addGallery(new Gallery());
     }
     /**
      * This function is called when other function need to edit a dvd from the inventory.
@@ -85,7 +87,8 @@ public class InventoryController {
      * @param dvd ,a DVD variable
      */
     public void remove(DVD dvd){
-        gallery.remove(indexOf(dvd));
+        GalleryListController glc = new GalleryListController();
+        glc.removeGallery(indexOf(dvd));
         inventory.delete(dvd);
     }
     /**
@@ -103,12 +106,14 @@ public class InventoryController {
         }
         return null;
     }
+
     /**
      * This function is called when other function need to get a dvd by index.
      * @param dvd , a DVD variable
      * @return index, an int variable.
      */
     public int indexOf(DVD dvd){return inventory.indexOf(dvd);}
+
     /**
      * This function is called when other function need to get a dvd's index, input a dvd's name
      * @param name , the target dvd's name, a string variable.
@@ -184,48 +189,4 @@ public class InventoryController {
 
     public ArrayList<String> getInfo(int index){ return get(index).read();}
 
-    /**
-     * encode to store.
-     * @param bitmap
-     * @return a string
-     */
-    private String encodeFromBitmap(Bitmap bitmap){
-        String encoded =null;
-        int quality=100;
-        do{
-            //http://stackoverflow.com/questions/9224056/android-bitmap-to-base64-string Author: jeet
-            //modified based on https://github.com/CMPUT301W15T06/Project/blob/master/App/src/ca/ualberta/CMPUT301W15T06/ClaimantReceiptController.java
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, byteArrayOutputStream);
-            byte[] byteArray = byteArrayOutputStream .toByteArray();
-            encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
-            quality-=10;
-        }while(encoded.length()>=65536);
-        return encoded;
-    }
-
-    /**
-     * Decode to laod
-     * @param string which returned by encode
-     * @return the bitmap.
-     */
-    private Bitmap decodeFromString(String string){
-        //modified based on https://github.com/CMPUT301W15T06/Project/blob/master/App/src/ca/ualberta/CMPUT301W15T06/ClaimantReceiptController.java
-        byte[] byteArray = Base64.decode(string, Base64.DEFAULT);
-        Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-        return bitmap;
-    }
-
-    public Bitmap getPhoto(int index){
-        if (gallery.get(index).equals("No Photo")) return null;
-        return decodeFromString(gallery.get(index));
-    }
-
-    public void setPhoto(int index, Bitmap image){
-        gallery.set(index,encodeFromBitmap(image));
-    }
-
-    public void setGallery(Gallery gallery) {
-        this.gallery = gallery;
-    }
 }

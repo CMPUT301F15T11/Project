@@ -124,14 +124,16 @@ public class TradeDetailActivity extends BaseActivity {
         }
 
         if(id==R.id.set_to_complete){
-            if(tradeToShow.getStatus().equals("In-progress")){
+            if(tradeToShow.getStatus().equals("In-progress")
+                    && tradeToShow.getOwner().equals(User.instance().getProfile().getName())){
                 tradeListController.setTradeComplete(idOfTrade);
                 this.finish();
             }
         }
 
         if(id == R.id.start_counter_trade){
-            if(tradeToShow.getOwner().equals(User.instance().getProfile().getName())) {
+            if(tradeToShow.getOwner().equals(User.instance().getProfile().getName())
+                    && tradeToShow.getStatus().equals("Declined")) {
                 Intent i = new Intent(TradeDetailActivity.this, CounterTradeActivity.class);
                 Gson gson = new Gson();
                 i.putExtra("trade", gson.toJson(tradeToShow));

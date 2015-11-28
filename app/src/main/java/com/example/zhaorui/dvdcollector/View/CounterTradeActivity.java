@@ -75,9 +75,8 @@ public class CounterTradeActivity extends BaseActivity implements Observer {
     String[] borrowerDvdNames;
 
     //Buffer for selecting dvds in the checkbox and radiobutton
-    ArrayList<String> borrowerDvdNameBuffer = new ArrayList<>();
+    String borrowerDvdNameBuffer = null;
     String ownerDvdNameBuffer = null;
-    ArrayList<Integer> borrowerDvdIndexBuffer = new ArrayList<>();
 
     //TradeList Controller for user(owner)
     private TradeListController tradeListController = new TradeListController(User.instance().getTradeList());
@@ -112,20 +111,16 @@ public class CounterTradeActivity extends BaseActivity implements Observer {
 
         // set default info with the declined trade
         textView.setText(trade.getBorrower());
-        textView2.setText(trade.getOwnerItem());
-        for (String dvd:trade.getBorrowerItemList()){
-            textView1.setText(textView1.getText()+"; "+dvd);
-            borrowerDvdIndexBuffer.add(inventoryBorrowerController.indexOf(dvd));
-        }
-        textView1.setText(String.valueOf(trade.getBorrowerItemList()));
+        textView1.setText(trade.getBorrowerItemList().get(0));
+        textView2.setText(trade.getOwnerItem());cd
         ownerDvdNameBuffer = trade.getOwnerItem();
-        borrowerDvdNameBuffer = trade.getBorrowerItemList();
+        borrowerDvdNameBuffer = trade.getBorrowerItemList().get(0);
 
         // click to add dvds from borrower's inventory
         ll1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                borrowerMultipleChoiceDialog();
+                borrowerSingleChoiceDialog();
             }
         });
 
@@ -133,23 +128,21 @@ public class CounterTradeActivity extends BaseActivity implements Observer {
         btnSendRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ownerDvdNameBuffer !=null) {
-                    borrowerDvdNameBuffer.clear();
-                    for(int i:borrowerDvdIndexBuffer) {
-                        borrowerDvdNameBuffer.add(inventoryBorrowerController.getSharableInventory().get(i).getName());
-                    }
+                if (ownerDvdNameBuffer !=null && borrowerDvdNameBuffer!=null) {
                     Log.e(TAG, String.valueOf(borrowerDvdNameBuffer));
-                    Log.e(TAG, String.valueOf(borrowerDvdIndexBuffer));
                     String tradeId =  String.valueOf(System.currentTimeMillis());// giving a new ID for the counter trade
                     // add this trade to borrower's tradelist
                     //NOTE: Upon sending the counter trade, the role of borrower and owner switched
                     //Owner in the counter trade --> Borrower of the new trade request
                     //vice versa.
+                    ArrayList<String> ownerDvd = new ArrayList<String>();
+                    ownerDvd.add(ownerDvdNameBuffer);
+
                     tradeListController.addTrade(
                             User.instance().getProfile().getName(),//Now, treat user as borrower
                             fc.getByName(friendName).getProfile().getName(),// treat friend as owner
-                            borrowerDvdNameBuffer,
-                            ownerDvdNameBuffer,
+                            ownerDvd, //as borrower's items(only 1)
+                            borrowerDvdNameBuffer,// as owner's items
                             "Current Outgoing",
                             "Pending",
                             tradeId);// save to user's tradelist
@@ -157,7 +150,7 @@ public class CounterTradeActivity extends BaseActivity implements Observer {
                     //send trade to the owner(now--> friend)
                     tradeListController.sendTrade(
                             fc.getByName(friendName).getProfile().getName(),
-                            borrowerDvdNameBuffer, ownerDvdNameBuffer, tradeId);
+                            ownerDvd,borrowerDvdNameBuffer, tradeId);
 
                     Toast.makeText(CounterTradeActivity.this, "Trade has been sent to the borrower", Toast.LENGTH_SHORT).show();
                     CounterTradeActivity.this.finish();
@@ -187,47 +180,6 @@ public class CounterTradeActivity extends BaseActivity implements Observer {
         newDialog.show(fm, "abc");
     }
 
-    // open a multiple choice dialog for the borrower
-    // borrower is always the device user in this activity
-    public void borrowerMultipleChoiceDialog(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(CounterTradeActivity.this);
-        builder.setTitle("Select DVDs");
-
-        // load already checked items
-        boolean[] checked = new boolean[inventoryBorrowerController.getSharableInventory().size()];
-        for(int i=0;i<checked.length;i++) {
-            if (borrowerDvdIndexBuffer.contains(i)) {
-                checked[i] = true;
-            } else {
-                checked[i] = false;
-            }
-        }
-
-        builder.setMultiChoiceItems(borrowerDvdNames, checked, new DialogInterface.OnMultiChoiceClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                if (isChecked) { // if check the item
-                    borrowerDvdIndexBuffer.add(which);
-                } else {// if un-check the item
-                    borrowerDvdIndexBuffer.remove(Integer.valueOf(which));
-                }
-
-                // write the selected dvds to the textview
-                textView1.setText("");
-                for (int index : borrowerDvdIndexBuffer) {
-                    textView1.setText(textView1.getText() + borrowerDvdNames[index] + " ; ");
-                }
-            }
-        });
-
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
-
-        builder.show();
-    }
 
     // open a single choice dialog for the owner
     public void ownerSingleChoiceDialog(){
@@ -263,6 +215,47 @@ public class CounterTradeActivity extends BaseActivity implements Observer {
             public void onClick(DialogInterface dialog, int which) {
                 // write the selected dvd to the textview
                 textView2.setText(ownerDvdNameBuffer);
+
+            }
+        });
+
+        builder.show();
+    }
+
+    // open a single choice dialog for the owner
+    public void borrowerSingleChoiceDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(CounterTradeActivity.this);
+        builder.setTitle("Select one DVD");
+
+        int checked = 0;
+        if (borrowerDvdNameBuffer !=null){ // if have selected a dvd before
+            for (int i=0;i<borrowerDvdNames.length;i++){
+                if(borrowerDvdNames[i].equals(borrowerDvdNameBuffer)){
+                    checked = i;
+                }
+            }
+        } else{ // if it's the first time selecting owner's dvd
+            try {
+                borrowerDvdNameBuffer = inventoryBorrowerController.getSharableInventory().get(checked).getName();
+            }catch (IndexOutOfBoundsException e){
+                e.printStackTrace();
+                borrowerDvdNameBuffer = null;
+            }
+        }
+
+        builder.setSingleChoiceItems(borrowerDvdNames, checked, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                borrowerDvdNameBuffer = inventoryBorrowerController.getInventory().get(which).getName();
+            }
+        });
+
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // write the selected dvd to the textview
+                textView1.setText(borrowerDvdNameBuffer);
 
             }
         });

@@ -31,13 +31,19 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.zhaorui.dvdcollector.Controller.DataManager;
 import com.example.zhaorui.dvdcollector.Controller.FriendsController;
+import com.example.zhaorui.dvdcollector.Controller.GalleryListController;
 import com.example.zhaorui.dvdcollector.Controller.InventoryController;
+import com.example.zhaorui.dvdcollector.Controller.MyHttpClient;
 import com.example.zhaorui.dvdcollector.Model.Gallery;
+import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
 
 import java.io.File;
@@ -55,53 +61,131 @@ import java.util.ArrayList;
  * @author  Zhaorui Chen
  * @version 4/11/15
  */
-public class PhotoActivity extends BaseActivity{
-    private int position;
+public class PhotoActivity extends BaseActivity {
+    private int dvdPosition;
     private InventoryController ic = new InventoryController();
     private FriendsController fc = new FriendsController();
 
     private Gallery gallery;
+    private GalleryListController glc;
 
     private int numPhotos;
     private ArrayList<Integer> photoIndexes;
+    private ArrayAdapter<Integer> photoAdapter;
 
-    private ImageView imageView;
+    private ListView listView;
+
     private static final int CHOOSE_PHOTO = 11;
     private static final int TAKE_PHOTO = 22;
     private Uri imageUri;
-    private int friendPosition;
 
-    private String imagePath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo);
-        imageView = (ImageView)findViewById(R.id.ImageView_photos);
+        listView = (ListView)findViewById(R.id.listView_photos);
 
         Intent intent = getIntent();
-        position = intent.getIntExtra("position", -1);
-        friendPosition = intent.getIntExtra("friendPosition",-1);
+        dvdPosition = intent.getIntExtra("position", -1);
+        int friendPosition = intent.getIntExtra("friendPosition", -1);
+
         if (friendPosition != -1) {
             // if is viewing friend's dvd gallery, disable upload
             ic.setInventory(fc.get(friendPosition).getInventory());
+            glc = new GalleryListController(fc.get(friendPosition).getProfile().getName());
+            if(User.instance().isDownloadImage()){
+                glc.pullGalleryList();
+                gallery = glc.get(dvdPosition);
+            }
+
             Button upload = (Button) findViewById(R.id.button_upload_photo);
             upload.setText("Download Photos");
-            //TODO:如果这是Friend的DVD照片集, 此处按钮就不再是"添加照片",而是"下载照片"
             upload.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //TODO:下载照片
+                    if (!User.instance().isDownloadImage()) {
+                        glc.pullGalleryList();
+                        gallery = glc.get(dvdPosition);
+
+                        // initialize the listview, each entry is provided with an index of image
+                        numPhotos = gallery.getSize();
+                        photoIndexes = new ArrayList<Integer>();
+                        for (int i = 0; i < numPhotos; i++) {
+                            photoIndexes.add(i);
+                        }
+
+                    }
+                }
+            });
+
+            // initialize the listview, each entry is provided with an index of image
+            numPhotos = gallery.getSize();
+            photoIndexes = new ArrayList<Integer>();
+            for (int i = 0; i < numPhotos; i++) {
+                photoIndexes.add(i);
+            }
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position,
+                                        long id) {
+                    // if click on the listview item, show the image on a new activity
+                    Intent i = new Intent(com.example.zhaorui.dvdcollector.View.PhotoActivity.this, DisplayPhotoActivity.class);
+                    String photoStrToShow = gallery.getPhotoStrs().get(position);
+                    i.putExtra("photoStr", photoStrToShow);
+                    startActivity(i);
+                }
+            });
+        }else {
+            //if is viewing my own dvd gallery
+            glc = new GalleryListController();
+            gallery = glc.get(dvdPosition);
+
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position,
+                                        long id) {
+                    // if click on the listview item, show the image on a new activity
+                    Intent i = new Intent(com.example.zhaorui.dvdcollector.View.PhotoActivity.this, DisplayPhotoActivity.class);
+                    String photoStrToShow = gallery.getPhotoStrs().get(position);
+                    i.putExtra("photoStr", photoStrToShow);
+                    startActivity(i);
+                }
+            });
+
+            // initialize the listview, each entry is provided with an index of image
+            numPhotos = gallery.getSize();
+            photoIndexes = new ArrayList<Integer>();
+            for (int i = 0; i < numPhotos; i++) {
+                photoIndexes.add(i);
+            }
+
+            // remove the photo
+            listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                    //int index = photoIndexes.get(dvdPosition);
+                    glc.removePhotoStr(dvdPosition, gallery.getPhotoStrs().get(position)); // remove the image from the gallery
+                    //dc.changeGallery(ic.get(photoPosition), gallery);// change the dvd with the new gallery
+
+                    // update the listview
+                    photoIndexes.remove(position);
+                    photoAdapter.notifyDataSetChanged();
+
+                    return true;
                 }
             });
         }
     }
 
     @Override
-    protected void onStart() {
+    protected void onStart(){
         super.onStart();
-        Bitmap image = ic.getPhoto(position);
-        if (image != null) imageView.setImageBitmap(ic.getPhoto(position));
+        photoAdapter = new ArrayAdapter<Integer>(com.example.zhaorui.dvdcollector.View.PhotoActivity.this, android.R.layout.simple_list_item_1, photoIndexes);
+        listView.setAdapter(photoAdapter);
+        photoAdapter.notifyDataSetChanged();
     }
 
     //https://github.com/CMPUT301W15T06/Project/blob/master/App/src/ca/ualberta/CMPUT301W15T06/ClaimantReceiptActivity.java
@@ -119,31 +203,11 @@ public class PhotoActivity extends BaseActivity{
         String imageFilePath = folder + "/" + String.valueOf(System.currentTimeMillis()) + ".jpeg";
         File imageFile = new File(imageFilePath);
         imageUri = Uri.fromFile(imageFile);
+        DataManager.instance().setImgUri(imageUri);
 
         // start camera
         intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
         startActivityForResult(intent, TAKE_PHOTO);
-    }
-
-    public void uploadFromGallery(View view){
-        //TODO:现在没有使用这个,因为数据会丢失,如果需要使用可以在xml里面换用这个
-        String folder = Environment.getExternalStorageDirectory().getAbsolutePath() + "/tmp";
-        File folderF = new File(folder);
-        if (!folderF.exists()) {
-            folderF.mkdir();
-        }
-
-        String imageFilePath = folder + "/" + String.valueOf(System.currentTimeMillis()) + ".jpeg";
-        File imageFile = new File(imageFilePath);
-
-        imageUri = Uri.fromFile(imageFile);
-        //Intent intent = new Intent("android.intent.action.GET_CONTENT");
-
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent,
-                "Select Picture"), CHOOSE_PHOTO);
     }
 
 
@@ -156,10 +220,20 @@ public class PhotoActivity extends BaseActivity{
             case TAKE_PHOTO:
                 if (resultCode == RESULT_OK) {
                     try {
-                        imageUri = data.getData();
-                        imagePath = getPath(imageUri);
+                        //imageUri = data.getData();
+                        imageUri = DataManager.instance().getImgUri();
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
-                        ic.setPhoto(position, bitmap);
+                        String photo = glc.encodeFromBitmap(bitmap); // encode image to string
+                        glc.addPhotoStr(dvdPosition, photo); // add the photo to the gallery
+                        //dc.changeGallery(ic.get(dvdPosition), gallery);// change the dvd with the new gallery
+
+                        // update the listview
+                        numPhotos = gallery.getSize();
+                        photoIndexes = new ArrayList<Integer>();
+                        for (int i=0;i<numPhotos;i++){
+                            photoIndexes.add(i);
+                        }
+                        photoAdapter.notifyDataSetChanged(); //update the listview
 
                     } catch (FileNotFoundException e) {
                         throw new RuntimeException(e);
@@ -175,7 +249,18 @@ public class PhotoActivity extends BaseActivity{
                     try {
                         Log.e("Taking Photo", String.valueOf(imageUri));
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
-                        ic.setPhoto(position,bitmap);
+                        String photo = glc.encodeFromBitmap(bitmap); // encode image to string
+                        glc.addPhotoStr(dvdPosition, photo); // add the photo to the gallery
+                        //dc.changeGallery(ic.get(dvdPosition), gallery);// change the dvd with the new gallery
+
+                        // update the listview
+                        numPhotos = gallery.getSize();
+                        photoIndexes = new ArrayList<Integer>();
+                        for (int i=0;i<numPhotos;i++){
+                            photoIndexes.add(i);
+                        }
+                        photoAdapter.notifyDataSetChanged(); //update the listview
+
                     } catch (FileNotFoundException e) {
                         throw new RuntimeException(e);
                     } catch (IOException e) {

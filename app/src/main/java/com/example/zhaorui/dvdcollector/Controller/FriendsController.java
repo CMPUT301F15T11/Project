@@ -17,22 +17,15 @@
 */
 package com.example.zhaorui.dvdcollector.Controller;
 
-import android.util.Log;
 import android.util.Pair;
 
 import com.example.zhaorui.dvdcollector.Model.Cache;
 import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.Friends;
-import com.example.zhaorui.dvdcollector.Model.Gallery;
+import com.example.zhaorui.dvdcollector.Model.GalleryList;
 import com.example.zhaorui.dvdcollector.Model.ObserverManager;
 import com.example.zhaorui.dvdcollector.Model.User;
-import com.example.zhaorui.dvdcollector.View.FriendInventoryActivity;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.Observer;
 
 /**
@@ -87,10 +80,10 @@ public class FriendsController {
         return friends.get(index);
     }
 
-    public void putFriendInCache(Friend friend, Gallery gallery){
+    public void putFriendInCache(Friend friend, GalleryList galleryList){
         String name = friend.getProfile().getName();
         friend.getInventory().fresh();
-        cache.put(name, new Pair<>(friend,gallery));
+        cache.put(name, new Pair<>(friend,galleryList));
     }
 
     public Friend getByName(String name){
@@ -168,13 +161,13 @@ public class FriendsController {
         public void run() {
             MyHttpClient httpClient = new MyHttpClient(userName);
             Friend friendToShow = httpClient.runPullFriend();
-            Gallery gallery;
+            GalleryList galleryList;
             if (User.instance().isDownloadImage()) {
-                gallery = httpClient.runPullGallery();
+                galleryList = httpClient.runPullGalleryList();
             } else {
-                gallery = new Gallery(friendToShow.getInventory().size());
+                galleryList = new GalleryList();
             }
-            putFriendInCache(friendToShow,gallery);
+            putFriendInCache(friendToShow,galleryList);
             resultGet = true;
         }
     }

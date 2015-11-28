@@ -36,6 +36,10 @@
             android:label="@string/title_activity_dvdinfo" >
         </activity>
         <activity
+            android:name=".View.PhotoActivity"
+            android:label="@string/title_activity_my_invent" >
+        </activity>
+        <activity
             android:name=".View.FriendListActivity"
             android:label="@string/title_activity_friend_list" >
         </activity>
@@ -102,10 +106,6 @@
         <activity
             android:name=".View.SwitchDownloadActivity"
             android:label="@string/title_activity_switch_download" >
-        </activity>
-        <activity
-            android:name=".View.PhotoActivity"
-            android:label="@string/title_activity_photo" >
         </activity>
         <activity
             android:name=".View.DisplayPhotoActivity"

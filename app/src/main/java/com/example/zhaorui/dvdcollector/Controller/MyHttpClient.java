@@ -1,9 +1,10 @@
 package com.example.zhaorui.dvdcollector.Controller;
 
+import android.util.Log;
+
 import com.example.zhaorui.dvdcollector.Model.Friend;
-import com.example.zhaorui.dvdcollector.Model.Gallery;
+import com.example.zhaorui.dvdcollector.Model.GalleryList;
 import com.example.zhaorui.dvdcollector.Model.TradeList;
-import com.example.zhaorui.dvdcollector.Model.User;
 import com.google.gson.Gson;
 
 /**
@@ -13,7 +14,7 @@ public class MyHttpClient {
     private Friend friend;
     private String name;
     private TradeList tradeList;
-    private Gallery gallery;
+    private GalleryList galleryList;
     private Gson gson = new Gson();
     private Boolean result;
 
@@ -22,6 +23,7 @@ public class MyHttpClient {
 
     public MyHttpClient(Friend friend) {
         this.friend = friend;
+        this.name = friend.getProfile().getName();
     }
 
     public MyHttpClient(String name, TradeList tradeList) {
@@ -29,8 +31,8 @@ public class MyHttpClient {
         this.tradeList = tradeList;
     }
 
-    public MyHttpClient(Gallery gallery, String name) {
-        this.gallery = gallery;
+    public MyHttpClient(GalleryList galleryList, String name) {
+        this.galleryList = galleryList;
         this.name = name;
     }
 
@@ -46,8 +48,8 @@ public class MyHttpClient {
         this.tradeList = tradeList;
     }
 
-    public void setGallery(Gallery gallery){
-        this.gallery = gallery;
+    public void setGalleryList(GalleryList galleryList){
+        this.galleryList = galleryList;
     }
 
     public void runPushFriend(){
@@ -60,9 +62,9 @@ public class MyHttpClient {
         tradeHttpClient.runPush();
     }
 
-    public void runPushGallery(){
-        GalleryHttpClient galleryHttpClient = new GalleryHttpClient(this.gallery, this.name);
-        galleryHttpClient.runPush();
+    public void runPushGalleryList(){
+        GalleryListHttpClient galleryListHttpClient = new GalleryListHttpClient(this.galleryList, this.name);
+        galleryListHttpClient.runPush();
     }
 
     public Friend runPullFriend(){
@@ -79,10 +81,11 @@ public class MyHttpClient {
         return tradeList;
     }
 
-    public Gallery runPullGallery(){
-        GalleryHttpClient galleryHttpClient = new GalleryHttpClient(this.name);
-        Gallery gallery = galleryHttpClient.runPull();
-        this.gallery = gallery;
+    public GalleryList runPullGalleryList(){
+        GalleryListHttpClient galleryListHttpClient = new GalleryListHttpClient(this.name);
+        GalleryList gallery = galleryListHttpClient.runPull();
+        Log.e("DVD Collector","Run Pull GalleryList");
+        this.galleryList = gallery;
         return gallery;
     }
 

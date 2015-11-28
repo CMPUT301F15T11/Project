@@ -19,6 +19,7 @@
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.net.Uri;
 import android.util.Log;
 
 import com.example.zhaorui.dvdcollector.Model.ContextUtil;
@@ -53,6 +54,7 @@ import java.util.Observer;
 public class DataManager implements Observer {
     private static final String FILENAME = "DVDCollector.Local";
     private static DataManager instance;
+    private Uri imgUri;
 
     public static DataManager instance(){
         if (instance == null){
@@ -136,10 +138,18 @@ public class DataManager implements Observer {
     public void update(Observable ob, Object o){
         saveLocal();
         MyHttpClient myHttpClient = new MyHttpClient(new Friend(User.instance()));
-        myHttpClient.setGallery(User.instance().getGallery());
+        myHttpClient.setGalleryList(User.instance().getGalleryList());
         myHttpClient.runPushFriend();
-        myHttpClient.runPushGallery();
+        myHttpClient.runPushGalleryList();
         TradeListController tc = new TradeListController(User.instance().getTradeList());
         tc.updateTradeList();
+    }
+
+    public Uri getImgUri() {
+        return imgUri;
+    }
+
+    public void setImgUri(Uri imgUri) {
+        this.imgUri = imgUri;
     }
 }

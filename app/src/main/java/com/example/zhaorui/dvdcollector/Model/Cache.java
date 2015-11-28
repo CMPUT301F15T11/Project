@@ -28,7 +28,7 @@ import java.util.HashMap;
  * @author  Dingkai Liang
  * @version 09/10/15
  */
-public class Cache extends HashMap<String,Pair<Friend,Gallery>> {
+public class Cache extends HashMap<String,Pair<Friend,GalleryList>> {
     private static Cache instance;
 
     private Cache(){}

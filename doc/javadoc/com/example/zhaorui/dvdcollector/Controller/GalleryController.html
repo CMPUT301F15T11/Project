@@ -86,7 +86,7 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>com.example.zhaorui.dvdcollector.Controller.GalleryController</li>
+<li>com.example.zhaorui.dvdcollector.Controller.GalleryListController</li>
 </ul>
 </li>
 </ul>
@@ -119,8 +119,8 @@ extends java.lang.Object</pre>
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../../../com/example/zhaorui/dvdcollector/Controller/GalleryController.html#GalleryController(com.example.zhaorui.dvdcollector.Model.Gallery)">GalleryController</a></strong>(<a href="../../../../../com/example/zhaorui/dvdcollector/Model/Gallery.html" title="class in com.example.zhaorui.dvdcollector.Model">Gallery</a>&nbsp;gallery)</code>
-<div class="block">Get the input gallery.</div>
+<td class="colOne"><code><strong><a href="../../../../../com/example/zhaorui/dvdcollector/Controller/GalleryController.html#GalleryController(com.example.zhaorui.dvdcollector.Model.Gallery)">GalleryController</a></strong>(<a href="../../../../../com/example/zhaorui/dvdcollector/Model/Gallery.html" title="class in com.example.zhaorui.dvdcollector.Model">Gallery</a>&nbsp;galleryList)</code>
+<div class="block">Get the input galleryList.</div>
 </td>
 </tr>
 </table>
@@ -147,7 +147,7 @@ extends java.lang.Object</pre>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../com/example/zhaorui/dvdcollector/Controller/GalleryController.html#clearGallery()">clearGallery</a></strong>()</code>
-<div class="block">To delete everything from the gallery.</div>
+<div class="block">To delete everything from the galleryList.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -165,19 +165,19 @@ extends java.lang.Object</pre>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../com/example/zhaorui/dvdcollector/Model/Gallery.html" title="class in com.example.zhaorui.dvdcollector.Model">Gallery</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../com/example/zhaorui/dvdcollector/Controller/GalleryController.html#getGallery()">getGallery</a></strong>()</code>
-<div class="block">This function is called when other functions need to use the gallery</div>
+<div class="block">This function is called when other functions need to use the galleryList</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../com/example/zhaorui/dvdcollector/Controller/GalleryController.html#removeFromGallery(java.lang.String)">removeFromGallery</a></strong>(java.lang.String&nbsp;photoStr)</code>
-<div class="block">To delete a photo from the gallery</div>
+<div class="block">To delete a photo from the galleryList</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../com/example/zhaorui/dvdcollector/Controller/GalleryController.html#setGallery(com.example.zhaorui.dvdcollector.Model.Gallery)">setGallery</a></strong>(<a href="../../../../../com/example/zhaorui/dvdcollector/Model/Gallery.html" title="class in com.example.zhaorui.dvdcollector.Model">Gallery</a>&nbsp;gallery)</code>
-<div class="block">This function is called when other functions need to set the gallery</div>
+<td class="colLast"><code><strong><a href="../../../../../com/example/zhaorui/dvdcollector/Controller/GalleryController.html#setGallery(com.example.zhaorui.dvdcollector.Model.Gallery)">setGallery</a></strong>(<a href="../../../../../com/example/zhaorui/dvdcollector/Model/Gallery.html" title="class in com.example.zhaorui.dvdcollector.Model">Gallery</a>&nbsp;galleryList)</code>
+<div class="block">This function is called when other functions need to set the galleryList</div>
 </td>
 </tr>
 </table>
@@ -208,9 +208,9 @@ extends java.lang.Object</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>GalleryController</h4>
-<pre>public&nbsp;GalleryController(<a href="../../../../../com/example/zhaorui/dvdcollector/Model/Gallery.html" title="class in com.example.zhaorui.dvdcollector.Model">Gallery</a>&nbsp;gallery)</pre>
-<div class="block">Get the input gallery.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>gallery</code> - </dd></dl>
+<pre>public&nbsp;GalleryController(<a href="../../../../../com/example/zhaorui/dvdcollector/Model/Gallery.html" title="class in com.example.zhaorui.dvdcollector.Model">Gallery</a>&nbsp;galleryList)</pre>
+<div class="block">Get the input galleryList.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>galleryList</code> - </dd></dl>
 </li>
 </ul>
 </li>
@@ -228,8 +228,8 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getGallery</h4>
 <pre>public&nbsp;<a href="../../../../../com/example/zhaorui/dvdcollector/Model/Gallery.html" title="class in com.example.zhaorui.dvdcollector.Model">Gallery</a>&nbsp;getGallery()</pre>
-<div class="block">This function is called when other functions need to use the gallery</div>
-<dl><dt><span class="strong">Returns:</span></dt><dd>gallery</dd></dl>
+<div class="block">This function is called when other functions need to use the galleryList</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>galleryList</dd></dl>
 </li>
 </ul>
 <a name="setGallery(com.example.zhaorui.dvdcollector.Model.Gallery)">
@@ -238,9 +238,9 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setGallery</h4>
-<pre>public&nbsp;void&nbsp;setGallery(<a href="../../../../../com/example/zhaorui/dvdcollector/Model/Gallery.html" title="class in com.example.zhaorui.dvdcollector.Model">Gallery</a>&nbsp;gallery)</pre>
-<div class="block">This function is called when other functions need to set the gallery</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>gallery</code> - array list of photo strings.</dd></dl>
+<pre>public&nbsp;void&nbsp;setGallery(<a href="../../../../../com/example/zhaorui/dvdcollector/Model/Gallery.html" title="class in com.example.zhaorui.dvdcollector.Model">Gallery</a>&nbsp;galleryList)</pre>
+<div class="block">This function is called when other functions need to set the galleryList</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>galleryList</code> - array list of photo strings.</dd></dl>
 </li>
 </ul>
 <a name="encodeFromBitmap(Bitmap)">
@@ -285,7 +285,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>removeFromGallery</h4>
 <pre>public&nbsp;void&nbsp;removeFromGallery(java.lang.String&nbsp;photoStr)</pre>
-<div class="block">To delete a photo from the gallery</div>
+<div class="block">To delete a photo from the galleryList</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>photoStr</code> - a string variable</dd></dl>
 </li>
 </ul>
@@ -296,7 +296,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>clearGallery</h4>
 <pre>public&nbsp;void&nbsp;clearGallery()</pre>
-<div class="block">To delete everything from the gallery.</div>
+<div class="block">To delete everything from the galleryList.</div>
 </li>
 </ul>
 </li>

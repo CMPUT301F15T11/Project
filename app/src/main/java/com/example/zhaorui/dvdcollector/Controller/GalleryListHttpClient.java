@@ -2,8 +2,7 @@ package com.example.zhaorui.dvdcollector.Controller;
 
 import android.util.Log;
 
-import com.example.zhaorui.dvdcollector.Model.Gallery;
-import com.example.zhaorui.dvdcollector.Model.TradeList;
+import com.example.zhaorui.dvdcollector.Model.GalleryList;
 import com.example.zhaorui.dvdcollector.es.data.SearchHit;
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
@@ -25,27 +24,27 @@ import java.lang.reflect.Type;
 /**
  * Created by zhaorui on 11/19/15.
  */
-public class GalleryHttpClient {
+public class GalleryListHttpClient {
     private Gson gson = new Gson();
     private String userName;
-    private Gallery gallery;
+    private GalleryList galleryList;
     private Boolean result;
 
-    public GalleryHttpClient(Gallery gallery, String userName) {
+    public GalleryListHttpClient(GalleryList galleryList, String userName) {
         super();
         this.userName = userName;
-        this.gallery = gallery;
+        this.galleryList = galleryList;
     }
 
-    public GalleryHttpClient() {
+    public GalleryListHttpClient() {
     }
 
-    public GalleryHttpClient(String userName) {
+    public GalleryListHttpClient(String userName) {
         this.userName = userName;
     }
 
-    public void setGallery(Gallery gallery) {
-        this.gallery = gallery;
+    public void setGalleryList(GalleryList galleryList) {
+        this.galleryList = galleryList;
     }
 
     public void pushGallery() {
@@ -53,12 +52,12 @@ public class GalleryHttpClient {
         ///catch exception if not connected to the internet
         //////////////////////////////////////////////////////////
         try {
-            HttpPost addRequest = new HttpPost("http://cmput301.softwareprocess.es:8080/cmput301f15t11/photolist/" + this.userName);
+            HttpPost addRequest = new HttpPost("http://cmput301.softwareprocess.es:8080/cmput301f15t11/gallerylist/" + this.userName);
 
-            StringEntity stringEntity = new StringEntity(gson.toJson(gallery));
+            StringEntity stringEntity = new StringEntity(gson.toJson(galleryList));
             Log.e("dvd","start pushing");
-            Log.e("DVD TradeList", "http://cmput301.softwareprocess.es:8080/cmput301f15t11/photollist/" + userName);
-            Log.e("DVD", gson.toJson(gallery));
+            Log.e("DVD TradeList", "http://cmput301.softwareprocess.es:8080/cmput301f15t11/gallerylist/" + userName);
+            Log.e("DVD", gson.toJson(galleryList));
             addRequest.setHeader("Accept", "application/json");
 
             addRequest.setEntity(stringEntity);
@@ -81,10 +80,10 @@ public class GalleryHttpClient {
         }
     }
 
-    public Gallery pullGallery(String userName) {
-        SearchHit<Gallery> sr = null;
+    public GalleryList pullGallery(String userName) {
+        SearchHit<GalleryList> sr = null;
         HttpClient httpClient = new DefaultHttpClient();
-        HttpGet httpGet = new HttpGet("http://cmput301.softwareprocess.es:8080/cmput301f15t11/photolist/" + userName);
+        HttpGet httpGet = new HttpGet("http://cmput301.softwareprocess.es:8080/cmput301f15t11/gallerylist/" + userName);
 
         HttpResponse response = null;
 
@@ -96,7 +95,7 @@ public class GalleryHttpClient {
             throw new RuntimeException(e1);
         }
 
-        Type searchHitType = new TypeToken<SearchHit<Gallery>>() {}.getType();
+        Type searchHitType = new TypeToken<SearchHit<GalleryList>>() {}.getType();
 
         try {
             sr = gson.fromJson(
@@ -122,7 +121,7 @@ public class GalleryHttpClient {
         @Override
         public void run() {
             // push user's tradelist online if it's first created
-            gallery = pullGallery(userName);
+            galleryList = pullGallery(userName);
             result = true;
             // Give some time to get updated info
             try {
@@ -133,13 +132,13 @@ public class GalleryHttpClient {
         }
     }
 
-    public Gallery runPull(){
+    public GalleryList runPull(){
         Thread thread = new PullThread();
         thread.start();
         while (result==null){
             //do nothing but wait for the pull thread to finish}
         }
-        return gallery;
+        return galleryList;
     }
 
     private class RetrieveThread extends Thread {
@@ -152,7 +151,7 @@ public class GalleryHttpClient {
         @Override
         public void run() {
             // push user's tradelist online if it's first created
-            gallery = pullGallery(userName);
+            galleryList = pullGallery(userName);
             result = true;
             // Give some time to get updated info
             try {
@@ -163,13 +162,13 @@ public class GalleryHttpClient {
         }
     }
 
-    public Gallery runRetrieve(String userName){
+    public GalleryList runRetrieve(String userName){
         Thread thread = new RetrieveThread(userName);
         thread.start();
         while (result==null){
             //do nothing but wait for the pull thread to finish}
         }
-        return gallery;
+        return galleryList;
     }
 
     private class PushThread extends Thread {

@@ -1,5 +1,8 @@
 package com.example.zhaorui.dvdcollector.Controller;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -9,6 +12,7 @@ import com.example.zhaorui.dvdcollector.Model.ObserverManager;
 import com.example.zhaorui.dvdcollector.Model.Trade;
 import com.example.zhaorui.dvdcollector.Model.TradeList;
 import com.example.zhaorui.dvdcollector.Model.User;
+import com.example.zhaorui.dvdcollector.R;
 
 import java.security.acl.Owner;
 import java.util.ArrayList;
@@ -20,6 +24,8 @@ import java.util.Observer;
 public class TradeListController {
     private static String TAG = "TradeListController";
     private TradeList trades;
+    NotificationManager nm;
+    private static final int NOTIFY_ID = 0x123;
 
     public TradeListController(TradeList tradeList) {
         this.trades = tradeList;
@@ -36,6 +42,17 @@ public class TradeListController {
         for (Trade trade:trades.getTrades()){
             if (trade.getChanged().equals("Pending")){
                 //TODO:Notification
+                nm = (NotificationManager)ContextUtil.getInstance().getSystemService(Context.NOTIFICATION_SERVICE);
+                Notification notification = new Notification.Builder(ContextUtil.getInstance())
+                        .setAutoCancel(true)
+                        .setSmallIcon(R.drawable.ic_album_white_48dp)
+                        .setTicker("Notification")
+                        .setContentTitle("A new trade request")
+                        .setContentText("You have a new trade request")
+                        .setWhen(System.currentTimeMillis())
+                        .build();
+                nm.notify(NOTIFY_ID, notification);
+
                 trade.setChanged("");
             }else if (trade.getChanged().equals("In progress")){
                 for(String dvdName:trade.getBorrowerItemList()) {
@@ -164,34 +181,6 @@ public class TradeListController {
         Log.e(TAG,"Send the trade");
         ObserverManager.getInstance().notifying("Trades");
     }
-/*
-    public void sendCounterTrade(String borrowerName, String ownerName, ArrayList<String> borrowerDvdNameBuffer,
-                          String ownerDvdNameBuffer, String id){
-        // borrower --> User(owner in the counter-trade)
-        // owner --> One friend(borrower in the counter-trade)
-
-        // pull owner's tradelist
-        MyHttpClient myHttpClientOwner = new MyHttpClient(ownerName);
-        TradeList tradeList = myHttpClientOwner.runPullTradeList();
-        // add this new trade to borrower's tradelist
-        // NOTE: In borrower's trade center, since this counter trade is a new trade request
-        // the role of owner and borrower reverse
-        TradeListController tradeListControllerOwner = new TradeListController(tradeList);
-        tradeListControllerOwner.addTrade(borrowerName,
-                ownerName,
-                borrowerDvdNameBuffer,
-                ownerDvdNameBuffer,
-                "Current Incoming",
-                "Pending",
-                id);
-        // push owner's tradelist
-        myHttpClientOwner.setName(ownerName);
-        myHttpClientOwner.setTradeList(tradeListControllerOwner.getTrades());
-        myHttpClientOwner.runPushTradeList();
-
-        Log.e(TAG, "Send the counter-trade");
-        ObserverManager.getInstance().notifying("Trades");
-    }*/
 
     public void acceptTrade(int tradeIndex){
         updateTradeList();
