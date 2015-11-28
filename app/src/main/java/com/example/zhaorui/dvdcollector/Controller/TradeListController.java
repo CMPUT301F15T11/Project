@@ -39,6 +39,7 @@ public class TradeListController {
         MyHttpClient httpClient = new MyHttpClient(User.instance().getProfile().getName());
         trades = httpClient.runPullTradeList();
         DVD dvd;
+        Log.e("xixixixiixixixixix",String.valueOf(trades==null));
         for (Trade trade:trades.getTrades()){
             if (trade.getChanged().equals("Pending")){
 
@@ -63,6 +64,18 @@ public class TradeListController {
             }else if(trade.getChanged().equals("Declined")){
                 trade.setChanged("");
             }else if(trade.getChanged().equals("Complete")){
+
+                // giving notification if a trade has been set to complete
+                nm = (NotificationManager)ContextUtil.getInstance().getSystemService(Context.NOTIFICATION_SERVICE);
+                Notification notification = new Notification.Builder(ContextUtil.getInstance())
+                        .setAutoCancel(true)
+                        .setSmallIcon(R.drawable.ic_album_white_48dp)
+                        .setTicker("Notification")
+                        .setContentTitle("Trade Complete")
+                        .setContentText("You have a trade complete")
+                        .build();
+                nm.notify(NOTIFY_ID, notification);
+                
                 for(String dvdName:trade.getBorrowerItemList()) {
                     dvd = User.instance().getInventory().getByName(dvdName);
                     if (dvd != null) {dvd.setSharable(true);}
