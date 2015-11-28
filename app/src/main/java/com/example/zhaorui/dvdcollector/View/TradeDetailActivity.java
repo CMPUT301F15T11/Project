@@ -124,9 +124,9 @@ public class TradeDetailActivity extends BaseActivity {
         }
 
         if(id==R.id.set_to_complete){
-            if(tradeToShow.getStatus().equals("Declined")){
+            if(tradeToShow.getStatus().equals("In-progress")){
                 tradeListController.setTradeComplete(idOfTrade);
-                textViewStatus.setText(tradeListController.getTradeById(idOfTrade).getStatus());
+                this.finish();
             }
         }
 

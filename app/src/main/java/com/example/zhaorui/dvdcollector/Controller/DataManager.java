@@ -92,8 +92,10 @@ public class DataManager implements Observer {
     public void initFile(String name, String email){
         User.instance().getProfile().setName(name);
         User.instance().getProfile().setContact(email);
-        saveLocal();
         ObserverManager.getInstance().observeAll(this);
+        MyHttpClient httpClient = new MyHttpClient(name,User.instance().getTradeList());
+        httpClient.runPushTradeList();
+        update(null,null);
     }
 
     public void retrieveFile(String name, String email){
@@ -137,5 +139,7 @@ public class DataManager implements Observer {
         myHttpClient.setGallery(User.instance().getGallery());
         myHttpClient.runPushFriend();
         myHttpClient.runPushGallery();
+        TradeListController tc = new TradeListController(User.instance().getTradeList());
+        tc.updateTradeList();
     }
 }

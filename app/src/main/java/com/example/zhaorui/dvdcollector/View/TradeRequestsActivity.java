@@ -49,7 +49,6 @@ public class TradeRequestsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trade_requests);
 
-        myTradeListController.updateTradeList(User.instance().getProfile().getName());
     }
 
     @Override

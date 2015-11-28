@@ -53,8 +53,6 @@ public class TradesLogStatusActivity extends BaseActivity {
         Intent i = getIntent();
         status = i.getStringExtra("status");
 
-        tradeListController.updateTradeList(User.instance().getProfile().getName());
-
     }
 
     @Override

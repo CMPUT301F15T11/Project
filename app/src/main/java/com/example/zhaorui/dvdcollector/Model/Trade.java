@@ -51,7 +51,7 @@ public class Trade {
      */
     private String type;// 分为四种， Current Incoming/Current Outgoing/Past Incoming/Past Outgoing
 
-    private String status;//4 different status，In progress/Complete/Pending/Declined
+    private String status;//4 different status，In-progress/Complete/Pending/Declined
     /**
      * Initialize a array list to store the dvds in the current trade.
      *
@@ -177,4 +177,10 @@ public class Trade {
     public void setChanged(String changed) {
         this.changed = changed;
     }
+
+    public String getChanged() {
+        return changed;
+    }
+
+
 }

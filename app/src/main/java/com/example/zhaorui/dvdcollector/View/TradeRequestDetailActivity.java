@@ -80,8 +80,6 @@ public class TradeRequestDetailActivity extends BaseActivity {
             public void onClick(View v) {
                 myTradeListController.acceptTrade(position);
                 Toast.makeText(TradeRequestDetailActivity.this, "Accepted the trade!", Toast.LENGTH_SHORT);
-                //TODO:Send emails
-                //sendEmail(fc.getByName(myTradeListController.getTradeRequests().get(position).getBorrower()).getProfile().getContact(),);
                 TradeRequestDetailActivity.this.finish();
             }
         });

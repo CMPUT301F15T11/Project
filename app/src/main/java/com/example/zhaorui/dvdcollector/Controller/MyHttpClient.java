@@ -55,9 +55,9 @@ public class MyHttpClient {
         userHttpClient.runPush();
     }
 
-    public void runPushTradeList(String mode){
+    public void runPushTradeList(){
         TradeHttpClient tradeHttpClient = new TradeHttpClient(this.tradeList, this.name);
-        tradeHttpClient.runPush(mode);
+        tradeHttpClient.runPush();
     }
 
     public void runPushGallery(){
@@ -72,9 +72,9 @@ public class MyHttpClient {
         return friend;
     }
 
-    public TradeList runPullTradeList(String mode){
+    public TradeList runPullTradeList(){
         TradeHttpClient tradeHttpClient = new TradeHttpClient(this.name);
-        TradeList tradeList = tradeHttpClient.runPull(mode);
+        TradeList tradeList = tradeHttpClient.runPull();
         this.tradeList = tradeList;
         return tradeList;
     }

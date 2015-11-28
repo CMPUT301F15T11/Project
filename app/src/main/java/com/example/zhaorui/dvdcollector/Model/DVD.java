@@ -114,4 +114,8 @@ public class DVD {
 
     @Override
     public String toString(){ return name;}
+
+    public void setSharable(boolean sharable) {
+        this.sharable = sharable;
+    }
 }

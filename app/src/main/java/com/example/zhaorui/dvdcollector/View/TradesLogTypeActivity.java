@@ -18,6 +18,7 @@ package com.example.zhaorui.dvdcollector.View;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,14 +47,13 @@ public class TradesLogTypeActivity extends BaseActivity {
     private ArrayList<String> tradeNames;
     private TradeListController tradeListController = new TradeListController(User.instance().getTradeList());
     private String type;
+    private static String TAG = "TradesLogTypeActivity";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trades_log);
         Intent i = getIntent();
         type = i.getStringExtra("type");
-
-        tradeListController.updateTradeList(User.instance().getProfile().getName());
     }
 
     @Override
@@ -61,6 +61,13 @@ public class TradesLogTypeActivity extends BaseActivity {
         super.onStart();
         tradeIDs = tradeListController.getIds(tradeListController.getTradesOfType(type));
         tradeNames = tradeListController.getNames(tradeListController.getTradesOfType(type));
+
+        Log.e(TAG,"Size of trade ids");
+        Log.e(TAG,String.valueOf(tradeIDs.size()));
+
+        Log.e(TAG,"Size of trade names");
+        Log.e(TAG,String.valueOf(tradeNames.size()));
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(TradesLogTypeActivity.this, android.R.layout.simple_list_item_1, tradeNames);
         ListView listView = (ListView) findViewById(R.id.listView_trades_log);
         listView.setAdapter(adapter);

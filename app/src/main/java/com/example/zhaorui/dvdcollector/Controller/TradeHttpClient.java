@@ -36,7 +36,6 @@ public class TradeHttpClient {
     private String userName;
     private TradeList tradeList;
     private Boolean result;
-    private String mode;
 
     public TradeHttpClient(TradeList tradeList, String userName) {
         super();
@@ -61,10 +60,10 @@ public class TradeHttpClient {
         ///catch exception if not connected to the internet
         //////////////////////////////////////////////////////////
         try {
-            HttpPost addRequest = new HttpPost("http://cmput301.softwareprocess.es:8080/cmput301f15t11/" + mode + "trade/" + this.userName);
+            HttpPost addRequest = new HttpPost("http://cmput301.softwareprocess.es:8080/cmput301f15t11/trade/" + this.userName);
 
             StringEntity stringEntity = new StringEntity(gson.toJson(tradeList));
-            Log.e("DVD TradeList", "http://cmput301.softwareprocess.es:8080/cmput301f15t11/" + mode + "trade/" + userName);
+            Log.e("DVD TradeList", "http://cmput301.softwareprocess.es:8080/cmput301f15t11/trade/" + userName);
             addRequest.setHeader("Accept", "application/json");
 
             addRequest.setEntity(stringEntity);
@@ -85,7 +84,7 @@ public class TradeHttpClient {
     private TradeList pullTradeList(String userName) {
         SearchHit<TradeList> sr = null;
         HttpClient httpClient = new DefaultHttpClient();
-        HttpGet httpGet = new HttpGet("http://cmput301.softwareprocess.es:8080/cmput301f15t11/" + mode + "trade/" + userName);
+        HttpGet httpGet = new HttpGet("http://cmput301.softwareprocess.es:8080/cmput301f15t11/trade/" + userName);
 
         HttpResponse response = null;
 
@@ -134,8 +133,7 @@ public class TradeHttpClient {
         }
     }
 
-    public TradeList runPull(String mode){
-        this.mode = mode;
+    public TradeList runPull(){
         Thread thread = new PullThread();
         thread.start();
         while (result==null){
@@ -193,8 +191,7 @@ public class TradeHttpClient {
         }
     }
 
-    public void runPush(String mode){
-        this.mode = mode;
+    public void runPush(){
         Thread thread = new PushThread();
         thread.start();
     }

@@ -66,24 +66,4 @@ public class FriendProfileActivity extends BaseActivity {
         text.setText(profile.getCity());
     }
 
-
-    class GetThread extends Thread {
-        private String userName;
-
-        public GetThread(String userName) {
-            this.userName = userName;
-        }
-
-        @Override
-        public void run() {
-            friendToShow = userHttpClient.pullFriend(userName);
-            fc.putFriendInCache(friendToShow);
-            runOnUiThread(doUpdateGUIDetails);
-        }
-    }
-
-    private Runnable doUpdateGUIDetails = new Runnable() {
-        public void run() {
-        }
-    };
 }

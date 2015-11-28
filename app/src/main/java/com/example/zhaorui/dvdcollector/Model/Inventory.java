@@ -98,4 +98,13 @@ public class Inventory extends ArrayList<DVD>{
             categoryInventories.get(dvd.getCategory()).add(dvd);
         }
     }
+
+    public DVD getByName(String name){
+        for (DVD dvd:this){
+            if (dvd.getName().equals(name)){
+                return dvd;
+            }
+        }
+        return null;
+    }
 }

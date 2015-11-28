@@ -71,8 +71,6 @@ public class BrowseTradeLogActivity extends BaseActivity {
             }
         });
 
-        TradeListController tradeListController = new TradeListController(User.instance().getTradeList());
-        tradeListController.updateTradeList(User.instance().getProfile().getName());
     }
 
     public void startSpecificTradesLog(View view, int mode){

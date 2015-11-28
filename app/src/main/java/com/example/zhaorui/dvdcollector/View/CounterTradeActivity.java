@@ -155,7 +155,7 @@ public class CounterTradeActivity extends BaseActivity implements Observer {
                             tradeId);// save to user's tradelist
 
                     //send trade to the owner(now--> friend)
-                    tradeListController.sendCounterTrade(User.instance().getProfile().getName(),
+                    tradeListController.sendTrade(
                             fc.getByName(friendName).getProfile().getName(),
                             borrowerDvdNameBuffer, ownerDvdNameBuffer, tradeId);
 

@@ -105,54 +105,6 @@ public class FriendInventoryActivity extends BaseActivity {
         });
     }
 
-    class GetThread extends Thread {
-        private String userName;
-
-        public GetThread(String userName) {
-            this.userName = userName;
-        }
-
-        @Override
-        public void run() {
-            friendToShow = userHttpClient.pullFriend(userName);
-            fc.putFriendInCache(friendToShow);
-            runOnUiThread(doUpdateGUIDetails);
-        }
-    }
-
-    private Runnable doUpdateGUIDetails = new Runnable() {
-        public void run() {
-            ic = new InventoryController();
-            ic.setInventory(friendToShow.getInventory());
-
-            adapter = new ArrayAdapter<DVD>(FriendInventoryActivity.this,
-                    android.R.layout.simple_list_item_1, ic.getInventory());
-            listView = (ListView) findViewById(R.id.listViewFriendInventory);
-            listView.setAdapter(adapter);
-
-            // open the menu
-            btnMenuFriendInvent = (Button)findViewById(R.id.btn_title_friend_inventory);
-            btnMenuFriendInvent.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    openOptionsMenu();
-                }
-            });
-
-            // click on a item from the listView
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position,
-                                        long id) {
-                    FragmentManager fm = getFragmentManager();
-                    FriendInventoryDialog newDialog = new FriendInventoryDialog();
-                    newDialog.setPosition(position);
-                    newDialog.setFriendPosition(friendPostion);
-                    newDialog.show(fm, "abc");
-                }
-            });
-        }
-    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
