@@ -24,24 +24,28 @@ import java.util.Observer;
  */
 public class TradeListController {
     private static String TAG = "TradeListController";
-    private TradeList trades;
     NotificationManager nm;
     private static final int NOTIFY_ID = 0x123;
+    private TradeList trades;
 
-    public TradeListController(TradeList tradeList) {
-        this.trades = tradeList;
+    public TradeListController(TradeList trades) {
+        this.trades = trades;
+        updateTradeList();
     }
 
-    public TradeList getTrades() {
-        return trades;
-    }
-
-    public void updateTradeList(){
-        MyHttpClient httpClient = new MyHttpClient(new Friend(User.instance()));
+    private void updateTradeList(){
+        if (!ContextUtil.getInstance().isConnected())return;
+        MyHttpClient httpClient = new MyHttpClient(User.instance().getProfile().getName());
         //Log.e("user name in tlc",User.instance().getProfile().getName());
-        trades = httpClient.runPullTradeList();
+        TradeList tradesReceive = httpClient.runPullTradeList();
+        Log.e("trades is null in tlc?",String.valueOf(tradesReceive==null));
+        if (tradesReceive == null) {
+            tradesReceive = User.instance().getTradeList();
+            httpClient.runPushTradeList();
+            return;
+        }
+        User.instance().setTradeList(tradesReceive);
         DVD dvd;
-        Log.e("trades is null in tlc?",String.valueOf(trades==null));
         for (Trade trade:trades.getTrades()){
             if (trade.getChanged().equals("Pending")){
 
@@ -105,7 +109,6 @@ public class TradeListController {
 
     // returns the names of all trades in the given TradeList
     public ArrayList<String> getNames(TradeList trades){
-        updateTradeList();
         ArrayList<String> names = new ArrayList<>();
         for(Trade aTrade : trades.getTrades()){
             names.add(aTrade.getName());
@@ -115,7 +118,6 @@ public class TradeListController {
 
     // return IDs of all trades in the given TradeList
     public ArrayList<String> getIds(TradeList trades){
-        updateTradeList();
         ArrayList<String> ids = new ArrayList<>();
         for(Trade aTrade : trades.getTrades()){
             ids.add(aTrade.getId());
@@ -189,8 +191,6 @@ public class TradeListController {
         myHttpClientOwner.setTradeList(tradeList);
         myHttpClientOwner.runPushTradeList();
 
-        //TODO: send email to both parts
-
         Log.e(TAG,"Send the trade");
         ObserverManager.getInstance().notifying("Trades");
     }
@@ -249,7 +249,6 @@ public class TradeListController {
 
     // get all trades of the specified status,  eg. "In-progress"
     public TradeList getTradeOfStatus(String status){
-        updateTradeList();
         TradeList tradesToReturn = new TradeList();
         for (Trade aTrade : trades.getTrades()){
             if (aTrade.getStatus().equals(status)){
@@ -263,7 +262,6 @@ public class TradeListController {
 
     // get all trades of the specified type, eg. "Current Outgoing"
     public TradeList getTradesOfType(String type){
-        updateTradeList();
         TradeList tradesToReturn = new TradeList();
         for (Trade aTrade : trades.getTrades()){
             if (aTrade.getType().equals(type)){
@@ -277,7 +275,6 @@ public class TradeListController {
     }
 
     public TradeList getTradeRequests(){
-        updateTradeList();
         Log.e(TAG,"Size of trade requests");
         Log.e(TAG,String.valueOf(trades.getTradeRequests().size()));
         return trades.getTradeRequests();

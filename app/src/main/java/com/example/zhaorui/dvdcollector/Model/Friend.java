@@ -17,6 +17,7 @@
 package com.example.zhaorui.dvdcollector.Model;
 
 import com.example.zhaorui.dvdcollector.Controller.InventoryController;
+import com.example.zhaorui.dvdcollector.Controller.TradeListController;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -48,21 +49,24 @@ public class Friend {
      * @param user ,the selected friend.
      */
 
+    private int tradeCompleted;
+
     public Friend(User user){
         //only push sharable dvds online
         InventoryController inventoryController = new InventoryController();
         inventoryController.setInventory(user.getInventory());
         inventory = inventoryController.getSharableInventory();
         profile = user.getProfile();
+        TradeListController tc = new TradeListController(user.getTradeList());
+        tradeCompleted = tc.getTradeOfStatus("Complete").size();
     }
-    /**
-     * To store the select friend's information.
-     */
 
-    public Friend(Inventory inventory, UserProfile profile) {
-        this.inventory = inventory;
-        this.profile = profile;
+    public Friend() {
+        inventory = new Inventory();
+        profile = new UserProfile();
+        tradeCompleted = 0;
     }
+
     /**
      * To get the friend's inventories
      * @return Inventory, which contain dvds owns by the friend
@@ -82,4 +86,6 @@ public class Friend {
     public String toString() {
         return profile.getName();
     }
+
+    public int getTradeCompleted() { return tradeCompleted;}
 }

@@ -8,28 +8,23 @@ import java.util.ArrayList;
 public class GalleryList {
     private ArrayList<Gallery> galleryArrayList;
 
-    public GalleryList(ArrayList<Gallery> galleryArrayList) {
-        this.galleryArrayList = galleryArrayList;
-    }
-
     public GalleryList() {
         this.galleryArrayList = new ArrayList<Gallery>();
+    }
+
+    public GalleryList(int size) {
+        this.galleryArrayList = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            galleryArrayList.add(new Gallery());
+        }
     }
 
     public Gallery get(int index){
         return galleryArrayList.get(index);
     }
 
-    public ArrayList<Gallery> getGalleryArrayList() {
-        return galleryArrayList;
-    }
-
     public int getSize(){
         return galleryArrayList.size();
-    }
-
-    public void setGalleryArrayList(ArrayList<Gallery> galleryArrayList) {
-        this.galleryArrayList = galleryArrayList;
     }
 
     public void appendGallery(Gallery gallery){

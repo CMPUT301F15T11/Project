@@ -21,11 +21,6 @@ public class MyHttpClient {
     public MyHttpClient() {
     }
 
-    public MyHttpClient(Friend friend) {
-        this.friend = friend;
-        this.name = friend.getProfile().getName();
-    }
-
     public MyHttpClient(String name, TradeList tradeList) {
         this.name = name;
         this.tradeList = tradeList;

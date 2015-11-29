@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.zhaorui.dvdcollector.Controller.TradeListController;
+import com.example.zhaorui.dvdcollector.Model.ContextUtil;
 import com.example.zhaorui.dvdcollector.Model.Trade;
 import com.example.zhaorui.dvdcollector.Model.TradeList;
 import com.example.zhaorui.dvdcollector.Model.User;
@@ -124,10 +125,13 @@ public class TradeDetailActivity extends BaseActivity {
         }
 
         if(id==R.id.set_to_complete){
-            if(tradeToShow.getStatus().equals("In-progress")
-                    && tradeToShow.getOwner().equals(User.instance().getProfile().getName())){
+            if (!ContextUtil.getInstance().isConnected()){
+                Toast.makeText(ContextUtil.getInstance(), "Not Connect to Internet!", Toast.LENGTH_LONG).show();
+                return super.onOptionsItemSelected(item);
+            }
+            if(tradeToShow.getStatus().equals("In-progress")){
                 tradeListController.setTradeComplete(idOfTrade);
-                this.finish();
+                textViewStatus.setText(tradeToShow.getStatus());
             }
         }
 

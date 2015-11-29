@@ -54,8 +54,8 @@ public class FriendListActivity extends BaseActivity implements Observer {
     }
 
     @Override
-    protected void onResume(){
-        super.onResume();
+    protected void onStart(){
+        super.onStart();
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, fc.getFriends());
         ListView listView = (ListView) findViewById(R.id.listViewFriendList);

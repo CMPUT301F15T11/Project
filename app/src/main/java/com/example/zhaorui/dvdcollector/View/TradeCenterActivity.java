@@ -22,8 +22,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.zhaorui.dvdcollector.Controller.TradeListController;
+import com.example.zhaorui.dvdcollector.Model.ContextUtil;
 import com.example.zhaorui.dvdcollector.Model.TradeList;
 import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
@@ -69,7 +71,11 @@ public class TradeCenterActivity extends BaseActivity {
         startActivity(i);
     }
 
-    public void startTopTrade(View view){
+    public void startTopTraders(View view){
+        if (!ContextUtil.getInstance().isConnected()){
+            Toast.makeText(ContextUtil.getInstance(), "Not Connect to Internet!", Toast.LENGTH_LONG).show();
+            return;
+        }
         Intent i = new Intent(TradeCenterActivity.this, TopTradeActivity.class);
         startActivity(i);
     }

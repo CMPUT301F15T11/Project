@@ -125,7 +125,7 @@ public class UserHttpClient {
     }
 
     public Boolean searchFriend(String searchString, String field) {
-        Boolean result = false;
+        Boolean resultSearch = false;
 
         /**
          * Creates a search request from a search string and a field
@@ -186,16 +186,17 @@ public class UserHttpClient {
             if (hit.getSource()!=null){
                 Friend friend = hit.getSource();
                 if(friend.getProfile().getName().equals(searchString)) {
-                    result = true;
-                    return result;
+                    resultSearch = true;
+                    return resultSearch;
                 }
-            }else {result = false;}
+            }else {resultSearch = false;}
         }
-        return result;
+        return resultSearch;
     }
 
     private class PullThread extends Thread {
         public PullThread() {
+            result = null;
         }
 
         @Override
@@ -219,35 +220,6 @@ public class UserHttpClient {
             //do nothing but wait for the pull thread to finish}
         }
         return friend;
-    }
-
-    public Friend runRetrieve(String name){
-        Thread thread = new RetrieveThread(name);
-        thread.start();
-        while (result==null){
-            //do nothing but wait for the pull thread to finish}
-        }
-        return friend;
-    }
-
-    private class RetrieveThread extends Thread {
-        private String userName;
-        public RetrieveThread(String userName) {
-            this.userName = userName;
-        }
-
-        @Override
-        public void run() {
-            // push user's tradelist online if it's first created
-            friend = pullFriend(userName);
-            result = true;
-            // Give some time to get updated info
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     private class PushThread extends Thread {

@@ -22,7 +22,12 @@ import android.app.FragmentManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import com.example.zhaorui.dvdcollector.Controller.DataManager;
+import com.example.zhaorui.dvdcollector.Controller.TradeListController;
 import com.example.zhaorui.dvdcollector.View.InputInvalidDialog;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * <p>
@@ -42,6 +47,12 @@ public class ContextUtil extends Application{
     public void onCreate(){
         super.onCreate();
         instance = this;
+    }
+
+    public boolean isConnected(){
+        ConnectivityManager connectivityManager = (ConnectivityManager) this.getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        return networkInfo != null && networkInfo.isAvailable();
     }
 }
 

@@ -18,14 +18,20 @@
 package com.example.zhaorui.dvdcollector.Controller;
 
 import android.util.Pair;
+import android.widget.Toast;
 
 import com.example.zhaorui.dvdcollector.Model.Cache;
+import com.example.zhaorui.dvdcollector.Model.ContextUtil;
 import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.Friends;
 import com.example.zhaorui.dvdcollector.Model.GalleryList;
 import com.example.zhaorui.dvdcollector.Model.ObserverManager;
 import com.example.zhaorui.dvdcollector.Model.User;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Observer;
 
 /**
@@ -69,10 +75,17 @@ public class FriendsController {
 
     public Friend get(int index){
         String name = friends.get(index);
-        Thread getThread = new GetThread(name);
-        getThread.start();
-        while (resultGet==null){}//do nothing but wait
-        return cache.get(name).first;
+        if (ContextUtil.getInstance().isConnected()){
+            Thread getThread = new GetThread(name);
+            getThread.start();
+            while (resultGet==null){}//do nothing but wait
+            return cache.get(name).first;
+        } else if (cache.containsKey(name)){
+            return cache.get(name).first;
+        } else {
+            Toast.makeText(ContextUtil.getInstance(), "Not Connect to Internet!", Toast.LENGTH_LONG).show();
+            return new Friend();
+        }
     }
 
 
@@ -80,21 +93,24 @@ public class FriendsController {
         return friends.get(index);
     }
 
-    public void putFriendInCache(Friend friend, GalleryList galleryList){
+    private void putFriendInCache(Friend friend, GalleryList galleryList){
         String name = friend.getProfile().getName();
         friend.getInventory().fresh();
         cache.put(name, new Pair<>(friend,galleryList));
     }
 
     public Friend getByName(String name){
-        if (!cache.containsKey(name)) {
+        if (ContextUtil.getInstance().isConnected()){
             Thread getThread = new GetThread(name);
             getThread.start();
-
-            while (resultGet==null){//do nothing but wait
-            }
+            while (resultGet==null){}//do nothing but wait
+            return cache.get(name).first;
+        } else if (cache.containsKey(name)){
+            return cache.get(name).first;
+        } else {
+            Toast.makeText(ContextUtil.getInstance(), "Not Connect to Internet!", Toast.LENGTH_LONG).show();
+            return new Friend();
         }
-        return cache.get(name).first;
     }
 
     /**
@@ -129,17 +145,18 @@ public class FriendsController {
     public boolean nameExist(String name){
         SearchThread thread = new SearchThread(name);
         thread.start();
-
         while (resultSearch==null){//do nothing but wait
         }
         return resultSearch;
     }
+
 
     class SearchThread extends Thread {
         private String search;
 
         public SearchThread(String search) {
             this.search = search;
+            resultSearch = null;
         }
 
         @Override
@@ -154,6 +171,7 @@ public class FriendsController {
         private String userName;
 
         public GetThread(String userName) {
+            resultGet = null;
             this.userName = userName;
         }
 
@@ -165,10 +183,40 @@ public class FriendsController {
             if (User.instance().isDownloadImage()) {
                 galleryList = httpClient.runPullGalleryList();
             } else {
-                galleryList = new GalleryList();
+                galleryList = new GalleryList(friendToShow.getInventory().size());
             }
             putFriendInCache(friendToShow,galleryList);
             resultGet = true;
         }
     }
+
+    private class SortByCompletedTrades implements Comparator<String> {
+        @Override
+        public int compare(String lhs, String rhs) {
+            Friend aFriend = cache.get(lhs).first;
+            Friend bFriend = cache.get(rhs).first;
+            if (aFriend.getTradeCompleted() < bFriend.getTradeCompleted()) return 1;
+            return -1;
+        }
+    }
+
+    public ArrayList<String> getTopTraderList(){
+        for (String friend : friends){
+            if (!cache.containsKey(friend)) getByName(friend);
+        }
+        Friends listToReturn = (Friends)friends.clone();
+        Collections.sort(listToReturn,new SortByCompletedTrades());
+        for (int i = 0; i < listToReturn.size(); ++i){
+            String friendName = listToReturn.get(i);
+            String info = "";
+            for (int j = 0; j < ( 15 - friendName.length()); ++j){
+                info += " ";
+            }
+            info += "Trades Completed: ";
+            info += Cache.getInstance().get(friendName).first.getTradeCompleted();
+            listToReturn.set(i,friendName + info);
+        }
+        return listToReturn;
+    }
+
 }

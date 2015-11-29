@@ -116,6 +116,7 @@ public class GalleryListHttpClient {
 
     private class PullThread extends Thread {
         public PullThread() {
+            result = null;
         }
 
         @Override
@@ -134,36 +135,6 @@ public class GalleryListHttpClient {
 
     public GalleryList runPull(){
         Thread thread = new PullThread();
-        thread.start();
-        while (result==null){
-            //do nothing but wait for the pull thread to finish}
-        }
-        return galleryList;
-    }
-
-    private class RetrieveThread extends Thread {
-        private String userName;
-
-        public RetrieveThread(String userName) {
-            this.userName = userName;
-        }
-
-        @Override
-        public void run() {
-            // push user's tradelist online if it's first created
-            galleryList = pullGallery(userName);
-            result = true;
-            // Give some time to get updated info
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public GalleryList runRetrieve(String userName){
-        Thread thread = new RetrieveThread(userName);
         thread.start();
         while (result==null){
             //do nothing but wait for the pull thread to finish}

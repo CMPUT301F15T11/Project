@@ -104,4 +104,8 @@ public class User{
     public GalleryList getGalleryList() {
         return galleryList;
     }
+
+    public void setTradeList(TradeList tradeList) {
+        this.tradeList = tradeList;
+    }
 }

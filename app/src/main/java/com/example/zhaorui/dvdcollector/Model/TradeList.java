@@ -25,7 +25,7 @@ public class TradeList{
     }
 
     public TradeList() {
-        this.trades = new ArrayList<Trade>();
+        this.trades = new ArrayList<>();
     }
 
     public void add(Trade trade){

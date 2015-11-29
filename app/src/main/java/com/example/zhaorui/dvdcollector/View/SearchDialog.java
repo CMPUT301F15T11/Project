@@ -105,6 +105,11 @@ public class SearchDialog extends DialogFragment {
                     }
                     dialog.cancel();
                 } else {
+                    if (!ContextUtil.getInstance().isConnected()){
+                        Toast.makeText(ContextUtil.getInstance(), "Not Connect to Internet!", Toast.LENGTH_LONG).show();
+                        dialog.cancel();
+                        return;
+                    }
                     if (fc.getFriends().contains(name)) {
                         FragmentManager fm = getFragmentManager();
                         InputInvalidDialog newDialog = new InputInvalidDialog();

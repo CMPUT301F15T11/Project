@@ -4,7 +4,10 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
+import com.example.zhaorui.dvdcollector.Controller.FriendsController;
 import com.example.zhaorui.dvdcollector.R;
 
 public class TopTradeActivity extends BaseActivity {
@@ -13,6 +16,15 @@ public class TopTradeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top_trade);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FriendsController fc = new FriendsController();
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, fc.getTopTraderList());
+        ListView listView = (ListView) findViewById(R.id.listView_top_traders);
+        listView.setAdapter(adapter);
     }
 
     @Override
