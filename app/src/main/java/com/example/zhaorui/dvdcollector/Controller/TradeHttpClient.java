@@ -84,6 +84,7 @@ public class TradeHttpClient {
     private TradeList pullTradeList(String userName) {
         SearchHit<TradeList> sr = null;
         HttpClient httpClient = new DefaultHttpClient();
+        Log.e("Pull username: ",userName);
         HttpGet httpGet = new HttpGet("http://cmput301.softwareprocess.es:8080/cmput301f15t11/trade/" + userName);
 
         HttpResponse response = null;
@@ -123,6 +124,10 @@ public class TradeHttpClient {
         public void run() {
             // push user's tradelist online if it's first created
             tradeList = pullTradeList(userName);
+            Log.e("TradeClient","Run Pull TradeList");
+            Log.e("TradeClient",String.valueOf(tradeList));
+            Log.e("TradeClient",String.valueOf(tradeList==null));
+            Log.e("TradeClient userName",userName);
             result = true;
             // Give some time to get updated info
             try {

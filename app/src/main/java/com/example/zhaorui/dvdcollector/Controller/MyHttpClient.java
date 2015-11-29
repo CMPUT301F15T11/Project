@@ -77,6 +77,10 @@ public class MyHttpClient {
     public TradeList runPullTradeList(){
         TradeHttpClient tradeHttpClient = new TradeHttpClient(this.name);
         TradeList tradeList = tradeHttpClient.runPull();
+        Log.e("HttpClient","Run Pull TradeList");
+        Log.e("HttpClient",String.valueOf(tradeList));
+        Log.e("HttpCli trades is null",String.valueOf(tradeList==null));
+        Log.e("HttpCli userName",name);
         this.tradeList = tradeList;
         return tradeList;
     }
@@ -84,7 +88,7 @@ public class MyHttpClient {
     public GalleryList runPullGalleryList(){
         GalleryListHttpClient galleryListHttpClient = new GalleryListHttpClient(this.name);
         GalleryList gallery = galleryListHttpClient.runPull();
-        Log.e("DVD Collector","Run Pull GalleryList");
+        Log.e("HttpClient","Run Pull GalleryList");
         this.galleryList = gallery;
         return gallery;
     }

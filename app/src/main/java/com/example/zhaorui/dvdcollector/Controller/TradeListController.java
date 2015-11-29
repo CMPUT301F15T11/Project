@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.example.zhaorui.dvdcollector.Model.ContextUtil;
 import com.example.zhaorui.dvdcollector.Model.DVD;
+import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.ObserverManager;
 import com.example.zhaorui.dvdcollector.Model.Trade;
 import com.example.zhaorui.dvdcollector.Model.TradeList;
@@ -36,10 +37,11 @@ public class TradeListController {
     }
 
     public void updateTradeList(){
-        MyHttpClient httpClient = new MyHttpClient(User.instance().getProfile().getName());
+        MyHttpClient httpClient = new MyHttpClient(new Friend(User.instance()));
+        //Log.e("user name in tlc",User.instance().getProfile().getName());
         trades = httpClient.runPullTradeList();
         DVD dvd;
-        Log.e("xixixixiixixixixix",String.valueOf(trades==null));
+        Log.e("trades is null in tlc?",String.valueOf(trades==null));
         for (Trade trade:trades.getTrades()){
             if (trade.getChanged().equals("Pending")){
 
@@ -75,7 +77,7 @@ public class TradeListController {
                         .setContentText("You have a trade complete")
                         .build();
                 nm.notify(NOTIFY_ID, notification);
-                
+
                 for(String dvdName:trade.getBorrowerItemList()) {
                     dvd = User.instance().getInventory().getByName(dvdName);
                     if (dvd != null) {dvd.setSharable(true);}
