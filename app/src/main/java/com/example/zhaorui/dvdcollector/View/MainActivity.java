@@ -28,8 +28,10 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.zhaorui.dvdcollector.Controller.DataManager;
+import com.example.zhaorui.dvdcollector.Controller.TradeListController;
 import com.example.zhaorui.dvdcollector.Model.ContextUtil;
 import com.example.zhaorui.dvdcollector.Model.Friend;
+import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
 
 /**
@@ -55,6 +57,12 @@ public class MainActivity extends BaseActivity {
         btnFriends = (Button)findViewById(R.id.btnFriendsMain);
         btnConfig = (Button)findViewById(R.id.btnConfigMain);
         DataManager.instance().loadFromFile(this);
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        TradeListController tradeListController = new TradeListController(User.instance().getTradeList());
     }
 
 

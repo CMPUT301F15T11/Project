@@ -182,6 +182,10 @@ public class UserHttpClient {
             throw new RuntimeException(e);
         }
 
+        if(esResponse.getHits()==null){
+            return false;
+        }
+
         for (SearchHit<Friend> hit : esResponse.getHits().getHits()) {
             if (hit.getSource()!=null){
                 Friend friend = hit.getSource();

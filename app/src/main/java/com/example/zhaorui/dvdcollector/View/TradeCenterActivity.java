@@ -53,6 +53,11 @@ public class TradeCenterActivity extends BaseActivity {
         return true;
     }
 
+    @Override
+    protected void onStart(){
+        super.onStart();
+        TradeListController tradeListController = new TradeListController(User.instance().getTradeList());
+    }
 
     public void startNewTrade(View view){
         Intent i = new Intent(TradeCenterActivity.this, StartTradeActivity.class);

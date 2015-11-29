@@ -118,4 +118,20 @@ public class DVD {
     public void setSharable(boolean sharable) {
         this.sharable = sharable;
     }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public String getQuality() {
+        return quality;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public static String[] getCategoriesName() {
+        return categoriesName;
+    }
 }
