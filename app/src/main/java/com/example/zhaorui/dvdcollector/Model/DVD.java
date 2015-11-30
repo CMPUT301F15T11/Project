@@ -31,6 +31,22 @@ import java.util.Collection;
  * @version 02/11/15
  * */
 public class DVD {
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public String getQuality() {
+        return quality;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public static String[] getCategoriesName() {
+        return categoriesName;
+    }
+
     /**
      * Initialize a string to store category of the dvd.
      */
