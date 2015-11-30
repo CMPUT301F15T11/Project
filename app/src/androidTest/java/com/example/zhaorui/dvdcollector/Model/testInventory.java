@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -25,11 +26,11 @@ import org.w3c.dom.Text;
 
 /**
  * Created by dingkai on 15/10/9.
+ * Edited by wsong1 on 15/11/28
  */
 public class testInventory extends ActivityInstrumentationTestCase2 {
     private String name = "Godfather";
     private String quantity = "1";
-    private String quality = "HD";
     private String comment = "Nice movie";
     private Activity activity;
 
@@ -46,6 +47,7 @@ public class testInventory extends ActivityInstrumentationTestCase2 {
         activity = am.waitForActivityWithTimeout(1000);
         getInstrumentation().removeMonitor(am);
         am = getInstrumentation().addMonitor(MyInventoryActivity.class.getName(),null,false);
+        final RatingBar[] bar = new RatingBar[1];
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -53,8 +55,11 @@ public class testInventory extends ActivityInstrumentationTestCase2 {
                 text.setText(name);
                 text = (EditText) activity.findViewById(R.id.et_add_quantity);
                 text.setText(quantity);
-                text = (EditText) activity.findViewById(R.id.et_add_quality);
-                text.setText(quality);
+                // Code from https://android.googlesource.com/platform/cts/+/719bcd0dfdbe2c015746dc9738390c59c53f8268/tests/tests/widget/src/android/widget/cts/RatingBarTest.java
+                // Date: 2015-11-28
+                // Catch Ratingbar Test
+                bar[0] = (RatingBar) activity.findViewById(R.id.ratingBar);
+                bar[0].setRating(2.2f);
                 text = (EditText) activity.findViewById(R.id.ed_add_comment);
                 text.setText(comment);
                 Button save = (Button) activity.findViewById(R.id.btn_add_dvd_save);
@@ -67,11 +72,11 @@ public class testInventory extends ActivityInstrumentationTestCase2 {
         DVD dvd = User.instance().getInventory().get(0);
         assertEquals(dvd.getName(),name);
         assertEquals(dvd.getCategory(),"Games");
+        assertEquals(bar.length,1);
         assertEquals(dvd.getComments(),comment);
-        assertEquals(dvd.getQuality(),quality);
         assertEquals(dvd.getQuantity(),quantity);
         assertTrue(dvd.isSharable());
-        assertFalse(dvd.isHasPhoto());
+
 
     }
 
@@ -103,12 +108,13 @@ public class testInventory extends ActivityInstrumentationTestCase2 {
         });
         getInstrumentation().waitForIdleSync();
 
+        final RatingBar[] bar = new RatingBar[1];
         activity = am.waitForActivityWithTimeout(1000);
         getInstrumentation().removeMonitor(am);
         TextView text = (TextView) activity.findViewById(R.id.tv_name_dvdinfo);
         assertEquals(text.getText(),name);
-        text = (TextView) activity.findViewById(R.id.tv_quality_dvdinfo);
-        assertEquals(text.getText(),quality);
+        bar[0] = (RatingBar) activity.findViewById(R.id.ratingBar);
+        assertEquals(bar.length,1);
         text = (TextView) activity.findViewById(R.id.tv_quantity_dvdinfo);
         assertEquals(text.getText(),quantity);
         text = (TextView) activity.findViewById(R.id.tv_comment_view_dvdinfo);
@@ -191,6 +197,7 @@ public class testInventory extends ActivityInstrumentationTestCase2 {
         getInstrumentation().removeMonitor(am);
         final String changed = "Changed";
         am = getInstrumentation().addMonitor(MyInventoryActivity.class.getName(),null,false);
+        final RatingBar[] bar = new RatingBar[1];
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -198,8 +205,8 @@ public class testInventory extends ActivityInstrumentationTestCase2 {
                 text.setText(changed);
                 text = (EditText) activity.findViewById(R.id.et_add_quantity);
                 text.setText(changed);
-                text = (EditText) activity.findViewById(R.id.et_add_quality);
-                text.setText(changed);
+                bar[0] = (RatingBar) activity.findViewById(R.id.ratingBar);
+                bar[0].setRating(3.2f);
                 text = (EditText) activity.findViewById(R.id.ed_add_comment);
                 text.setText(changed);
                 Button save = (Button) activity.findViewById(R.id.btn_add_dvd_save);
@@ -211,8 +218,8 @@ public class testInventory extends ActivityInstrumentationTestCase2 {
         getInstrumentation().removeMonitor(am);
         DVD dvd = User.instance().getInventory().get(0);
         assertEquals(dvd.getName(),changed);
+        assertEquals(bar.length,1);
         assertEquals(dvd.getComments(), changed);
-        assertEquals(dvd.getQuality(),changed);
         assertEquals(dvd.getQuantity(), changed);
 
     }
@@ -285,7 +292,6 @@ public class testInventory extends ActivityInstrumentationTestCase2 {
         getInstrumentation().waitForIdleSync();
         activity = am.waitForActivityWithTimeout(1000);
         getInstrumentation().removeMonitor(am);
-        assertEquals(User.instance().getInventory().get(0).getCategory(),DVD.getCategories()[1]);
-
+        assertEquals(User.instance().getInventory().get(0).getCategory(),DVD.getCategories().get(1));
     }
 }
