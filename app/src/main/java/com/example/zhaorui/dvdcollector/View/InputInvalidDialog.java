@@ -35,10 +35,22 @@ import com.example.zhaorui.dvdcollector.R;
  */
 
 public class InputInvalidDialog extends DialogFragment {
+    /**
+     * Initialize view of custom view
+     */
     private View customView;
+    /**
+     * Initialize ok button
+     */
     private Button ok;
+    /**
+     * Initialize a string to store text
+     */
     private String text;
-
+    /**
+     * Initialize a string of text
+     * @param text string variable
+     */
     public void setText(String text) {
         this.text = text;
     }

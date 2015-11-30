@@ -41,25 +41,55 @@ import com.example.zhaorui.dvdcollector.R;
  * @version 27/10/15
  */
 public class MyInventoryDialog extends DialogFragment {
+    /**
+     * Initialize view of custom view
+     */
     private View customView;
+    /**
+     * Initialize check button
+     */
     private Button check;
+    /**
+     * Initialize edit button
+     */
     private Button edit;
+    /**
+     * Initialize remove button
+     */
     private Button remove;
+    /**
+     * Initialize context
+     */
     private Context context;
+    /**
+     * Initialize an int to store position
+     */
     private int position;
-
+    /**
+     * Initialize an int to store position
+     * @param position int variable
+     */
     public void setPosition(int position) {
         this.position = position;
     }
-
+    /**
+     * Check inventory by press button
+     * @return check
+     */
     public Button getCheck() {
         return check;
     }
-
+    /**
+     * Edit inventory by press button
+     * @return edit
+     */
     public Button getEdit() {
         return edit;
     }
-
+    /**
+     * Remove inventory by press button
+     * @return remove
+     */
     public Button getRemove() {
         return remove;
     }

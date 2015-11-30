@@ -42,7 +42,13 @@ import org.w3c.dom.Text;
  */
 public class FriendProfileActivity extends BaseActivity {
     FriendsController fc;
+    /**
+     * Set user http client variable
+     */
     private UserHttpClient userHttpClient;
+    /**
+     * Set friend variable
+     */
     private Friend friendToShow;
 
     TextView text;

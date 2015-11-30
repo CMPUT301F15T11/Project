@@ -43,31 +43,70 @@ import com.example.zhaorui.dvdcollector.R;
  * @version 27/10/15
  */
 public class SearchDialog extends DialogFragment {
+    /**
+     * Initialize view of custom view
+     */
     private View customView;
+    /**
+     * Initialize search button
+     */
     private Button search;
+    /**
+     * Initialize edit text
+     */
     private EditText editText;
+    /**
+     * Initialize context
+     */
     private Context context;
+    /**
+     * Initialize inventory controller
+     */
     private InventoryController ic;
+    /**
+     * Initialize friends controller
+     */
     private FriendsController fc;
+    /**
+     * Initialize a string to store mode
+     */
     private String mode;
+    /**
+     * Initialize friend position to -1
+     */
     private int friendPosition = -1;
-
+    /**
+     * Initialize string mode
+     * @param mode string variable
+     */
     public void setMode(String mode) {
         this.mode = mode;
     }
-
+    /**
+     * Initialize int variable of frien position
+     * @param friendPosition int variable
+     */
     public void setFriendPosition(int friendPosition) {
         this.friendPosition = friendPosition;
     }
-
+    /**
+     * Initialize Inventory Controller
+     * @param ic InventoryController variable
+     */
     public void setIc(InventoryController ic) {
         this.ic = ic;
     }
-
+    /**
+     * Press button to get search result
+     * @return search
+     */
     public Button getSearch() {
         return search;
     }
-
+    /**
+     * Get edit text
+     * @return edittext
+     */
     public EditText getEditText() {
         return editText;
     }

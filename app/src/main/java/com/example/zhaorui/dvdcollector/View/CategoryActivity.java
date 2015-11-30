@@ -42,8 +42,17 @@ import java.util.Observer;
  * @version 11/10/15
  */
 public class CategoryActivity extends BaseActivity implements Observer{
+    /**
+     * Initialize inventory controller
+     */
     private InventoryController ic;
+    /**
+     * Initialize array adapter
+     */
     private ArrayAdapter<?> adapter;
+    /**
+     * Initialize string to store category
+     */
     private String category;
 
     @Override
@@ -106,7 +115,11 @@ public class CategoryActivity extends BaseActivity implements Observer{
 
         return super.onOptionsItemSelected(item);
     }
-
+    /**
+     * Update observer
+     * @param ob observable variable
+     * @param o object variable
+     */
     public void update(Observable ob, Object o){
         adapter.notifyDataSetChanged();
     }

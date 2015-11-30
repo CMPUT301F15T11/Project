@@ -81,7 +81,15 @@ public class Trade {
      *
      */
     private String ownerItem;
-
+    /**
+     * This function is called when trade DVDs
+     * @param borrower a string variable of borrower
+     * @param owner a string variable of owner
+     * @param borrowerItemNames an array list of string variable of borrower item names
+     * @param ownerItemName a string variable of owner item name
+     * @param type a string variable of type
+     * @param status a string variable of status
+     */
     public Trade(String borrower, String owner, ArrayList<String> borrowerItemNames,
                  String ownerItemName, String type, String status) {
         this.borrower = borrower;
@@ -100,64 +108,112 @@ public class Trade {
     public String getType() {
         return type;
     }
-
+    /**
+     * Initialize string to store type of trade
+     * @param type a string variable of type
+     */
     public void setType(String type) {
         this.type = type;
     }
-
+    /**
+     * Get status of trade
+     * @return status
+     */
     public String getStatus() {
         return status;
     }
-
+    /**
+     * Initialize a string to store status
+     * @param status a string variable of status
+     */
     public void setStatus(String status) {
         this.status = status;
     }
-
+    /**
+     * Get borrower in trade
+     * @return borrower
+     */
 
     public String getBorrower() {
         return borrower;
     }
-
+    /**
+     * Initialize a string to store borrower
+     * @param borrower a string variable
+     */
     public void setBorrower(String borrower) {
         this.borrower = borrower;
     }
-
+    /**
+     * Get Owner of trade
+     * @return owner
+     */
     public String getOwner() {
         return owner;
     }
-
+    /**
+     * Initialize a string to store owner
+     * @param owner string variable
+     */
     public void setOwner(String owner) {
         this.owner = owner;
     }
-
+    /**
+     * Get borrower item list
+     * @return borrower item list
+     */
     public ArrayList<String> getBorrowerItemList() {
         return borrowerItemList;
     }
-
+    /**
+     * Get owner item
+     * @return owner item
+     */
     public String getOwnerItem() {
         return ownerItem;
     }
-
+    /**
+     * Get name
+     * @return name
+     */
     public String getName() {
         return name;
     }
-
+    /**
+     * Initialize a string to store name
+     * @param name string varibale
+     */
     public void setName(String name) {
         this.name = name;
     }
-
+    /**
+     * Get ID
+     * @return ID
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * Initialize a string to store
+     * @param id string variable
+     */
     public void setId(String id) {
         this.id = id;
     }
 
+    /**
+     * Initialize a string to store
+     * @param changed string variable
+     */
     public void setChanged(String changed) {
         this.changed = changed;
     }
 
+    /**
+     * get changed
+     * @return changed
+     */
     public String getChanged() {
         return changed;
     }

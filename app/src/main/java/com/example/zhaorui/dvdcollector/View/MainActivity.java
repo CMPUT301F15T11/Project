@@ -43,9 +43,21 @@ import com.example.zhaorui.dvdcollector.R;
  * @version 11/10/15
  */
 public class MainActivity extends BaseActivity {
+    /**
+     * Initialize inventory button
+     */
     Button btnInvent;
+    /**
+     * Initialize trade button
+     */
     Button btnTrade;
+    /**
+     * Initialize friend button
+     */
     Button btnFriends;
+    /**
+     * Initialize config button
+     */
     Button btnConfig;
 
     @Override
@@ -65,22 +77,34 @@ public class MainActivity extends BaseActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-
+    /**
+     * Start my inventory
+     * @param view view variable
+     */
     public void startMyInvent(View view){
         Intent i = new Intent(MainActivity.this, MyInventoryActivity.class);
         startActivity(i);
     }
-
+    /**
+     * Start my friend list
+     * @param view view variable
+     */
     public void startFriendList(View view){
         Intent i = new Intent(MainActivity.this, FriendListActivity.class);
         startActivity(i);
     }
-
+    /**
+     * Start config
+     * @param view view variable
+     */
     public void startConfig(View view){
         Intent i = new Intent(MainActivity.this, ConfigActivity.class);
         startActivity(i);
     }
-
+    /**
+     * Start trade center
+     * @param view view variable
+     */
     public void startTradeCenter(View view){
         Intent i = new Intent(MainActivity.this, TradeCenterActivity.class);
         startActivity(i);

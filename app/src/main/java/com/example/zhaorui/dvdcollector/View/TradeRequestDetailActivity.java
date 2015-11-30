@@ -49,21 +49,57 @@ import java.util.ArrayList;
  * @version 11/10/15
  */
 public class TradeRequestDetailActivity extends BaseActivity {
-
+    /**
+     * Initialize trade list controller
+     */
     private TradeListController myTradeListController = new TradeListController(User.instance().getTradeList());
+    /**
+     * Initialize friend controller
+     */
     private FriendsController fc = new FriendsController();
-
+    /**
+     * Initialize an accept button
+     */
     private Button btnAccept;
+    /**
+     * Initialize a decline button
+     */
     private Button btnDecline;
+    /**
+     * Initialize a textview of tv borrower
+     */
     private TextView tvBorrower;
+    /**
+     * Initialize a textview of tv owner
+     */
     private TextView tvOwner;
+    /**
+     * Initialize a textview of DVD borrower
+     */
     private TextView dvdBorrower;
+    /**
+     * Initialize a textview of DVD owner
+     */
     private TextView dvdOwner;
+    /**
+     * Initialize a string of owner comments
+     */
     private String ownerComments = "No comments";
+    /**
+     * Initialize a index of position
+     */
     private int position;
-
+    /**
+     * Initialize a string of borrower name
+     */
     private String borrowerName;
+    /**
+     * Initialize a string of owner item
+     */
     private String ownerItem;
+    /**
+     * Initialize a string of borrower item
+     */
     private ArrayList<String> borrowerItems;
 
     @Override
@@ -113,6 +149,9 @@ public class TradeRequestDetailActivity extends BaseActivity {
         });
     }
 
+    /**
+     * show the comment of dialog
+     */
     private void showCommentDialog(){
         final EditText et = new EditText(this);
         new AlertDialog.Builder(this)
@@ -131,7 +170,11 @@ public class TradeRequestDetailActivity extends BaseActivity {
                 })
         .show();
     }
-
+    /**
+     * Email sent during trade
+     * @param ownerComments string variable
+     * @param position int variable
+     */
     private void sendEmail(String ownerComments, int position){
         FriendsController fc = new FriendsController();
         Intent stats = new Intent(Intent.ACTION_SENDTO);

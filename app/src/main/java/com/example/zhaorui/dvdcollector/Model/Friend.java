@@ -50,7 +50,11 @@ public class Friend {
      * @param user ,the selected friend.
      */
     private int tradeCompleted;
-
+    //private TradeList tradeList;
+    /**
+     * To get the selected friend's information.
+     * @param user ,the selected friend.
+     */
     public Friend(User user){
         //only push sharable dvds online
         InventoryController inventoryController = new InventoryController();
@@ -61,6 +65,9 @@ public class Friend {
         tradeCompleted = tc.getTradeOfStatus("Complete").size();
     }
 
+    /**
+     * To store inventory under user's profile
+     */
     public Friend() {
         inventory = new Inventory();
         profile = new UserProfile();
@@ -82,11 +89,19 @@ public class Friend {
         return profile;
     }
 
+    /**
+     * get the name of profile
+     * @return profile's name
+     */
     @Override
     public String toString() {
         return profile.getName();
     }
 
+    /**
+     * to get the completed trade
+     * @return completed trade
+     */
     public int getTradeCompleted() {
         MyHttpClient myHttpClient = new MyHttpClient(this.profile.getName());
         TradeList tradeList = myHttpClient.runPullTradeList();

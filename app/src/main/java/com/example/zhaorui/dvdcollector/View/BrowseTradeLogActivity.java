@@ -10,11 +10,29 @@ import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
 
 public class BrowseTradeLogActivity extends BaseActivity {
+    /**
+     * Initialize Current Incoming button
+     */
     private Button btnCurrentIncoming;
+    /**
+     * Initialize current Outgoing button
+     */
     private Button btnCurrentOutgoing;
+    /**
+     * Initialize Past Incoming button
+     */
     private Button btnPastIncoming;
+    /**
+     * Initialize Past Outgoing button
+     */
     private Button btnPastOutgoing;
+    /**
+     * Initialize In Progress button
+     */
     private Button btnInProgress;
+    /**
+     * Initialize Complete button
+     */
     private Button btnComplete;
 
     @Override
@@ -72,7 +90,11 @@ public class BrowseTradeLogActivity extends BaseActivity {
         });
 
     }
-
+    /**
+     *To push specific trade log
+     * @param view view variable view
+     * @param mode in variable mode
+     */
     public void startSpecificTradesLog(View view, int mode){
         Intent i = new Intent(BrowseTradeLogActivity.this, TradesLogTypeActivity.class);
         switch (mode){

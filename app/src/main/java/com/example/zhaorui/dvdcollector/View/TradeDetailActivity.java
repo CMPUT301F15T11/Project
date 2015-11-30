@@ -44,17 +44,49 @@ import com.google.gson.Gson;
  * @version 11/10/15
  */
 public class TradeDetailActivity extends BaseActivity {
+    /**
+     * Get trade list
+     */
     private TradeList tradeList = User.instance().getTradeList();
+    /**
+     * Get trade list controller
+     */
     private TradeListController tradeListController = new TradeListController(tradeList);
+    /**
+     * Initialize trade to show
+     */
     private Trade tradeToShow;
+    /**
+     * Initialize a string to store name of trade
+     */
     private String nameOfTrade;
+    /**
+     * Initialize a string to store ID of trade
+     */
     private String idOfTrade;
-
+    /**
+     * Initialize textView of borrower
+     */
     private TextView textViewBorrower;
+    /**
+     * Initialize textView of borrower DVD
+     */
     private TextView textViewBorrowerDvd;
+    /**
+     * Initialize textView of owner
+     */
     private TextView textViewOwner;
+    /**
+     * Initialize textView of owner DVD
+     */
     private TextView textViewOwnerDvd;
+    /**
+     * Initialize textView of status
+     */
     private TextView textViewStatus;
+    /**
+     * Initialize a menu button
+     */
     private Button btnMenu;
 
     @Override

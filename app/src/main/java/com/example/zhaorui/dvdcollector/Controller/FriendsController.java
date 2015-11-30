@@ -39,16 +39,28 @@ import java.util.Observer;
  * The <code>FriendsController</code> is a controller of <code>Friends</code>, which controls friends information.
  * <p>
  *
- * @author  Dingkai Liang
+ * @author  Dingkai Liang; Jiaxaun Yue
  * @version 01/11/15
  * @see java.util.ArrayList
  * @see com.google.gson.Gson
  * @see java.util.Observer
  */
 public class FriendsController {
+    /**
+     * Initialize a new friends
+     */
     private Friends friends;
+    /**
+     * Initialize a new cache
+     */
     private Cache cache;
+    /**
+     * Initialize a boolean variable to store search result
+     */
     private Boolean resultSearch;
+    /**
+     * Initialize a boolean variable to store get result
+     */
     private Boolean resultGet;
 
     /**
@@ -88,17 +100,29 @@ public class FriendsController {
         }
     }
 
-
+    /**
+     * Initialize an int variable to store target friend's name
+     * @param index int variable
+     * @return friend's name in string
+     */
     public String getNameByIndex(int index){
         return friends.get(index);
     }
-
+    /**
+     * This function is to put friends to cache
+     * @param friend a string variable and is user's friend
+     * @param galleryList a string variable and is galleryList
+     */
     private void putFriendInCache(Friend friend, GalleryList galleryList){
         String name = friend.getProfile().getName();
         friend.getInventory().fresh();
         cache.put(name, new Pair<>(friend,galleryList));
     }
-
+    /**
+     * Get friend's name by name
+     * @param name string variable
+     * @return friend's name in cache
+     */
     public Friend getByName(String name){
         if (ContextUtil.getInstance().isConnected()){
             Thread getThread = new GetThread(name);
@@ -150,15 +174,25 @@ public class FriendsController {
         return resultSearch;
     }
 
-
+    /**
+     * To search friend
+     */
     class SearchThread extends Thread {
+        /**
+         * Initialize a string to store a search
+         */
         private String search;
-
+        /**
+         * Initialize a search thread of search
+         * @param search string variable
+         */
         public SearchThread(String search) {
             this.search = search;
             resultSearch = null;
         }
-
+        /**
+         * To execute search
+         */
         @Override
         public void run() {
             UserHttpClient userHttpClient1 = new UserHttpClient();
@@ -166,15 +200,25 @@ public class FriendsController {
         }
     }
 
-
+    /**
+     * To search and add friend
+     */
     class GetThread extends Thread {
+        /**
+         * Initialize a string to store username
+         */
         private String userName;
-
+        /**
+         * Initialize get thread of username
+         * @param userName string variable
+         */
         public GetThread(String userName) {
             resultGet = null;
             this.userName = userName;
         }
-
+        /**
+         * to add new friend's name to database
+         */
         @Override
         public void run() {
             MyHttpClient httpClient = new MyHttpClient(userName);
@@ -190,7 +234,16 @@ public class FriendsController {
         }
     }
 
+    /**
+     * sort completed trades
+     */
     private class SortByCompletedTrades implements Comparator<String> {
+        /**
+         * compare two trades
+         * @param lhs a string variable
+         * @param rhs a string variable
+         * @return 1 or -1
+         */
         @Override
         public int compare(String lhs, String rhs) {
             Friend aFriend = cache.get(lhs).first;
@@ -200,6 +253,10 @@ public class FriendsController {
         }
     }
 
+    /**
+     * get a list of trader
+     * @return a list of trader
+     */
     public ArrayList<String> getTopTraderList(){
         for (String friend : friends){
             if (!cache.containsKey(friend)) getByName(friend);

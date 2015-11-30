@@ -76,10 +76,18 @@ public class Gallery {
         }
     }
 
+    /**
+     * add photo to the gallery
+     * @param photoStr a string variable
+     */
     public void addPhotoStr(String photoStr){
         photoStrs.add(photoStr);
     }
 
+    /**
+     * remove photo from the gallery
+     * @param photoStr a string variable
+     */
     public void removePhotoStr(String photoStr){
         photoStrs.remove(photoStr);
     }

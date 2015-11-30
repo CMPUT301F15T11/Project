@@ -47,7 +47,7 @@ import java.util.Observer;
  * to a local file and also load information from the local file.
  * <p>
  *
- * @author  Dingkai Liang
+ * @author  Dingkai Liang; Jiaxuan Yue
  * @version 03/11/15
  * @see com.google.gson.Gson
  */
@@ -90,6 +90,7 @@ public class DataManager implements Observer {
     /**
      * Initialize an new user instance if the application is run for the first time
      * @param name , a string variable
+     * @param email email in user profile
      */
     public void initFile(String name, String email){
         User.instance().getProfile().setName(name);
@@ -118,7 +119,11 @@ public class DataManager implements Observer {
         }
     }
 
-
+    /**
+     * Update date from webservice
+     * @param ob observable variable
+     * @param o object variable
+     */
     public void update(Observable ob, Object o){
         saveLocal();
         saveSever();
@@ -126,6 +131,9 @@ public class DataManager implements Observer {
         tradeListController.updateTradeList();
     }
 
+    /**
+     * save serve
+     */
     public void saveSever(){
         if (!ContextUtil.getInstance().isConnected()) {
             Log.e("Internet","Not connected");
@@ -140,10 +148,17 @@ public class DataManager implements Observer {
         myHttpClient.runPushTradeList();
     }
 
+    /**
+     * General constructor
+     */
     public Uri getImgUri() {
         return imgUri;
     }
 
+    /**
+     * set image uri
+     * @param imgUri Uri variable
+     */
     public void setImgUri(Uri imgUri) {
         this.imgUri = imgUri;
     }

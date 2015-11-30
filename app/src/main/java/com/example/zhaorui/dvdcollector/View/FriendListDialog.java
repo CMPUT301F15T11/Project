@@ -38,25 +38,59 @@ import com.example.zhaorui.dvdcollector.R;
  * @version 27/10/15
  */
 public class FriendListDialog extends DialogFragment {
+    /**
+     * Initialize view of custom view
+     */
     private View customView;
+    /**
+     * Initialize check button
+     */
     private Button check;
+    /**
+     * Initialize check inventory button
+     */
     private Button checkInventory;
+    /**
+     * Initialize remove button
+     */
     private Button remove;
+    /**
+     * Initialize context
+     */
     private Context context;
+    /**
+     * Initialize friends controller
+     */
     private FriendsController fc;
+    /**
+     * Initialize an int to store position
+     */
     private int position;
+    /**
+     * Initialize an int to store position
+     * @param position int variable
+     */
     public void setPosition(int position) {
         this.position = position;
     }
-
+    /**
+     * Check friend by press button
+     * @return check
+     */
     public Button getCheck() {
         return check;
     }
-
+    /**
+     * Check friend's inventory by press button
+     * @return check inventory
+     */
     public Button getCheckInventory() {
         return checkInventory;
     }
-
+    /**
+     * Remove friend by press button
+     * @return remove
+     */
     public Button getRemove() {
         return remove;
     }

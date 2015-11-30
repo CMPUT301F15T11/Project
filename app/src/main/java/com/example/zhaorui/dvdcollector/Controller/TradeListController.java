@@ -20,16 +20,34 @@ import java.util.Observer;
 /**
  * Created by teppie on 12/11/15.
  */
+/**
+ * The trade list controller
+ */
 public class TradeListController {
+    /**
+     * Initialize a static trade list to store as "TradeListController".
+     */
     private static String TAG = "TradeListController";
     NotificationManager nm;
+    /**
+     * Initialize a static index to store as 0x123
+     */
     private static final int NOTIFY_ID = 0x123;
+    /**
+     * Initialize a Tradelist to store the trade list information.
+     */
     private TradeList trades;
 
+    /**
+     * Get the user's trade list and restore them.
+     * @param trades
+     */
     public TradeListController(TradeList trades) {
         this.trades = trades;
     }
-
+    /**
+     * Update trade list
+     */
     public void updateTradeList(){
         Log.e("UPDATE", "Now we are in updateTradeList");
         if (!ContextUtil.getInstance().isConnected())return;
@@ -45,6 +63,7 @@ public class TradeListController {
         trades = tradesReceive;
         DVD dvd;
         for (Trade trade:trades.getTrades()){
+            if (trade.getChanged()==null)return;
             if (trade.getChanged().equals("Pending")){
 
                 // giving notification if a new trade request arrives
@@ -93,6 +112,16 @@ public class TradeListController {
     }
 
     // Add a trade to the tradelist
+    /**
+     *Add trade to trade list
+     * @param borrower string variable of borrowers
+     * @param owner string variable of owner
+     * @param borrowerItemNames arraylist variable of borrower item name
+     * @param ownerItemName string variable of owner item name
+     * @param type string variable of type
+     * @param status string variable of status
+     * @param id string variable of is
+     */
     public void addTrade(String borrower, String owner, ArrayList<String> borrowerItemNames,
                          String ownerItemName, String type, String status, String id){
         updateTradeList();
@@ -109,6 +138,11 @@ public class TradeListController {
 
 
     // returns the names of all trades in the given TradeList
+    /**
+     * This function is called when other function need to name of trades from given trade list.
+     * @param trades string variable of trade
+     * @return names
+     */
     public ArrayList<String> getNames(TradeList trades){
         ArrayList<String> names = new ArrayList<>();
         for(Trade aTrade : trades.getTrades()){
@@ -118,6 +152,11 @@ public class TradeListController {
     }
 
     // return IDs of all trades in the given TradeList
+    /**
+     * Return IDs of all trades in the given TradeList
+     * @param trades string variable of trades
+     * @return IDs
+     */
     public ArrayList<String> getIds(TradeList trades){
         ArrayList<String> ids = new ArrayList<>();
         for(Trade aTrade : trades.getTrades()){
@@ -125,12 +164,19 @@ public class TradeListController {
         }
         return ids;
     }
-
+    /**
+     * To add observer
+     * @param o observer
+     */
     public void addObserver(Observer o){
         ObserverManager.getInstance().addObserver("Trades", o);
     }
 
     // set an trade's status from "In-progress" to "Complete"
+    /**
+     * Set status of trade from "In-progress" to "Complete"
+     * @param id string variable of ID
+     */
     public void setTradeComplete(String id) throws NullPointerException{
         //updateTradeList();
         Trade trade = trades.getTradeById(id);
@@ -151,8 +197,12 @@ public class TradeListController {
                     //pull borrower's tradelist from the webservice
                     TradeList tradeList = myHttpClientBorrower.runPullTradeList();
                     Trade tradeBorrower = tradeList.getTradeById(trade.getId());
-                    tradeBorrower.setChanged("Complete");
-                    tradeBorrower.setStatus("Complete");
+                    try {
+                        tradeBorrower.setChanged("Complete");
+                        tradeBorrower.setStatus("Complete");
+                    }catch (NullPointerException e){
+                        e.printStackTrace();
+                    }
                     tradeList.changeTradeType(tradeBorrower.getId());
 
                     //push online
@@ -173,7 +223,13 @@ public class TradeListController {
         }
         Log.e(TAG, "Set the trade to complete");
     }
-
+    /**
+     * Push trade details
+     * @param ownerName string variable of ownername
+     * @param borrowerDvdNameBuffer arraylist variable of BorrowerDvdNameBuffer
+     * @param ownerDvdNameBuffer string variable of ownerDvdNameBuffer
+     * @param id string variable of ID
+     */
     public void sendTrade(String ownerName, ArrayList<String> borrowerDvdNameBuffer,
                           String ownerDvdNameBuffer, String id) throws NullPointerException{
         Log.e("Now we are in ", "sendTrade");
@@ -195,7 +251,10 @@ public class TradeListController {
         Log.e(TAG,"Send the trade");
         ObserverManager.getInstance().notifying("Trades");
     }
-
+    /**
+     * Owner Accept trades from borrower
+     * @param tradeIndex int variable tradeindex
+     */
     public void acceptTrade(int tradeIndex) throws NullPointerException{
         Trade trade = trades.getTradeRequests().get(tradeIndex);
         MyHttpClient myHttpClientOwner = new MyHttpClient(trade.getOwner(), this.trades);
@@ -213,7 +272,11 @@ public class TradeListController {
         //pull borrower's tradelist from the webservice
         TradeList tradeList = myHttpClientBorrower.runPullTradeList();
         Trade tradeBorrower = tradeList.getTradeById(trade.getId());
-        tradeBorrower.setChanged("In progress");
+        try {
+            tradeBorrower.setChanged("In progress");
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
         tradeList.setTradeResult(trade.getId(),true);
         //push online
         myHttpClientBorrower.setTradeList(tradeList);
@@ -222,7 +285,10 @@ public class TradeListController {
         Log.e(TAG, "Accept the trade");
         ObserverManager.getInstance().notifying("Trades");
     }
-
+    /**
+     * Owner decline trades from borrowers
+     * @param tradeIndex int variable of tradeIndex
+     */
     public void declineTrade(int tradeIndex) throws NullPointerException{
         Trade trade = trades.getTradeRequests().get(tradeIndex);
         MyHttpClient myHttpClientOwner = new MyHttpClient(trade.getOwner(), this.trades);
@@ -251,6 +317,11 @@ public class TradeListController {
     }
 
     // get all trades of the specified status,  eg. "In-progress"
+    /**
+     * Get all trades of the specified status
+     * @param status string variable
+     * @return trades to return
+     */
     public TradeList getTradeOfStatus(String status){
         updateTradeList();
         TradeList tradesToReturn = new TradeList();
@@ -263,6 +334,11 @@ public class TradeListController {
     }
 
     // get all trades of the specified type, eg. "Current Outgoing"
+    /**
+     * Get all trades of specified type
+     * @param type string variable of type
+     * @return trades to return
+     */
     public TradeList getTradesOfType(String type){
         updateTradeList();
         TradeList tradesToReturn = new TradeList();
@@ -274,7 +350,10 @@ public class TradeListController {
         }
         return tradesToReturn;
     }
-
+    /**
+     * This function is called when other function need to know trades.
+     * @return trades
+     */
     public TradeList getTradeRequests(){
         return trades.getTradeRequests();
     }

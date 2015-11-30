@@ -59,17 +59,26 @@ public class TradeCenterActivity extends BaseActivity {
         return true;
     }
 
-
+    /**
+     * Start New Trade
+     * @param view view variable
+     */
     public void startNewTrade(View view){
         Intent i = new Intent(TradeCenterActivity.this, StartTradeActivity.class);
         startActivity(i);
     }
-
+    /**
+     * Start Incoming Trade
+     * @param view view variable
+     */
     public void startIncomingTrade(View view){
         Intent i = new Intent(TradeCenterActivity.this, TradeRequestsActivity.class);
         startActivity(i);
     }
-
+    /**
+     * Start All Trade
+     * @param view view variable
+     */
     public void startAllTrade(View view){
         Intent i = new Intent(TradeCenterActivity.this, BrowseTradeLogActivity.class);
         TradeList tradeList = User.instance().getTradeList();
@@ -77,6 +86,10 @@ public class TradeCenterActivity extends BaseActivity {
         startActivity(i);
     }
 
+    /**
+     * start top trade
+     * @param view view variable
+     */
     public void startTopTraders(View view){
         if (!ContextUtil.getInstance().isConnected()){
             Toast.makeText(ContextUtil.getInstance(), "Not Connect to Internet!", Toast.LENGTH_LONG).show();

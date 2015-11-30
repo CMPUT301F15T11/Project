@@ -22,50 +22,85 @@ import java.util.ArrayList;
  * @see Bitmap
  */
 
+/**
+ * list of user's gallery
+ */
 public class GalleryListController {
     /**
      * Initialize a gallery.
      */
     private GalleryList galleryList;
+    /**
+     * user's name
+     */
     private String userName;
-
+    /**
+     * Get the input list of gallery.
+     */
     public GalleryListController() {//only for user
         this.userName = User.instance().getProfile().getName();
         this.galleryList = User.instance().getGalleryList();
     }
 
+    /**
+     * get the list of user's name
+     * @param userName a string variable, the name of the user
+     */
     public GalleryListController(String userName) {
         // intended for non-device-users
         this.userName = userName;
     }
 
+    /**
+     * get gallery list
+     * @param index a index variable
+     * @return a list of gallery
+     */
     public Gallery get(int index){
         return galleryList.get(index);
     }
 
+    /**
+     * add a gallery to the list
+     * @param gallery array list of photo strings
+     */
     public void addGallery(Gallery gallery){
         galleryList.appendGallery(gallery);
         ObserverManager.getInstance().notifying("Gallery");
     }
 
+    /**
+     * to delete a index from gallery
+     * @param index a index variable
+     */
     public void removeGallery(int index){
         galleryList.removeGallery(index);
         ObserverManager.getInstance().notifying("Gallery");
     }
 
+    /**
+     * add photo and dvd index to the gallery
+     * @param dvdIndex a index variable and is dvd's index
+     * @param photoStr a string variable
+     */
     public void addPhotoStr(int dvdIndex, String photoStr){
         galleryList.addPhoto(dvdIndex, photoStr);
         ObserverManager.getInstance().notifying("Gallery");
     }
 
-    public void removePhotoStr(int dvdIndex, String photoStr){
+    /**
+     * remove photo and dvd index from the gallery
+     * @param dvdIndex a index variable and is dvd's index
+     * @param photoStr a string variable
+     */
+    public void removePhotoStr(int dvdIndex, String photoStr) {
         galleryList.removePhoto(dvdIndex, photoStr);
         ObserverManager.getInstance().notifying("Gallery");
     }
 
     /**
      * encode to store.
-     * @param bitmap
+     * @param bitmap a string variable
      * @return a string
      */
     public String encodeFromBitmap(Bitmap bitmap){
@@ -95,6 +130,9 @@ public class GalleryListController {
         return bitmap;
     }
 
+    /**
+     * pull the list of the gallery
+     */
     public void pullGalleryList(){
         MyHttpClient myHttpClient = new MyHttpClient(userName);
         galleryList = myHttpClient.runPullGalleryList();

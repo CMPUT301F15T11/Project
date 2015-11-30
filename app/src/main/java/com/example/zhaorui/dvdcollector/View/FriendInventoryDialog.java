@@ -37,17 +37,41 @@ import com.example.zhaorui.dvdcollector.R;
  * @version 27/10/15
  */
 public class FriendInventoryDialog extends DialogFragment {
+    /**
+     * Initialize view of custom view
+     */
     private View customView;
+    /**
+     * Initialize check button
+     */
     private Button check;
+    /**
+     * Initialize close button
+     */
     private Button close;
+    /**
+     * Initialize context
+     */
     private Context context;
+    /**
+     * Initialize an int to store friend position
+     */
     private int friendPosition;
+    /**
+     * Initialize an int to store position
+     */
     private int position;
-
+    /**
+     * Initialize friend position
+     * @param friendPosition int variable of friend position
+     */
     public void setFriendPosition(int friendPosition) {
         this.friendPosition = friendPosition;
     }
-
+    /**
+     * Initialize position
+     * @param position int variable of position
+     */
     public void setPosition(int position) {
         this.position = position;
     }

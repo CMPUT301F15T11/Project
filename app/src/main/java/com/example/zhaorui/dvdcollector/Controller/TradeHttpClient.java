@@ -32,21 +32,43 @@ import java.util.ArrayList;
  * Created by zhaorui on 11/19/15.
  */
 public class TradeHttpClient {
+    /**
+     * Initialize a new gson
+     */
     private Gson gson = new Gson();
+    /**
+     * Initialize a string to store username
+     */
     private String userName;
+    /**
+     * Initialize tradeList
+     */
     private TradeList tradeList;
+    /**
+     * Initialize a boolean value to store result
+     */
     private Boolean result;
-
+    /**
+     * Assign username and trade list
+     * @param tradeList string variable of trade list
+     * @param userName string variable of username
+     */
     public TradeHttpClient(TradeList tradeList, String userName) {
         super();
         this.userName = userName;
         this.tradeList = tradeList;
     }
 
+    /**
+     * Trade HttpClient
+     * @param userName a string variable
+     */
     public TradeHttpClient(String userName) {
         this.userName = userName;
     }
-
+    /**
+     * Push trade list to webservice
+     */
     private void pushTradeList() {
         HttpClient httpClient = new DefaultHttpClient();
         try {
@@ -70,7 +92,11 @@ public class TradeHttpClient {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Pull trade list from webservice
+     * @param userName string list of username
+     * @return trade list from webservice
+     */
     private TradeList pullTradeList(String userName) {
         SearchHit<TradeList> sr = null;
         HttpClient httpClient = new DefaultHttpClient();
@@ -104,12 +130,16 @@ public class TradeHttpClient {
 
         return sr.getSource();
     }
-
+    /**
+     * Pull trade list from webservice
+     */
     private class PullThread extends Thread {
         public PullThread() {
             result = null;
         }
-
+        /**
+         * Push user's trade list to webservice if it's first created
+         */
         @Override
         public void run() {
             // push user's tradelist online if it's first created
@@ -123,7 +153,10 @@ public class TradeHttpClient {
             }
         }
     }
-
+    /**
+     * Execute to pull trade list online
+     * @return result trade list
+     */
     public TradeList runPull(){
         Thread thread = new PullThread();
         thread.start();
@@ -135,6 +168,9 @@ public class TradeHttpClient {
         return tradeList;
     }
 
+    /**
+     * Retrieve trade list and username
+     */
     private class PushThread extends Thread {
         public PushThread() {
         }
@@ -153,7 +189,9 @@ public class TradeHttpClient {
             }
         }
     }
-
+    /**
+     * Push trade list to webservice
+     */
     public void runPush(){
         Thread thread = new PushThread();
         thread.start();

@@ -44,6 +44,9 @@ import java.util.Observer;
  * @version 11/10/15
  */
 public class MyInventoryActivity extends BaseActivity implements Observer {
+    /**
+     * Initialize Inventory Controller
+     */
     private InventoryController controller;
     ArrayAdapter<DVD> adapter;
 
@@ -128,7 +131,11 @@ public class MyInventoryActivity extends BaseActivity implements Observer {
 
         return super.onOptionsItemSelected(item);
     }
-
+    /**
+     * Update observer
+     * @param ob Observable variable
+     * @param o Object variable
+     */
     public void update(Observable ob,Object o){
         adapter.notifyDataSetChanged();
     }

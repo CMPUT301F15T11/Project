@@ -38,8 +38,14 @@ import java.util.TimerTask;
  * @version 03/11/15
  * */
 public class ContextUtil extends Application{
+    /**
+     * Initialize a static content
+     */
     private static ContextUtil instance;
-
+    /**
+     * This function is to get the content for loading and writing to local files
+     * @return instance
+     */
     public static ContextUtil getInstance() {
         return instance;
     }

@@ -42,10 +42,25 @@ import java.util.ArrayList;
  * @version 11/10/15
  */
 public class DVDInfoActivity extends BaseActivity {
+    /**
+     * Initialize an int to store position
+     */
     private int position;
+    /**
+     * Initialize an int to store friend position
+     */
     private int friendPosition;
+    /**
+     * Initialize Inventory Controller
+     */
     private InventoryController ic;
+    /**
+     * Initialize clone button
+     */
     private Button btnClone;
+    /**
+     * Initialize a static string of TAG
+     */
     private static String TAG = "DVDInfoActivity";
 
     @Override
@@ -117,7 +132,10 @@ public class DVDInfoActivity extends BaseActivity {
         text.setText(info.get(5));
 
     }
-
+    /**
+     * To start gallery
+     * @param view view variable
+     */
     public void onPhotoShow(View view){
         // open the activity to show the list of photos attached to this dvd
         Intent intent = new Intent(DVDInfoActivity.this, PhotoActivity.class);

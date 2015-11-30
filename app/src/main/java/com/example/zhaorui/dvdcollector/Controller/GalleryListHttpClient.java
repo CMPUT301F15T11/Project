@@ -25,21 +25,42 @@ import java.lang.reflect.Type;
  * Created by zhaorui on 11/19/15.
  */
 public class GalleryListHttpClient {
+    /**
+     * Initialize a new gson
+     */
     private Gson gson = new Gson();
+    /**
+     * Initialize a string to store username
+     */
     private String userName;
+    /**
+     * Initialize gallery list
+     */
     private GalleryList galleryList;
+    /**
+     * Initialize a boolean value to store result
+     */
     private Boolean result;
-
+    /**
+     * Assign username and gallery list
+     * @param galleryList a string variable of user's gallery list
+     * @param userName a string variable of username
+     */
     public GalleryListHttpClient(GalleryList galleryList, String userName) {
         super();
         this.userName = userName;
         this.galleryList = galleryList;
     }
-
+    /**
+     * Gallery list HttpClient
+     */
     public GalleryListHttpClient(String userName) {
         this.userName = userName;
     }
 
+    /**
+     * push gallery to the webservice
+     */
     public void pushGallery() {
         HttpClient httpClient = new DefaultHttpClient();
         try {
@@ -62,7 +83,11 @@ public class GalleryListHttpClient {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Pull Gallery list from webservice
+     * @param userName string variable of username
+     * @return gallery list source from webservice
+     */
     public GalleryList pullGallery(String userName) {
         SearchHit<GalleryList> sr = null;
         HttpClient httpClient = new DefaultHttpClient();
@@ -96,12 +121,16 @@ public class GalleryListHttpClient {
 
         return sr.getSource();
     }
-
+    /**
+     * Pull gallery
+     */
     private class PullThread extends Thread {
         public PullThread() {
             result = null;
         }
-
+        /**
+         * Push user's trade list to webservice if it's first created
+         */
         @Override
         public void run() {
             // push user's tradelist online if it's first created
@@ -115,7 +144,10 @@ public class GalleryListHttpClient {
             }
         }
     }
-
+    /**
+     * Pull gallery webservice
+     * @return gallery result
+     */
     public GalleryList runPull(){
         Thread thread = new PullThread();
         thread.start();
@@ -124,11 +156,15 @@ public class GalleryListHttpClient {
         }
         return galleryList;
     }
-
+    /**
+     * Push trade log to webservice
+     */
     private class PushThread extends Thread {
         public PushThread() {
         }
-
+        /**
+         * Push trade log to webservice if it's first created
+         */
         @Override
         public void run() {
 
@@ -143,7 +179,9 @@ public class GalleryListHttpClient {
             }
         }
     }
-
+    /**
+     * Push username and gallery to webservice
+     */
     public void runPush(){
         Thread thread = new PushThread();
         thread.start();

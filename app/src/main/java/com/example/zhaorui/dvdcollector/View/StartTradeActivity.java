@@ -58,19 +58,43 @@ import java.util.Observer;
  * @version 11/10/15
  */
 public class StartTradeActivity extends BaseActivity implements Observer {
+    /**
+     * Initialize linear layout ll1
+     */
     private LinearLayout ll1;
+    /**
+     * Initialize linear layout ll2
+     */
     private LinearLayout ll2;
+    /**
+     * Initialize Spinner
+     */
     private Spinner spinner;
+    /**
+     * Initialize Send Request button
+     */
     private Button btnSendRequest;
+    /**
+     * Initialize TextView textView1
+     */
     private TextView textView1;
+    /**
+     * Initialize TextView textView2
+     */
     private TextView textView2;
-
+    /**
+     * Initialize Friends Controller
+     */
     private FriendsController friendsController = new FriendsController();
-
+    /**
+     * Initialize Inventory controller for borrower
+     */
     //Inventory controller for borrower, in this case-->Device user
     private InventoryController inventoryBorrowerController = new InventoryController();
     String[] borrowerDvdNames = inventoryBorrowerController.getAllNames();
-
+    /**
+     * Initialize Inventory controller for owner
+     */
     //Inventory controller for owner, in this case-->One friend
     private InventoryController inventoryOwnerController = new InventoryController();
     String[] ownerDvdNames;
@@ -79,9 +103,13 @@ public class StartTradeActivity extends BaseActivity implements Observer {
     ArrayList<String> borrowerDvdNameBuffer = new ArrayList<>();
     String ownerDvdNameBuffer = null;
     ArrayList<Integer> borrowerDvdIndexBuffer = new ArrayList<>();
-
+    /**
+     * Initialize TradeList Controller
+     */
     private TradeListController tradeListController = new TradeListController(User.instance().getTradeList());
-
+    /**
+     * Initialize static string TAG
+     */
     private static String TAG = "StartTradeActivity";
 
     @Override
@@ -180,7 +208,11 @@ public class StartTradeActivity extends BaseActivity implements Observer {
         inventoryOwnerController.addObserver(this);
         inventoryBorrowerController.addObserver(this);
     }
-
+    /**
+     * Send email during trade
+     * @param emailAddress string variable
+     * @param ownerComments string variable
+     */
     private void sendEmail(String emailAddress, String ownerComments){
         Intent stats = new Intent(Intent.ACTION_SENDTO);
         stats.setData(Uri.parse("mailto:" + emailAddress));
@@ -203,6 +235,9 @@ public class StartTradeActivity extends BaseActivity implements Observer {
     }
 
     // A alert will be prompted if user haven't chosen a dvd from the owner
+    /**
+     * Prompt alert if user haven't chosen a dvd from the owner
+     */
     private void showPromptDialog() {
         FragmentManager fm = getFragmentManager();
         TradeRequestInvalidDialog newDialog = new TradeRequestInvalidDialog();
@@ -211,6 +246,9 @@ public class StartTradeActivity extends BaseActivity implements Observer {
 
     // open a multiple choice dialog for the borrower
     // borrower is always the device user in this activity
+    /**
+     * Open a multiple choice dialog for the borrower
+     */
     public void borrowerMultipleChoiceDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(StartTradeActivity.this);
         builder.setTitle("Select DVDs");
@@ -252,6 +290,9 @@ public class StartTradeActivity extends BaseActivity implements Observer {
     }
 
     // open a single choice dialog for the owner
+    /**
+     * Open a single choice dialog for the owner
+     */
     public void ownerSingleChoiceDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(StartTradeActivity.this);
         builder.setTitle("Select one DVD");
@@ -314,7 +355,11 @@ public class StartTradeActivity extends BaseActivity implements Observer {
 
         return super.onOptionsItemSelected(item);
     }
-
+    /**
+     * Update observer
+     * @param ob Observable variable
+     * @param o Object variable
+     */
     public void update(Observable ob,Object o){
     }
 }

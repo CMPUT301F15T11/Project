@@ -56,7 +56,9 @@ public class User{
      * Default is true --> automatically download
      */
     private boolean downloadImage;
-
+    /**
+     * Initialize user's related variable
+     */
     private User() {
         friends = new Friends();
         inventory = new Inventory();
@@ -65,18 +67,27 @@ public class User{
         galleryList = new GalleryList();
         downloadImage = true;
     }
-
+    /**
+     * Initialize static instance of user
+     * @param instance user varibale
+     */
     public static void setInstance(User instance) {
         User.instance = instance;
     }
-
+    /**
+     * Get instance of user
+     * @return instance
+     */
     public static User instance(){
         if (instance == null){
             instance = new User();
         }
         return instance;
     }
-
+    /**
+     * Call <code>TradeList</code> class to get trade list
+     * @return the user's friends.
+     */
     public TradeList getTradeList(){return tradeList;}
     /**
      * Call <code>Friends</code> class to get the user's friends.
@@ -100,18 +111,34 @@ public class User{
         return profile;
     }
 
+    /**
+     * to get download image
+     * @return download Image
+     */
     public boolean isDownloadImage() {
         return downloadImage;
     }
 
+    /**
+     * set the download image
+     * @param downloadImage a boolean variable
+     */
     public void setDownloadImage(boolean downloadImage) {
         this.downloadImage = downloadImage;
     }
 
+    /**
+     * get gallery list
+     * @return gallery list
+     */
     public GalleryList getGalleryList() {
         return galleryList;
     }
 
+    /**
+     * set trade list
+     * @param tradeList a variable of the trade list
+     */
     public void setTradeList(TradeList tradeList) {
         this.tradeList = tradeList;
     }

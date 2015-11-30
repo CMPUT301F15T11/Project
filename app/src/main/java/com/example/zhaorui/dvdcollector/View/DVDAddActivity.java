@@ -42,11 +42,25 @@ import java.util.ArrayList;
  * @version 11/10/15
  */
 public class DVDAddActivity extends BaseActivity {
+    /**
+     * Initialize  inventory controller
+     */
     private InventoryController ic = new InventoryController();
+    /**
+     * Initialize a spinner
+     */
     private Spinner spinner;
+    /**
+     * Initialize an int to store position
+     */
     private int position;
-
+    /**
+     * Initialize  rating bar
+     */
     private RatingBar ratingBar;
+    /**
+     * Initialize a string to store rating string
+     */
     private String ratingStr = "0";
 
     @Override
@@ -109,7 +123,10 @@ public class DVDAddActivity extends BaseActivity {
             show.setVisibility(View.INVISIBLE);
         }
    }
-
+    /**
+     * Add and save DVD
+     * @param view view variable
+     */
     public void onAddSave(View view){
         EditText text;
         text = (EditText) findViewById(R.id.ed_add_name);
@@ -147,7 +164,10 @@ public class DVDAddActivity extends BaseActivity {
             this.finish();
         }
     }
-
+    /**
+     * To start gallery
+     * @param view view variable
+     */
     public void onAddPhoto(View view){
         // open the activity to show the list of photos attached to this dvd
         Intent intent = new Intent(DVDAddActivity.this, PhotoActivity.class);

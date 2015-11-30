@@ -67,7 +67,6 @@ public class DVD {
     }
     /**
      * This function is called when other function need to know the current dvd's category.
-     * @return a string variable category.
      */
     public void set(ArrayList<String> info){
         category = info.get(0);
@@ -78,6 +77,10 @@ public class DVD {
         comments = info.get(5);
     }
 
+    /**
+     * This function is called when need to know the current dvd's category.
+     * @return a string variable category
+     */
     public ArrayList<String> read(){
         ArrayList<String> info = new ArrayList<>();
         info.add(category);
@@ -89,11 +92,17 @@ public class DVD {
         info.add(comments);
         return info;
     }
-
+    /**
+     * get dvd's category.
+     * @return a string variable category.
+     */
     public String getCategory() {
         return category;
     }
-
+    /**
+     * This function is called when other function need to get the current dvd's category.
+     * @return a string variable category.
+     */
     public static ArrayList<String> getCategories() {
         if (categories == null){
             categories = new ArrayList<>();
@@ -103,18 +112,31 @@ public class DVD {
         }
         return categories;
     }
-
+    /**
+     * This function is called when other function need to know the current dvd's name
+     * @return a string variable name.
+     */
     public String getName() {
         return name;
     }
-
+    /**
+     * This function is called when other function need to know if the dvd is sharable or not.
+     * @return True or False.
+     */
     public boolean isSharable() {
         return sharable;
     }
 
+    /**
+     * to get name of dvd
+     * @return name
+     */
     @Override
     public String toString(){ return name;}
-
+    /**
+     * This function is called when other function need to set if the dvd is sharable or not.
+     * @param sharable a boolean variable.
+     */
     public void setSharable(boolean sharable) {
         this.sharable = sharable;
     }

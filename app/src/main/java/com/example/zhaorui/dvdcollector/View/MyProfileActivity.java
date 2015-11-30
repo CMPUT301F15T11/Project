@@ -42,9 +42,21 @@ import com.example.zhaorui.dvdcollector.R;
  * @version 11/10/15
  */
 public class MyProfileActivity extends BaseActivity {
+    /**
+     * Initialize contact of EditText
+     */
     private EditText contact;
+    /**
+     * Initialize city of EditText
+     */
     private EditText city;
+    /**
+     * Initialize profile of UserProfile
+     */
     private UserProfile profile;
+    /**
+     * Initialize UserHttpClient
+     */
     private UserHttpClient userHttpClient;
 
     @Override

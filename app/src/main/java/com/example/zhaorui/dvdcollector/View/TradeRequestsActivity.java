@@ -41,7 +41,13 @@ import java.util.ArrayList;
  * @version 11/10/15
  */
 public class TradeRequestsActivity extends BaseActivity {
+    /**
+     * Initialize an array list to store name of trade request
+     */
     private ArrayList<String> tradeRequestNames;
+    /**
+     * Initialize trade list controller
+     */
     private TradeListController myTradeListController = new TradeListController(User.instance().getTradeList());
 
     @Override

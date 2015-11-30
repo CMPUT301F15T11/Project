@@ -63,7 +63,10 @@ public class BrowseInventActivity extends BaseActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
+    /**
+     * To start category
+     * @param v category variable v
+     */
     public void startCategory(View v){
         Button categoryButton = (Button) v;
         Intent i = new Intent(BrowseInventActivity.this, CategoryActivity.class);
