@@ -15,11 +15,6 @@ public class MyHttpClient {
     private String name;
     private TradeList tradeList;
     private GalleryList galleryList;
-    private Gson gson = new Gson();
-    private Boolean result;
-
-    public MyHttpClient() {
-    }
 
     public MyHttpClient(String name, TradeList tradeList) {
         this.name = name;

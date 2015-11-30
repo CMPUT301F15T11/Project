@@ -101,6 +101,7 @@ public class PhotoActivity extends BaseActivity {
 
             Button upload = (Button) findViewById(R.id.button_upload_photo);
             upload.setText("Download Photos");
+            // enable download photo button when user didn't check for automatically downloading photos
             upload.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -114,13 +115,21 @@ public class PhotoActivity extends BaseActivity {
                         for (int i = 0; i < numPhotos; i++) {
                             photoIndexes.add(i);
                         }
-
+                        photoAdapter = new ArrayAdapter<Integer>(
+                                com.example.zhaorui.dvdcollector.View.PhotoActivity.this,
+                                android.R.layout.simple_list_item_1, photoIndexes);
+                        photoAdapter.notifyDataSetChanged();
+                        listView.setAdapter(photoAdapter);
                     }
                 }
             });
 
             // initialize the listview, each entry is provided with an index of image
-            numPhotos = gallery.getSize();
+            if(User.instance().isDownloadImage()) {
+                numPhotos = gallery.getSize();
+            }else {
+                numPhotos = 0;
+            }
             photoIndexes = new ArrayList<Integer>();
             for (int i = 0; i < numPhotos; i++) {
                 photoIndexes.add(i);

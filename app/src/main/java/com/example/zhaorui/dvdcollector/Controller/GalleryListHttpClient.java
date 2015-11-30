@@ -36,21 +36,12 @@ public class GalleryListHttpClient {
         this.galleryList = galleryList;
     }
 
-    public GalleryListHttpClient() {
-    }
-
     public GalleryListHttpClient(String userName) {
         this.userName = userName;
     }
 
-    public void setGalleryList(GalleryList galleryList) {
-        this.galleryList = galleryList;
-    }
-
     public void pushGallery() {
         HttpClient httpClient = new DefaultHttpClient();
-        ///catch exception if not connected to the internet
-        //////////////////////////////////////////////////////////
         try {
             HttpPost addRequest = new HttpPost("http://cmput301.softwareprocess.es:8080/cmput301f15t11/gallerylist/" + this.userName);
 
@@ -60,16 +51,11 @@ public class GalleryListHttpClient {
             addRequest.setEntity(stringEntity);
             HttpResponse response = null;
             try {
-                Log.e("dvd","connecting to the webservice...");
                 response = httpClient.execute(addRequest);
-                Log.e("dvd","Done executing!!");
             } catch (ClientProtocolException e) {
-                Log.e("dvd","Failed connecting!");
                 throw new RuntimeException(e.getMessage());
             }
-            Log.e("dvd","Now finished");
             String status = response.getStatusLine().toString();
-            Log.e("dvd","end pushing");
             Log.e("DVD", status);
 
         } catch (Exception e) {

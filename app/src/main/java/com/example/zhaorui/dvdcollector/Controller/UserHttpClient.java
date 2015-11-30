@@ -76,6 +76,8 @@ public class UserHttpClient {
                 throw new RuntimeException(e.getMessage());
             }
             String status = response.getStatusLine().toString();
+            Log.e("UserHttpClient", status);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -215,7 +217,7 @@ public class UserHttpClient {
         Thread thread = new PullThread();
         thread.start();
         while (result==null){
-            //do nothing but wait for the pull thread to finish
+            //do nothing but wait for the pull thread to finish}
         }
         return friend;
     }

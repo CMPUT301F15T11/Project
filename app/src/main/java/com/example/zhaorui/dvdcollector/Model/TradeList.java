@@ -11,12 +11,11 @@ import java.util.Observable;
  * Created by teppie on 12/11/15.
  */
 public class TradeList{
-    private static final String TAG = "TradeList";
-    private static final String RESOURCE_URL_TRADE = "http://cmput301.softwareprocess.es:8080/cmput301f15t11/tradelist/";
-    private static final String SEARCH_URL_TRADE = "http://cmput301.softwareprocess.es:8080/cmput301f15t11/tradelist/_search";
     /*
     A List containing all trades related to the device user
      */
+
+    private static final String TAG = "TradeList";
 
     private ArrayList<Trade> trades;
 
@@ -40,22 +39,9 @@ public class TradeList{
         return trades.get(i);
     }
 
-    public static String getResourceUrlTrade() {
-        return RESOURCE_URL_TRADE;
-    }
-
-    public static String getSearchUrlTrade() {
-        return SEARCH_URL_TRADE;
-    }
-
     public ArrayList<Trade> getTrades() {
         return trades;
     }
-
-    public void setTrades(ArrayList<Trade> trades) {
-        this.trades = trades;
-    }
-
 
     // change a trade request's status and type, triggered when accepting or declining a trade
     // pending --> In-progress
@@ -74,7 +60,7 @@ public class TradeList{
             }
         }
 
-        Log.e(TAG, "Decision has been made on this trade request");
+        Log.d(TAG, "Decision has been made on this trade request");
     }
 
     // change the trade's type based on its current type
@@ -97,8 +83,9 @@ public class TradeList{
                 }
             }
         }
-        Log.e(TAG, "This trade's type has changed");
+        Log.d(TAG, "This trade's type has changed");
     }
+
     // get trade with a specified ID
     public Trade getTradeById(String id){
         for(Trade aTrade : trades){
