@@ -22,6 +22,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.zhaorui.dvdcollector.Controller.TradeListController;
+import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
 /**
  * <p>
@@ -38,6 +40,13 @@ public class ConfigActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_config);
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        TradeListController tradeListController = new TradeListController(User.instance().getTradeList());
+        tradeListController.updateTradeList();
     }
 
     @Override

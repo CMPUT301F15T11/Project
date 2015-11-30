@@ -36,43 +36,26 @@ public class GalleryListHttpClient {
         this.galleryList = galleryList;
     }
 
-    public GalleryListHttpClient() {
-    }
-
     public GalleryListHttpClient(String userName) {
         this.userName = userName;
     }
 
-    public void setGalleryList(GalleryList galleryList) {
-        this.galleryList = galleryList;
-    }
-
     public void pushGallery() {
         HttpClient httpClient = new DefaultHttpClient();
-        ///catch exception if not connected to the internet
-        //////////////////////////////////////////////////////////
         try {
             HttpPost addRequest = new HttpPost("http://cmput301.softwareprocess.es:8080/cmput301f15t11/gallerylist/" + this.userName);
 
             StringEntity stringEntity = new StringEntity(gson.toJson(galleryList));
-            Log.e("dvd","start pushing");
-            Log.e("DVD TradeList", "http://cmput301.softwareprocess.es:8080/cmput301f15t11/gallerylist/" + userName);
-            Log.e("DVD", gson.toJson(galleryList));
             addRequest.setHeader("Accept", "application/json");
 
             addRequest.setEntity(stringEntity);
             HttpResponse response = null;
             try {
-                Log.e("dvd","connecting to the webservice...");
                 response = httpClient.execute(addRequest);
-                Log.e("dvd","Done executing!!");
             } catch (ClientProtocolException e) {
-                Log.e("dvd","Failed connecting!");
                 throw new RuntimeException(e.getMessage());
             }
-            Log.e("dvd","Now finished");
             String status = response.getStatusLine().toString();
-            Log.e("dvd","end pushing");
             Log.e("DVD", status);
 
         } catch (Exception e) {
@@ -116,6 +99,7 @@ public class GalleryListHttpClient {
 
     private class PullThread extends Thread {
         public PullThread() {
+            result = null;
         }
 
         @Override
@@ -134,36 +118,6 @@ public class GalleryListHttpClient {
 
     public GalleryList runPull(){
         Thread thread = new PullThread();
-        thread.start();
-        while (result==null){
-            //do nothing but wait for the pull thread to finish}
-        }
-        return galleryList;
-    }
-
-    private class RetrieveThread extends Thread {
-        private String userName;
-
-        public RetrieveThread(String userName) {
-            this.userName = userName;
-        }
-
-        @Override
-        public void run() {
-            // push user's tradelist online if it's first created
-            galleryList = pullGallery(userName);
-            result = true;
-            // Give some time to get updated info
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public GalleryList runRetrieve(String userName){
-        Thread thread = new RetrieveThread(userName);
         thread.start();
         while (result==null){
             //do nothing but wait for the pull thread to finish}

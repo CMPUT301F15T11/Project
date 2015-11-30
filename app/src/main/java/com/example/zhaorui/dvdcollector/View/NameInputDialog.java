@@ -68,6 +68,10 @@ public class NameInputDialog extends DialogFragment {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!ContextUtil.getInstance().isConnected()) {
+                    Toast.makeText(ContextUtil.getInstance(), "Not Connected to Internet!", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 String name = editText.getText().toString();
                 String email = editTextEmail.getText().toString();
                 FriendsController fc = new FriendsController();

@@ -29,35 +29,57 @@ import java.util.ArrayList;
  * @see java.util.ArrayList
  */
 public class Trade {
+
+    /**
+     * A tag used for notifying users whether the status of
+     * this trade has been changed
+     */
     private String changed;
 
-    // for showing in the listview
+    /**
+     * for showing in the listview
+     */
     private String name;
 
-    // for identify the trade
+    /**
+     * for identify the trade
+     */
     private String id;
+
     /**
      * Initialize a user to be the borrower in the trade.
      */
-    //private User borrower;
     private String borrower;
+
     /**
      * Initialize a user to be the owner in the trade.
      */
-    //private User owner;
     private String owner;
+
     /**
      * Initialize a boolean to be the type of the trade.
+     * Four types as follows:
+     * Current Incoming/Current Outgoing/Past Incoming/Past Outgoing
      */
-    private String type;// 分为四种， Current Incoming/Current Outgoing/Past Incoming/Past Outgoing
+    private String type;
 
-    private String status;//4 different status，In-progress/Complete/Pending/Declined
     /**
-     * Initialize a array list to store the dvds in the current trade.
+     * Initialize a boolean to be the status of the trade.
+     * Four status as follows:
+     * In-progress/Complete/Pending/Declined
+     */
+    private String status;
+
+    /**
+     * Initialize a array list to store the name of borrower's dvds in this trade.
      *
      */
     private ArrayList<String> borrowerItemList;
 
+    /**
+     * Initialize a string to store the name of owner's dvd in this trade
+     *
+     */
     private String ownerItem;
 
     public Trade(String borrower, String owner, ArrayList<String> borrowerItemNames,
@@ -72,57 +94,15 @@ public class Trade {
     }
 
     /**
-     * This function is called when other function need to know the owner of the trade.
-     * @return owner, a user variable.
-     */
-    /*
-    public User getOwner() {
-        return owner;
-    }*/
-    /**
-     * This function is called when other function need to know the borrower of the trade.
-     * @return borrower, a user variable.
-     */
-    /*
-    public User getBorrower() {
-        return borrower;
-    }*/
-    /**
      * This function is called when other function need to know the type of the trade.
      * @return type, a boolean(True or False).
      */
     public String getType() {
         return type;
     }
-    /**
-     * To set the decision of this trade.
-     * @param decision, a boolean(True or False).
-     */
-    public void decide(boolean decision){}
-    /**
-     * If the owner an the borrower can't agree with each other
-     * this function will be called to offer a counter trade.
-     */
-    public void counterTrade(){}
-    /**
-     *Send email for counter trade.
-     */
-    public boolean email(){
-        String str = "";
-        if (str == "email already sent") return false;//wait for coding
-        return true;
-    }
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public void setBorrowerItemList(ArrayList<String> borrowerItemList) {
-        this.borrowerItemList = borrowerItemList;
-    }
-
-    public void setOwnerItem(String ownerItem) {
-        this.ownerItem = ownerItem;
     }
 
     public String getStatus() {

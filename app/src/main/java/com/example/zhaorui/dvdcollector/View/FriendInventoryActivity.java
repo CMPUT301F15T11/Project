@@ -67,8 +67,7 @@ public class FriendInventoryActivity extends BaseActivity {
         fc = new FriendsController();
         ic = new InventoryController();
         friendPostion = getIntent().getIntExtra("position", -1);
-        userHttpClient = new UserHttpClient(fc.getNameByIndex(friendPostion));
-        friendToShow = userHttpClient.runPull();
+        friendToShow = fc.get(friendPostion);
     }
 
     @Override

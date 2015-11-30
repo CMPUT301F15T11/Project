@@ -38,6 +38,7 @@ import com.example.zhaorui.dvdcollector.Controller.FriendsController;
 import com.example.zhaorui.dvdcollector.Controller.InventoryController;
 import com.example.zhaorui.dvdcollector.Controller.TradeHttpClient;
 import com.example.zhaorui.dvdcollector.Controller.TradeListController;
+import com.example.zhaorui.dvdcollector.Model.ContextUtil;
 import com.example.zhaorui.dvdcollector.Model.TradeList;
 import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.Friends;
@@ -112,8 +113,6 @@ public class StartTradeActivity extends BaseActivity implements Observer {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                //TODO:Pull Inventory Info From Webservice??????
-
                 inventoryOwnerController.setInventory(friendsController.getByName
                         (spinner.getSelectedItem().toString()).getInventory());
                 ownerDvdNames = inventoryOwnerController.getAllNamesFriend();
@@ -142,6 +141,10 @@ public class StartTradeActivity extends BaseActivity implements Observer {
         btnSendRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!ContextUtil.getInstance().isConnected()){
+                    Toast.makeText(ContextUtil.getInstance(), "Not Connect to Internet!", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 if (ownerDvdNameBuffer != null) {
                     borrowerDvdNameBuffer.clear();
                     for(int i:borrowerDvdIndexBuffer) {

@@ -53,9 +53,7 @@ public class FriendProfileActivity extends BaseActivity {
         setContentView(R.layout.activity_friend_profile);
         fc = new FriendsController();
         int position = getIntent().getIntExtra("position", -1);
-
-        userHttpClient = new UserHttpClient(fc.getNameByIndex(position));
-        friendToShow = userHttpClient.runPull();
+        friendToShow = fc.get(position);
 
         UserProfile profile = friendToShow.getProfile();
         text = (TextView) findViewById(R.id.tv_friend_profile_name);

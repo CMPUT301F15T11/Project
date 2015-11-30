@@ -17,6 +17,8 @@
 package com.example.zhaorui.dvdcollector.Model;
 
 import com.example.zhaorui.dvdcollector.Controller.InventoryController;
+import com.example.zhaorui.dvdcollector.Controller.MyHttpClient;
+import com.example.zhaorui.dvdcollector.Controller.TradeListController;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -32,6 +34,7 @@ import java.util.ArrayList;
  */
 public class Friend {
     public static final String URL = "http://cmput301.softwareprocess.es:8080/cmput301f15t11/friend/";
+
     /**
      * Initialize a Inventory to store the friends inventory.
      *
@@ -42,11 +45,11 @@ public class Friend {
      *
      */
     private UserProfile profile;
-    //private TradeList tradeList;
     /**
      * To get the selected friend's information.
      * @param user ,the selected friend.
      */
+    private int tradeCompleted;
 
     public Friend(User user){
         //only push sharable dvds online
@@ -54,15 +57,16 @@ public class Friend {
         inventoryController.setInventory(user.getInventory());
         inventory = inventoryController.getSharableInventory();
         profile = user.getProfile();
+        TradeListController tc = new TradeListController(user.getTradeList());
+        tradeCompleted = tc.getTradeOfStatus("Complete").size();
     }
-    /**
-     * To store the select friend's information.
-     */
 
-    public Friend(Inventory inventory, UserProfile profile) {
-        this.inventory = inventory;
-        this.profile = profile;
+    public Friend() {
+        inventory = new Inventory();
+        profile = new UserProfile();
+        tradeCompleted = 0;
     }
+
     /**
      * To get the friend's inventories
      * @return Inventory, which contain dvds owns by the friend
@@ -81,5 +85,13 @@ public class Friend {
     @Override
     public String toString() {
         return profile.getName();
+    }
+
+    public int getTradeCompleted() {
+        MyHttpClient myHttpClient = new MyHttpClient(this.profile.getName());
+        TradeList tradeList = myHttpClient.runPullTradeList();
+        TradeListController tradeListController = new TradeListController(tradeList);
+        tradeCompleted = tradeListController.getTradeOfStatus("Complete").size();
+        return tradeCompleted;
     }
 }

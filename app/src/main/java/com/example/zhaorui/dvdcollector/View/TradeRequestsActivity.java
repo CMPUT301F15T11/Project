@@ -48,12 +48,12 @@ public class TradeRequestsActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trade_requests);
-
     }
 
     @Override
     protected void onResume(){
         super.onResume();
+        myTradeListController.updateTradeList();
         tradeRequestNames = myTradeListController.getNames(myTradeListController.getTradeRequests());
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(TradeRequestsActivity.this, android.R.layout.simple_list_item_1, tradeRequestNames);

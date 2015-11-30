@@ -28,8 +28,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.zhaorui.dvdcollector.Controller.TradeListController;
 import com.example.zhaorui.dvdcollector.Model.DVD;
 import com.example.zhaorui.dvdcollector.Controller.InventoryController;
+import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
 
 import java.util.Observable;
@@ -87,6 +89,9 @@ public class MyInventoryActivity extends BaseActivity implements Observer {
         super.onStart();
         adapter = new ArrayAdapter<DVD>(MyInventoryActivity.this, android.R.layout.simple_list_item_1, controller.getInventory());
         listView.setAdapter(adapter);
+
+        TradeListController tradeListController = new TradeListController(User.instance().getTradeList());
+        tradeListController.updateTradeList();
     }
 
     private void showSearchDialog() {

@@ -43,27 +43,17 @@ public class TradeHttpClient {
         this.tradeList = tradeList;
     }
 
-    public TradeHttpClient() {
-    }
-
     public TradeHttpClient(String userName) {
         this.userName = userName;
     }
 
-    public void setTradeList(TradeList tradeList, String userName) {
-        this.userName = userName;
-        this.tradeList = tradeList;
-    }
-
     private void pushTradeList() {
         HttpClient httpClient = new DefaultHttpClient();
-        ///catch exception if not connected to the internet
-        //////////////////////////////////////////////////////////
         try {
             HttpPost addRequest = new HttpPost("http://cmput301.softwareprocess.es:8080/cmput301f15t11/trade/" + this.userName);
 
             StringEntity stringEntity = new StringEntity(gson.toJson(tradeList));
-            Log.e("DVD TradeList", "http://cmput301.softwareprocess.es:8080/cmput301f15t11/trade/" + userName);
+            Log.e("push trade list to web",this.userName+"     " +gson.toJson(tradeList));
             addRequest.setHeader("Accept", "application/json");
 
             addRequest.setEntity(stringEntity);
@@ -84,7 +74,6 @@ public class TradeHttpClient {
     private TradeList pullTradeList(String userName) {
         SearchHit<TradeList> sr = null;
         HttpClient httpClient = new DefaultHttpClient();
-        Log.e("Pull username: ",userName);
         HttpGet httpGet = new HttpGet("http://cmput301.softwareprocess.es:8080/cmput301f15t11/trade/" + userName);
 
         HttpResponse response = null;
@@ -118,16 +107,13 @@ public class TradeHttpClient {
 
     private class PullThread extends Thread {
         public PullThread() {
+            result = null;
         }
 
         @Override
         public void run() {
             // push user's tradelist online if it's first created
             tradeList = pullTradeList(userName);
-            Log.e("TradeClient","Run Pull TradeList");
-            Log.e("TradeClient",String.valueOf(tradeList));
-            Log.e("TradeClient",String.valueOf(tradeList==null));
-            Log.e("TradeClient userName",userName);
             result = true;
             // Give some time to get updated info
             try {
@@ -144,36 +130,8 @@ public class TradeHttpClient {
         while (result==null){
             //do nothing but wait for the pull thread to finish}
         }
-        return tradeList;
-    }
-
-    private class RetrieveThread extends Thread {
-        private String userName;
-
-        public RetrieveThread(String userName) {
-            this.userName = userName;
-        }
-
-        @Override
-        public void run() {
-            // push user's tradelist online if it's first created
-            tradeList = pullTradeList(userName);
-            result = true;
-            // Give some time to get updated info
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public TradeList runRetrieve(String userName){
-        Thread thread = new RetrieveThread(userName);
-        thread.start();
-        while (result==null){
-            //do nothing but wait for the pull thread to finish}
-        }
+        result = null;
+        Log.e("Pull from web","PULLLLLLLLLLLLLLLLLLLLLLL"+this.userName);
         return tradeList;
     }
 

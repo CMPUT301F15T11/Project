@@ -15,16 +15,6 @@ public class MyHttpClient {
     private String name;
     private TradeList tradeList;
     private GalleryList galleryList;
-    private Gson gson = new Gson();
-    private Boolean result;
-
-    public MyHttpClient() {
-    }
-
-    public MyHttpClient(Friend friend) {
-        this.friend = friend;
-        this.name = friend.getProfile().getName();
-    }
 
     public MyHttpClient(String name, TradeList tradeList) {
         this.name = name;
@@ -77,10 +67,6 @@ public class MyHttpClient {
     public TradeList runPullTradeList(){
         TradeHttpClient tradeHttpClient = new TradeHttpClient(this.name);
         TradeList tradeList = tradeHttpClient.runPull();
-        Log.e("HttpClient","Run Pull TradeList");
-        Log.e("HttpClient",String.valueOf(tradeList));
-        Log.e("HttpCli trades is null",String.valueOf(tradeList==null));
-        Log.e("HttpCli userName",name);
         this.tradeList = tradeList;
         return tradeList;
     }
@@ -88,7 +74,6 @@ public class MyHttpClient {
     public GalleryList runPullGalleryList(){
         GalleryListHttpClient galleryListHttpClient = new GalleryListHttpClient(this.name);
         GalleryList gallery = galleryListHttpClient.runPull();
-        Log.e("HttpClient","Run Pull GalleryList");
         this.galleryList = gallery;
         return gallery;
     }

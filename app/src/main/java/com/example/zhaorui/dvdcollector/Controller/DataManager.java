@@ -95,24 +95,8 @@ public class DataManager implements Observer {
         User.instance().getProfile().setName(name);
         User.instance().getProfile().setContact(email);
         ObserverManager.getInstance().observeAll(this);
-        MyHttpClient httpClient = new MyHttpClient(name,User.instance().getTradeList());
-        httpClient.runPushTradeList();
-        update(null,null);
-    }
-
-    public void retrieveFile(String name, String email){
-        UserHttpClient userHttpClient = new UserHttpClient();
-        Friend user = userHttpClient.runRetrieve(name);
-        TradeHttpClient tradeHttpClient = new TradeHttpClient();
-        TradeList tradeList = tradeHttpClient.runRetrieve(name);
-        //missing friendlist
-        User.instance().getProfile().setName(name);
-        User.instance().getProfile().setCity(user.getProfile().getCity());
-        User.instance().getProfile().setContact(email);
-        User.instance().getInventory().addAll(user.getInventory());
-        User.instance().getTradeList().setTrades(tradeList.getTrades());
         saveLocal();
-        ObserverManager.getInstance().observeAll(this);
+        saveSever();
     }
 
     /**
@@ -137,12 +121,23 @@ public class DataManager implements Observer {
 
     public void update(Observable ob, Object o){
         saveLocal();
-        MyHttpClient myHttpClient = new MyHttpClient(new Friend(User.instance()));
+        saveSever();
+        TradeListController tradeListController = new TradeListController(User.instance().getTradeList());
+        tradeListController.updateTradeList();
+    }
+
+    public void saveSever(){
+        if (!ContextUtil.getInstance().isConnected()) {
+            Log.e("Internet","Not connected");
+            return;
+        }
+        MyHttpClient myHttpClient = new MyHttpClient(User.instance().getProfile().getName());
+        myHttpClient.setUser(new Friend(User.instance()));
         myHttpClient.setGalleryList(User.instance().getGalleryList());
+        myHttpClient.setTradeList(User.instance().getTradeList());
         myHttpClient.runPushFriend();
         myHttpClient.runPushGalleryList();
-        TradeListController tc = new TradeListController(User.instance().getTradeList());
-        tc.updateTradeList();
+        myHttpClient.runPushTradeList();
     }
 
     public Uri getImgUri() {

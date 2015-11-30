@@ -73,6 +73,13 @@ public class BrowseTradeLogActivity extends BaseActivity {
 
     }
 
+    @Override
+    protected void onStart(){
+        super.onStart();
+        TradeListController tradeListController = new TradeListController(User.instance().getTradeList());
+        tradeListController.updateTradeList();
+    }
+
     public void startSpecificTradesLog(View view, int mode){
         Intent i = new Intent(BrowseTradeLogActivity.this, TradesLogTypeActivity.class);
         switch (mode){

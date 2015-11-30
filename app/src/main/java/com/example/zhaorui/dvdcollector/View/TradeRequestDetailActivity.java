@@ -31,6 +31,7 @@ import android.widget.Toast;
 
 import com.example.zhaorui.dvdcollector.Controller.FriendsController;
 import com.example.zhaorui.dvdcollector.Controller.TradeListController;
+import com.example.zhaorui.dvdcollector.Model.ContextUtil;
 import com.example.zhaorui.dvdcollector.Model.Trade;
 import com.example.zhaorui.dvdcollector.Model.TradeList;
 import com.example.zhaorui.dvdcollector.Model.User;
@@ -61,6 +62,10 @@ public class TradeRequestDetailActivity extends BaseActivity {
     private String ownerComments = "No comments";
     private int position;
 
+    private String borrowerName;
+    private String ownerItem;
+    private ArrayList<String> borrowerItems;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,8 +78,11 @@ public class TradeRequestDetailActivity extends BaseActivity {
         dvdOwner = (TextView)findViewById(R.id.dvds_owner_trade_detail_ongoing);
 
         Intent i = getIntent();
-        position = i.getIntExtra("position",0);
+        position = i.getIntExtra("position", 0);
 
+        borrowerName = myTradeListController.getTradeRequests().get(position).getOwner();
+        ownerItem = myTradeListController.getTradeRequests().get(position).getOwnerItem();
+        borrowerItems = myTradeListController.getTradeRequests().get(position).getBorrowerItemList();
         tvBorrower.setText(myTradeListController.getTradeRequests().get(position).getBorrower());
         tvOwner.setText(myTradeListController.getTradeRequests().get(position).getOwner());
         dvdOwner.setText(myTradeListController.getTradeRequests().get(position).getOwnerItem());
@@ -83,6 +91,10 @@ public class TradeRequestDetailActivity extends BaseActivity {
         btnAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!ContextUtil.getInstance().isConnected()){
+                    Toast.makeText(ContextUtil.getInstance(), "Not Connect to Internet!", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 showCommentDialog();
             }
         });
@@ -90,6 +102,10 @@ public class TradeRequestDetailActivity extends BaseActivity {
         btnDecline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!ContextUtil.getInstance().isConnected()){
+                    Toast.makeText(ContextUtil.getInstance(), "Not Connect to Internet!", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 myTradeListController.declineTrade(position);
                 Toast.makeText(TradeRequestDetailActivity.this, "Declined the trade!", Toast.LENGTH_SHORT);
                 TradeRequestDetailActivity.this.finish();
@@ -108,22 +124,25 @@ public class TradeRequestDetailActivity extends BaseActivity {
                         public void onClick(DialogInterface arg0, int arg1) {
                             ownerComments = et.getText().toString();
                             myTradeListController.acceptTrade(position);
+                            sendEmail(ownerComments, position);
                             Toast.makeText(TradeRequestDetailActivity.this, "Accept the trade!", Toast.LENGTH_SHORT);
-                            TradeRequestDetailActivity.this.finish();
+                            finish();
                         }
                 })
         .show();
     }
 
-    private void sendEmail(String emailAddress, String ownerComments, int position){
+    private void sendEmail(String ownerComments, int position){
+        FriendsController fc = new FriendsController();
         Intent stats = new Intent(Intent.ACTION_SENDTO);
-        stats.setData(Uri.parse("mailto:" + emailAddress));
+        stats.setData(Uri.parse("mailto:" + User.instance().getProfile().getContact() + ", "
+                + fc.getByName(borrowerName).getProfile().getContact()));
         stats.putExtra(Intent.EXTRA_SUBJECT, "Trade Details");
 
         String content = "Trade Items from owner: "
-                + String.valueOf(myTradeListController.getTradeRequests().get(position).getOwnerItem())
+                + String.valueOf(ownerItem)
                 + "\n Trade Items from borrower: "
-                + String.valueOf(myTradeListController.getTradeRequests().get(position).getBorrowerItemList())
+                + String.valueOf(borrowerItems)
                 + "\n Owner's comments: " + ownerComments
                 + "\n Please check your Trade Center for details";
 

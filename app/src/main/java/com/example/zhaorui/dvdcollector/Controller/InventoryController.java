@@ -42,7 +42,6 @@ import java.util.Observer;
  * @see java.util.ArrayList
  */
 public class InventoryController {
-    private GalleryList galleryList;
     private static String TAG = "InventoryController";
     /**
      * Initialize a Inventory to store the inventory information.
@@ -53,7 +52,6 @@ public class InventoryController {
      */
     public InventoryController(){
         inventory = User.instance().getInventory();
-        galleryList = User.instance().getGalleryList();
     }
     /**
      * This function is called when other function need to know all inventories.

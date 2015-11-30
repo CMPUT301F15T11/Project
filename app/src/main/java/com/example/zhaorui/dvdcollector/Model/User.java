@@ -42,12 +42,19 @@ public class User{
      */
     private UserProfile profile;
     /**
-     * initialize a user.
+     * initialize a tradelist to store user's trades.
      */
     private TradeList tradeList;
-
+    /**
+     * initialize a gallerylist to store all galleries of user's dvds.
+     */
     private GalleryList galleryList;
 
+    /**
+     * Used to determine whether user wants to automatically download
+     * photos of friend's dvds when viewing a friend's dvd
+     * Default is true --> automatically download
+     */
     private boolean downloadImage;
 
     private User() {
@@ -103,5 +110,9 @@ public class User{
 
     public GalleryList getGalleryList() {
         return galleryList;
+    }
+
+    public void setTradeList(TradeList tradeList) {
+        this.tradeList = tradeList;
     }
 }

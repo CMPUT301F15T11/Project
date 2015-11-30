@@ -34,29 +34,13 @@ public class GalleryListController {
         this.galleryList = User.instance().getGalleryList();
     }
 
-    public GalleryListController(GalleryList galleryList) {
-        this.galleryList = galleryList;
-    }
-
     public GalleryListController(String userName) {
         // intended for non-device-users
         this.userName = userName;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
     public Gallery get(int index){
         return galleryList.get(index);
-    }
-
-    public GalleryList getGalleryList() {
-        return galleryList;
-    }
-
-    public void setGalleryList(GalleryList galleryList) {
-        this.galleryList = galleryList;
     }
 
     public void addGallery(Gallery gallery){
