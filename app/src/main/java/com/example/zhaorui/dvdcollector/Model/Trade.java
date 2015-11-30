@@ -49,7 +49,7 @@ public class Trade {
     /**
      * Initialize a boolean to be the type of the trade.
      */
-    private String type;// 分为四种， Current Incoming/Current Outgoing/Past Incoming/Past Outgoing
+    private String type;//Current Incoming/Current Outgoing/Past Incoming/Past Outgoing
 
     private String status;//4 different status，In-progress/Complete/Pending/Declined
     /**
@@ -71,22 +71,6 @@ public class Trade {
         this.changed = "";
     }
 
-    /**
-     * This function is called when other function need to know the owner of the trade.
-     * @return owner, a user variable.
-     */
-    /*
-    public User getOwner() {
-        return owner;
-    }*/
-    /**
-     * This function is called when other function need to know the borrower of the trade.
-     * @return borrower, a user variable.
-     */
-    /*
-    public User getBorrower() {
-        return borrower;
-    }*/
     /**
      * This function is called when other function need to know the type of the trade.
      * @return type, a boolean(True or False).

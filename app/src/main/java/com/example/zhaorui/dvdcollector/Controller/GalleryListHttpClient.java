@@ -55,9 +55,6 @@ public class GalleryListHttpClient {
             HttpPost addRequest = new HttpPost("http://cmput301.softwareprocess.es:8080/cmput301f15t11/gallerylist/" + this.userName);
 
             StringEntity stringEntity = new StringEntity(gson.toJson(galleryList));
-            Log.e("dvd","start pushing");
-            Log.e("DVD TradeList", "http://cmput301.softwareprocess.es:8080/cmput301f15t11/gallerylist/" + userName);
-            Log.e("DVD", gson.toJson(galleryList));
             addRequest.setHeader("Accept", "application/json");
 
             addRequest.setEntity(stringEntity);

@@ -36,9 +36,7 @@ public class TradeListController {
     private void updateTradeList(){
         if (!ContextUtil.getInstance().isConnected())return;
         MyHttpClient httpClient = new MyHttpClient(User.instance().getProfile().getName());
-        //Log.e("user name in tlc",User.instance().getProfile().getName());
         TradeList tradesReceive = httpClient.runPullTradeList();
-        Log.e("trades is null in tlc?",String.valueOf(tradesReceive==null));
         if (tradesReceive == null) {
             tradesReceive = User.instance().getTradeList();
             httpClient.runPushTradeList();

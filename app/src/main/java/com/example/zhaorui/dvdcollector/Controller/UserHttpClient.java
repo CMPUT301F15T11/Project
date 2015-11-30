@@ -63,14 +63,10 @@ public class UserHttpClient {
 
     public void pushFriend() {
         HttpClient httpClient = new DefaultHttpClient();
-        ///catch exception if not connected to the internet
-        //////////////////////////////////////////////////////////
         try {
             HttpPost addRequest = new HttpPost(Friend.URL + friend.getProfile().getName());
 
             StringEntity stringEntity = new StringEntity(gson.toJson(friend));
-            Log.e("DVD Friend",Friend.URL + friend.getProfile().getName());
-            Log.e("DVD Friend Controller", gson.toJson(friend));
 
             addRequest.setEntity(stringEntity);
             HttpResponse response = null;
@@ -80,8 +76,6 @@ public class UserHttpClient {
                 throw new RuntimeException(e.getMessage());
             }
             String status = response.getStatusLine().toString();
-            Log.e("DVD Friend Controller", status);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -221,7 +215,7 @@ public class UserHttpClient {
         Thread thread = new PullThread();
         thread.start();
         while (result==null){
-            //do nothing but wait for the pull thread to finish}
+            //do nothing but wait for the pull thread to finish
         }
         return friend;
     }
