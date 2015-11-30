@@ -17,6 +17,7 @@
 package com.example.zhaorui.dvdcollector.Model;
 
 import com.example.zhaorui.dvdcollector.Controller.InventoryController;
+import com.example.zhaorui.dvdcollector.Controller.MyHttpClient;
 import com.example.zhaorui.dvdcollector.Controller.TradeListController;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -33,6 +34,7 @@ import java.util.ArrayList;
  */
 public class Friend {
     public static final String URL = "http://cmput301.softwareprocess.es:8080/cmput301f15t11/friend/";
+
     /**
      * Initialize a Inventory to store the friends inventory.
      *
@@ -43,12 +45,10 @@ public class Friend {
      *
      */
     private UserProfile profile;
-    //private TradeList tradeList;
     /**
      * To get the selected friend's information.
      * @param user ,the selected friend.
      */
-
     private int tradeCompleted;
 
     public Friend(User user){
@@ -87,5 +87,11 @@ public class Friend {
         return profile.getName();
     }
 
-    public int getTradeCompleted() { return tradeCompleted;}
+    public int getTradeCompleted() {
+        MyHttpClient myHttpClient = new MyHttpClient(this.profile.getName());
+        TradeList tradeList = myHttpClient.runPullTradeList();
+        TradeListController tradeListController = new TradeListController(tradeList);
+        tradeCompleted = tradeListController.getTradeOfStatus("Complete").size();
+        return tradeCompleted;
+    }
 }

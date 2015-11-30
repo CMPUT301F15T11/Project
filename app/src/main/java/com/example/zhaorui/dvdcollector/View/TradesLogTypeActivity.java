@@ -59,14 +59,9 @@ public class TradesLogTypeActivity extends BaseActivity {
     @Override
     protected void onStart(){
         super.onStart();
+        //tradeListController.updateTradeList();
         tradeIDs = tradeListController.getIds(tradeListController.getTradesOfType(type));
         tradeNames = tradeListController.getNames(tradeListController.getTradesOfType(type));
-
-        Log.e(TAG,"Size of trade ids");
-        Log.e(TAG,String.valueOf(tradeIDs.size()));
-
-        Log.e(TAG,"Size of trade names");
-        Log.e(TAG,String.valueOf(tradeNames.size()));
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(TradesLogTypeActivity.this, android.R.layout.simple_list_item_1, tradeNames);
         ListView listView = (ListView) findViewById(R.id.listView_trades_log);

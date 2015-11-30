@@ -62,6 +62,10 @@ public class TradeRequestDetailActivity extends BaseActivity {
     private String ownerComments = "No comments";
     private int position;
 
+    private String borrowerName;
+    private String ownerItem;
+    private ArrayList<String> borrowerItems;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,8 +78,11 @@ public class TradeRequestDetailActivity extends BaseActivity {
         dvdOwner = (TextView)findViewById(R.id.dvds_owner_trade_detail_ongoing);
 
         Intent i = getIntent();
-        position = i.getIntExtra("position",0);
+        position = i.getIntExtra("position", 0);
 
+        borrowerName = myTradeListController.getTradeRequests().get(position).getOwner();
+        ownerItem = myTradeListController.getTradeRequests().get(position).getOwnerItem();
+        borrowerItems = myTradeListController.getTradeRequests().get(position).getBorrowerItemList();
         tvBorrower.setText(myTradeListController.getTradeRequests().get(position).getBorrower());
         tvOwner.setText(myTradeListController.getTradeRequests().get(position).getOwner());
         dvdOwner.setText(myTradeListController.getTradeRequests().get(position).getOwnerItem());
@@ -129,14 +136,13 @@ public class TradeRequestDetailActivity extends BaseActivity {
         FriendsController fc = new FriendsController();
         Intent stats = new Intent(Intent.ACTION_SENDTO);
         stats.setData(Uri.parse("mailto:" + User.instance().getProfile().getContact() + ", "
-                + fc.getByName(myTradeListController.getTradeRequests().
-                get(position).getBorrower()).getProfile().getContact()));
+                + fc.getByName(borrowerName).getProfile().getContact()));
         stats.putExtra(Intent.EXTRA_SUBJECT, "Trade Details");
 
         String content = "Trade Items from owner: "
-                + String.valueOf(myTradeListController.getTradeRequests().get(position).getOwnerItem())
+                + String.valueOf(ownerItem)
                 + "\n Trade Items from borrower: "
-                + String.valueOf(myTradeListController.getTradeRequests().get(position).getBorrowerItemList())
+                + String.valueOf(borrowerItems)
                 + "\n Owner's comments: " + ownerComments
                 + "\n Please check your Trade Center for details";
 

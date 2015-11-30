@@ -26,6 +26,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.zhaorui.dvdcollector.Controller.DataManager;
+import com.example.zhaorui.dvdcollector.Controller.TradeListController;
 import com.example.zhaorui.dvdcollector.Controller.UserHttpClient;
 import com.example.zhaorui.dvdcollector.Model.Friend;
 import com.example.zhaorui.dvdcollector.Model.User;
@@ -63,6 +64,7 @@ public class MyProfileActivity extends BaseActivity {
     @Override
     protected void onStart(){
         super.onStart();
+        TradeListController tradeListController = new TradeListController(User.instance().getTradeList());
     }
 
     public void onProfileSave(View view){

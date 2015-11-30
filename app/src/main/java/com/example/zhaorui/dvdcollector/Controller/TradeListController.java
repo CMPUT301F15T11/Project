@@ -28,19 +28,21 @@ public class TradeListController {
 
     public TradeListController(TradeList trades) {
         this.trades = trades;
-        updateTradeList();
     }
 
-    private void updateTradeList(){
+    public void updateTradeList(){
+        Log.e("UPDATE", "Now we are in updateTradeList");
         if (!ContextUtil.getInstance().isConnected())return;
         MyHttpClient httpClient = new MyHttpClient(User.instance().getProfile().getName());
         TradeList tradesReceive = httpClient.runPullTradeList();
         if (tradesReceive == null) {
             tradesReceive = User.instance().getTradeList();
+            Log.e("Now in update","tradeRevice is null");
             httpClient.runPushTradeList();
             return;
         }
         User.instance().setTradeList(tradesReceive);
+        trades = tradesReceive;
         DVD dvd;
         for (Trade trade:trades.getTrades()){
             if (trade.getChanged().equals("Pending")){
@@ -56,37 +58,38 @@ public class TradeListController {
                         .build();
                 nm.notify(NOTIFY_ID, notification);
 
+                Log.e("jlhskjldfk", "trade changed to none pending");
                 trade.setChanged("");
+
             }else if (trade.getChanged().equals("In progress")){
                 for(String dvdName:trade.getBorrowerItemList()) {
                     dvd = User.instance().getInventory().getByName(dvdName);
-                    if (dvd != null) {dvd.setSharable(false);}
+                    if (dvd != null) {
+                        dvd.setSharable(false);
+                        Log.e("jlhskjldfk","dvd set to not sharable");
+                    }
                 }
+                Log.e("jlhskjldfk", "trade changed to none in-progress");
                 trade.setChanged("");
+
             }else if(trade.getChanged().equals("Declined")){
+
+                Log.e("jlhskjldfk", "trade changed to none declined");
                 trade.setChanged("");
             }else if(trade.getChanged().equals("Complete")){
 
-                // giving notification if a trade has been set to complete
-                nm = (NotificationManager)ContextUtil.getInstance().getSystemService(Context.NOTIFICATION_SERVICE);
-                Notification notification = new Notification.Builder(ContextUtil.getInstance())
-                        .setAutoCancel(true)
-                        .setSmallIcon(R.drawable.ic_album_white_48dp)
-                        .setTicker("Notification")
-                        .setContentTitle("Trade Complete")
-                        .setContentText("You have a trade complete")
-                        .build();
-                nm.notify(NOTIFY_ID, notification);
-
                 for(String dvdName:trade.getBorrowerItemList()) {
                     dvd = User.instance().getInventory().getByName(dvdName);
-                    if (dvd != null) {dvd.setSharable(true);}
+                    if (dvd != null) {
+                        dvd.setSharable(true);
+                    }
                 }
                 trade.setChanged("");
             }
         }
         httpClient.setTradeList(trades);
-        httpClient.runPullTradeList();
+        Log.e("Push in update", "");
+        httpClient.runPushTradeList();
     }
 
     // Add a trade to the tradelist
@@ -96,8 +99,10 @@ public class TradeListController {
         Trade tradeBorrower = new Trade(borrower,owner,borrowerItemNames,ownerItemName,type,status);
         tradeBorrower.setName(tradeBorrower.getType() + "\nID: " + id);//set name
         tradeBorrower.setId(id);//set id
+        Log.e("Adding a trade", "borrower name is: " + tradeBorrower.getName());
         trades.add(tradeBorrower);
         MyHttpClient httpClient = new MyHttpClient(borrower,trades);
+        Log.e("In add trade","Push my tradelist");
         httpClient.runPushTradeList();
         ObserverManager.getInstance().notifying("Trades");
     }
@@ -126,8 +131,8 @@ public class TradeListController {
     }
 
     // set an trade's status from "In-progress" to "Complete"
-    public void setTradeComplete(String id){
-        updateTradeList();
+    public void setTradeComplete(String id) throws NullPointerException{
+        //updateTradeList();
         Trade trade = trades.getTradeById(id);
         switch (trade.getStatus()) {
             case "Pending":
@@ -170,9 +175,8 @@ public class TradeListController {
     }
 
     public void sendTrade(String ownerName, ArrayList<String> borrowerDvdNameBuffer,
-                          String ownerDvdNameBuffer, String id){
-        // pull owner's tradelist
-        updateTradeList();
+                          String ownerDvdNameBuffer, String id) throws NullPointerException{
+        Log.e("Now we are in ", "sendTrade");
         MyHttpClient myHttpClientOwner = new MyHttpClient(ownerName);
         TradeList tradeList = myHttpClientOwner.runPullTradeList();
         // add this new trade to owner's tradelist
@@ -185,14 +189,14 @@ public class TradeListController {
 
         // push owner's tradelist
         myHttpClientOwner.setTradeList(tradeList);
+        Log.e("In send trade", "Send owner's tradelist");
         myHttpClientOwner.runPushTradeList();
 
         Log.e(TAG,"Send the trade");
         ObserverManager.getInstance().notifying("Trades");
     }
 
-    public void acceptTrade(int tradeIndex){
-        updateTradeList();
+    public void acceptTrade(int tradeIndex) throws NullPointerException{
         Trade trade = trades.getTradeRequests().get(tradeIndex);
         MyHttpClient myHttpClientOwner = new MyHttpClient(trade.getOwner(), this.trades);
 
@@ -219,8 +223,7 @@ public class TradeListController {
         ObserverManager.getInstance().notifying("Trades");
     }
 
-    public void declineTrade(int tradeIndex){
-        updateTradeList();
+    public void declineTrade(int tradeIndex) throws NullPointerException{
         Trade trade = trades.getTradeRequests().get(tradeIndex);
         MyHttpClient myHttpClientOwner = new MyHttpClient(trade.getOwner(), this.trades);
         //set this trade to current incoming & In-progress
@@ -233,7 +236,11 @@ public class TradeListController {
         //pull borrower's tradelist from the webservice
         TradeList tradeList = myHttpClientBorrower.runPullTradeList();
         Trade tradeBorrower = tradeList.getTradeById(trade.getId());
-        tradeBorrower.setChanged("In progress");
+        try {
+            tradeBorrower.setChanged("In progress");
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
         tradeList.setTradeResult(trade.getId(), false);
         //push online
         myHttpClientBorrower.setTradeList(tradeList);
@@ -245,19 +252,19 @@ public class TradeListController {
 
     // get all trades of the specified status,  eg. "In-progress"
     public TradeList getTradeOfStatus(String status){
+        updateTradeList();
         TradeList tradesToReturn = new TradeList();
         for (Trade aTrade : trades.getTrades()){
             if (aTrade.getStatus().equals(status)){
                 tradesToReturn.add(aTrade);
             }
         }
-        Log.e(TAG,"Size of trades of status");
-        Log.e(TAG,String.valueOf(tradesToReturn.size()));
         return tradesToReturn;
     }
 
     // get all trades of the specified type, eg. "Current Outgoing"
     public TradeList getTradesOfType(String type){
+        updateTradeList();
         TradeList tradesToReturn = new TradeList();
         for (Trade aTrade : trades.getTrades()){
             if (aTrade.getType().equals(type)){
@@ -265,14 +272,10 @@ public class TradeListController {
                 tradesToReturn.add(aTrade);
             }
         }
-        Log.e(TAG,"Size of trades of type");
-        Log.e(TAG,String.valueOf(tradesToReturn.size()));
         return tradesToReturn;
     }
 
     public TradeList getTradeRequests(){
-        Log.e(TAG,"Size of trade requests");
-        Log.e(TAG,String.valueOf(trades.getTradeRequests().size()));
         return trades.getTradeRequests();
     }
 }

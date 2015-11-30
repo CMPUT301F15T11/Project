@@ -91,9 +91,6 @@ public class TradeDetailActivity extends BaseActivity {
         }
         idOfTrade = i.getStringExtra("id");
 
-        Log.e("DVD", tradeToShow.getStatus());
-        Log.e("DVD", tradeToShow.getType());
-
         textViewBorrower.setText(tradeToShow.getBorrower());
         textViewOwner.setText(tradeToShow.getOwner());
         if(tradeToShow.getBorrowerItemList().size()!=0){

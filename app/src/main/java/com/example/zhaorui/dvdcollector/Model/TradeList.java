@@ -35,8 +35,13 @@ public class TradeList{
         return trades.size();
     }
 
-    public Trade get(int i){
-        return trades.get(i);
+    public Trade get(int i) throws NullPointerException,IndexOutOfBoundsException{
+        try {
+            return trades.get(i);
+        }catch (IndexOutOfBoundsException e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public ArrayList<Trade> getTrades() {

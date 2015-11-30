@@ -113,8 +113,6 @@ public class StartTradeActivity extends BaseActivity implements Observer {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                //TODO:Pull Inventory Info From Webservice??????
-
                 inventoryOwnerController.setInventory(friendsController.getByName
                         (spinner.getSelectedItem().toString()).getInventory());
                 ownerDvdNames = inventoryOwnerController.getAllNamesFriend();

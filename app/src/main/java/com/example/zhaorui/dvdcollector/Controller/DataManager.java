@@ -122,7 +122,8 @@ public class DataManager implements Observer {
     public void update(Observable ob, Object o){
         saveLocal();
         saveSever();
-        new TradeListController(User.instance().getTradeList());
+        TradeListController tradeListController = new TradeListController(User.instance().getTradeList());
+        tradeListController.updateTradeList();
     }
 
     public void saveSever(){
@@ -133,8 +134,10 @@ public class DataManager implements Observer {
         MyHttpClient myHttpClient = new MyHttpClient(User.instance().getProfile().getName());
         myHttpClient.setUser(new Friend(User.instance()));
         myHttpClient.setGalleryList(User.instance().getGalleryList());
+        myHttpClient.setTradeList(User.instance().getTradeList());
         myHttpClient.runPushFriend();
         myHttpClient.runPushGalleryList();
+        myHttpClient.runPushTradeList();
     }
 
     public Uri getImgUri() {

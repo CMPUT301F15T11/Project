@@ -59,6 +59,7 @@ public class TradesLogStatusActivity extends BaseActivity {
     protected void onStart(){
         super.onStart();
 
+        //tradeListController.updateTradeList();
         tradeNames = tradeListController.getNames(tradeListController.getTradeOfStatus(status));
         tradeIDs = tradeListController.getIds(tradeListController.getTradeOfStatus(status));
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(TradesLogStatusActivity.this, android.R.layout.simple_list_item_1, tradeNames);
