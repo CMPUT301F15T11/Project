@@ -8,7 +8,13 @@ import com.example.zhaorui.dvdcollector.Model.TradeList;
 import com.google.gson.Gson;
 
 /**
- * Created by teppie on 22/11/15.
+ * <p>
+ * The <code>MyHttpClient</code> controls the connect to the web serve
+ * <p>
+ *
+ * @author  Dingkai Liang
+ * @version 01/11/15
+ * @see java.util.ArrayList
  */
 public class MyHttpClient {
     /**

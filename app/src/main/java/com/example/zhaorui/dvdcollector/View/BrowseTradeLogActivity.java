@@ -9,6 +9,15 @@ import com.example.zhaorui.dvdcollector.Controller.TradeListController;
 import com.example.zhaorui.dvdcollector.Model.User;
 import com.example.zhaorui.dvdcollector.R;
 
+/**
+ * <p>
+ *   The <code>BrowseTradeLogActivity</code> deals with the interface of browsing trades.
+ *
+ *   @author Zhaorui Chen
+ *   @version 11/10/15
+ * </p>
+ */
+
 public class BrowseTradeLogActivity extends BaseActivity {
     /**
      * Initialize Current Incoming button

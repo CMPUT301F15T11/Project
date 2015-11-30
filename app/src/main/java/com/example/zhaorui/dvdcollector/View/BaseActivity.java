@@ -31,9 +31,13 @@ import android.view.View;
 import android.view.Window;
 
 import com.example.zhaorui.dvdcollector.R;
-
 /**
- * Created by teppie on 06/10/15.
+ * <p>
+ * The <code>BrowseInventActivity</code> controls base user interface.
+ * <p>
+ *
+ * @author  Zhaorui Chen
+ * @version 11/10/15
  */
 public class BaseActivity extends Activity {//////////////////
     @Override

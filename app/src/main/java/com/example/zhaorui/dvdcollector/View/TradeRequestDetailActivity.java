@@ -163,7 +163,8 @@ public class TradeRequestDetailActivity extends BaseActivity {
                         public void onClick(DialogInterface arg0, int arg1) {
                             ownerComments = et.getText().toString();
                             myTradeListController.acceptTrade(position);
-                            sendEmail(ownerComments, position);
+                            sendEmail(ownerComments, position, User.instance().getProfile().getContact());
+                            sendEmail(ownerComments, position, fc.getByName(borrowerName).getProfile().getContact());
                             Toast.makeText(TradeRequestDetailActivity.this, "Accept the trade!", Toast.LENGTH_SHORT);
                             finish();
                         }
@@ -175,11 +176,10 @@ public class TradeRequestDetailActivity extends BaseActivity {
      * @param ownerComments string variable
      * @param position int variable
      */
-    private void sendEmail(String ownerComments, int position){
+    private void sendEmail(String ownerComments, int position, String contact){
         FriendsController fc = new FriendsController();
         Intent stats = new Intent(Intent.ACTION_SENDTO);
-        stats.setData(Uri.parse("mailto:" + User.instance().getProfile().getContact() + ", "
-                + fc.getByName(borrowerName).getProfile().getContact()));
+        stats.setData(Uri.parse("mailto:" + contact));
         stats.putExtra(Intent.EXTRA_SUBJECT, "Trade Details");
 
         String content = "Trade Items from owner: "

@@ -3,9 +3,13 @@ package com.example.zhaorui.dvdcollector.Model;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
-
 /**
- * Created by zhaorui on 11/20/15.
+ * <p>
+ * The <code>ObserverManager</code> class manages all observers in the application.
+ * <p>
+ *
+ * @author  Zhaorui Chen
+ * @version 04/11/15
  */
 public class ObserverManager{
     /**

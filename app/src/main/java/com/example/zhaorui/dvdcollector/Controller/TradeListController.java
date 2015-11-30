@@ -18,10 +18,13 @@ import java.util.ArrayList;
 import java.util.Observer;
 
 /**
- * Created by teppie on 12/11/15.
- */
-/**
- * The trade list controller
+ * <p>
+ * The <code>TradeListController</code> uploads the trade lists to the web server.
+ * <p>
+ *
+ * @author  Zhaorui Chen
+ * @version 01/11/15
+ * @see java.util.ArrayList
  */
 public class TradeListController {
     /**

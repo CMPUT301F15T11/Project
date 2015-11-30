@@ -1,9 +1,14 @@
 package com.example.zhaorui.dvdcollector.Model;
 
 import java.util.ArrayList;
-
 /**
- * Created by teppie on 28/11/15.
+ * <p>
+ * The <code>GalleryList</code> class manages photos list that are used in this app.
+ * <p>
+ *
+ * @author  Zhaorui Chen
+ * @version 04/11/15
+ * @see ArrayList;
  */
 public class GalleryList {
     /**

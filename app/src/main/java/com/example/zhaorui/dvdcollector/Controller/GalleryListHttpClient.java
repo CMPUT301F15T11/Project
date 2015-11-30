@@ -22,7 +22,12 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 
 /**
- * Created by zhaorui on 11/19/15.
+ * <p>
+ * The <code>GalleryListHttpClient</code> is class to upload Gallery list to server.
+ * <p>
+ *
+ * @author  Zhaorui Chen
+ * @version 04/11/15
  */
 public class GalleryListHttpClient {
     /**

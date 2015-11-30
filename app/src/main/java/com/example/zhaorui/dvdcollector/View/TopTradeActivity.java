@@ -9,7 +9,14 @@ import android.widget.ListView;
 
 import com.example.zhaorui.dvdcollector.Controller.FriendsController;
 import com.example.zhaorui.dvdcollector.R;
-
+/**
+ * <p>
+ * The <code>TopTradeActivity</code> get the list of trade by comparing them.
+ * <p>
+ *
+ * @author  Zhaorui Chen
+ * @version 11/10/15
+ */
 public class TopTradeActivity extends BaseActivity {
 
     @Override

@@ -6,7 +6,155 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bc53ee1d-965c-4ac0-9e91-54931ec87bbe" name="Default" comment="" />
+    <list default="true" id="bc53ee1d-965c-4ac0-9e91-54931ec87bbe" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/gradle_project_sync_data.bin" afterPath="$PROJECT_DIR$/build/intermediates/gradle_project_sync_data.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/outputFileStates.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/BaseActivity.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/BaseActivity.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/BaseActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/BaseActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/BrowseInventActivity.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/BrowseInventActivity.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/BrowseTradeLogActivity.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/BrowseTradeLogActivity.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/BrowseTradeLogActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/BrowseTradeLogActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/Cache.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/Cache.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/CategoryActivity.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/CategoryActivity.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/ConfigActivity.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/ConfigActivity.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/ContextUtil.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/ContextUtil.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/CounterTradeActivity.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/CounterTradeActivity.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/DVD.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/DVD.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/DVDAddActivity.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/DVDAddActivity.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/DVDInfoActivity.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/DVDInfoActivity.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Controller/DataManager.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Controller/DataManager.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/DisplayPhotoActivity.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/DisplayPhotoActivity.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/Friend.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/Friend.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/FriendInventoryActivity.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/FriendInventoryActivity.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/FriendInventoryDialog.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/FriendInventoryDialog.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/FriendListActivity.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/FriendListActivity.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/FriendListDialog.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/FriendListDialog.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/FriendProfileActivity.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/FriendProfileActivity.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/Friends.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/Friends.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Controller/FriendsController.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Controller/FriendsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/Gallery.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/Gallery.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/GalleryList.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/GalleryList.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Model/GalleryList.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Model/GalleryList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Controller/GalleryListController.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Controller/GalleryListController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Controller/GalleryListHttpClient.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Controller/GalleryListHttpClient.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Controller/GalleryListHttpClient.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Controller/GalleryListHttpClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/es/data/Hits.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/es/data/Hits.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/InputInvalidDialog.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/InputInvalidDialog.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/Inventory.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/Inventory.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Controller/InventoryController.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Controller/InventoryController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/MainActivity.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/MainActivity.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Controller/MyHttpClient.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Controller/MyHttpClient.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Controller/MyHttpClient.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Controller/MyHttpClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/MyInventoryActivity.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/MyInventoryActivity.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/MyInventoryDialog.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/MyInventoryDialog.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/MyObservable.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/MyObservable.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Model/MyObservable.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Model/MyObservable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/MyProfileActivity.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/MyProfileActivity.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/NameInputDialog.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/NameInputDialog.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/ObserverManager.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/ObserverManager.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Model/ObserverManager.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Model/ObserverManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/PhotoActivity.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/PhotoActivity.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/SearchDialog.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/SearchDialog.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/es/data/SearchHit.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/es/data/SearchHit.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/es/data/SearchResponse.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/es/data/SearchResponse.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/es/data/SimpleSearchCommand.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/es/data/SimpleSearchCommand.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/StartTradeActivity.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/StartTradeActivity.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/SwitchDownloadActivity.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/SwitchDownloadActivity.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/TopTradeActivity.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/TopTradeActivity.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/TopTradeActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/TopTradeActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/Trade.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/Trade.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/TradeCenterActivity.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/TradeCenterActivity.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/TradeDetailActivity.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/TradeDetailActivity.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Controller/TradeHttpClient.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Controller/TradeHttpClient.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Controller/TradeHttpClient.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Controller/TradeHttpClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/TradeList.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/TradeList.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Model/TradeList.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Model/TradeList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Controller/TradeListController.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Controller/TradeListController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Controller/TradeListController.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Controller/TradeListController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/TradeRequestDetailActivity.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/TradeRequestDetailActivity.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/TradeRequestDetailActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/TradeRequestDetailActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/TradeRequestInvalidDialog.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/TradeRequestInvalidDialog.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/TradeRequestsActivity.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/TradeRequestsActivity.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/TradesLogStatusActivity.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/TradesLogStatusActivity.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/TradesLogTypeActivity.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/TradesLogTypeActivity.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/User.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/User.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Controller/UserHttpClient.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Controller/UserHttpClient.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Controller/UserHttpClient.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Controller/UserHttpClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/UserProfile.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/UserProfile.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/allclasses-frame.html" afterPath="$PROJECT_DIR$/doc/javadoc2/allclasses-frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/allclasses-noframe.html" afterPath="$PROJECT_DIR$/doc/javadoc2/allclasses-noframe.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_22_2_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_22_2_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/constant-values.html" afterPath="$PROJECT_DIR$/doc/javadoc2/constant-values.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/deprecated-list.html" afterPath="$PROJECT_DIR$/doc/javadoc2/deprecated-list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/help-doc.html" afterPath="$PROJECT_DIR$/doc/javadoc2/help-doc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/index-files/index-1.html" afterPath="$PROJECT_DIR$/doc/javadoc2/index-files/index-1.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/index-files/index-10.html" afterPath="$PROJECT_DIR$/doc/javadoc2/index-files/index-10.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/index-files/index-11.html" afterPath="$PROJECT_DIR$/doc/javadoc2/index-files/index-11.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/index-files/index-12.html" afterPath="$PROJECT_DIR$/doc/javadoc2/index-files/index-12.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/index-files/index-13.html" afterPath="$PROJECT_DIR$/doc/javadoc2/index-files/index-13.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/index-files/index-14.html" afterPath="$PROJECT_DIR$/doc/javadoc2/index-files/index-14.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/index-files/index-15.html" afterPath="$PROJECT_DIR$/doc/javadoc2/index-files/index-15.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/index-files/index-16.html" afterPath="$PROJECT_DIR$/doc/javadoc2/index-files/index-16.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/index-files/index-17.html" afterPath="$PROJECT_DIR$/doc/javadoc2/index-files/index-17.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/index-files/index-18.html" afterPath="$PROJECT_DIR$/doc/javadoc2/index-files/index-18.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/index-files/index-2.html" afterPath="$PROJECT_DIR$/doc/javadoc2/index-files/index-2.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/index-files/index-3.html" afterPath="$PROJECT_DIR$/doc/javadoc2/index-files/index-3.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/index-files/index-4.html" afterPath="$PROJECT_DIR$/doc/javadoc2/index-files/index-4.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/index-files/index-5.html" afterPath="$PROJECT_DIR$/doc/javadoc2/index-files/index-5.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/index-files/index-6.html" afterPath="$PROJECT_DIR$/doc/javadoc2/index-files/index-6.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/index-files/index-7.html" afterPath="$PROJECT_DIR$/doc/javadoc2/index-files/index-7.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/index-files/index-8.html" afterPath="$PROJECT_DIR$/doc/javadoc2/index-files/index-8.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/index-files/index-9.html" afterPath="$PROJECT_DIR$/doc/javadoc2/index-files/index-9.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/index.html" afterPath="$PROJECT_DIR$/doc/javadoc2/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/overview-frame.html" afterPath="$PROJECT_DIR$/doc/javadoc2/overview-frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/overview-summary.html" afterPath="$PROJECT_DIR$/doc/javadoc2/overview-summary.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/overview-tree.html" afterPath="$PROJECT_DIR$/doc/javadoc2/overview-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Controller/package-frame.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Controller/package-frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/package-frame.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/package-frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/package-frame.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/package-frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/es/data/package-frame.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/es/data/package-frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Controller/package-summary.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Controller/package-summary.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/package-summary.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/package-summary.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/package-summary.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/package-summary.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/es/data/package-summary.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/es/data/package-summary.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Controller/package-tree.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Controller/package-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/package-tree.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/package-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/package-tree.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/View/package-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/es/data/package-tree.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/es/data/package-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/serialized-form.html" afterPath="$PROJECT_DIR$/doc/javadoc2/serialized-form.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_22_2_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_22_2_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testProfile.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testProfile.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS040101.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS040101.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS040201.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS040201.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS040301.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS040301.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS040401.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS040401.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS040501.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS040501.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS040601.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS040601.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS040701.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS040701.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS040801flow1.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS040801flow1.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS040801flow2.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS040801flow2.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS040801flow3.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS040801flow3.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS040801flow4.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS040801flow4.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS040901flow1.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS040901flow1.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS040901flow2.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS040901flow2.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS040901flow3.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS040901flow3.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS040901flow4.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS040901flow4.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS041001.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS041001.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS041101flow1.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS041101flow1.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS041101flow2.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS041101flow2.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS041201flow1.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS041201flow1.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS041201flow2.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS041201flow2.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS120101.html" afterPath="$PROJECT_DIR$/doc/javadoc2/com/example/zhaorui/dvdcollector/Model/testUS120101.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="Project.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -35,52 +183,101 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="testProfile.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/androidTest/java/com/example/zhaorui/dvdcollector/Model/testProfile.java">
+      <file leaf-file-name="FriendsController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Controller/FriendsController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="35" column="39" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
+              <caret line="47" column="13" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="testInventory.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/androidTest/java/com/example/zhaorui/dvdcollector/Model/testInventory.java">
+      <file leaf-file-name="DataManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Controller/DataManager.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
+              <caret line="53" column="13" selection-start-line="53" selection-start-column="13" selection-end-line="53" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DVD.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Model/DVD.java">
+      <file leaf-file-name="TopTradeActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/TopTradeActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.36133486">
-              <caret line="33" column="33" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
-              <folding>
-                <element signature="e#1137#1138#0" expanded="true" />
-                <element signature="e#1171#1172#0" expanded="true" />
-                <element signature="e#1201#1202#0" expanded="true" />
-                <element signature="e#1236#1237#0" expanded="true" />
-                <element signature="e#1267#1268#0" expanded="true" />
-                <element signature="e#1317#1318#0" expanded="true" />
-                <element signature="e#1354#1355#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0">
+              <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_trade_center.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_trade_center.xml">
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider editor-type-id="text-editor">
+      <file leaf-file-name="TradesLogTypeActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/TradesLogTypeActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TradesLogStatusActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/TradesLogStatusActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TradeRequestsActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/TradeRequestsActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TradeRequestInvalidDialog.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/TradeRequestInvalidDialog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TradeRequestDetailActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/TradeRequestDetailActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.39574468">
+              <caret line="52" column="39" selection-start-line="52" selection-start-column="39" selection-end-line="52" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BaseActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/BaseActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="35" column="69" selection-start-line="35" selection-start-column="69" selection-end-line="35" selection-end-column="69" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SwitchDownloadActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/SwitchDownloadActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="37" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -1202,7 +1399,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="4346731602437" />
+        <entry key="$PROJECT_DIR$" value="4346487321311" />
         <entry key="C:\Users\Administrator\Desktop\Project" value="4346716614878" />
       </map>
     </option>
@@ -1381,10 +1578,10 @@
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/intellij/annotations/12.0/annotations-12.0.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/external/lombok/lombok-ast/0.2.3/lombok-ast-0.2.3-sources.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/external/lombok/lombok-ast/0.2.3/lombok-ast-0.2.3.jar" />
-                            <option value="E:/Android/android_sdk/extras/android/m2repository/com/android/support/appcompat-v7/22.2.1/appcompat-v7-22.2.1.aar" />
+                            <option value="$USER_HOME$/Android/Sdk/extras/android/m2repository/com/android/support/appcompat-v7/22.2.1/appcompat-v7-22.2.1.aar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.4/695b63d702f505b9b916e02272e3b6381bade7f/gson-2.4.jar" />
-                            <option value="E:/Android/android_sdk/extras/android/m2repository/com/android/support/support-v4/22.2.1/support-v4-22.2.1.aar" />
-                            <option value="E:/Android/android_sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar" />
+                            <option value="$USER_HOME$/Android/Sdk/extras/android/m2repository/com/android/support/support-v4/22.2.1/support-v4-22.2.1.aar" />
+                            <option value="$USER_HOME$/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar" />
                           </list>
                         </option>
                         <option name="path" value="$PROJECT_DIR$/app" />
@@ -1396,117 +1593,6 @@
               <option name="name" value="app" />
               <option name="projectBuildClasspath">
                 <list>
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/announce" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/antlr" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/base-services" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/base-services-groovy" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/build-comparison" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/build-init" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/cli" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/code-quality" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/core" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/dependency-management" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/diagnostics" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/ear" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/ide" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/ide-native" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/internal-integ-testing" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/internal-testing" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/ivy" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/jacoco" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/javascript" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/jetty" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/language-groovy" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/language-java" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/language-jvm" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/language-native" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/language-scala" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/launcher" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/maven" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/messaging" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/model-core" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/model-groovy" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/native" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/open-api" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/osgi" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/platform-base" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/platform-jvm" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/platform-native" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/platform-play" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/plugin-development" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/plugin-use" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/plugins" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/publish" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/reporting" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/resources" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/resources-http" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/resources-s3" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/resources-sftp" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/scala" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/signing" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/sonar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/testing-native" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/tooling-api" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/tooling-api-builders" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/ui" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/src/wrapper" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/ant-1.9.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/ant-launcher-1.9.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/gradle-base-services-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/gradle-base-services-groovy-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/gradle-cli-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/gradle-core-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/gradle-docs-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/gradle-launcher-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/gradle-messaging-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/gradle-model-core-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/gradle-model-groovy-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/gradle-native-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/gradle-open-api-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/gradle-resources-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/gradle-tooling-api-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/gradle-ui-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/gradle-wrapper-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/groovy-all-2.3.10.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-announce-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-antlr-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-build-comparison-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-build-init-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-code-quality-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-dependency-management-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-diagnostics-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-ear-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-ide-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-ide-native-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-ivy-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-jacoco-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-javascript-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-jetty-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-language-groovy-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-language-java-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-language-jvm-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-language-native-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-language-scala-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-maven-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-osgi-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-platform-base-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-platform-jvm-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-platform-native-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-platform-play-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-plugin-development-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-plugin-use-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-plugins-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-publish-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-reporting-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-resources-http-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-resources-s3-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-resources-sftp-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-scala-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-signing-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-sonar-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-testing-native-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/gradle-tooling-api-builders-2.4.jar" />
-                  <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4/lib/plugins/ivy-2.2.0.jar" />
                   <option value="$PROJECT_DIR$/buildSrc/src/main/java" />
                   <option value="$PROJECT_DIR$/buildSrc/src/main/groovy" />
                 </list>
@@ -1526,6 +1612,19 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_trade_center.xml" />
         <option value="$PROJECT_DIR$/app/src/androidTest/java/com/example/zhaorui/dvdcollector/Model/testProfile.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Model/DVD.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Controller/GalleryListHttpClient.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Controller/MyHttpClient.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Controller/TradeHttpClient.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Controller/TradeListController.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Controller/UserHttpClient.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Model/GalleryList.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Model/TradeList.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Model/ObserverManager.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Model/MyObservable.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/BrowseTradeLogActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/BaseActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/TopTradeActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/TradeRequestDetailActivity.java" />
       </list>
     </option>
   </component>
@@ -1540,10 +1639,10 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="-1" />
+    <option name="y" value="-4" />
+    <option name="width" value="1602" />
+    <option name="height" value="905" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -1641,6 +1740,10 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="View">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT USER_OBJECT="Root">
@@ -1693,18 +1796,91 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="androidTest/java">
+            <PATH_ELEMENT USER_OBJECT="main">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="com/example/zhaorui/dvdcollector/Model">
+            <PATH_ELEMENT USER_OBJECT="java">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="com/example/zhaorui/dvdcollector">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="app">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="app">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="src">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="main">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="java">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="com/example/zhaorui/dvdcollector">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="Controller">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="app">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="app">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="src">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="app">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="app">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="build">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane" />
       <pane id="Scratches" />
       <pane id="AndroidView">
@@ -1721,6 +1897,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2028,36 +2205,36 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <frame x="-1" y="-4" width="1602" height="905" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928312" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24946696" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928312" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24903226" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32797858" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928312" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -2072,49 +2249,179 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Controller/GalleryListController.java</url>
+          <line>13</line>
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/androidTest/java/com/example/zhaorui/dvdcollector/Model/testProfile.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/CounterTradeActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="62" column="13" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_trade_center.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_trade_center.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/androidTest/java/com/example/zhaorui/dvdcollector/Model/testProfile.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/DisplayPhotoActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="39" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
+          <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/androidTest/java/com/example/zhaorui/dvdcollector/Model/testInventory.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/DVDAddActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/DVDInfoActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/FriendInventoryActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="48" column="13" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/FriendInventoryDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/FriendListActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/FriendListDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/FriendProfileActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/InputInvalidDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="44" column="13" selection-start-line="44" selection-start-column="13" selection-end-line="44" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/MyInventoryActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="45" column="13" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/MyInventoryDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/MyProfileActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/NameInputDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="51" column="13" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/PhotoActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="63" column="13" selection-start-line="63" selection-start-column="13" selection-end-line="63" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/SearchDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="44" column="13" selection-start-line="44" selection-start-column="13" selection-end-line="44" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/StartTradeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="59" column="13" selection-start-line="59" selection-start-column="13" selection-end-line="59" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/TradeCenterActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/TradeDetailActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="45" column="13" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Model/UserProfile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
@@ -2122,19 +2429,245 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Model/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Model/TradeList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Model/Trade.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Model/ObserverManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Model/MyObservable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Model/Inventory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Model/GalleryList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Model/Gallery.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Model/Friends.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Model/Friend.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Model/DVD.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36133486">
-          <caret line="33" column="33" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Model/ContextUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Model/Cache.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Controller/UserHttpClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="47" column="13" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Controller/TradeListController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Controller/TradeHttpClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Controller/MyHttpClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Controller/InventoryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
           <folding>
-            <element signature="e#1137#1138#0" expanded="true" />
-            <element signature="e#1171#1172#0" expanded="true" />
-            <element signature="e#1201#1202#0" expanded="true" />
-            <element signature="e#1236#1237#0" expanded="true" />
-            <element signature="e#1267#1268#0" expanded="true" />
-            <element signature="e#1317#1318#0" expanded="true" />
-            <element signature="e#1354#1355#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Controller/GalleryListHttpClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Controller/GalleryListController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Controller/FriendsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="47" column="13" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/Controller/DataManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="53" column="13" selection-start-line="53" selection-start-column="13" selection-end-line="53" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/SwitchDownloadActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="37" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/BaseActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="35" column="69" selection-start-line="35" selection-start-column="69" selection-end-line="35" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/TradesLogTypeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/TradesLogStatusActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/TradeRequestsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/TopTradeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/TradeRequestInvalidDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhaorui/dvdcollector/View/TradeRequestDetailActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39574468">
+          <caret line="52" column="39" selection-start-line="52" selection-start-column="39" selection-end-line="52" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -6,9 +6,14 @@ import com.example.zhaorui.dvdcollector.Model.Trade;
 
 import java.util.ArrayList;
 import java.util.Observable;
-
 /**
- * Created by teppie on 12/11/15.
+ * <p>
+ * The <code>Trade</code> class manages a list of trade information between the current user and other user.
+ * <p>
+ *
+ * @author  Dingkai Liang
+ * @version 01/11/15
+ * @see java.util.ArrayList
  */
 public class TradeList{
     /*

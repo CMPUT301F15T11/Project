@@ -29,7 +29,13 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 /**
- * Created by zhaorui on 11/19/15.
+ * <p>
+ * The <code>TradeHttpClient</code> uploads the trade to the web serve
+ * <p>
+ *
+ * @author  Zhaorui Chen
+ * @version 01/11/15
+ * @see java.util.ArrayList
  */
 public class TradeHttpClient {
     /**
