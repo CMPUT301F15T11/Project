@@ -2,39 +2,39 @@
 <items version="2" >
 
     <item
-        jar="/home/yueliang1995/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.4/695b63d702f505b9b916e02272e3b6381bade7f/gson-2.4.jar"
+        jar="/cshome/xzhang9/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.4/695b63d702f505b9b916e02272e3b6381bade7f/gson-2.4.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="0695b63d702f505b9b916e02272e3b6381bade7f">
-        <dex dex="/home/yueliang1995/Project/app/build/intermediates/pre-dexed/debug/gson-2.4-ba0bf008723215b1c97254afb93ee0ee1011ad10.jar" />
+        <dex dex="/cshome/xzhang9/Project/app/build/intermediates/pre-dexed/debug/gson-2.4-1341b4699d19312ec6ae3d4d2cae6bc6e39d20a4.jar" />
     </item>
     <item
-        jar="/home/yueliang1995/Project/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
+        jar="/cshome/xzhang9/Project/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
-        <dex dex="/home/yueliang1995/Project/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.1-c74b59531b43c4635c72c847c83d94ff32732538.jar" />
+        <dex dex="/cshome/xzhang9/Project/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.1-e4142f91c9a0906762f8ba70d192c5fe2d7ee1bc.jar" />
     </item>
     <item
-        jar="/home/yueliang1995/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"
+        jar="/usr/local/share/android-sdk-linux/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
-        <dex dex="/home/yueliang1995/Project/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.1-183b110e64f681abc5dd78d6c5eba1d22c8524b0.jar" />
+        <dex dex="/cshome/xzhang9/Project/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.1-6b8f43d628bde674586e533393329d929d7ff825.jar" />
     </item>
     <item
-        jar="/home/yueliang1995/Project/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
-        <dex dex="/home/yueliang1995/Project/app/build/intermediates/pre-dexed/debug/classes-26c4b8a304addc5833f63ea1ca4ea1758b8ede49.jar" />
-    </item>
-    <item
-        jar="/home/yueliang1995/Project/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
+        jar="/cshome/xzhang9/Project/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="f8efd0096475e0daf054267b61544e10dc776503">
-        <dex dex="/home/yueliang1995/Project/app/build/intermediates/pre-dexed/debug/classes-bb3046730fa6260d359996ec8765244c6e771161.jar" />
+        <dex dex="/cshome/xzhang9/Project/app/build/intermediates/pre-dexed/debug/classes-4e71253316e134fcac832c97ac1f96b8676fe198.jar" />
+    </item>
+    <item
+        jar="/cshome/xzhang9/Project/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
+        <dex dex="/cshome/xzhang9/Project/app/build/intermediates/pre-dexed/debug/classes-274eccff47a091de9d859366a887162186e56543.jar" />
     </item>
 
 </items>

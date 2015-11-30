@@ -26,7 +26,7 @@ public class testProfile extends ActivityInstrumentationTestCase2 {
 
     public void testViewProfile() throws Exception {
         activity = getActivity();
-        DataManager.instance().initFile("test");
+        DataManager.instance().initFile("test","test@test");
         Instrumentation.ActivityMonitor am =
                 getInstrumentation().addMonitor(MyProfileActivity.class.getName(),null,false);
         activity.runOnUiThread(new Runnable() {
